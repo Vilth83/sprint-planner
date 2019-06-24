@@ -23,64 +23,7 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
   ## Personas
 
-  | name   | Bert Vaner       |
-  | ------ | ---------------- |
-  | age    | 39               |
-  | Job    | business analyst |
-  | status | contractor       |
-
-  Bert is in charge of functional needs. He also organize iterations, morning meetings and sprint debriefing.
-  Each week, he looks in JIRA and GITHUB for features ongoing and send a mail to the team. He can also be a support team leader.
-
-  _I spend a lot of time writing release mails, and crucial informations such as this weeks releaser are always to be defined... I need a tool to manage that for me !_
-
-  | name   | Phil Mach       |
-  | ------ | --------------- |
-  | age    | 43              |
-  | job    | Chapter manager |
-  | status | Employee        |
-
-  Phil is in charge of the team management. He manage several teams (known as Chapters), working on different projects joined together in a product interation.
-  He have to ensure that Agile@Scale principles are respected.
-
-  _I manage several agile teams, and hardly knows who is in charge of the release, or who is in charge of the support..._
-
-  | name   | Jay Devoe                |
-  | ------ | ------------------------ |
-  | age    | 45                       |
-  | job    | senior software engineer |
-  | status | Employee                 |
-
-  Jay is a senior software engineer working in the society for many years. He acts like a fireman on urging topics, and doesn't code that much anymore.
-  He is the one the team relies on when a problem occurs, or when difficulties are encountered regarding release.
-
-  _I want to have a precise insight of the release process : who is in charge, which step are we in, is everything fine or not?_
-
-  -   Newcomer
-
-  | name   | Terry Valliantown        |
-  | ------ | ------------------------ |
-  | age    | 35                       |
-  | job    | junior software engineer |
-  | status | intern                   |
-
-  Terry is in an internship in the company. He is here to learn development and project management, such as releases, technical architecture.
-  He wants to join the support team to improve his skills;
-
-  _I have never made a release. A tool giving wiki and release step insights would be very helpful for me to learn._
-
-  -   final User
-
-  | name   | Andy Youzer     |
-  | ------ | --------------- |
-  | age    | 55              |
-  | job    | audit inspector |
-  | status | Employee        |
-
-  Andy work in the audit service. He is the final user of an application currently in development by the team.
-  As it's a new software, he needs to learn how to use it and is afraid not to have enough support.
-
-  _When I use an application, I want to be sure that there is well organized support in case oof emergency_
+[link to personas](https://github.com/Vilth83/sprint-planner/blob/master/personas.pdf)
 
   ## User Stories
 
