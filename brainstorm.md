@@ -25,7 +25,7 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
 [link to personas](https://github.com/Vilth83/sprint-planner/blob/master/personas.pdf)
 
-## User Stories
+## First User Stories
 
 -   connection
 
@@ -43,12 +43,12 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
 -   manage releaser of the week
 
-    - set a member as releaser candidate
-    - unset a member as releaser candidate
-    - find releaser
-    - manually choose releaser
-    - manually switch releaser
-    - automatically update releaser
+    - [As an admin, I want to create a releaser](https://github.com/Vilth83/sprint-planner/issues/7)
+    - [As an admin, I want to delete a releaser](https://github.com/Vilth83/sprint-planner/issues/8)
+    - [As a user, I want to find current releaser](https://github.com/Vilth83/sprint-planner/issues/9)
+    - [As an admin, I want to manually select releaser](https://github.com/Vilth83/sprint-planner/issues/11)
+    - [As a user, I want to select next releaser if current is unavailable](https://github.com/Vilth83/sprint-planner/issues/10)
+    - [As a releaser, I want to be picked automatically](https://github.com/Vilth83/sprint-planner/issues/12)
 
 -   manage release iteration
 
