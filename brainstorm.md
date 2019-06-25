@@ -16,7 +16,8 @@
   * [manage support team leader of the day](#manage-support-team-leader-of-the-day)
   * [help in release process](#help-in-release-process)
 - [TBD : benchmark](#tbd---benchmark)
-- [TBD : wireframes / sitemap](#tbd---wireframes---sitemap)
+- [sitemap](#sitemap)
+- [TBD : wireframes](#tbd---wireframes)
 - [TBD : wiki](#tbd---wiki)
 
 ## Idea
@@ -100,6 +101,9 @@ See below the 4 main functionalities
 
 ## TBD : benchmark
 
-## TBD : wireframes / sitemap
+## Sitemap
+![](https://github.com/Vilth83/sprint-planner/blob/master/sitemap.png)
+
+## TBD : wireframes
 
 ## TBD : wiki
