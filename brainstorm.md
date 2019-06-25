@@ -1,27 +1,23 @@
 # Brainstorm
 > this part is a draft, gathering ideas, researchs and analysis of the need. It will be transformed into functional specs.
 
-- [Brainstorm](#brainstorm)
-  * [Idea](#idea)
-  * [Main functionalities](#main-functionalities)
-  * [Personas](#personas)
-    + [Business analyst - admin](#business-analyst---admin)
-    + [chapter manager - admin](#chapter-manager---admin)
-    + [senior software engineer - user](#senior-software-engineer---user)
-    + [junior software engineer - user](#junior-software-engineer---user)
-  * [First User Stories](#first-user-stories)
-    + [connection](#connection)
-    + [member creation](#member-creation)
-    + [manage releaser of the week](#manage-releaser-of-the-week)
-    + [manage release iteration](#manage-release-iteration)
-    + [manage support team leader of the day](#manage-support-team-leader-of-the-day)
-    + [help in release process](#help-in-release-process)
-  * [TBD : benchmark](#tbd---benchmark)
-  * [TBD : wireframes / sitemap](#tbd---wireframes---sitemap)
-  * [TBD : wiki](#tbd---wiki)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
+- [Idea](#idea)
+- [Main functionalities](#main-functionalities)
+- [Personas](#personas)
+  * [Business analyst - admin](#business-analyst---admin)
+  * [chapter manager - admin](#chapter-manager---admin)
+  * [senior software engineer - user](#senior-software-engineer---user)
+  * [junior software engineer - user](#junior-software-engineer---user)
+- [First User Stories](#first-user-stories)
+  * [connection](#connection)
+  * [member creation](#member-creation)
+  * [manage releaser of the week](#manage-releaser-of-the-week)
+  * [manage release iteration](#manage-release-iteration)
+  * [manage support team leader of the day](#manage-support-team-leader-of-the-day)
+  * [help in release process](#help-in-release-process)
+- [TBD : benchmark](#tbd---benchmark)
+- [TBD : wireframes / sitemap](#tbd---wireframes---sitemap)
+- [TBD : wiki](#tbd---wiki)
 
 ## Idea
 
