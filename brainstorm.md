@@ -10,9 +10,6 @@ Many teams are agile, and agility requires a good self organization.
 Unfortunately, every developer has his own feature to develop, often in the urge, and agility can become hard to maintain.
 Sprint-planner intends to help keep calm and be agile by taking care of sprint management and by organizing automatically
 releasers and support designation.
-It also offers a release tracability so each member of the team can know in one click at which step of the release team is, by connecting to development tools
-such as JENKINS, GITHUB and JIRA.
-Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
 ## Main functionalities
 
