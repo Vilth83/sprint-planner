@@ -38,7 +38,7 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 -   member creation
     -   [As an admin, I want to create a member, so that I can toggle him releaser/support](https://github.com/Vilth83/sprint-planner/issues/4)
     -   [As an admin, I want to delete a member, so that I can deal with current members only](https://github.com/Vilth83/sprint-planner/issues/5)
-    -   [as an admin, I want to modify an existing member](https://github.com/Vilth83/sprint-planner/issues/6)
+    -   [As an administrator, I want to modify a member, so that I can retrieve correct contacts](https://github.com/Vilth83/sprint-planner/issues/6)
 
 
 -   manage releaser of the week
