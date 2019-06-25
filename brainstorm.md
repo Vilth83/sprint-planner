@@ -23,7 +23,11 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
 ## Personas
 
-[link to personas](https://github.com/Vilth83/sprint-planner/blob/master/personas.pdf)
+![](https://github.com/Vilth83/sprint-planner/blob/master/bert-vaner.svg)
+![](https://github.com/Vilth83/sprint-planner/blob/master/phil-mac.svg)
+![](https://github.com/Vilth83/sprint-planner/blob/master/jay-devoe.svg)
+![](https://github.com/Vilth83/sprint-planner/blob/master/terry-valliantown.svg)
+![](https://github.com/Vilth83/sprint-planner/blob/master/andy-youzer.svg)
 
 ## First User Stories
 
