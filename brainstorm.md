@@ -9,7 +9,7 @@
   * [senior software engineer - user](#senior-software-engineer---user)
   * [junior software engineer - user](#junior-software-engineer---user)
 - [First User Stories](#first-user-stories)
-  * [Authentication](#connection)
+  * [Authentication](#authentication)
   * [member creation](#member-creation)
   * [manage releaser of the week](#manage-releaser-of-the-week)
   * [manage release iteration](#manage-release-iteration)
