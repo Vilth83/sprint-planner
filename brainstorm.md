@@ -81,19 +81,8 @@ See below the 4 main functionalities
     - be informed team of the current releaser / support via mail
     - be informed that I am the next releaser, support leader
 
-### benchmark
+### TBD : benchmark
 
-We find a lot of scrum tools on internets. Those tools are more likely used to manage user stories, project advancement and costs than to manage team organization.
-Plus, many of those tools are not free.
-There are scheduling softwares existing, but they are not connected to JIRA, GITHUB or other developing tools.
+### TBD : wireframes / sitemap
 
-below are some examples of existing sprintplanning tools
-[sprint planning tools](https://thedigitalprojectmanager.com/best-scrum-tools/)
-below are some examples of existing scheduling tools
-[scheduling tools ](https://www.capterra.com/sem-compare/scheduling-software?gclid=Cj0KCQjw6cHoBRDdARIsADiTTzY_KkwQTS5t4kktryGjcCpKjxyUUhqjTIMnyLU2iwnO8XIqcGX0qdQaAjrcEALw_wcB)
-
-## wireframes / sitemap
-
-### TODO : wiki
-
-### TODO : repo public + wiki + dashsboard
+### TBD : wiki
