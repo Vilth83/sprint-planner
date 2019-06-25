@@ -53,7 +53,7 @@ See below the 4 main functionalities
 
     - [As an admin, I want to create a releaser, so that I can select him to take care of the release](https://github.com/Vilth83/sprint-planner/issues/7)
     - [As an admin, I want to delete a releaser](https://github.com/Vilth83/sprint-planner/issues/8)
-    - [As a user, I want to find current releaser](https://github.com/Vilth83/sprint-planner/issues/9)
+    - [As an user, I want to find current releaser, so that I can know who is in charge of this weeks release](https://github.com/Vilth83/sprint-planner/issues/9)
     - [As an admin, I want to manually select releaser](https://github.com/Vilth83/sprint-planner/issues/11)
     - [As a user, I want to select next releaser if current is unavailable](https://github.com/Vilth83/sprint-planner/issues/10)
     - [As a releaser, I want to be picked automatically](https://github.com/Vilth83/sprint-planner/issues/12)
