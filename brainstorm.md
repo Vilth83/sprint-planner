@@ -2,7 +2,8 @@
 
 A tool to manage sprint releases and support teams
 
-# Sprint 0
+# Brainstorrm
+> this part is a draft, gathering ideas, researchs and analysis of the need. It will be transformed into functional specs.
 
 ## Idea / spitch
 
