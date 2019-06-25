@@ -43,7 +43,7 @@ Sprint Planner is indeed both a scheduling and a scrum helping tool.
 
 -   manage releaser of the week
 
-    - [As an admin, I want to create a releaser](https://github.com/Vilth83/sprint-planner/issues/7)
+    - [As an admin, I want to create a releaser, so that I can select him to take care of the release](https://github.com/Vilth83/sprint-planner/issues/7)
     - [As an admin, I want to delete a releaser](https://github.com/Vilth83/sprint-planner/issues/8)
     - [As a user, I want to find current releaser](https://github.com/Vilth83/sprint-planner/issues/9)
     - [As an admin, I want to manually select releaser](https://github.com/Vilth83/sprint-planner/issues/11)
