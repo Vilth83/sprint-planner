@@ -9,7 +9,7 @@
   * [senior software engineer - user](#senior-software-engineer---user)
   * [junior software engineer - user](#junior-software-engineer---user)
 - [First User Stories](#first-user-stories)
-  * [connection](#connection)
+  * [Authentication](#connection)
   * [member creation](#member-creation)
   * [manage releaser of the week](#manage-releaser-of-the-week)
   * [manage release iteration](#manage-release-iteration)
@@ -53,7 +53,7 @@ See below the 4 main functionalities
 
 ## First User Stories
 
-### connection
+### authentication
 
 - create an account
 - connect to the application
