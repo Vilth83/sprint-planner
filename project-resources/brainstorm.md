@@ -3,7 +3,7 @@
 
 - [Idea](#idea)
 - [Main functionalities](#main-functionalities)
-- [Personas](#personas)
+- [Personae](#personae)
   * [Business analyst - admin](#business-analyst---admin)
   * [chapter manager - admin](#chapter-manager---admin)
   * [senior software engineer - user](#senior-software-engineer---user)
@@ -15,7 +15,7 @@
   * [manage release iteration](#manage-release-iteration)
   * [manage support team leader of the day](#manage-support-team-leader-of-the-day)
   * [help in release process](#help-in-release-process)
-- [TBD : benchmark](#tbd---benchmark)
+- [Benchmark](#benchmark)
 - [sitemap](#sitemap)
 - [TBD : wireframes](#tbd---wireframes)
 - [TBD : wiki](#tbd---wiki)
@@ -43,16 +43,16 @@ See below the 4 main functionalities
 ## Personae
 
 ### Business analyst - admin
-![Business analyst](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/bert-vaner.svg)
+![Business analyst](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/bert-vaner.svg)
 
 ### chapter manager - admin
-![chapter manager](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/phil-mac.svg)
+![chapter manager](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/phil-mac.svg)
 ### senior software engineer - user
-![senior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/jay-devoe.svg)
+![senior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/jay-devoe.svg)
 ### junior software engineer - user
-![junior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/terry-valliantown.svg)
+![junior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/terry-valliantown.svg)
 ### external customer
-![external customer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/andy-youzer.svg)
+![external customer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/andy-youzer.svg)
 
 ## First User Stories
 
@@ -88,7 +88,8 @@ See below the 4 main functionalities
 - automatically update support leader
 
 
-## TBD : benchmark
+## benchmark
+[link to benchmark](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/benchmark.md)
 
 ## Sitemap
 ![](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/sitemap.png)
