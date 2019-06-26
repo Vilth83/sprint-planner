@@ -32,7 +32,7 @@ See below the 4 main functionalities
 ## Main functionalities
 
 -   manage releaser of the week
-> select, find and change the releaser of the week. 
+> select, find and change the releaser of the week.
 -   manage release iteration
 > retrieve release version number and organize iteration pattern
 -   manage support team leader of the day
@@ -40,7 +40,7 @@ See below the 4 main functionalities
 -   Mail information system
 > inform the team and the members of whom is releaser, support, of releaser version number and if noone has been found to take care of the release.
 
-## Personas
+## Personae
 
 ### Business analyst - admin
 ![](https://github.com/Vilth83/sprint-planner/blob/master/bert-vaner.svg)
