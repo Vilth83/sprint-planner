@@ -93,6 +93,29 @@ See below the main functionalities
 - manually switch support leader
 - automatically update support leader
 
+### manage release iteration
+- retrieve release version number
+- manually increment release version number
+- manually decrement release version number
+- organize iteration pattern
+
+
+### automation
+- select releaser of the week
+- select support of the day
+- modify date / hour of job
+- increment release version number
+
+### information
+- inform the team and the members of whom is releaser
+- inform the team and members of whom is support
+- inform the team of release version number
+- inform the team if noone has been found to take care of the release.
+
+### Support
+- retrieve documentation about release process
+- retrieve an help section about sprint-planner usage
+
 
 ## benchmark
 [link to benchmark](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/benchmark.md)
