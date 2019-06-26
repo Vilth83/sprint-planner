@@ -45,8 +45,10 @@ hubplanner has some latencies on scrolling on the calendar (horizontal scrolling
 float is fast and suffer no latencies.
 #### ergonomy
 float and hub planner provide responsive application, alongside with a cellphone app.
-althought their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
+despite their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
 cireson is a desktop application.
+
+Sprint-planner will be a responsive application, without an app. The screen is based on grids, without the problem of a too long calendar screen
 
 #### user experience
 Each other tool is charged, as sprint planner is a free, open-source tool.
