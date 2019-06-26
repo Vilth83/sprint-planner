@@ -26,10 +26,10 @@ See below the main functionalities
 ## First User Stories
 
 ### authentication
-- create an account
-- connect to the application
-- have user rights to see stuff
-- have admin rights to manage stuff
+- [create an account](https://github.com/Vilth83/sprint-planner/issues/21)
+- [connect to the application](https://github.com/Vilth83/sprint-planner/issues/24)
+- [have user rights to see user restricted features](https://github.com/Vilth83/sprint-planner/issues/22)
+- [have admin rights to access admin restricted features](https://github.com/Vilth83/sprint-planner/issues/23)
 
 
 ### member creation
