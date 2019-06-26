@@ -43,18 +43,20 @@ See below the 4 main functionalities
 ## Personae
 
 ### Business analyst - admin
-![](https://github.com/Vilth83/sprint-planner/blob/master/bert-vaner.svg)
+![Business analyst](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/bert-vaner.svg)
+
 ### chapter manager - admin
-![](https://github.com/Vilth83/sprint-planner/blob/master/phil-mac.svg)
+![chapter manager](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/phil-mac.svg)
 ### senior software engineer - user
-![](https://github.com/Vilth83/sprint-planner/blob/master/jay-devoe.svg)
+![senior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/jay-devoe.svg)
 ### junior software engineer - user
-![](https://github.com/Vilth83/sprint-planner/blob/master/terry-valliantown.svg)
+![junior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/terry-valliantown.svg)
+### external customer
+![external customer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/persona/andy-youzer.svg)
 
 ## First User Stories
 
 ### authentication
-
 - create an account
 - connect to the application
 - have user rights to see stuff
@@ -63,6 +65,7 @@ See below the 4 main functionalities
 
 ### member creation
 -   [As an admin, I want to create a member, so that I can toggle him releaser/support](https://github.com/Vilth83/sprint-planner/issues/4)
+-   [As an admin, I want to list members, so that I can see them all to modify / delete them](https://github.com/Vilth83/sprint-planner/issues/19)
 -   [As an admin, I want to delete a member, so that I can deal with current members only](https://github.com/Vilth83/sprint-planner/issues/5)
 -   [As an administrator, I want to modify a member, so that I can retrieve correct contacts](https://github.com/Vilth83/sprint-planner/issues/6)
 
@@ -75,34 +78,20 @@ See below the 4 main functionalities
 - [As an admin, I want to manually select releaser, So that I can choose who will do the release](https://github.com/Vilth83/sprint-planner/issues/11)
 - [As a user, I want to select next releaser if current is unavailable](https://github.com/Vilth83/sprint-planner/issues/10)
 - [As a releaser, I want to be picked automatically](https://github.com/Vilth83/sprint-planner/issues/12)
-
-### manage release iteration
-
-- register iteration pattern
-- find current release number
-- automatically increment release number
-- manage exceptions   
+  
 
 ### manage support team leader of the day
-
 - set a member as support candidate
 - unset a member as support candidate
 - find support leader of the day
 - manually switch support leader
 - automatically update support leader
 
-### help in release process
-- chase releaser during different release tasks
-- check release status
-- provide a wiki of the release steps
-- retrieve the wiki
-- be informed team of the current releaser / support via mail
-- be informed that I am the next releaser, support leader
 
 ## TBD : benchmark
 
 ## Sitemap
-![](https://github.com/Vilth83/sprint-planner/blob/master/sitemap.png)
+![](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/sitemap.png)
 
 ## TBD : wireframes
 
