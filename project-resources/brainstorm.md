@@ -27,18 +27,24 @@ Unfortunately, every developer has his own feature to develop, often in the urge
 Sprint-planner intends to help keep calm and be agile by taking care of sprint management and by organizing automatically
 releasers and support designation.
 
-See below the 4 main functionalities
+See below the main functionalities
 
 ## Main functionalities
 
+-   member management
+> create, retrieve, modify and delete team member
 -   manage releaser of the week
 > select, find and change the releaser of the week.
 -   manage release iteration
 > retrieve release version number and organize iteration pattern
 -   manage support team leader of the day
 > select, find and change the support team leader of the day.
--   Mail information system
+- automation
+> releaser of the week and support automatic selection, modify date / hour of job and automatic release number incrementation
+- designation information
 > inform the team and the members of whom is releaser, support, of releaser version number and if noone has been found to take care of the release.
+-   Support
+> provide document about release process and help center about sprint-planner
 
 ## Personae
 
