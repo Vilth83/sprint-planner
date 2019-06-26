@@ -2,12 +2,7 @@
 > this part is a draft, gathering ideas, researchs and analysis of the need. It will be transformed into functional specs.
 
 - [Idea](#idea)
-- [Main functionalities](#main-functionalities)
-- [Personae](#personae)
-  * [Business analyst - admin](#business-analyst---admin)
-  * [chapter manager - admin](#chapter-manager---admin)
-  * [senior software engineer - user](#senior-software-engineer---user)
-  * [junior software engineer - user](#junior-software-engineer---user)
+
 - [First User Stories](#first-user-stories)
   * [Authentication](#authentication)
   * [member creation](#member-creation)
@@ -15,7 +10,6 @@
   * [manage release iteration](#manage-release-iteration)
   * [manage support team leader of the day](#manage-support-team-leader-of-the-day)
   * [help in release process](#help-in-release-process)
-- [Benchmark](#benchmark)
 - [sitemap](#sitemap)
 - [TBD : wireframes](#tbd---wireframes)
 - [TBD : wiki](#tbd---wiki)
@@ -28,37 +22,6 @@ Sprint-planner intends to help keep calm and be agile by taking care of sprint m
 releasers and support designation.
 
 See below the main functionalities
-
-## Main functionalities
-
--   member management
-> create, retrieve, modify and delete team member
--   manage releaser of the week
-> select, find and change the releaser of the week.
--   manage release iteration
-> retrieve release version number and organize iteration pattern
--   manage support team leader of the day
-> select, find and change the support team leader of the day.
-- automation
-> releaser of the week and support automatic selection, modify date / hour of job and automatic release number incrementation
-- designation information
-> inform the team and the members of whom is releaser, support, of releaser version number and if noone has been found to take care of the release.
--   Support
-> provide document about release process and help center about sprint-planner
-
-## Personae
-
-### Business analyst - admin
-![Business analyst](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/bert-vaner.svg)
-
-### chapter manager - admin
-![chapter manager](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/phil-mac.svg)
-### senior software engineer - user
-![senior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/jay-devoe.svg)
-### junior software engineer - user
-![junior software engineer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/terry-valliantown.svg)
-### external customer
-![external customer](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/personae/andy-youzer.svg)
 
 ## First User Stories
 
@@ -115,10 +78,6 @@ See below the main functionalities
 ### Support
 - retrieve documentation about release process
 - retrieve an help section about sprint-planner usage
-
-
-## benchmark
-[link to benchmark](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/benchmark.md)
 
 ## Sitemap
 ![](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/sitemap.png)
