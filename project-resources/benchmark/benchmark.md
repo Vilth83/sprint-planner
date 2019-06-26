@@ -30,8 +30,6 @@ This benchmark will compare the following points :
 
 [CIRESON release calendar](https://cireson.com/products/service-management/release-calendar/)
 
-> cireson is a scheduling tool for release management. It works like a calendar with work items.
-
 ### Float
 
 [Float](https://www.float.com/top-10-resource-scheduling-software-float.html)
