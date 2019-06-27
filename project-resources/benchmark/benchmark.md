@@ -50,7 +50,7 @@ the calendar suffer some latencies when horizontal scrolling.
 
 Hubplanner starts in a bit more than 10ms even if it has way more elements to display than float (cf below)
 
-![start time]()
+!hub-start](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hub-start.PNG)
 
 - Float
 
@@ -58,7 +58,7 @@ the application is pretty quick after starting, but take a long time to start.
 
 The app takes 35 ms to start, although its interface is pretty sober and empty.
 
-![start time]()
+![float-start](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/float-start.PNG)
 
 
 >**Sprint-planner** will be a **lightweight, low latency** web application. The technical stack will be chosen giving **priority** to **security** and **speed**. Design and tehcnical choices of **sprint-planner** will be made to keep the **start time below 1.5 seconds**.
@@ -79,20 +79,20 @@ It is easy to apprehend for simple tasks, but it's hard to see the full potentia
 
 The whole interface looks more like a phone one than a web app.
 
-![float-ui]
+![float-ui](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/float-interface.PNG)
 
 The mouse capturing is quite confusing : a right click outside the calendar will trigger the web app right click.
 
 We have to go on the header to get the browsers right click.
 
-![float-rightclick-issue]
+![float-rightclick-issue](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/float-rightclick-issue.PNG)
 
 - Hubplanner
 
 hub planner provides multiple functionalities listed on the screen.
 One can see the potentialof this app, but at the cost of a little confusing interface.
 
-![hub-ui]
+![hub-ui](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hub-interface.PNG)
 
 float and hub planner provide responsive application, alongside with a cellphone app.
 despite their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
