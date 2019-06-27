@@ -50,7 +50,7 @@ the calendar suffer some latencies when horizontal scrolling.
 
 Hubplanner starts in a bit more than 10ms even if it has way more elements to display than float (cf below)
 
-!hub-start](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hub-start.PNG)
+![hub-start](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hub-start.PNG)
 
 - Float
 
@@ -67,9 +67,9 @@ The app takes 35 ms to start, although its interface is pretty sober and empty.
 float and hub planner provide responsive application, alongside with a cellphone app.
 despite their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
 
-![float-phone]
+![float-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/floatphone.PNG)
 
-![hub-phone]
+![hub-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hubphone.PNG)
 
 - float
 
