@@ -61,8 +61,7 @@ The app takes 35 ms to start, although its interface is pretty sober and empty.
 ![start time]()
 
 
-**Sprint-planner** will be a **lightweight, low latency** web application. The technical stack will be chosen giving **priority** to **security** and **speed**. 
-We will do everything to keep the **start time below 1.5 seconds**.
+>**Sprint-planner** will be a **lightweight, low latency** web application. The technical stack will be chosen giving **priority** to **security** and **speed**. Design and tehcnical choices of **sprint-planner** will be made to keep the **start time below 1.5 seconds**.
 
 #### ergonomics
 float and hub planner provide responsive application, alongside with a cellphone app.
@@ -109,7 +108,7 @@ given the difficulties to get a free trial, we can only rely on their website vi
 
 [cireson-video-link]()
 
-**Sprint-planner** will be a **responsive web application**, without an app. The screen is based on grids, **without the problem of a too long calendar screen**.
+>**Sprint-planner** will be a **responsive web application**, without an app. The screen is based on grids, **without the problem of a too long calendar screen**.
 
 #### user experience
 Arriving on float UI is a little disappointing, especially after reading their [commercial site](https://www.float.com/top-10-resource-scheduling-software-float.html).
@@ -119,7 +118,7 @@ Hub Planner make visitor more confident about its capabilities but seems hard to
 
 Both of them, as cireson are not free.
 
-**sprint planner is a free, open-source tool**. We intend to do a **userfriendly interface**, giving each functionalities in a **quick and simple way** to **ease tasks of the team**.
+>**sprint planner is a free, open-source tool**. We intend to do a **userfriendly interface**, giving each functionalities in a **quick and simple way** to **ease tasks of the team**.
 As main features are **automatic**, the application needs little configuration an maintenance and will **run on its own**.
 The only task asked to the team is eventually to switch releaser / support, and this **action can be done in 1 click**.
 
@@ -132,7 +131,7 @@ they permit to create tasks and assign it, change assignees, but none of them of
 
 Changing assignees requires to change all other assignees manually if we want to respect the need.
 
-**Sprint-planner** will provide a **tool to manage a releaser**, his unavailability, **to ensure round robin** between releasers. It will **manage support leader designation**, unavailability of the team leader. The **rotation will be automated** but will also **stay modifiable**.
+>**Sprint-planner** will provide a **tool to manage a releaser**, his unavailability, **to ensure round robin** between releasers. It will **manage support leader designation**, unavailability of the team leader. The **rotation will be automated** but will also **stay modifiable**.
 
 ### Conclusion
 Even if some tools exist that grant team scheduling features, none really answer the specific functionalities of the sprintplanner.
