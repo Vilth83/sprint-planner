@@ -64,13 +64,6 @@ The app takes 35 ms to start, although its interface is pretty sober and empty.
 >**Sprint-planner** will be a **lightweight, low latency** web application. The technical stack will be chosen giving **priority** to **security** and **speed**. Design and tehcnical choices of **sprint-planner** will be made to keep the **start time below 1.5 seconds**.
 
 #### ergonomics
-float and hub planner provide responsive application, alongside with a cellphone app.
-despite their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
-
-![float-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/floatphone.PNG)
-
-![hub-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hubphone.PNG)
-
 - float
 
 float has a sober interface, with simple and explicit buttons.
@@ -97,16 +90,15 @@ One can see the potentialof this app, but at the cost of a little confusing inte
 float and hub planner provide responsive application, alongside with a cellphone app.
 despite their responsivity, both suffer hard reading screen in cellphone because of the width of the calendars.
 
-![float-phone]
 
-![hub-phone]
+![float-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/floatphone.PNG) ![hub-phone](https://github.com/Vilth83/sprint-planner/blob/master/project-resources/benchmark/hubphone.PNG)
 
 - cireson
 
 cireson is a desktop application. 
-given the difficulties to get a free trial, we can only rely on their website video presentation and cannot judge ergonomics.
+given the difficulties to get a free trial, we can only rely on their website screenshots presentation and cannot judge ergonomics.
 
-[cireson-video-link]()
+[cireson](https://cireson.com/products/service-management/release-calendar/)
 
 >**Sprint-planner** will be a **responsive web application**, without an app. The screen is based on grids, **without the problem of a too long calendar screen**.
 
