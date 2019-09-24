@@ -1,0 +1,48 @@
+
+server:
+  port: 80
+  servlet:
+      context-path: /api
+      jsp:
+        registered: false
+  error:
+    whitelabel: 
+      enabled: false
+
+spring:
+  application:
+    name: sprintplanner
+  banner:
+    location: classpath:banner.txt
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:mysql://0.0.0.0:3306/sprintplanner?createDatabaseIfNotExist=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
+    username: sprintplanner
+    password: 
+  jpa:
+    open-in-view: false
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+       ddl-auto: none
+    properties: 
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: false
+        jdbc:
+          batch_size: 10
+        order_inserts: false
+        order_updates: false
+        generate_statistics: false
+  messages:
+    use-code-as-default-message: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+    favicon:
+      enabled: false
+  resources:
+    add-mappings: false
+
+logging:
+  config: classpath:logback-spring.xml
