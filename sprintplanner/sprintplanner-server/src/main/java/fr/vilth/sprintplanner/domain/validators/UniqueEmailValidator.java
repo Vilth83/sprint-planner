@@ -30,11 +30,10 @@ public class UniqueEmailValidator
 	if (null == email || email.isEmpty()) { // Ignored
 	    return true;
 	}
-	/*
-	 * As existsByEmail(email) returns true if the email already exists, we
-	 * return the opposite of existsByEmail(email) to assert that the given
-	 * email is unique
-	 */
-	return !service.existsByEmail(email);
+	boolean isValid = true;
+	if (service.existsByEmail(email)) {
+	    isValid = false;
+	}
+	return isValid;
     }
 }
