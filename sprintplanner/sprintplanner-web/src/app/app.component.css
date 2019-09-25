@@ -1,0 +1,13 @@
+.navbar {
+  background-color: whitesmoke;
+}
+
+.navbar-brand {
+  color: black;
+  font-weight: bold;
+}
+
+.nav-link {
+  color:black;
+  margin-right: 5%;
+}
