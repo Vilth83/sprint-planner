@@ -13,7 +13,6 @@ import fr.vilth.sprintplanner.domain.entities.Member;
  * Default concrete implementation of {@code MemberService}.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -25,7 +24,9 @@ public class MemberServiceImpl implements MemberService {
     /**
      * Protected constructor to autowire needed bean.
      * <p>
-     * injects {@code MemberRepository} interface to persist {@code Member} and {@code ModelMapper} to ease mapping between DTO and entities.
+     * injects {@code MemberRepository} interface to persist {@code Member} and
+     * {@code ModelMapper} to ease mapping between DTO and entities.
+     * 
      * @param modelMapper the injected {@code ModelMapper}
      * @param memberRepository the injected {@code MemberRepository}
      */
@@ -43,5 +44,11 @@ public class MemberServiceImpl implements MemberService {
 	EntityIdDto attributedId = modelMapper.map(persistedEntity,
 		EntityIdDto.class);
 	return attributedId;
+    }
+
+    // Utility Classes
+    @Override
+    public boolean existsByEmail(String email) {
+	return memberRepository.existsByEmail(email);
     }
 }

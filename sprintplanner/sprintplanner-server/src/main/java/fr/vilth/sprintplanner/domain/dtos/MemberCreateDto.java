@@ -1,12 +1,14 @@
 package fr.vilth.sprintplanner.domain.dtos;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import fr.vilth.sprintplanner.domain.validators.UniqueEmail;
 
 /**
  * DTO representing {@code Member} data to be persisted in database.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 public class MemberCreateDto {
 
@@ -16,12 +18,14 @@ public class MemberCreateDto {
     protected MemberCreateDto() {
 	//
     }
-    
-    // TODO : unique constraint validator
+
+    @NotBlank
     private String firstname;
 
+    @NotBlank
     private String lastname;
 
+    @UniqueEmail
     @Email
     private String email;
 
@@ -30,8 +34,4 @@ public class MemberCreateDto {
 	return "{firstname=" + firstname + ", lastname=" + lastname + ", email="
 		+ email + "}";
     }
-    
-    
-    
-    
 }
