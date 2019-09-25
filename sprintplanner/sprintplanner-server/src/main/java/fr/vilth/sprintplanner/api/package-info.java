@@ -1,5 +1,5 @@
 /**
- * Root package for API classes.
+ * Root package for the exposed API.
  * <p>
  * This package contains REST API classes such as Controllers, Services and
  * Repositories.

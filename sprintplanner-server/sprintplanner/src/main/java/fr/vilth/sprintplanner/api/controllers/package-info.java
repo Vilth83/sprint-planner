@@ -1,1 +1,0 @@
-package fr.vilth.sprintplanner.api.controllers;
