@@ -5,8 +5,17 @@ html {
   background-color: whitesmoke;
 }
 
-.red {
-  color: red;
+.btn {
+  color: white;
+  background-color: red;
+  border-color: red;
+  margin: auto;
+}
+
+.btn:hover, .btn:active {
+  color:white;
+  background-color: darkred;
+  border-color: darkred;
 }
 
 .title > h1 {
@@ -30,4 +39,16 @@ body {
 
 span {
   font-size: 15px;
+}
+
+.intro-area {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: cover;
+  background-color: darkred;
+  color: white;
+}
+
+.section {
+  margin:2% auto;
 }

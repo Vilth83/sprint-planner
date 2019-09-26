@@ -1,15 +1,10 @@
 .box-part {
   border-radius: 0;
   padding: 60px 10px;
-  margin: 30px 0px;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.intro-area {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-size: cover;
-  background-color: grey;
-  color: white;
+.box-part:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.36), 0 3px 6px rgba(0,0,0,0.43);
 }

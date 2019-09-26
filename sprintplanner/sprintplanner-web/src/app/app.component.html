@@ -1,16 +1,26 @@
 <nav class="navbar navbar-expand-sm ">
   <a class="navbar-brand" href="#">Sprint Planner</a>
+  <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigate">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"><i class="fa fa-bars fa-2x"></i></span>
   </button>
+  <!-- navbar menu -->
   <div class="collapse navbar-collapse" id="navigate">
     <ul class="navbar-nav">
+
       <li class="nav-item">
         <a class="nav-link" routerLink="/">Home</a>
       </li>
+
       <li class="nav-item">
-        <a class="nav-link" routerLink="#">Configuration</a>
+        <a class="dropdown dropdown-toggle nav-link" dropdown>
+          <a dropdownToggle role="button">Configuration <i class="caret"></i></a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item nav-link" routerLink="/members">Members</a>
+          </div>
+        </a>
       </li>
+
     </ul>
   </div>
 </nav>
