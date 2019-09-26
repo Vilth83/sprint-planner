@@ -30,10 +30,10 @@ public class UniqueEmailValidator
 	if (null == email || email.isEmpty()) { // Ignored
 	    return true;
 	}
-	boolean isValid = true;
+	boolean valid = true;
 	if (service.existsByEmail(email)) {
-	    isValid = false;
+	    valid = false;
 	}
-	return isValid;
+	return valid;
     }
 }
