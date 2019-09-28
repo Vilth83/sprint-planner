@@ -1,3 +1,5 @@
-sprintplanner-server/.metadata/
+sprintplanner/.metadata/
 .metadata/
 *mvn*
+sprintplanner/sprintplanner-web/package-lock.json
+sprintplanner/sprintplanner-web/node_modules
