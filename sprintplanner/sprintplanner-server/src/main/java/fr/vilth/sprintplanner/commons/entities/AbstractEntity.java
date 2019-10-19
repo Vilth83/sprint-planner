@@ -28,12 +28,12 @@ public abstract class AbstractEntity implements Serializable {
      * 
      * @return an identifier
      */
-    public final Long getId() {
+    protected final Long getId() {
 	return id;
     }
 
     @Override
     public String toString() {
-	return "{id=" + id + "}";
+	return "id=" + id;
     }
 }

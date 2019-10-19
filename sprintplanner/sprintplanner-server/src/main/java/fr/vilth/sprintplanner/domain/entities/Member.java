@@ -42,7 +42,7 @@ public class Member extends AbstractEntity {
 	//
     }
 
-    @Override
+	@Override
     public int hashCode() {
 	return Objects.hash(email);
     }
@@ -61,7 +61,7 @@ public class Member extends AbstractEntity {
 
     @Override
     public String toString() {
-	return "{firstname=" + firstname + ", lastname=" + lastname + ", email="
+	return "{" + super.toString() + ", firstname=" + firstname + ", lastname=" + lastname + ", email="
 		+ email + "}";
     }
 }

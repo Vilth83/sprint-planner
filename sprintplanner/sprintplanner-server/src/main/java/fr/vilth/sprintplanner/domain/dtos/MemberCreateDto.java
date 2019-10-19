@@ -12,26 +12,26 @@ import fr.vilth.sprintplanner.domain.validators.UniqueEmail;
  */
 public class MemberCreateDto {
 
-    /**
-     * Protected empty no-arg constructor
-     */
-    protected MemberCreateDto() {
-	//
-    }
+	/**
+	 * Protected empty no-arg constructor
+	 */
+	protected MemberCreateDto() {
+		//
+	}
 
-    @NotBlank
-    private String firstname;
+	@NotBlank
+	private String firstname;
 
-    @NotBlank
-    private String lastname;
+	@NotBlank
+	private String lastname;
 
-    @UniqueEmail
-    @Email
-    private String email;
+	@UniqueEmail
+	@Email
+	@NotBlank
+	private String email;
 
-    @Override
-    public String toString() {
-	return "{firstname=" + firstname + ", lastname=" + lastname + ", email="
-		+ email + "}";
-    }
+	@Override
+	public String toString() {
+		return "{firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "}";
+	}
 }

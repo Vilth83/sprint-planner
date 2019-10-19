@@ -17,38 +17,35 @@ import fr.vilth.sprintplanner.domain.entities.Member;
 @Service
 public class MemberServiceImpl implements MemberService {
 
-    private final ModelMapper modelMapper;
+	private final ModelMapper modelMapper;
 
-    private final MemberRepository memberRepository;
+	private final MemberRepository memberRepository;
 
-    /**
-     * Protected constructor to autowire needed bean.
-     * <p>
-     * injects {@code MemberRepository} interface to persist {@code Member} and
-     * {@code ModelMapper} to ease mapping between DTO and entities.
-     * 
-     * @param modelMapper the injected {@code ModelMapper}
-     * @param memberRepository the injected {@code MemberRepository}
-     */
-    protected MemberServiceImpl(ModelMapper modelMapper,
-	    MemberRepository memberRepository) {
-	super();
-	this.modelMapper = modelMapper;
-	this.memberRepository = memberRepository;
-    }
+	/**
+	 * Protected constructor to autowire needed bean.
+	 * <p>
+	 * injects {@code MemberRepository} interface to persist {@code Member} and
+	 * {@code ModelMapper} to ease mapping between DTO and entities.
+	 * 
+	 * @param modelMapper      the injected {@code ModelMapper}
+	 * @param memberRepository the injected {@code MemberRepository}
+	 */
+	protected MemberServiceImpl(ModelMapper modelMapper, MemberRepository memberRepository) {
+		super();
+		this.modelMapper = modelMapper;
+		this.memberRepository = memberRepository;
+	}
 
-    @Override
-    public EntityIdDto save(MemberCreateDto member) {
-	Member entityToPersist = modelMapper.map(member, Member.class);
-	Member persistedEntity = memberRepository.save(entityToPersist);
-	EntityIdDto attributedId = modelMapper.map(persistedEntity,
-		EntityIdDto.class);
-	return attributedId;
-    }
+	@Override
+	public EntityIdDto save(MemberCreateDto member) {
+		Member entityToPersist = modelMapper.map(member, Member.class);
+		Member persistedEntity = memberRepository.save(entityToPersist);
+		return modelMapper.map(persistedEntity, EntityIdDto.class);
+	}
 
-    // Utility Classes
-    @Override
-    public boolean existsByEmail(String email) {
-	return memberRepository.existsByEmail(email);
-    }
+	// Utility Classes
+	@Override
+	public boolean existsByEmail(String email) {
+		return memberRepository.existsByEmail(email);
+	}
 }
