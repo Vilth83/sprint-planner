@@ -18,7 +18,7 @@ import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
  *
  */
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/members")
 public class MemberController {
 
     private final MemberService memberService;

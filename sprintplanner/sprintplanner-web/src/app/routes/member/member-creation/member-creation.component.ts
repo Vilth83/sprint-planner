@@ -11,7 +11,7 @@ import { Member } from 'src/app/models/member/member.model';
 export class MemberCreationComponent {
 
   private member: Member;
-  private url: string = "http://localhost:8080/members";
+  private url: string = "http://localhost:8080/api/members";
   http: HttpClient;
 
   constructor(http: HttpClient) {
