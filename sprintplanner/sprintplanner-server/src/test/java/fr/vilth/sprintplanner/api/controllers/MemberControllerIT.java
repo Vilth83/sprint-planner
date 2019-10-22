@@ -16,7 +16,7 @@ import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
 
 @Transactional
-public class MemberControllerTest extends IntegrationTestSetup {
+public class MemberControllerIT extends IntegrationTestSetup {
 
 	@Autowired
 	private MemberController controller;
