@@ -11,7 +11,7 @@ import fr.vilth.sprintplanner.SetupUnitTest;
 
 public class MemberCreateDtoTest extends SetupUnitTest {
 
-	private final static String MEMBER_CREATE_JSON = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
+	private static final String MEMBER_CREATE_JSON = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
 
 	private final MemberCreateDto memberCreateDto = MAPPER.readValue(MEMBER_CREATE_JSON, MemberCreateDto.class);
 

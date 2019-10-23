@@ -11,8 +11,8 @@ import fr.vilth.sprintplanner.SetupUnitTest;
 
 public class EntityIdDtoTest extends SetupUnitTest {
 
-	private final static String ENTITY_DTO_JSON = "{\"id\":1}";
-	private final EntityIdDto actualEntity = MAPPER.readValue(ENTITY_DTO_JSON, EntityIdDto.class);;
+	private static final String ENTITY_DTO_JSON = "{\"id\":1}";
+	private final EntityIdDto actualEntity = MAPPER.readValue(ENTITY_DTO_JSON, EntityIdDto.class);
 
 	protected EntityIdDtoTest() throws IOException {
 		// Empty constructor

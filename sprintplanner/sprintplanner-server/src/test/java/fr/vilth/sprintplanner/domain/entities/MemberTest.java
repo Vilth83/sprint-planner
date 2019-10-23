@@ -18,8 +18,8 @@ public class MemberTest extends SetupUnitTest {
 		super();
 	}
 
-	private final static String ACTUAL_MEMBER_JSON = "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
-	private final static String DIFFERENT_MEMBER_JSON = "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\"}";
+	private static final String ACTUAL_MEMBER_JSON = "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
+	private static final String DIFFERENT_MEMBER_JSON = "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\"}";
 
 	private Member actualMember = MAPPER.readValue(ACTUAL_MEMBER_JSON, Member.class);
 	private Member sameMember = MAPPER.readValue(ACTUAL_MEMBER_JSON, Member.class);

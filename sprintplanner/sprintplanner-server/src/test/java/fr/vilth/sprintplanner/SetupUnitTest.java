@@ -11,7 +11,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class SetupUnitTest {
 
-	protected final static ObjectMapper MAPPER = new ObjectMapper();
+	protected static final ObjectMapper MAPPER = new ObjectMapper();
 
 	protected SetupUnitTest() throws IOException {
 
