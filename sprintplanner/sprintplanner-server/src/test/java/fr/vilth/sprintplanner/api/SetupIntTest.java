@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "spring.profiles.active=dev", webEnvironment = WebEnvironment.DEFINED_PORT)
-public abstract class IntegrationTestSetup {
+public abstract class SetupIntTest {
 
 	@Autowired
 	private ObjectMapper objectMapper;

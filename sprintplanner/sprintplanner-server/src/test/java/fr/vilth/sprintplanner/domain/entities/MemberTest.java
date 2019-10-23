@@ -10,9 +10,9 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.Test;
 
-import fr.vilth.sprintplanner.TestSetup;
+import fr.vilth.sprintplanner.SetupUnitTest;
 
-public class MemberTest extends TestSetup{
+public class MemberTest extends SetupUnitTest{
 	
 	protected MemberTest() throws IOException {
 		super();

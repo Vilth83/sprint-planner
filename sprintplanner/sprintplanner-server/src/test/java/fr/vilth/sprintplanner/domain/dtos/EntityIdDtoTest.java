@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import fr.vilth.sprintplanner.TestSetup;
+import fr.vilth.sprintplanner.SetupUnitTest;
 
-public class EntityIdDtoTest extends TestSetup {
+public class EntityIdDtoTest extends SetupUnitTest {
 	
 	private final String entityIdDtoJson = "{\"id\":1}";
 	private final EntityIdDto actualEntity = MAPPER.readValue(entityIdDtoJson, EntityIdDto.class);

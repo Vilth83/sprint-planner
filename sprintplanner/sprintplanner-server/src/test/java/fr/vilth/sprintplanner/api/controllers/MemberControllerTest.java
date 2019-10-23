@@ -11,12 +11,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import fr.vilth.sprintplanner.api.IntegrationTestSetup;
+import fr.vilth.sprintplanner.api.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
 
 @Transactional
-public class MemberControllerIT extends IntegrationTestSetup {
+public class MemberControllerTest extends SetupIntTest {
 
 	@Autowired
 	private MemberController controller;

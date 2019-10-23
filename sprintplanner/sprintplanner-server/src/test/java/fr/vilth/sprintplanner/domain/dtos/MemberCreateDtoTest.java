@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import fr.vilth.sprintplanner.TestSetup;
+import fr.vilth.sprintplanner.SetupUnitTest;
 
-public class MemberCreateDtoTest extends TestSetup {
+public class MemberCreateDtoTest extends SetupUnitTest {
 	
 	private final String MemberCreateDtoJson = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
 	
