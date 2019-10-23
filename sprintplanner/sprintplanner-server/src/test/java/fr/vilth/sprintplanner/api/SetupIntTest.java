@@ -17,7 +17,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(properties = "spring.profiles.active=dev", webEnvironment = WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public abstract class SetupIntTest {
 
 	@Autowired
