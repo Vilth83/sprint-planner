@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Test;
 import fr.vilth.sprintplanner.SetupUnitTest;
 
 public class EntityIdDtoTest extends SetupUnitTest {
-	
-	private final String entityIdDtoJson = "{\"id\":1}";
-	private final EntityIdDto actualEntity = MAPPER.readValue(entityIdDtoJson, EntityIdDto.class);
+
+	private final static String ENTITY_DTO_JSON = "{\"id\":1}";
+	private final EntityIdDto actualEntity = MAPPER.readValue(ENTITY_DTO_JSON, EntityIdDto.class);;
 
 	protected EntityIdDtoTest() throws IOException {
-		super();
+		// Empty constructor
 	}
 
 	@Test
@@ -23,12 +23,12 @@ public class EntityIdDtoTest extends SetupUnitTest {
 		EntityIdDto actual = new EntityIdDto();
 		assertNotNull(actual);
 	}
-	
+
 	@Test
 	void should_return_toString() {
 		String expected = "{id=1}";
 		String actual = actualEntity.toString();
 		assertEquals(expected, actual);
-		
+
 	}
 }

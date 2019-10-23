@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -20,18 +19,12 @@ public class MemberControllerTest extends SetupIntTest {
 
 	@Autowired
 	private MemberController controller;
-	private EntityIdDto entityId;
 
 	@BeforeEach
 	void addEntity() {
 		String existing = "{\"firstname\":\"existing\", \"lastname\":\"test\", \"email\":\"existing@test\"}";
 		MemberCreateDto existingEntity = jsonConvert(existing, MemberCreateDto.class);
-		entityId = controller.save(existingEntity);
-	}
-
-	@AfterEach
-	void deleteEntity() {
-		// TODO : implement deletion
+		controller.save(existingEntity);
 	}
 
 	@ParameterizedTest

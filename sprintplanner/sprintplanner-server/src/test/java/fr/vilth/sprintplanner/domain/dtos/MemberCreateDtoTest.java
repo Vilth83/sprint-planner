@@ -10,26 +10,25 @@ import org.junit.jupiter.api.Test;
 import fr.vilth.sprintplanner.SetupUnitTest;
 
 public class MemberCreateDtoTest extends SetupUnitTest {
-	
-	private final String MemberCreateDtoJson = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
-	
-	private MemberCreateDto memberCreateDto = MAPPER.readValue(MemberCreateDtoJson, MemberCreateDto.class);
-	
-	MemberCreateDtoTest() throws IOException {
-		// empty constructor to handle ObjectMapper exceptions
-	}
 
+	private final static String MEMBER_CREATE_JSON = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
+
+	private final MemberCreateDto memberCreateDto = MAPPER.readValue(MEMBER_CREATE_JSON, MemberCreateDto.class);
+
+	MemberCreateDtoTest() throws IOException {
+		// Empty Constructor
+	}
 
 	@Test
 	void should_construct() {
 		MemberCreateDto actual = new MemberCreateDto();
 		assertNotNull(actual);
 	}
-	
+
 	@Test
 	void should_return_toString() {
 		String expected = "{firstname=actual, lastname=member, email=actual@member}";
 		String actual = memberCreateDto.toString();
-			assertEquals(expected, actual);
+		assertEquals(expected, actual);
 	}
 }

@@ -34,7 +34,6 @@ public abstract class SetupIntTest {
 		try {
 			converted = objectMapper.readValue(inputs, destinationType);
 		} catch (IOException ex) {
-			ex.printStackTrace();
 			throw new IllegalArgumentException("wrong json format in csv source file", ex);
 		}
 		return converted;
