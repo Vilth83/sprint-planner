@@ -112,8 +112,6 @@
                 <version>0.8.5</version>
                 <configuration>
                     <append>true</append>
-                    <exclude>**/*Test.*</exclude>
-                    <exclude>**/*IT.*</exclude>
                 </configuration>
                 <executions>
                     <execution>
