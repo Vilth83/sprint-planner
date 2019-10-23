@@ -1,3 +1,4 @@
-sprintplanner-server/.metadata/
-.metadata/
 *mvn*
+/.project
+.settings/
+/.metadata/

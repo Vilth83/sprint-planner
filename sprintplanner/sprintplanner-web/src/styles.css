@@ -1,0 +1,54 @@
+html {
+  margin:0;
+  padding: 0;
+  height: auto;
+  background-color: whitesmoke;
+}
+
+.btn {
+  color: white;
+  background-color: red;
+  border-color: red;
+  margin: auto;
+}
+
+.btn:hover, .btn:active {
+  color:white;
+  background-color: darkred;
+  border-color: darkred;
+}
+
+.title > h1 {
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+.title > h2 {
+  font-style: bold;
+  font-size: 1.5em;
+}
+
+body {
+  text-align: center;
+  background-color: inherit;
+}
+
+.text {
+  margin: 20px 0px;
+}
+
+span {
+  font-size: 15px;
+}
+
+.intro-area {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-size: cover;
+  background-color: darkred;
+  color: white;
+}
+
+.section {
+  margin:2% auto;
+}
