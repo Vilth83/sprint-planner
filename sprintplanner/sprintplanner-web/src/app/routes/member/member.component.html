@@ -8,11 +8,13 @@
 </div>
 <div class="container section">
   <div class="row">
-    <button type="button" name="create" class="btn" (click)="changeView('create')">Create new Member</button>
+    <button type="button" name="create" class="btn" (click)="changeView('create')">Create new member</button>
+    <button type="button" name="modify" class="btn" (click)="changeView('modify')">Modify members</button>
   </div>
 </div>
 
 <div [ngSwitch]="view" class="container">
   <app-member-creation *ngSwitchCase="'create'"></app-member-creation>
+  <app-member-modification *ngSwitchCase="'modify'"></app-member-modification>
   <app-member-creation *ngSwitchDefault></app-member-creation>
 </div>

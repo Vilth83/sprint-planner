@@ -1,7 +1,10 @@
 package fr.vilth.sprintplanner.api.controllers;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +36,15 @@ public class MemberControllerTest extends SetupIntTest {
 		MemberCreateDto dto = jsonConvert(json, MemberCreateDto.class);
 		EntityIdDto actual = controller.save(dto);
 		assertNotNull(actual);
+	}
+
+	@ParameterizedTest
+	@CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
+	void should_return_all_members(String json) {
+		MemberCreateDto saved = jsonConvert(json, MemberCreateDto.class);
+		controller.save(saved);
+		Set<MemberViewDto> tested = controller.findAll();
+		assertEquals(2, tested.size());
 	}
 
 	@ParameterizedTest

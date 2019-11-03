@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AgGridModule} from 'ag-grid-angular';
+
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,6 +16,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MemberComponent } from './routes/member/member.component';
 import { MemberCreationComponent } from './routes/member/member-creation/member-creation.component';
 import { InformationModalComponent } from './shared/information-modal/information-modal.component';
+import { MemberModificationComponent } from './routes/member/member-modification/member-modification.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { InformationModalComponent } from './shared/information-modal/informatio
     HomeComponent,
     MemberComponent,
     MemberCreationComponent,
-    InformationModalComponent
+    InformationModalComponent,
+    MemberModificationComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,8 @@ import { InformationModalComponent } from './shared/information-modal/informatio
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

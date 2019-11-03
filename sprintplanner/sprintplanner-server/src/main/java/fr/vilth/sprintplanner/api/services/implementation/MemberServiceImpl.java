@@ -1,8 +1,13 @@
 package fr.vilth.sprintplanner.api.services.implementation;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import fr.vilth.sprintplanner.api.controllers.MemberViewDto;
 import fr.vilth.sprintplanner.api.repositories.MemberRepository;
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
@@ -43,9 +48,16 @@ public class MemberServiceImpl implements MemberService {
 		return modelMapper.map(persistedEntity, EntityIdDto.class);
 	}
 
+	@Override
+	public Set<MemberViewDto> findAll() {
+		List<Member> members = memberRepository.findAll();
+		return members.stream().map(member -> modelMapper.map(member, MemberViewDto.class)).collect(Collectors.toSet());
+	}
+
 	// Utility Classes
 	@Override
 	public boolean existsByEmail(String email) {
 		return memberRepository.existsByEmail(email);
 	}
+
 }

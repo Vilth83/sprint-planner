@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Member } from 'src/app/models/member/member.model';
 import { InformationModalComponent } from 'src/app/shared/information-modal/information-modal.component';
+import { HttpRequestBuilder } from 'src/app/shared/services/http-request-builder.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-member-creation',
@@ -12,31 +13,32 @@ import { InformationModalComponent } from 'src/app/shared/information-modal/info
 export class MemberCreationComponent {
 
   private member: Member;
-  private url = 'http://localhost:8080/api/members';
-  private http: HttpClient;
+  private endpoint = '/members';
 
   private title: string;
   private message: string;
   @ViewChild('info') private infoModal: InformationModalComponent;
 
-  constructor(http: HttpClient) {
-    this.http = http;
+  constructor(private httpBuilder: HttpRequestBuilder) {
   }
 
 
   onSubmit(inputs: NgForm) {
     this.member = inputs.value;
+    const request: Observable<any> = this.httpBuilder.post(this.endpoint, this.member);
 
-    this.http.post(this.url, this.member).subscribe(() => {
-      const message = this.member.firstname + ' ' +
-        this.member.lastname +
-        ' (email : ' + this.member.email + ')' +
-        ' has been successfully created :)';
+    request.subscribe(() => {
+      const name = this.member.firstname + ' ' + this.member.lastname;
+      const message = name + ' (email : ' + this.member.email + ')' + ' has been successfully created :)';
       this.openInfoModal('success ! ', message);
 
     }, (error) => {
-      console.log(error);
-      this.openInfoModal('Something went wrong :(', 'the new member has not been created, please check fields.');
+      const errors = error.error.errors;
+      let errMessage = "";
+      errors.forEach(function(err:any) {
+        errMessage = errMessage + err.field + " " + err.defaultMessage + ". ";
+      });
+      this.openInfoModal('Something went wrong :( = '+ errors.length + " errors", errMessage);
     });
   }
 
