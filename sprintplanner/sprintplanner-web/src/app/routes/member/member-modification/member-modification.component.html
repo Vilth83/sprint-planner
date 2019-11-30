@@ -1,0 +1,18 @@
+<div class="box-part">
+  <ag-grid-angular
+      #agGrid
+      class="ag-theme-balham"
+      [rowData]="rowData"
+      [gridOptions]="gridOptions"
+      autoSize=true
+      style="width:100%;"
+      domLayout="autoHeight"
+      [frameworkComponents]="frameworkComponents">
+  </ag-grid-angular>
+</div>
+
+<app-info-modal #info [title]="title" [message]="message">
+</app-info-modal>
+
+<app-confirmation-modal #confirmation [action]="action" [inputs]="inputs">
+</app-confirmation-modal>

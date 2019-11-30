@@ -1,3 +1,6 @@
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
 html {
   margin:0;
   padding: 0;
@@ -5,17 +8,33 @@ html {
   background-color: whitesmoke;
 }
 
+.box-part {
+  border-radius: 0;
+  padding: 60px 10px;
+  background-color: white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .btn {
   color: white;
-  background-color: red;
-  border-color: red;
-  margin: auto;
+  background-color: darkred;
+  border-color: darkred;
 }
 
 .btn:hover, .btn:active {
   color:white;
   background-color: darkred;
   border-color: darkred;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn-cell {
+  color: white;
+  background-color: darkred;
+  border-color: darkred;
+  height: auto;
+  width: auto;
 }
 
 .title > h1 {
@@ -51,4 +70,22 @@ span {
 
 .section {
   margin:2% auto;
+}
+
+.submenu {
+  cursor: pointer;
+  border-radius: 0;
+  margin: 2% 0;
+  padding : 2% 2%;
+  color: black;
+  font-weight: bold;
+  background-color: lightgrey;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.unselectable {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }

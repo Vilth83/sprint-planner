@@ -19,7 +19,6 @@
     "@angular/platform-browser": "~7.2.0",
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
-    "ag-grid": "^18.1.2",
     "ag-grid-angular": "^21.0.1",
     "ag-grid-community": "^21.0.1",
     "angular-font-awesome": "^3.1.2",

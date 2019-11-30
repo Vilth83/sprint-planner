@@ -1,7 +1,11 @@
 package fr.vilth.sprintplanner.api.services;
 
+import java.util.Set;
+
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
 
 /**
  * Service to handle {@code Member} persistence.
@@ -19,6 +23,13 @@ public interface MemberService {
     EntityIdDto save(MemberCreateDto member);
 
     /**
+     * Returns a {@code Set} of {@code MemberViewDto}.
+     * 
+     * @return a {@code Set} of {@code MemberViewDto}
+     */
+    Set<MemberViewDto> findAll();
+
+    /**
      * Utility method to validate {@code email} unicity.
      * 
      * @param email the tested {@code email}
@@ -26,4 +37,18 @@ public interface MemberService {
      *         otherwise
      */
     boolean existsByEmail(String email);
+
+    /**
+     * Persists given {@code MemberUpdateDto}.
+     * 
+     * @param member the given {@code MemberViewDto}
+     */
+    void update(MemberUpdateDto member);
+
+    /**
+     * Delete a {@code Member} by his id.
+     * 
+     * @param id the given identifier of the {@code Member} to be deleted.
+     */
+    void delete(Long id);
 }

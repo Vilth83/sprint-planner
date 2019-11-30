@@ -6,13 +6,20 @@
     <h2 class="text-center">Members configuration</h2>
   </div>
 </div>
-<div class="container section">
-  <div class="row">
-    <button type="button" name="create" class="btn" (click)="changeView('create')">Create new Member</button>
-  </div>
-</div>
 
-<div [ngSwitch]="view" class="container">
-  <app-member-creation *ngSwitchCase="'create'"></app-member-creation>
-  <app-member-creation *ngSwitchDefault></app-member-creation>
+
+<div class="container section">
+  <div class="row submenu unselectable" (click)="isCreationCollapsed = !isCreationCollapsed">
+    <span>Create new member  <span class="fa fa-angle-down"></span></span>
+  </div>
+  <div [collapse]="isCreationCollapsed">
+    <app-member-creation></app-member-creation>
+  </div>
+
+  <div class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
+    <span>Modify existing member  <span class="fa fa-angle-down"></span></span>
+  </div>
+  <div [collapse]="isModificationCollapsed">
+    <app-member-modification></app-member-modification>
+  </div>
 </div>

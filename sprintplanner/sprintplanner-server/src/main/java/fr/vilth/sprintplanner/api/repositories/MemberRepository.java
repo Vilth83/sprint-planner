@@ -11,12 +11,12 @@ import fr.vilth.sprintplanner.domain.entities.Member;
  */
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    /**
-     * Return either the {@code email} is unique or not.
-     * 
-     * @param email the tested {@code email}
-     * @return {@code true} if {@code email} exists; {@code false} otherwise.
-     */
-    boolean existsByEmail(String email);
-    //
+	/**
+	 * Return either the {@code email} is unique or not.
+	 * 
+	 * @param email the tested {@code email}
+	 * @return {@code true} if {@code email} exists; {@code false} otherwise.
+	 */
+	boolean existsByEmail(String email);
+
 }

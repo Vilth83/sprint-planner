@@ -23,5 +23,4 @@ export class InformationModalComponent implements OnInit {
   public openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
-
 }
