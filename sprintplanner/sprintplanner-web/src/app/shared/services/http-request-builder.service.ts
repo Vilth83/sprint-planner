@@ -14,8 +14,16 @@ export class HttpRequestBuilder {
     return this.http.post(this.baseUrl + url, inputs);
   }
 
-  get(endpoint: string): Observable<any> {
+  public get(endpoint: string): Observable<any> {
     return this.http.get(this.baseUrl + endpoint)
+  }
+
+  public put(endpoint: string, inputs: any): Observable<any> {
+    return this.http.put(this.baseUrl + endpoint, inputs)
+  }
+
+  public delete(endpoint: string) : Observable<any> {
+    return this.http.delete(this.baseUrl + endpoint);
   }
 
 }

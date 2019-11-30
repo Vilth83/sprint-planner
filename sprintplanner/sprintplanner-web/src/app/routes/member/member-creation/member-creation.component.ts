@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Member } from 'src/app/models/member/member.model';
-import { InformationModalComponent } from 'src/app/shared/information-modal/information-modal.component';
+import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-request-builder.service';
 import { Observable } from 'rxjs';
 

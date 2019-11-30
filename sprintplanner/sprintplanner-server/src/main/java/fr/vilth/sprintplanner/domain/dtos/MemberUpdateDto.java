@@ -26,6 +26,7 @@ public class MemberUpdateDto {
 	private String lastname;
 
 	@Email
+	@NotNull
 	private String email;
 
 }

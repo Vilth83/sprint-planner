@@ -61,6 +61,11 @@ public class MemberServiceImpl implements MemberService {
 		memberRepository.save(entityToPersist);
 	}
 
+	@Override
+	public void delete(Long id) {
+		memberRepository.deleteById(id);
+	}
+
 	// Utility Classes
 	@Override
 	public boolean existsByEmail(String email) {

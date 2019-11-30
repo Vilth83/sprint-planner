@@ -45,4 +45,6 @@ public interface MemberService {
 	 */
 	void update(MemberUpdateDto member);
 
+	void delete(Long id);
+
 }
