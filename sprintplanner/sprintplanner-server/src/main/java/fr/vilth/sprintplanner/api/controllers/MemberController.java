@@ -17,70 +17,74 @@ import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
 
 /**
  * a {@code RestController} to handle {@code Member}.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 @RestController
 @RequestMapping("/members")
 public class MemberController {
 
-	private final MemberService memberService;
+    private final MemberService memberService;
 
-	/**
-	 * Protected constructor to autowire needed bean.
-	 * <p>
-	 * injects {@code MemberService} interface
-	 * 
-	 * @param memberService the injected {@code MemberService}.
-	 */
-	protected MemberController(MemberService memberService) {
-		this.memberService = memberService;
-	}
+    /**
+     * Protected constructor to autowire needed bean.
+     * <p>
+     * injects {@code MemberService} interface
+     * 
+     * @param memberService the injected {@code MemberService}.
+     */
+    protected MemberController(MemberService memberService) {
+	this.memberService = memberService;
+    }
 
-	/**
-	 * Persists a {@code MemberCreateDto}.
-	 *
-	 * @param member the {@code MemberCreateDto} to persist.
-	 * @return the attributed id encapsulated in a {@code EntityIdDto}.
-	 */
-	@PostMapping
-	public EntityIdDto save(@Valid @RequestBody MemberCreateDto member) {
-		return memberService.save(member);
-	}
+    /**
+     * Persists a {@code MemberCreateDto}.
+     *
+     * @param member the {@code MemberCreateDto} to persist.
+     * @return the attributed id encapsulated in a {@code EntityIdDto}.
+     */
+    @PostMapping
+    public EntityIdDto save(@Valid @RequestBody MemberCreateDto member) {
+	return memberService.save(member);
+    }
 
-	/**
-	 * Returns a {@code Set} of {@code MemberViewDto}.
-	 * <p>
-	 * As Members are defined with unique email, there can be no duplicates,
-	 * therefore the {@code Collection} type can be a {@code Set}.
-	 * 
-	 * @return {@code List} of {@code Member}
-	 */
+    /**
+     * Returns a {@code Set} of {@code MemberViewDto}.
+     * <p>
+     * As Members are defined with unique email, there can be no duplicates,
+     * therefore the {@code Collection} type can be a {@code Set}.
+     * 
+     * @return {@code List} of {@code Member}
+     */
+    @GetMapping
+    public Set<MemberViewDto> findAll() {
+	return memberService.findAll();
+    }
 
-	@GetMapping
-	public Set<MemberViewDto> findAll() {
-		return memberService.findAll();
-	}
+    /**
+     * Perists a {@code MemberUpdateDto}.
+     * <p>
+     * the given {@code MemberUpdateDto} id must match an existing
+     * {@code Member} in database.
+     * 
+     * @param member
+     */
+    @PutMapping("/{id}")
+    public void update(@Valid @RequestBody MemberUpdateDto member) {
+	memberService.update(member);
+    }
 
-	/**
-	 * Perists a {@code MemberUpdateDto}.
-	 * <p>
-	 * the given {@code MemberUpdateDto} id must match an existing {@code Member} in
-	 * database.
-	 * 
-	 * @param member
-	 */
-	@PutMapping("/{id}")
-	public void update(@Valid @RequestBody MemberUpdateDto member) {
-		memberService.update(member);
-	}
-
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Long id) {
-		memberService.delete(id);
-	}
+    /**
+     * Delete a {@code Member} by id.
+     * 
+     * @param id the identifier of the {@code Member} to be deleted.
+     */
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+	memberService.delete(id);
+    }
 }

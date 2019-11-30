@@ -100,8 +100,7 @@ export class MemberModificationComponent implements OnInit {
   }
 
   private delete() {
-    let url = this.endpoint + "/" + this.inputs.id;
-    const request = this.httpBuilder.delete(url);
+    const request = this.httpBuilder.delete(this.endpoint);
 
     request.subscribe(() => {
       this.openInfoModal('Deletion is successful !', this.inputs.firstname + " has been deleted.");

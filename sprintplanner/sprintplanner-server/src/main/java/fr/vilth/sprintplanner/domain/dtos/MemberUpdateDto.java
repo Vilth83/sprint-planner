@@ -8,25 +8,22 @@ import javax.validation.constraints.NotNull;
  * DTO representing a {@code Member} to be persisted in database.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 /**
- * @author vilth
- *
+ * @author Thierry VILLEPREUX
  */
 public class MemberUpdateDto {
 
-	@NotNull
-	private Long id;
+    @NotNull
+    private Long id;
 
-	@NotBlank
-	private String firstname;
+    @NotBlank
+    private String firstname;
 
-	@NotBlank
-	private String lastname;
+    @NotBlank
+    private String lastname;
 
-	@Email
-	@NotNull
-	private String email;
-
+    @Email
+    @NotBlank
+    private String email;
 }

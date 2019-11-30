@@ -28,7 +28,7 @@ public abstract class AbstractEntity implements Serializable {
      * 
      * @return an identifier
      */
-    protected final Long getId() {
+    public final Long getId() {
 	return id;
     }
 
