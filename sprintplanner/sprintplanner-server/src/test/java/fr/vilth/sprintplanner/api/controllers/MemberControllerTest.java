@@ -10,9 +10,11 @@ import java.util.Set;
 import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
 import fr.vilth.sprintplanner.api.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
@@ -75,5 +77,11 @@ public class MemberControllerTest extends SetupIntTest {
     void should_modify_existing_member(String json) {
 	MemberUpdateDto tested = jsonConvert(json, MemberUpdateDto.class);
 	assertDoesNotThrow(() -> controller.update(tested));
+    }
+
+    @Test
+    @Sql("classpath:/sqlTestCases/deletion.sql")
+    void should_delete_by_id() {
+	assertDoesNotThrow(() -> controller.delete(1L));
     }
 }

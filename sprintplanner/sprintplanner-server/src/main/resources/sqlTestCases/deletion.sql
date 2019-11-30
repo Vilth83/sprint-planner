@@ -1,0 +1,1 @@
+insert into member (id, firstname, lastname, email) values (1, 'test', 'test', 'tested@deletion');
