@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
 
 /**
  * a {@code RestController} to handle {@code Member}.
@@ -60,5 +62,18 @@ public class MemberController {
 	@GetMapping
 	public Set<MemberViewDto> findAll() {
 		return memberService.findAll();
+	}
+
+	/**
+	 * Perists a {@code MemberUpdateDto}.
+	 * <p>
+	 * the given {@code MemberUpdateDto} id must match an existing {@code Member} in
+	 * database.
+	 * 
+	 * @param member
+	 */
+	@PutMapping("/{id}")
+	public void update(@Valid @RequestBody MemberUpdateDto member) {
+		memberService.update(member);
 	}
 }

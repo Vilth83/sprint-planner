@@ -16,6 +16,14 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Setup class to be implemented by integration test classes.
+ * <p>
+ * provides convenient json and dto converters and a validation test method.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
 public abstract class SetupIntTest {

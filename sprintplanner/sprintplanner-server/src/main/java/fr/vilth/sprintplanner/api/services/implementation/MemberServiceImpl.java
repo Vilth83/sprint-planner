@@ -12,6 +12,7 @@ import fr.vilth.sprintplanner.api.repositories.MemberRepository;
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.entities.Member;
 
 /**
@@ -52,6 +53,12 @@ public class MemberServiceImpl implements MemberService {
 	public Set<MemberViewDto> findAll() {
 		List<Member> members = memberRepository.findAll();
 		return members.stream().map(member -> modelMapper.map(member, MemberViewDto.class)).collect(Collectors.toSet());
+	}
+
+	@Override
+	public void update(MemberUpdateDto member) {
+		Member entityToPersist = modelMapper.map(member, Member.class);
+		memberRepository.save(entityToPersist);
 	}
 
 	// Utility Classes

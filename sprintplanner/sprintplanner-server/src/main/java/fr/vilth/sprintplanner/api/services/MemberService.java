@@ -5,6 +5,7 @@ import java.util.Set;
 import fr.vilth.sprintplanner.api.controllers.MemberViewDto;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
 
 /**
  * Service to handle {@code Member} persistence.
@@ -36,5 +37,12 @@ public interface MemberService {
 	 *         otherwise
 	 */
 	boolean existsByEmail(String email);
+
+	/**
+	 * Persists given {@code MemberUpdateDto}.
+	 * 
+	 * @param member the given {@code MemberViewDto}
+	 */
+	void update(MemberUpdateDto member);
 
 }
