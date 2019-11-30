@@ -31,7 +31,7 @@ public class MemberController {
     private final MemberService memberService;
 
     /**
-     * Test Protected constructor to autowire needed bean.
+     * Protected constructor to autowire needed bean.
      * <p>
      * injects {@code MemberService} interface
      * 
