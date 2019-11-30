@@ -1,0 +1,11 @@
+<ng-template #info>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span class="fa fa-times" aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{message}}
+  </div>
+</ng-template>
