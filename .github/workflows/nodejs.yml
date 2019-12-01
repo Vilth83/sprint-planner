@@ -19,7 +19,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: 
-        npm ci --prefix sprintplanner/sprintplanner-web
+        npm install --prefix sprintplanner/sprintplanner-web
         npm run build --if-present --prefix sprintplanner/sprintplanner-web
         npm test --prefix sprintplanner/sprintplanner-web
       env:
