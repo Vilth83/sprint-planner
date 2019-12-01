@@ -1,8 +1,6 @@
 name: Node CI
 
-on:
-  push:
-    paths: sprintplanner/sprintplanner-web/**
+on: [push]
 
 jobs:
   build:
@@ -19,6 +17,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: select repository
+      run: cd sprintplanner/sprintplanner-web 
     - name: npm install, build, and test
       run: 
         npm ci
