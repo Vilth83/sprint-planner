@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
 /**
  * a {@code RestController} to handle {@code Member}.

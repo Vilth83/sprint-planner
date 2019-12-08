@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.domain.dtos;
+package fr.vilth.sprintplanner.domain.dtos.member;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
 
 /**
  * Tests upon {@code MemberCreateDto}.

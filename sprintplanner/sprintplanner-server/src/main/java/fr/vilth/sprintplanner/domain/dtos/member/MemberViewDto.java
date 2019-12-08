@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.domain.dtos;
+package fr.vilth.sprintplanner.domain.dtos.member;
 
 /**
  * A DTO representation of a {@code Member}.
