@@ -35,7 +35,6 @@ public class CandidateCreateDtoTest extends SetupUnitTest {
 		CandidateCreateDto.class);
 	String expected = "{member={id=1}, task={id=1}, priority=1, status=AVAILABLE}";
 	String actual = memberCreateDto.toString();
-	System.out.println(actual);
 	assertEquals(expected, actual);
     }
 }
