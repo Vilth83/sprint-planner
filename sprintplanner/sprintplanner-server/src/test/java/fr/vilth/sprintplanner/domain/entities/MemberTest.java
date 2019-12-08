@@ -81,6 +81,7 @@ public class MemberTest extends SetupUnitTest {
 	assertEquals(expected, actual);
     }
 
+    // tests getId of AbstractEntity
     @Test
     void should_return_id() {
 	Long expected = Long.valueOf(1L);

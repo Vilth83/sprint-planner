@@ -8,7 +8,6 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
-import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
 /**
  * Test upon MemberViewDto.

@@ -9,12 +9,24 @@ import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 
+/**
+ * Default concrete implementation of {@code CandidateService}.
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class CandidateServiceImpl extends AbstractService
 	implements CandidateService {
 
     private final CandidateRepository candidateRepository;
 
+    /**
+     * Protected constructor to autowire needed bean.
+     * <p>
+     * injects {@code CandidateRepository} interface to persist {@code Member}.
+     * 
+     * @param candidateRepository the injected {@code CandidateRepository}
+     */
     public CandidateServiceImpl(CandidateRepository candidateRepository) {
 	this.candidateRepository = candidateRepository;
     }

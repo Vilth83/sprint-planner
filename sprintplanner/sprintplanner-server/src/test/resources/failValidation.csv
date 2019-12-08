@@ -2,4 +2,4 @@
 {"firstname":"test", "lastname":"test", "email":"test"}
 {"firstname":"", "lastname":"test", "email":"test@test"}
 {"firstname":"test", "lastname":"", "email":"test@test"}
-{"firstname":"existing", "lastname":"test", "email":"existing@test"}
+{"firstname":"test", "lastname":"test", "email":"tested@member"}
