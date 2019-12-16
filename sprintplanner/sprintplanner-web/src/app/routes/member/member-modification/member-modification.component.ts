@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpRequestBuilder } from 'src/app/shared/services/http-request-builder.service';
 import { Member } from 'src/app/models/member/member.model';
 import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from 'src/app/shared/components/button-renderer.component';
 import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
+import { MemberHttpRequest } from 'src/app/shared/services/http-helper/member-http-request.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-member-modification',
@@ -13,7 +14,10 @@ import { ConfirmationModalComponent } from 'src/app/shared/components/confirmati
 })
 export class MemberModificationComponent implements OnInit {
 
-  private endpoint = "/members";
+  private deleteMemberSubscription: Subscription;
+  private memberEditionSubscription: Subscription;
+  private getMembersSubscription: Subscription;
+
   gridOptions: GridOptions;
   rowData: Member[];
   frameworkComponents = {};
@@ -23,10 +27,10 @@ export class MemberModificationComponent implements OnInit {
   message: string;
   @ViewChild('confirmation') private confirmationModal: ConfirmationModalComponent;
   action: string;
-  inputs: any;
+  inputs: Member;
 
 
-  constructor(private httpBuilder: HttpRequestBuilder) {
+  constructor(private http: MemberHttpRequest) {
     this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
@@ -71,22 +75,16 @@ export class MemberModificationComponent implements OnInit {
   }
 
   public getMembers() {
-    const request = this.httpBuilder.get(this.endpoint);
+    const request = this.http.get();
     request.subscribe((members: Member[]) => {
       this.rowData = members;
     })
   }
 
-  private onEditClick(params: any) {
-    this.openConfirmationModal('modify', params.rowData);
-  }
-
-  private edit() {
-    let url = this.endpoint + "/" + this.inputs.id;
-    const request = this.httpBuilder.put(url, this.inputs);
-
-    request.subscribe(() => {
-      this.openInfoModal('Update is successful !', this.inputs.firstname + " infos has been updated");
+  private edit(member: Member) {
+    const request = this.http.put(member);
+    this.memberEditionSubscription = request.subscribe(() => {
+      this.openInfoModal('Update is successful !', member.firstname + " infos has been updated");
       this.ngOnInit();
     }, () => {
       this.openInfoModal("An error has occurred...", "")
@@ -94,20 +92,16 @@ export class MemberModificationComponent implements OnInit {
     this.ngOnInit();
   }
 
-
-  private onDeleteClick(params: any) {
-    this.openConfirmationModal('delete', params.rowData);
-  }
-
-  private delete() {
-    const request = this.httpBuilder.delete(this.endpoint);
-
-    request.subscribe(() => {
-      this.openInfoModal('Deletion is successful !', this.inputs.firstname + " has been deleted.");
-      this.ngOnInit();
-    }, () => {
-      this.openInfoModal("An error has occurred...", this.inputs.firstname + " has not been deleted.")
-    });
+  private delete(member: Member) {
+    const name = member.firstname;
+    const request = this.http.delete(member);
+    this.deleteMemberSubscription =
+      request.subscribe(() => {
+        this.openInfoModal('Deletion is successful !', name + " has been deleted.");
+        this.ngOnInit();
+      }, () => {
+        this.openInfoModal("An error has occurred...", name + " has not been deleted.")
+      });
     this.ngOnInit();
   }
 
@@ -121,16 +115,26 @@ export class MemberModificationComponent implements OnInit {
     this.action = action;
     this.inputs = inputs;
     this.confirmationModal.openModal(this.confirmationModal.template);
-    this.confirmationModal.setConfirmation(() => { this.confirm() }, () => { this.decline() });
+    this.confirmationModal.setConfirmation(
+      () => { this.confirm() },
+      () => { this.decline() });
+  }
+
+  private onDeleteClick(params: any) {
+    this.openConfirmationModal('delete', params.rowData);
+  }
+
+  private onEditClick(params: any) {
+    this.openConfirmationModal('modify', params.rowData);
   }
 
   public confirm() {
     switch (this.action) {
       case 'modify':
-        this.edit();
+        this.edit(this.inputs);
         break;
       case 'delete':
-        this.delete();
+        this.delete(this.inputs);
         break;
       default:
         this.decline();
@@ -139,5 +143,11 @@ export class MemberModificationComponent implements OnInit {
 
   private decline() {
     this.ngOnInit();
+  }
+
+  public ngOnDestroy() {
+    this.getMembersSubscription.unsubscribe();
+    this.deleteMemberSubscription.unsubscribe();
+    this.memberEditionSubscription.unsubscribe();
   }
 }
