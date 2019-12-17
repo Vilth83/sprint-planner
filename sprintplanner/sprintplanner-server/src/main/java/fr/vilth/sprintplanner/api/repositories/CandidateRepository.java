@@ -1,5 +1,7 @@
 package fr.vilth.sprintplanner.api.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.vilth.sprintplanner.domain.entities.Candidate;
@@ -10,5 +12,12 @@ import fr.vilth.sprintplanner.domain.entities.Candidate;
  * @author Thierry VILLEPREUX
  */
 public interface CandidateRepository extends JpaRepository<Candidate, Long> {
-    //
+
+    /**
+     * Returns a {@code List} of {@code Candidate} for the given {@code Task}.
+     * 
+     * @param taskName the name of the given {@code Task}
+     * @return a {@code List} of {@code Candidate}
+     */
+    List<Candidate> findAllByTaskName(String taskName);
 }

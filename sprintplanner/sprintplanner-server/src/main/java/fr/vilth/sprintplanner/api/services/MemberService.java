@@ -51,4 +51,18 @@ public interface MemberService {
      * @param id the given identifier of the {@code Member} to be deleted.
      */
     void delete(Long id);
+
+    /**
+     * Returns a {@code Set} of {@code MemberViewDto} who respects one of the
+     * following conditions :
+     * <ul>
+     * <li>He is not present in {@code Candidate} table.
+     * <li>He is present in {@code Candidate} table for another {@code Task} but
+     * not for the given one.
+     * </ul>
+     * 
+     * @param task the given {@code Task} name.
+     * @return {@code Set} of {@code Member}
+     */
+    Set<MemberViewDto> findAllNonCandidatesByTask(String task);
 }

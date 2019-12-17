@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * A representation of a team {@code Member}.
@@ -34,6 +35,9 @@ public class Member extends AbstractEntity {
 
     @Column(nullable = false, length = 100, unique = true)
     private String email;
+
+    @Column(nullable = false)
+    private Shift shift = Shift.PAR;
 
     /**
      * Default empty no-args constructor.

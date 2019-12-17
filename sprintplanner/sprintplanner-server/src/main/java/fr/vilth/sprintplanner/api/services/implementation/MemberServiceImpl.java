@@ -74,4 +74,12 @@ public class MemberServiceImpl implements MemberService {
     public boolean existsByEmail(String email) {
 	return memberRepository.existsByEmail(email);
     }
+
+    @Override
+    public Set<MemberViewDto> findAllNonCandidatesByTask(String task) {
+	List<Member> members = memberRepository.findAllNonCandidatesByTask(task);
+	return members.stream()
+		.map(member -> modelMapper.map(member, MemberViewDto.class))
+		.collect(Collectors.toSet());
+    }
 }

@@ -2,6 +2,8 @@ package fr.vilth.sprintplanner.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 
@@ -17,21 +19,19 @@ public class Task extends AbstractEntity {
 
     private static final long serialVersionUID = -3742414978040482584L;
 
-    /**
-     * the name of a given {@code Task}.
-     */
     @Column(nullable = false, length = 10)
     private String name;
 
-    /**
-     * the description of a given {@code Task}
-     */
     @Column(nullable = true, length = 255)
     private String description;
 
-    /**
-     * Protected empty no-arg constructor
-     */
+    @Column(nullable = false)
+    private String email;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Member manager;
+
     protected Task() {
 	//
     }
