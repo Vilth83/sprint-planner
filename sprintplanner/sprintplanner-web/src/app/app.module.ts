@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {AgGridModule} from 'ag-grid-angular';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 import { AppComponent } from './app.component';
@@ -20,6 +20,8 @@ import { InformationModalComponent } from './shared/components/information-modal
 import { MemberModificationComponent } from './routes/member/member-modification/member-modification.component';
 import { ButtonRendererComponent } from './shared/components/button-renderer.component';
 import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
+import { ReleaserComponent } from './routes/releaser/releaser.component';
+import { ManageCandidateComponent } from './shared/components/candidate/manage-candidate/manage-candidate.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +32,10 @@ import { ConfirmationModalComponent } from './shared/components/confirmation-mod
     InformationModalComponent,
     MemberModificationComponent,
     ButtonRendererComponent,
-    ConfirmationModalComponent
-    ],
+    ConfirmationModalComponent,
+    ReleaserComponent,
+    ManageCandidateComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

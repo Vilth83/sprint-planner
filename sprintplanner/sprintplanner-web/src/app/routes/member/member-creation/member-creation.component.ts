@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Member } from 'src/app/models/member/member.model';
+import { Member } from 'src/app/models/member.model';
 import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
 import { Subscription } from 'rxjs';
 import { MemberHttpRequest } from 'src/app/shared/services/http-helper/member-http-request.service';
@@ -10,7 +10,7 @@ import { MemberHttpRequest } from 'src/app/shared/services/http-helper/member-ht
   templateUrl: './member-creation.component.html',
   styleUrls: ['./member-creation.component.css']
 })
-export class MemberCreationComponent {
+export class MemberCreationComponent implements OnInit {
 
   private member: Member;
 
@@ -21,9 +21,9 @@ export class MemberCreationComponent {
   @ViewChild('info')
   private infoModal: InformationModalComponent;
 
+  ngOnInit() { }
   constructor(private http: MemberHttpRequest) {
   }
-
 
   onSubmit(inputs: NgForm) {
     this.member = inputs.value;
@@ -33,7 +33,6 @@ export class MemberCreationComponent {
         const name = this.member.firstname + ' ' + this.member.lastname;
         const message = name + ' (email : ' + this.member.email + ')' + ' has been successfully created :)';
         this.openInfoModal('success ! ', message);
-
       }, (error) => {
         const errors = error.error.errors;
         let errMessage = "";
@@ -51,6 +50,6 @@ export class MemberCreationComponent {
   }
 
   ngOnDestroy() {
-    this.memberCreationSubscription.unsubscribe();
+    this.http.unsubscribe(this.memberCreationSubscription);
   }
 }

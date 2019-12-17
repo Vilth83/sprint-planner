@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Member } from 'src/app/models/member/member.model';
+import { Member } from 'src/app/models/member.model';
 import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from 'src/app/shared/components/button-renderer.component';
 import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
@@ -146,8 +146,8 @@ export class MemberModificationComponent implements OnInit {
   }
 
   public ngOnDestroy() {
-    this.getMembersSubscription.unsubscribe();
-    this.deleteMemberSubscription.unsubscribe();
-    this.memberEditionSubscription.unsubscribe();
+    this.http.unsubscribe(this.getMembersSubscription);
+    this.http.unsubscribe(this.deleteMemberSubscription);
+    this.http.unsubscribe(this.memberEditionSubscription);
   }
 }

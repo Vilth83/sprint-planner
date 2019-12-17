@@ -1,0 +1,25 @@
+<header class="intro-area">
+  <div class="title">
+    <h1 class="text-center">Releaser</h1>
+  </div>
+  <div class="subtitle">
+    <h2 class="text-center">Releaser management</h2>
+  </div>
+</header>
+
+
+<section class="container section">
+  <nav class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
+    <span>Current Releaser  <span class="fa fa-angle-down"></span></span>
+  </nav>
+  <article [collapse]="isCurrentCollapsed">
+
+  </article>
+
+  <nav class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
+    <span>Manage releasers <span class="fa fa-angle-down"></span></span>
+  </nav>
+  <article [collapse]="isModificationCollapsed">
+    <app-manage-candidate task="support"></app-manage-candidate>
+  </article>
+</section>
