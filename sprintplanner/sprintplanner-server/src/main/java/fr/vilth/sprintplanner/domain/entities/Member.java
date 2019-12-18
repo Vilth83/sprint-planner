@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
@@ -37,6 +39,7 @@ public class Member extends AbstractEntity {
     private String email;
 
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private Shift shift = Shift.PAR;
 
     /**
@@ -66,6 +69,7 @@ public class Member extends AbstractEntity {
     @Override
     public String toString() {
 	return "{id=" + super.getId() + ", firstname=" + firstname
-		+ ", lastname=" + lastname + ", email=" + email + "}";
+		+ ", lastname=" + lastname + ", email=" + email + ", shift="
+		+ shift + "}";
     }
 }

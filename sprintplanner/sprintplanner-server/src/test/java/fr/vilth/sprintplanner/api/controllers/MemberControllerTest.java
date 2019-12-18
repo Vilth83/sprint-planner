@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
 
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
@@ -70,8 +69,17 @@ public class MemberControllerTest extends SetupIntTest {
 	assertDoesNotThrow(() -> controller.update(tested));
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
+    void should_return_non_candidate_to_given_task(String json) {
+	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
+	controller.save(member);
+	Set<MemberViewDto> nonCandidates = controller
+		.findAllNonCandidates("release");
+	assertEquals(1, nonCandidates.size());
+    }
+
     @Test
-    @Sql("classpath:/sqlTestCases/deletion.sql")
     void should_delete_by_id() {
 	assertDoesNotThrow(() -> controller.delete(1L));
     }

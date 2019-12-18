@@ -4,6 +4,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import fr.vilth.sprintplanner.domain.types.Shift;
+
 /**
  * DTO representing a {@code Member} to be persisted in database.
  * 
@@ -26,4 +28,7 @@ public class MemberUpdateDto {
     @Email
     @NotBlank
     private String email;
+
+    @NotNull
+    private Shift shift;
 }

@@ -2,7 +2,9 @@ package fr.vilth.sprintplanner.domain.dtos.member;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.validators.UniqueEmail;
 
 /**
@@ -12,26 +14,30 @@ import fr.vilth.sprintplanner.domain.validators.UniqueEmail;
  */
 public class MemberCreateDto {
 
-	/**
-	 * Protected empty no-arg constructor
-	 */
-	protected MemberCreateDto() {
-		//
-	}
+    /**
+     * Protected empty no-arg constructor
+     */
+    protected MemberCreateDto() {
+	//
+    }
 
-	@NotBlank
-	private String firstname;
+    @NotBlank
+    private String firstname;
 
-	@NotBlank
-	private String lastname;
+    @NotBlank
+    private String lastname;
 
-	@UniqueEmail
-	@Email
-	@NotBlank
-	private String email;
+    @UniqueEmail
+    @Email
+    @NotBlank
+    private String email;
 
-	@Override
-	public String toString() {
-		return "{firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + "}";
-	}
+    @NotNull
+    private Shift shift;
+
+    @Override
+    public String toString() {
+	return "{firstname=" + firstname + ", lastname=" + lastname + ", email="
+		+ email + ", shift=" + shift + "}";
+    }
 }

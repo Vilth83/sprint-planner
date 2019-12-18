@@ -16,7 +16,7 @@ import fr.vilth.sprintplanner.SetupUnitTest;
  */
 public class MemberCreateDtoTest extends SetupUnitTest {
 
-    private static final String MEMBER_CREATE_JSON = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
+    private static final String MEMBER_CREATE_JSON = "{\"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\", \"shift\":\"PAR\"}";
 
     private final MemberCreateDto memberCreateDto = MAPPER
 	    .readValue(MEMBER_CREATE_JSON, MemberCreateDto.class);
@@ -33,7 +33,7 @@ public class MemberCreateDtoTest extends SetupUnitTest {
 
     @Test
     void should_return_toString() {
-	String expected = "{firstname=actual, lastname=member, email=actual@member}";
+	String expected = "{firstname=actual, lastname=member, email=actual@member, shift=PAR}";
 	String actual = memberCreateDto.toString();
 	assertEquals(expected, actual);
     }

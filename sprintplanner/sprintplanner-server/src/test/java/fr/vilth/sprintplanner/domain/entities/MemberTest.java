@@ -23,9 +23,9 @@ public class MemberTest extends SetupUnitTest {
 	super();
     }
 
-    private static final String ACTUAL_MEMBER_JSON = "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\"}";
+    private static final String ACTUAL_MEMBER_JSON = "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\", \"shift\":\"PAR\"}";
 
-    private static final String DIFFERENT_MEMBER_JSON = "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\"}";
+    private static final String DIFFERENT_MEMBER_JSON = "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\", \"shift\":\"PAR\"}";
 
     private Member actualMember = MAPPER.readValue(ACTUAL_MEMBER_JSON,
 	    Member.class);
@@ -76,7 +76,7 @@ public class MemberTest extends SetupUnitTest {
 
     @Test
     void should_return_to_string() {
-	String expected = "{id=1, firstname=actual, lastname=member, email=actual@member}";
+	String expected = "{id=1, firstname=actual, lastname=member, email=actual@member, shift=PAR}";
 	String actual = actualMember.toString();
 	assertEquals(expected, actual);
     }
