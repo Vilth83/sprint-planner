@@ -2,4 +2,3 @@
 {"firstname":"test", "lastname":"test", "email":"test", "shift":"PAR"}
 {"firstname":"", "lastname":"test", "email":"test@test", "shift":"PAR"}
 {"firstname":"test", "lastname":"", "email":"test@test", "shift":"PAR"}
-{"firstname":"test", "lastname":"test", "email":"test@test" }

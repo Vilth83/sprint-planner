@@ -26,7 +26,7 @@ public class TaskViewDtoTest extends SetupUnitTest {
     @CsvFileSource(resources = "/taskCreation.csv", delimiter = ';')
     void should_return_toString(String json) {
 	TaskViewDto task = jsonConvert(json, TaskViewDto.class);
-	String expected = "{name=release, description=release test, email=release@mail, manager=null}";
+	String expected = "{id=1, name=release, description=release test, email=release@mail, manager=null}";
 	String actual = task.toString();
 	assertEquals(expected, actual);
     }
