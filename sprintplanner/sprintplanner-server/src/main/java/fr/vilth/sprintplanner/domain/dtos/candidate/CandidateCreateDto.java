@@ -29,6 +29,15 @@ public class CandidateCreateDto {
 	//
     }
 
+    /**
+     * returns the {@code task} of given {@code CandidateCreateDto}
+     * 
+     * @return an {@code EntityIdDto} encapsulating the {@code Task} id
+     */
+    public EntityIdDto getTask() {
+	return task;
+    }
+
     @Override
     public String toString() {
 	return "{member=" + member + ", task=" + task + ", priority=" + priority

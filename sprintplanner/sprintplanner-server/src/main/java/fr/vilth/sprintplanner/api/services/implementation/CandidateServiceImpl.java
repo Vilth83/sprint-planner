@@ -38,8 +38,13 @@ public class CandidateServiceImpl extends AbstractService
 
     @Override
     public EntityIdDto save(CandidateCreateDto inputs) {
+	Long taskId = inputs.getTask().getId();
+	List<Candidate> candidates = candidateRepository
+		.findAllByTaskId(taskId);
+	candidates.forEach(Candidate::incrementPriority);
 	Candidate candidate = modelMapper.map(inputs, Candidate.class);
 	Candidate candidateId = candidateRepository.save(candidate);
+	candidateRepository.saveAll(candidates);
 	return modelMapper.map(candidateId, EntityIdDto.class);
     }
 

@@ -48,4 +48,11 @@ public class Candidate extends AbstractEntity {
     protected Candidate() {
 	//
     }
+
+    /**
+     * Increments the priority of this {@code Candidate} by one.
+     */
+    public void incrementPriority() {
+	priority = priority + 1;
+    }
 }

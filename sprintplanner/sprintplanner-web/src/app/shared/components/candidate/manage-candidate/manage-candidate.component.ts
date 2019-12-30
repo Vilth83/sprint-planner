@@ -4,6 +4,10 @@ import { ButtonRendererComponent } from '../../button-renderer.component';
 import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Member } from 'src/app/models/member.model';
+import { IdDto } from 'src/app/models/IdDto.model';
+import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
+import { Router } from '@angular/router';
+import { Task } from 'src/app/models/task.model';
 
 @Component({
   selector: 'app-manage-candidate',
@@ -14,7 +18,9 @@ export class ManageCandidateComponent implements OnInit {
 
   @Input('task')
   task: string;
+  taskObject: Task;
 
+  selectedCandidate: number;
   nonCandidates: Member[] = [];
 
   gridOptions: GridOptions;
@@ -26,10 +32,10 @@ export class ManageCandidateComponent implements OnInit {
       buttonRenderer: ButtonRendererComponent
     }
     this.gridOptions = {
-      defaultColDef: { editable: true, sortable: true, resizable: true },
+      defaultColDef: { sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
-        { headerName: 'priority', field: 'priority' },
+        { headerName: 'priority', field: 'priority', editable: true},
         { headerName: 'firstname', field: 'member.firstname' },
         { headerName: 'lastname', field: 'member.lastname' },
         {
@@ -69,6 +75,11 @@ export class ManageCandidateComponent implements OnInit {
     gridOptions.api.sizeColumnsToFit();
   }
 
+  public getTask() {
+    this.http.get("/tasks/" + this.task + "/name").subscribe(task =>
+      this.taskObject = task);
+  }
+
   public getCandidates() {
     this.http.get("/candidates/" + this.task).subscribe((candidates: Candidate[]) => {
       this.rowData = candidates;
@@ -84,6 +95,16 @@ export class ManageCandidateComponent implements OnInit {
   ngOnInit() {
     this.getCandidates();
     this.getNonCandidates();
+    this.getTask();
+  }
+
+  onSaveClick() {
+    const member: IdDto = new IdDto(this.selectedCandidate);
+    const task: IdDto = new IdDto(this.taskObject.id);
+    const candidate: CandidateCreator = { member: member, task: task };
+    this.http.post("/candidates", candidate).subscribe(() => {
+      this.getCandidates();
+    });
   }
 
   onDeleteClick() {

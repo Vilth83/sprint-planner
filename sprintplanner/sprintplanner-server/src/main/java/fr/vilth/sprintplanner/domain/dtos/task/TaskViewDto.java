@@ -11,6 +11,8 @@ import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
  */
 public class TaskViewDto {
 
+    private Long id;
+
     private String name;
 
     private String description;
@@ -25,7 +27,7 @@ public class TaskViewDto {
 
     @Override
     public String toString() {
-	return "{name=" + name + ", description=" + description + ", email="
-		+ email + ", manager=" + manager + "}";
+	return "{id=" + id + ", name=" + name + ", description=" + description
+		+ ", email=" + email + ", manager=" + manager + "}";
     }
 }

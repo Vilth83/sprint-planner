@@ -12,6 +12,15 @@
         <label class="col-lg-3 col-sm-12" for="email">email</label>
         <input name="email" ngModel required class="form-control col-lg-6 col-sm-12" placeholder="Enter email">
     </div>
+    <div  class="form-row section">
+      <label class="col-lg-3 col-sm-12" for="shift">shift</label>
+      <select class="form-control col-lg-6 col-sm-12"  ngModel name="shift">
+        <option value="PAR">Paris</option>
+        <option value="BGL">Bangalore</option>
+        </select>
+        <!-- <label class="col-lg-3 col-sm-12" for="shift">shift</label>
+        <input name="shift" ngModel required class="form-control col-lg-6 col-sm-12" placeholder="Enter shift"> -->
+    </div>
     <button type="submit" class="fa fa-save btn col-4"></button>
   </form>
 </section>

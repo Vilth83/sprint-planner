@@ -20,4 +20,12 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
      * @return a {@code List} of {@code Candidate}
      */
     List<Candidate> findAllByTaskName(String taskName);
+
+    /**
+     * Returns a {@code List} of {@code Candidate} for the given {@code Task}.
+     * 
+     * @param taskId the id of the given {@code Task}
+     * @return a {@code List} of {@code Candidate}
+     */
+    List<Candidate> findAllByTaskId(Long taskId);
 }

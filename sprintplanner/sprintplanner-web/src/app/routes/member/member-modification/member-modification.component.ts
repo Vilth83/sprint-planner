@@ -41,6 +41,7 @@ export class MemberModificationComponent implements OnInit {
         { headerName: 'firstname', field: 'firstname' },
         { headerName: 'lastname', field: 'lastname' },
         { headerName: 'email', field: 'email' },
+        { headerName: 'shift', field: 'shift', cellEditor: "agSelectCellEditor", cellEditorParams: { values: ["PAR", "BGL"] } },
         {
           width: 80,
           headerName: 'edit',

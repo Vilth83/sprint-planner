@@ -17,7 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest
 @WebAppConfiguration
 @ContextConfiguration
-public class SprintplannerApplicationTests {
+public class SprintplannerApplicationTest {
 
 	/**
 	 * Should launch the application correctly
