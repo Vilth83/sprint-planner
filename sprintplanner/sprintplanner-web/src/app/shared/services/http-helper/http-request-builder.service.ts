@@ -10,8 +10,8 @@ export class HttpRequestBuilder {
 
   constructor(private http: HttpClient) { }
 
-  public post(url:string, inputs:any): Observable<any> {
-    return this.http.post(this.baseUrl + url, inputs);
+  public post(endpoint:string, inputs:any): Observable<any> {
+    return this.http.post(this.baseUrl + endpoint, inputs);
   }
 
   public get(endpoint: string): Observable<any> {

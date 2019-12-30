@@ -4,15 +4,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.MemberRepository;
 import fr.vilth.sprintplanner.api.services.MemberService;
+import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 import fr.vilth.sprintplanner.domain.entities.Member;
 
 /**
@@ -21,25 +21,19 @@ import fr.vilth.sprintplanner.domain.entities.Member;
  * @author Thierry VILLEPREUX
  */
 @Service
-public class MemberServiceImpl implements MemberService {
-
-    private final ModelMapper modelMapper;
+public class MemberServiceImpl extends AbstractService
+	implements MemberService {
 
     private final MemberRepository memberRepository;
 
     /**
      * Protected constructor to autowire needed bean.
      * <p>
-     * injects {@code MemberRepository} interface to persist {@code Member} and
-     * {@code ModelMapper} to ease mapping between DTO and entities.
+     * injects {@code MemberRepository} interface to persist {@code Member}.
      * 
-     * @param modelMapper the injected {@code ModelMapper}
      * @param memberRepository the injected {@code MemberRepository}
      */
-    protected MemberServiceImpl(ModelMapper modelMapper,
-	    MemberRepository memberRepository) {
-	super();
-	this.modelMapper = modelMapper;
+    protected MemberServiceImpl(MemberRepository memberRepository) {
 	this.memberRepository = memberRepository;
     }
 
@@ -73,5 +67,14 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean existsByEmail(String email) {
 	return memberRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Set<MemberViewDto> findAllNonCandidatesByTask(String task) {
+	List<Member> members = memberRepository
+		.findAllNonCandidatesByTask(task);
+	return members.stream()
+		.map(member -> modelMapper.map(member, MemberViewDto.class))
+		.collect(Collectors.toSet());
     }
 }

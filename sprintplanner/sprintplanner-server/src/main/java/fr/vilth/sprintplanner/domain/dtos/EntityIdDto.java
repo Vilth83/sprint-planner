@@ -23,4 +23,13 @@ public class EntityIdDto {
     public String toString() {
 	return "{id=" + id + "}";
     }
+
+    /**
+     * Returns the id of given {@code EntityIdDto}
+     * 
+     * @return an id
+     */
+    public Long getId() {
+	return id;
+    }
 }

@@ -9,37 +9,27 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.jdbc.Sql;
 
-import fr.vilth.sprintplanner.api.SetupIntTest;
+import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
 /**
  * Tests upon {@code MemberController}.
  * 
- * @author vilth
+ * @author Thierry VILLEPREUX
  */
 @Transactional
 public class MemberControllerTest extends SetupIntTest {
 
     @Autowired
     private MemberController controller;
-
-    @BeforeEach
-    void addEntity() {
-	String existing = "{\"firstname\":\"existing\", \"lastname\":\"test\", \"email\":\"existing@test\"}";
-	MemberCreateDto existingEntity = jsonConvert(existing,
-		MemberCreateDto.class);
-	controller.save(existingEntity);
-    }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
@@ -79,8 +69,17 @@ public class MemberControllerTest extends SetupIntTest {
 	assertDoesNotThrow(() -> controller.update(tested));
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
+    void should_return_non_candidate_to_given_task(String json) {
+	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
+	controller.save(member);
+	Set<MemberViewDto> nonCandidates = controller
+		.findAllNonCandidates("release");
+	assertEquals(1, nonCandidates.size());
+    }
+
     @Test
-    @Sql("classpath:/sqlTestCases/deletion.sql")
     void should_delete_by_id() {
 	assertDoesNotThrow(() -> controller.delete(1L));
     }

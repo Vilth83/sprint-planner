@@ -31,9 +31,4 @@ public abstract class AbstractEntity implements Serializable {
     public final Long getId() {
 	return id;
     }
-
-    @Override
-    public String toString() {
-	return "id=" + id;
-    }
 }

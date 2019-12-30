@@ -1,4 +1,6 @@
-package fr.vilth.sprintplanner.domain.dtos;
+package fr.vilth.sprintplanner.domain.dtos.member;
+
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * A DTO representation of a {@code Member}.
@@ -17,6 +19,8 @@ public class MemberViewDto {
 
     private String email;
 
+    private Shift shift;
+
     protected MemberViewDto() {
 	// private empty no-arg constructor
     }
@@ -24,6 +28,6 @@ public class MemberViewDto {
     @Override
     public String toString() {
 	return "{id=" + id + ", firstname=" + firstname + ", lastname="
-		+ lastname + ", email=" + email + "}";
+		+ lastname + ", email=" + email + ", shift=" + shift + "}";
     }
 }

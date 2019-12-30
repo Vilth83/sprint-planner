@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberCreateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberUpdateDto;
-import fr.vilth.sprintplanner.domain.dtos.MemberViewDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
 /**
  * a {@code RestController} to handle {@code Member}.
@@ -58,11 +58,31 @@ public class MemberController {
      * As Members are defined with unique email, there can be no duplicates,
      * therefore the {@code Collection} type can be a {@code Set}.
      * 
-     * @return {@code List} of {@code Member}
+     * @return {@code Set} of {@code Member}
      */
     @GetMapping
     public Set<MemberViewDto> findAll() {
 	return memberService.findAll();
+    }
+
+    /**
+     * Returns a {@code Set} of {@code MemberViewDto} who are not
+     * {@code candidates} for given {@code Task}.
+     * <p>
+     * a {@code Member} is considered not {@code Candidate} for a given
+     * {@code Task} if :
+     * <ul>
+     * <li>He is not present in {@code Candidate} table.
+     * <li>He is present in {@code Candidate} table for another {@code Task} but
+     * not for the given one.
+     * </ul>
+     * 
+     * @param task the given {@code Task} name.
+     * @return {@code Set} of {@code Member}
+     */
+    @GetMapping("/{task}/nonCandidates")
+    public Set<MemberViewDto> findAllNonCandidates(@PathVariable String task) {
+	return memberService.findAllNonCandidatesByTask(task);
     }
 
     /**

@@ -11,7 +11,7 @@ import { ICellRendererAngularComp } from 'ag-grid-angular';
 export class ButtonRendererComponent implements ICellRendererAngularComp {
   params: any;
   label: string;
-  getLabelFunction: any;
+  getLabelFunction: Function;
   btnClass: string;
 
   agInit(params: any): void {
@@ -20,8 +20,7 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     this.btnClass = this.params.btnClass || 'btn btn-primary';
     this.getLabelFunction = this.params.getLabelFunction;
 
-    if (this.getLabelFunction && this.getLabelFunction instanceof Function) {
-      console.log(this.params);
+    if (this.getLabelFunction) {
       this.label = this.getLabelFunction(params.data);
     }
 
@@ -31,18 +30,11 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  getGui() {
-    return null;
-  }
-
-  onClick($event: any) {
-    if (this.params.onClick instanceof Function) {
+  onClick($event: Function) {
       const params = {
         event: $event,
         rowData: this.params.node.data
       }
       this.params.onClick(params);
-
     }
   }
-}

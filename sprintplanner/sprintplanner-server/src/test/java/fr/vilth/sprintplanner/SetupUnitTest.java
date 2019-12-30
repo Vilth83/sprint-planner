@@ -20,7 +20,8 @@ public class SetupUnitTest {
 
     protected static final ObjectMapper MAPPER = new ObjectMapper();
 
-    protected SetupUnitTest() throws IOException {
+    protected SetupUnitTest() {
+	//
     }
 
     @BeforeAll
@@ -33,5 +34,16 @@ public class SetupUnitTest {
 			.withSetterVisibility(JsonAutoDetect.Visibility.NONE));
 	MAPPER.registerModule(new JavaTimeModule());
 	MAPPER.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+    }
+
+    protected final <D> D jsonConvert(String inputs, Class<D> destinationType) {
+	D converted = null;
+	try {
+	    converted = MAPPER.readValue(inputs, destinationType);
+	} catch (IOException ex) {
+	    throw new IllegalArgumentException(
+		    "wrong json format in csv source file", ex);
+	}
+	return converted;
     }
 }

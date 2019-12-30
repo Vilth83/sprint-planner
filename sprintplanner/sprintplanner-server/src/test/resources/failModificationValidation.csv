@@ -1,5 +1,5 @@
-{"firstname":"test", "lastname":"test", "email":"", "id":1}
-{"firstname":"test", "lastname":"test", "email":"test", "id":1}
-{"firstname":"", "lastname":"test", "email":"test@test", "id":1}
-{"firstname":"test", "lastname":"", "email":"test@test", "id":1}
-{"firstname":"existing", "lastname":"test", "email":"existing@test"}
+{"firstname":"test", "lastname":"test", "email":"", "id":1, "shift":"PAR"}
+{"firstname":"test", "lastname":"test", "email":"test", "id":1, "shift":"PAR"}
+{"firstname":"", "lastname":"test", "email":"test@test", "id":1, "shift":"PAR"}
+{"firstname":"test", "lastname":"", "email":"test@test", "id":1, "shift":"PAR"}
+{"firstname":"existing", "lastname":"test", "email":"existing@test", "shift":"PAR"}
