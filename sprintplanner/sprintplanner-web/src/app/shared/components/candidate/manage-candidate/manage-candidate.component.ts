@@ -6,7 +6,6 @@ import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-req
 import { Member } from 'src/app/models/member.model';
 import { IdDto } from 'src/app/models/IdDto.model';
 import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
-import { Router } from '@angular/router';
 import { Task } from 'src/app/models/task.model';
 
 @Component({

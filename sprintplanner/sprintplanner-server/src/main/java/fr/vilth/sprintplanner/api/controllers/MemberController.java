@@ -91,7 +91,7 @@ public class MemberController {
      * the given {@code MemberUpdateDto} id must match an existing
      * {@code Member} in database.
      * 
-     * @param member
+     * @param member the {@code MemberUpdateDto} to update
      */
     @PutMapping("/{id}")
     public void update(@Valid @RequestBody MemberUpdateDto member) {

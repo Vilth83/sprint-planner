@@ -19,7 +19,8 @@ import fr.vilth.sprintplanner.domain.types.Status;
  * <li>{@code Status} cannot be null and must match one of the four existing
  * {@linkplain fr.vilth.sprintplanner.domain.types.Status statuses}
  * <li>{@code Task} cannot be null
- *
+ * </ul>
+ * 
  * @author Thierry VILLEPREUX
  */
 @Entity

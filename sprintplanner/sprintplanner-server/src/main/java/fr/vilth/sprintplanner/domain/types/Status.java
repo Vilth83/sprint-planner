@@ -5,16 +5,8 @@ package fr.vilth.sprintplanner.domain.types;
  * <p>
  * {@code Status}es concern a
  * {@linkplain fr.vilth.sprintplanner.domain.entities.Candidate Candidate}, for
- * a given {@linkplain fr.vilth.sprintplanner.dmain.entities.Task Task}
+ * a given {@linkplain fr.vilth.sprintplanner.domain.entities.Task Task}
  * <p>
- * Existing statuses are :
- * <ul>
- * <li>AVAILABLE : is available to be selected for a {@code Task}
- * <li>UNAVAILABLE : is unavailable, therefore cannot be selected for a
- * {@code Task}
- * <li>CURRENT : is current selected {@code Candidate} for a {@code Task}
- * <li>NEXT : is next selected {@code Candidate} for a {@code Task}
- * </ul>
  * 
  * @author Thierry VILLEPREUX
  */

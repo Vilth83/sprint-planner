@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
  * <p>
  * provides convenient bean injection of a {@code ModelMapper}.
  * 
- * @author vilth
+ * @author Thierry VILLEPREUX
  */
 @Service
-public class AbstractService {
+public abstract class AbstractService {
 
     @Autowired
     protected ModelMapper modelMapper;
