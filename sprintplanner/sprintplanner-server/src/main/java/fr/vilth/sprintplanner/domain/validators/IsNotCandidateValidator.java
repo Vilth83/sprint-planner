@@ -19,7 +19,6 @@ public class IsNotCandidateValidator
 	if (id == null) {
 	    return true;
 	}
-	boolean valid = !candidateService.existByMemberId(id);
-	return valid;
+	return !candidateService.existByMemberId(id);
     }
 }

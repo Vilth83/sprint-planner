@@ -110,7 +110,6 @@ public class MemberController {
      */
     @DeleteMapping("/{id}")
     public void delete(@Valid @RequestBody MemberDeleteDto member) {
-	System.out.println(member);
 	memberService.delete(member);
     }
 }

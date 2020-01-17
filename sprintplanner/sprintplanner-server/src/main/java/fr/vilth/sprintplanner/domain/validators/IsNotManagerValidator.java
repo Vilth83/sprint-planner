@@ -19,7 +19,6 @@ public class IsNotManagerValidator
 	if (id == null) {
 	    return true;
 	}
-	boolean valid = !taskService.existByManagerId(id);
-	return valid;
+	return !taskService.existByManagerId(id);
     }
 }

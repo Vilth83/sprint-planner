@@ -23,9 +23,11 @@ public class MemberTest extends SetupUnitTest {
 	super();
     }
 
-    private static final String ACTUAL_MEMBER_JSON = "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\", \"shift\":\"PAR\"}";
+    private static final String ACTUAL_MEMBER_JSON = //
+	    "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\", \"shift\":\"PAR\"}";
 
-    private static final String DIFFERENT_MEMBER_JSON = "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\", \"shift\":\"PAR\"}";
+    private static final String DIFFERENT_MEMBER_JSON = //
+	    "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\", \"shift\":\"PAR\"}";
 
     private Member actualMember = MAPPER.readValue(ACTUAL_MEMBER_JSON,
 	    Member.class);
