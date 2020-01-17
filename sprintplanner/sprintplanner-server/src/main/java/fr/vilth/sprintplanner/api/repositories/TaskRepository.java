@@ -18,4 +18,6 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
      * @return a {@code TaskViewDto}
      */
     Task getByName(String name);
+
+    boolean existsByManagerId(Long id);
 }

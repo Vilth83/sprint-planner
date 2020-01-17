@@ -5,7 +5,8 @@ import { ButtonRendererComponent } from 'src/app/shared/components/button-render
 import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
 import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
 import { MemberHttpRequest } from 'src/app/shared/services/http-helper/member-http-request.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 
 @Component({
   selector: 'app-member-modification',
@@ -35,38 +36,46 @@ export class MemberModificationComponent implements OnInit {
       buttonRenderer: ButtonRendererComponent
     }
     this.gridOptions = {
+      rowHeight: 50,
       defaultColDef: { editable: true, sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
         { headerName: 'firstname', field: 'firstname' },
         { headerName: 'lastname', field: 'lastname' },
         { headerName: 'email', field: 'email' },
-        { headerName: 'shift', field: 'shift', cellEditor: "agSelectCellEditor", cellEditorParams: { values: ["PAR", "BGL"] } },
         {
-          width: 80,
+          headerName: 'shift',
+          field: 'shift',
+          cellEditor: "agSelectCellEditor",
+          cellEditorParams: {
+            values: ["PAR", "BGL"]
+          }
+        },
+        {
+          hide: false,
           headerName: 'edit',
           editable: false,
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onEditClick.bind(this),
-            btnClass: 'btn-cell fa fa-save  fa-lg'
+            btnClass: 'btn btn-primary fa fa-save  fa-lg'
           }
         },
         {
-          width: 80,
+          hide: false,
           headerName: 'delete',
           editable: false,
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onDeleteClick.bind(this),
-            btnClass: 'btn-cell fa fa-trash fa-lg'
+            btnClass: 'btn btn-primary fa fa-trash fa-lg'
           }
-        },
-
+        }
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     };
   }
+
   ngOnInit() {
     this.getMembers();
   }
@@ -83,12 +92,20 @@ export class MemberModificationComponent implements OnInit {
   }
 
   private edit(member: Member) {
-    const request = this.http.put(member);
+    let request: Observable<any>;
+    if (member.id) {
+      console.log("put : " + member.id, ", ", member.firstname, ", ", member.lastname)
+      request = this.http.put(member);
+    } else {
+      request = this.http.post(member)
+    }
     this.memberEditionSubscription = request.subscribe(() => {
       this.openInfoModal('Update is successful !', member.firstname + " infos has been updated");
       this.ngOnInit();
-    }, () => {
-      this.openInfoModal("An error has occurred...", "")
+    }, (error) => {
+      const message = ErrorHandler.catch(error);
+      console.log(error)
+      this.openInfoModal("An error has occurred...", message);
     });
     this.ngOnInit();
   }
@@ -100,8 +117,9 @@ export class MemberModificationComponent implements OnInit {
       request.subscribe(() => {
         this.openInfoModal('Deletion is successful !', name + " has been deleted.");
         this.ngOnInit();
-      }, () => {
-        this.openInfoModal("An error has occurred...", name + " has not been deleted.")
+      }, (error) => {
+        const message = ErrorHandler.catch(error);
+        this.openInfoModal("An error has occurred...", message);
       });
     this.ngOnInit();
   }
@@ -127,6 +145,11 @@ export class MemberModificationComponent implements OnInit {
 
   private onEditClick(params: any) {
     this.openConfirmationModal('modify', params.rowData);
+  }
+
+  public createNewData() {
+    const newData = new Member();
+    this.rowData = this.rowData.concat([newData]);
   }
 
   public confirm() {

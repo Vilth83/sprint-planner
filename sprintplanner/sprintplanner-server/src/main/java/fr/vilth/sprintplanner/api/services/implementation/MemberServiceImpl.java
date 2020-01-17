@@ -11,6 +11,7 @@ import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 import fr.vilth.sprintplanner.domain.entities.Member;
@@ -30,6 +31,7 @@ public class MemberServiceImpl extends AbstractService
      * Protected constructor to autowire needed bean.
      * <p>
      * injects {@code MemberRepository} interface to persist {@code Member}.
+     * </p>
      * 
      * @param memberRepository the injected {@code MemberRepository}
      */
@@ -59,8 +61,9 @@ public class MemberServiceImpl extends AbstractService
     }
 
     @Override
-    public void delete(Long id) {
-	memberRepository.deleteById(id);
+    public void delete(MemberDeleteDto member) {
+	Member deleted = modelMapper.map(member, Member.class);
+	memberRepository.delete(deleted);
     }
 
     // Utility Classes

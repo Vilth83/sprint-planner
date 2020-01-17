@@ -16,4 +16,6 @@ public interface TaskService {
      * @return a {@code TaskViewDto}
      */
     TaskViewDto getByTaskName(String taskName);
+
+    boolean existByManagerId(Long id);
 }

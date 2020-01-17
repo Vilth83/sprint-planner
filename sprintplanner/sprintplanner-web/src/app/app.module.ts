@@ -15,7 +15,6 @@ import { routes } from './app-routing.module';
 import { HomeComponent } from './routes/home/home.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MemberComponent } from './routes/member/member.component';
-import { MemberCreationComponent } from './routes/member/member-creation/member-creation.component';
 import { InformationModalComponent } from './shared/components/information-modal/information-modal.component';
 import { MemberModificationComponent } from './routes/member/member-modification/member-modification.component';
 import { ButtonRendererComponent } from './shared/components/button-renderer.component';
@@ -28,7 +27,6 @@ import { ManageCandidateComponent } from './shared/components/candidate/manage-c
     AppComponent,
     HomeComponent,
     MemberComponent,
-    MemberCreationComponent,
     InformationModalComponent,
     MemberModificationComponent,
     ButtonRendererComponent,

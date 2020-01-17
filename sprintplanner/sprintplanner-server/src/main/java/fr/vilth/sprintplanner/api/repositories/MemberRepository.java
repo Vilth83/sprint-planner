@@ -35,6 +35,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
      * @param task the given {@code Task} name.
      * @return {@code List} of {@code Member}
      */
-    @Query("select m from Member m where m.id not in (select mem.id from Member mem left join Candidate c ON mem.id = c.member.id left join Task t on c.task.id = t.id where t.name = :task)")
+    @Query("select m from Member m where m.id not in "
+	    + "(select mem.id from Member mem left join Candidate c "
+	    + "ON mem.id = c.member.id left join Task t "
+	    + "on c.task.id = t.id where t.name = :task)")
     List<Member> findAllNonCandidatesByTask(@Param("task") String task);
 }

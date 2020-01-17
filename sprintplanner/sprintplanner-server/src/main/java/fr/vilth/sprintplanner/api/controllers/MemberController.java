@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
@@ -99,12 +100,17 @@ public class MemberController {
     }
 
     /**
-     * Delete a {@code Member} by id.
+     * Delete a {@code MemberDeleteDto} by his id.
+     * <p>
+     * a member cannot be deleted if he is candidate. Hence
+     * {@code MemberDeleteDto} is validated.
      * 
-     * @param id the identifier of the {@code Member} to be deleted.
+     * @param member the given identifier of the {@code Member} encapsulated in
+     *        a {@code MemberDeleteDto}.
      */
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-	memberService.delete(id);
+    public void delete(@Valid @RequestBody MemberDeleteDto member) {
+	System.out.println(member);
+	memberService.delete(member);
     }
 }

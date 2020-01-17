@@ -28,4 +28,6 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
      * @return a {@code List} of {@code Candidate}
      */
     List<Candidate> findAllByTaskId(Long taskId);
+
+    boolean existsByMemberId(Long id);
 }

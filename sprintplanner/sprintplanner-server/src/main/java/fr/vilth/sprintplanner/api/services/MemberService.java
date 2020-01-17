@@ -4,6 +4,7 @@ import java.util.Set;
 
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
@@ -46,11 +47,13 @@ public interface MemberService {
     void update(MemberUpdateDto member);
 
     /**
-     * Delete a {@code Member} by his id.
+     * Delete a {@code MemberDeleteDto} by his id.
+     * <p>
      * 
-     * @param id the given identifier of the {@code Member} to be deleted.
+     * @param member the given identifier of the {@code Member} encapsulated in
+     *        a {@code MemberDeleteDto}.
      */
-    void delete(Long id);
+    void delete(MemberDeleteDto member);
 
     /**
      * Returns a {@code Set} of {@code MemberViewDto} who respects one of the

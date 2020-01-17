@@ -28,4 +28,6 @@ public interface CandidateService {
      * @return a {@code Set} of {@code Candidate}
      */
     Set<CandidateViewDto> findAllByTask(String taskName);
+
+    boolean existByMemberId(Long id);
 }

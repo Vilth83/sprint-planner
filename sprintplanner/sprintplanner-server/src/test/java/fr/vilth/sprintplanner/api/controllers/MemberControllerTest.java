@@ -9,7 +9,6 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,10 +76,5 @@ public class MemberControllerTest extends SetupIntTest {
 	Set<MemberViewDto> nonCandidates = controller
 		.findAllNonCandidates("release");
 	assertEquals(1, nonCandidates.size());
-    }
-
-    @Test
-    void should_delete_by_id() {
-	assertDoesNotThrow(() -> controller.delete(1L));
     }
 }
