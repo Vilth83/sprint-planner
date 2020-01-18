@@ -29,5 +29,13 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
      */
     List<Candidate> findAllByTaskId(Long taskId);
 
+    /**
+     * Returns wether or not a {@code Candidate} exists with given
+     * {@code Member} id.
+     * 
+     * @param id the identifier of a {@code Member}
+     * @return {@code true} if a {@code Candidate} exists with given
+     *         {@code Member} id; {@code false} otherwise
+     */
     boolean existsByMemberId(Long id);
 }

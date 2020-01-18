@@ -3,8 +3,6 @@ package fr.vilth.sprintplanner.domain.dtos.candidate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -17,10 +15,6 @@ import fr.vilth.sprintplanner.SetupUnitTest;
  * @author Thierry VILLEPREUX
  */
 public class CandidateCreateDtoTest extends SetupUnitTest {
-
-    CandidateCreateDtoTest() throws IOException {
-	//
-    }
 
     @Test
     void should_construct() {

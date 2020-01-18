@@ -5,12 +5,23 @@ import javax.validation.ConstraintValidatorContext;
 
 import fr.vilth.sprintplanner.api.services.TaskService;
 
-public class IsNotManagerValidator
-	implements ConstraintValidator<IsNotManager, Long> {
+/**
+ * Validator for {@code NotManager} constraint.
+ * 
+ * @author Thierry VILLEPREUX
+ */
+public class NotManagerValidator
+	implements ConstraintValidator<NotManager, Long> {
 
     private final TaskService taskService;
 
-    public IsNotManagerValidator(TaskService taskService) {
+    /**
+     * Creates a {@code NotManagerValidator} with given injected
+     * {@code TaskService}.
+     *
+     * @param taskService an injected {@code TaskService}
+     */
+    public NotManagerValidator(TaskService taskService) {
 	this.taskService = taskService;
     }
 

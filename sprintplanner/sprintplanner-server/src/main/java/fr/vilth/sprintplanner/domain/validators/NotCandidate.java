@@ -9,18 +9,24 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+/**
+ * Validation annotation to ensure that a {@code Member} is not
+ * {@code Candidate}.
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.TYPE })
-@Constraint(validatedBy = IsNotManagerValidator.class)
-public @interface IsNotManager {
+@Constraint(validatedBy = NotCandidateValidator.class)
+public @interface NotCandidate {
 
     /**
      * Message to be returned when violating the constraint.
      * 
      * @return a message depending on the locale.
      */
-    String message() default "{E_UNDELETABLE_MANAGER}";
+    String message() default "{E_UNDELETABLE_CANDIDATE}";
 
     /**
      * An array constraints the validation belongs to.

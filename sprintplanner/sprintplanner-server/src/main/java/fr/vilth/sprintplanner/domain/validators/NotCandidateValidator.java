@@ -5,12 +5,23 @@ import javax.validation.ConstraintValidatorContext;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
 
-public class IsNotCandidateValidator
-	implements ConstraintValidator<IsNotCandidate, Long> {
+/**
+ * Validator for {@code NotCandidate} constraint.
+ * 
+ * @author Thierry VILLEPREUX
+ */
+public class NotCandidateValidator
+	implements ConstraintValidator<NotCandidate, Long> {
 
     private final CandidateService candidateService;
 
-    public IsNotCandidateValidator(CandidateService candidateService) {
+    /**
+     * Creates a {@code NotCandidateValidator} with given injected
+     * {@code CandidateService}.
+     *
+     * @param candidateService an injected {@code CandidateService}
+     */
+    public NotCandidateValidator(CandidateService candidateService) {
 	this.candidateService = candidateService;
     }
 

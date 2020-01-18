@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
@@ -76,5 +77,21 @@ public class MemberControllerTest extends SetupIntTest {
 	Set<MemberViewDto> nonCandidates = controller
 		.findAllNonCandidates("release");
 	assertEquals(1, nonCandidates.size());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/failDeleteValidation.csv", delimiter = ';')
+    void should_fail_validation_when_deleting(String json) {
+	MemberDeleteDto tested = jsonConvert(json, MemberDeleteDto.class);
+	assertFalse(isValid(tested));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/memberDeletion.csv", delimiter = ';')
+    void should_delete_member(String json) {
+	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
+	EntityIdDto saved = controller.save(member);
+	MemberDeleteDto tested = dtoConvert(saved, MemberDeleteDto.class);
+	assertDoesNotThrow(() -> controller.delete(tested));
     }
 }

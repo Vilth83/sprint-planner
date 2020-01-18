@@ -8,7 +8,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 })
 export class ConfirmationModalComponent implements OnInit {
 
-  private modalRef: BsModalRef;
+  modalRef: BsModalRef;
   @Input() action: string;
   @Input() inputs: string;
   @ViewChild('confirmation') template: TemplateRef<any>;

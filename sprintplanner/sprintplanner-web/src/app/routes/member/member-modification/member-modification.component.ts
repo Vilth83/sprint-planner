@@ -74,10 +74,11 @@ export class MemberModificationComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     };
+    this.getMembers();
+
   }
 
   ngOnInit() {
-    this.getMembers();
   }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {

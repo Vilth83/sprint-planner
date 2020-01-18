@@ -9,10 +9,10 @@
 
 
 <div class="container section">
-  <div class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
-    <span>Modify existing member  <span class="fa fa-angle-down"></span></span>
+  <div class="row submenu unselectable">
+    <span>Modify existing member</span>
   </div>
-  <div [collapse]="isModificationCollapsed">
+  <div>
     <app-member-modification></app-member-modification>
   </div>
 </div>

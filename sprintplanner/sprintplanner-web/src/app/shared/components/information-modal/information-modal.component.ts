@@ -8,7 +8,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class InformationModalComponent implements OnInit {
 
-  private modalRef: BsModalRef;
+  modalRef: BsModalRef;
   @Input() title: string;
   @Input() message: string;
   @ViewChild('info') template: TemplateRef<any>;
