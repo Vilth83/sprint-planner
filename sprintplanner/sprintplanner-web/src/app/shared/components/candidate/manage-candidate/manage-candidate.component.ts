@@ -31,6 +31,7 @@ export class ManageCandidateComponent implements OnInit {
       buttonRenderer: ButtonRendererComponent
     }
     this.gridOptions = {
+      rowHeight: 50,
       defaultColDef: { sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
@@ -39,6 +40,7 @@ export class ManageCandidateComponent implements OnInit {
         { headerName: 'lastname', field: 'member.lastname' },
         {
           headerName: 'status',
+          editable: true,
           field: 'status',
           cellEditor: 'agSelectCellEditor',
           cellEditorParams: {
@@ -46,23 +48,19 @@ export class ManageCandidateComponent implements OnInit {
           }
         },
         {
-          width: 80,
           headerName: 'save',
-          editable: false,
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onEditClick.bind(this),
-            btnClass: 'btn-cell fa fa-save  fa-lg'
+            btnClass: 'btn btn-primary fa fa-save  fa-lg'
           }
         },
         {
-          width: 80,
           headerName: 'delete',
-          editable: false,
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onDeleteClick.bind(this),
-            btnClass: 'btn-cell fa fa-trash fa-lg'
+            btnClass: 'btn btn-primary fa fa-trash fa-lg'
           }
         }
       ],

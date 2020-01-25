@@ -49,7 +49,7 @@ public abstract class SetupIntTest {
 	return converted;
     }
 
-    protected final <D> D dtoConvert(D inputs, Class<D> destinationType) {
+    protected final <S, D> D dtoConvert(S inputs, Class<D> destinationType) {
 	return modelMapper.map(inputs, destinationType);
     }
 

@@ -56,4 +56,9 @@ public class CandidateServiceImpl extends AbstractService
 		candidate -> modelMapper.map(candidate, CandidateViewDto.class))
 		.collect(Collectors.toSet());
     }
+
+    @Override
+    public boolean existByMemberId(Long id) {
+	return candidateRepository.existsByMemberId(id);
+    }
 }

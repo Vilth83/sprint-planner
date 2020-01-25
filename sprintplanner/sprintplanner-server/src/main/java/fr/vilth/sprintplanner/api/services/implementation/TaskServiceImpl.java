@@ -34,4 +34,9 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
 	Task task = taskRepository.getByName(taskName);
 	return modelMapper.map(task, TaskViewDto.class);
     }
+
+    @Override
+    public boolean existByManagerId(Long id) {
+	return taskRepository.existsByManagerId(id);
+    }
 }

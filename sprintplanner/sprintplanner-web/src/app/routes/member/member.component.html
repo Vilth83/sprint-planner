@@ -9,17 +9,10 @@
 
 
 <div class="container section">
-  <div class="row submenu unselectable" (click)="isCreationCollapsed = !isCreationCollapsed">
-    <span>Create new member  <span class="fa fa-angle-down"></span></span>
+  <div class="row submenu unselectable">
+    <span>Modify existing member</span>
   </div>
-  <div [collapse]="isCreationCollapsed">
-    <app-member-creation></app-member-creation>
-  </div>
-
-  <div class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
-    <span>Modify existing member  <span class="fa fa-angle-down"></span></span>
-  </div>
-  <div [collapse]="isModificationCollapsed">
+  <div>
     <app-member-modification></app-member-modification>
   </div>
 </div>

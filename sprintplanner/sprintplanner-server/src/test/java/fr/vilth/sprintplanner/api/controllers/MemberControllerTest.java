@@ -9,7 +9,6 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 
@@ -79,8 +79,19 @@ public class MemberControllerTest extends SetupIntTest {
 	assertEquals(1, nonCandidates.size());
     }
 
-    @Test
-    void should_delete_by_id() {
-	assertDoesNotThrow(() -> controller.delete(1L));
+    @ParameterizedTest
+    @CsvFileSource(resources = "/failDeleteValidation.csv", delimiter = ';')
+    void should_fail_validation_when_deleting(String json) {
+	MemberDeleteDto tested = jsonConvert(json, MemberDeleteDto.class);
+	assertFalse(isValid(tested));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/memberDeletion.csv", delimiter = ';')
+    void should_delete_member(String json) {
+	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
+	EntityIdDto saved = controller.save(member);
+	MemberDeleteDto tested = dtoConvert(saved, MemberDeleteDto.class);
+	assertDoesNotThrow(() -> controller.delete(tested));
     }
 }

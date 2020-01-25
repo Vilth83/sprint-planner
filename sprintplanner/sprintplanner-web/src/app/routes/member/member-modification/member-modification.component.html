@@ -1,14 +1,19 @@
 <div class="box-part">
+
   <ag-grid-angular
-      #agGrid
-      class="ag-theme-balham"
+      class="ag-theme-material"
       [rowData]="rowData"
       [gridOptions]="gridOptions"
-      autoSize=true
-      style="width:100%;"
+      style="width:100%;height:400;"
       domLayout="autoHeight"
       [frameworkComponents]="frameworkComponents">
   </ag-grid-angular>
+
+  <div class="text-left">
+    <button (click)="createNewData()"
+            class="btn btn-primary fa fa-plus">
+    </button>
+  </div>
 </div>
 
 <app-info-modal #info [title]="title" [message]="message">
