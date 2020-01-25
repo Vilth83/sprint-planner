@@ -2,7 +2,6 @@ package fr.vilth.sprintplanner.api.services.implementation;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -42,19 +41,17 @@ public class CandidateServiceImpl extends AbstractService
 	List<Candidate> candidates = candidateRepository
 		.findAllByTaskId(taskId);
 	candidates.forEach(Candidate::incrementPriority);
-	Candidate candidate = modelMapper.map(inputs, Candidate.class);
+	Candidate candidate = convert(inputs, Candidate.class);
 	Candidate candidateId = candidateRepository.save(candidate);
 	candidateRepository.saveAll(candidates);
-	return modelMapper.map(candidateId, EntityIdDto.class);
+	return convert(candidateId, EntityIdDto.class);
     }
 
     @Override
     public Set<CandidateViewDto> findAllByTask(String taskName) {
 	List<Candidate> candidates = candidateRepository
 		.findAllByTaskName(taskName);
-	return candidates.stream().map(
-		candidate -> modelMapper.map(candidate, CandidateViewDto.class))
-		.collect(Collectors.toSet());
+	return convertToSet(candidates, CandidateViewDto.class);
     }
 
     @Override

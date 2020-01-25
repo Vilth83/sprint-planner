@@ -40,7 +40,7 @@ export class MemberModificationComponent implements OnInit {
       defaultColDef: { editable: true, sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
-        { headerName: 'firstname', field: 'firstname' },
+        { headerName: `firstname <span class="fa fa-edit></span>"`, field: 'firstname' },
         { headerName: 'lastname', field: 'lastname' },
         { headerName: 'email', field: 'email' },
         {
@@ -74,11 +74,10 @@ export class MemberModificationComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     };
-    this.getMembers();
-
   }
 
   ngOnInit() {
+    this.getMembers();
   }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {
