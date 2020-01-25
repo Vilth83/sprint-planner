@@ -14,4 +14,17 @@ public class ReleaseCreateDto {
 
     @NotNull
     private EntityIdDto assignee;
+
+    /**
+     * Empty no-arg empty constructor.
+     */
+    protected ReleaseCreateDto() {
+	//
+    }
+
+    @Override
+    public String toString() {
+	return "{pi=" + pi + ", sprint=" + sprint + ", week=" + week
+		+ ", assignee=" + assignee + "}";
+    }
 }

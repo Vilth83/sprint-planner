@@ -11,6 +11,8 @@ import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 @Table(name = "release_version")
 public class Release extends AbstractEntity {
 
+    private static final long serialVersionUID = 2252928912849412768L;
+
     @Column
     private int pi;
 
