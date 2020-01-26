@@ -2,7 +2,6 @@ package fr.vilth.sprintplanner.api.services.implementation;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -41,28 +40,26 @@ public class MemberServiceImpl extends AbstractService
 
     @Override
     public EntityIdDto save(MemberCreateDto member) {
-	Member entityToPersist = modelMapper.map(member, Member.class);
+	Member entityToPersist = convert(member, Member.class);
 	Member persistedEntity = memberRepository.save(entityToPersist);
-	return modelMapper.map(persistedEntity, EntityIdDto.class);
+	return convert(persistedEntity, EntityIdDto.class);
     }
 
     @Override
     public Set<MemberViewDto> findAll() {
 	List<Member> members = memberRepository.findAll();
-	return members.stream()
-		.map(member -> modelMapper.map(member, MemberViewDto.class))
-		.collect(Collectors.toSet());
+	return convertToSet(members, MemberViewDto.class);
     }
 
     @Override
     public void update(MemberUpdateDto member) {
-	Member entityToPersist = modelMapper.map(member, Member.class);
+	Member entityToPersist = convert(member, Member.class);
 	memberRepository.save(entityToPersist);
     }
 
     @Override
     public void delete(MemberDeleteDto member) {
-	Member deleted = modelMapper.map(member, Member.class);
+	Member deleted = convert(member, Member.class);
 	memberRepository.delete(deleted);
     }
 
@@ -76,8 +73,6 @@ public class MemberServiceImpl extends AbstractService
     public Set<MemberViewDto> findAllNonCandidatesByTask(String task) {
 	List<Member> members = memberRepository
 		.findAllNonCandidatesByTask(task);
-	return members.stream()
-		.map(member -> modelMapper.map(member, MemberViewDto.class))
-		.collect(Collectors.toSet());
+	return convertToSet(members, MemberViewDto.class);
     }
 }

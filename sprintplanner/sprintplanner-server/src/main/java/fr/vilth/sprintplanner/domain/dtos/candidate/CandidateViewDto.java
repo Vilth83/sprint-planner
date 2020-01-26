@@ -13,6 +13,8 @@ import fr.vilth.sprintplanner.domain.types.Status;
  */
 public class CandidateViewDto {
 
+    private Long id;
+
     private MemberViewDto member;
 
     private Status status;
@@ -27,7 +29,7 @@ public class CandidateViewDto {
 
     @Override
     public String toString() {
-	return "{member=" + member + ", status=" + status + ", task=" + task
-		+ ", priority=" + priority + "}";
+	return "{id=" + id + ", member=" + member + ", status=" + status
+		+ ", task=" + task + ", priority=" + priority + "}";
     }
 }

@@ -24,10 +24,10 @@ public class MemberTest extends SetupUnitTest {
     }
 
     private static final String ACTUAL_MEMBER_JSON = //
-	    "{\"id\":1, \"firstname\":\"actual\", \"lastname\":\"member\", \"email\":\"actual@member\", \"shift\":\"PAR\"}";
+	    "{\"id\":1, \"firstname\":\"test\", \"lastname\":\"member\", \"email\":\"test@member\", \"shift\":\"PAR\"}";
 
     private static final String DIFFERENT_MEMBER_JSON = //
-	    "{\"id\":3, \"firstname\":\"different\", \"lastname\":\"member\", \"email\":\"different@member\", \"shift\":\"PAR\"}";
+	    "{\"id\":3, \"firstname\":\"test\", \"lastname\":\"member\", \"email\":\"test@different\", \"shift\":\"PAR\"}";
 
     private Member actualMember = MAPPER.readValue(ACTUAL_MEMBER_JSON,
 	    Member.class);
@@ -47,7 +47,7 @@ public class MemberTest extends SetupUnitTest {
     @Test
     void should_return_hashcode() {
 	int actual = actualMember.hashCode();
-	int expected = Objects.hash("actual@member");
+	int expected = Objects.hash("test@member");
 	assertEquals(expected, actual);
     }
 
@@ -78,7 +78,7 @@ public class MemberTest extends SetupUnitTest {
 
     @Test
     void should_return_to_string() {
-	String expected = "{id=1, firstname=actual, lastname=member, email=actual@member, shift=PAR}";
+	String expected = "{id=1, firstname=test, lastname=member, email=test@member, shift=PAR}";
 	String actual = actualMember.toString();
 	assertEquals(expected, actual);
     }

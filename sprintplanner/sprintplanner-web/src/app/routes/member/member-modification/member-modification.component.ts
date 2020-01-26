@@ -40,7 +40,7 @@ export class MemberModificationComponent implements OnInit {
       defaultColDef: { editable: true, sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
-        { headerName: 'firstname', field: 'firstname' },
+        { headerName: `firstname`, field: 'firstname' },
         { headerName: 'lastname', field: 'lastname' },
         { headerName: 'email', field: 'email' },
         {
@@ -74,11 +74,10 @@ export class MemberModificationComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     };
-    this.getMembers();
-
   }
 
   ngOnInit() {
+    this.getMembers();
   }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {
@@ -95,7 +94,6 @@ export class MemberModificationComponent implements OnInit {
   private edit(member: Member) {
     let request: Observable<any>;
     if (member.id) {
-      console.log("put : " + member.id, ", ", member.firstname, ", ", member.lastname)
       request = this.http.put(member);
     } else {
       request = this.http.post(member)
@@ -105,7 +103,6 @@ export class MemberModificationComponent implements OnInit {
       this.ngOnInit();
     }, (error) => {
       const message = ErrorHandler.catch(error);
-      console.log(error)
       this.openInfoModal("An error has occurred...", message);
     });
     this.ngOnInit();
