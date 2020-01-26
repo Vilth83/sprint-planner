@@ -12,7 +12,7 @@ export class CandidateHttpRequest {
 
 
   public unsubscribe(subscription: Subscription): void {
-    if(subscription) {
+    if (subscription) {
       subscription.unsubscribe();
     }
   }
@@ -31,7 +31,7 @@ export class CandidateHttpRequest {
     return this.http.post(this.endpoint, inputs);
   }
 
-  public delete(inputs : Candidate): Observable<any> {
+  public delete(inputs: Candidate): Observable<any> {
     let url = this.endpoint + "/" + inputs.id;
     const deletedCandidate = { id: inputs.id };
     return this.http.delete(url, deletedCandidate);

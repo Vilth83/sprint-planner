@@ -26,7 +26,7 @@ public class CandidateViewDtoTest extends SetupUnitTest {
     @CsvFileSource(resources = "/candidateView.csv", delimiter = ';')
     void should_return_toString(String json) {
 	CandidateViewDto candidate = jsonConvert(json, CandidateViewDto.class);
-	String expected = "{member=null, status=AVAILABLE, task=null, priority=1}";
+	String expected = "{id=1, member=null, status=AVAILABLE, task=null, priority=1}";
 	String actual = candidate.toString();
 	assertEquals(expected, actual);
     }
