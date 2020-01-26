@@ -40,9 +40,9 @@ public interface MemberService {
     boolean existsByEmail(String email);
 
     /**
-     * Persists given {@code MemberUpdateDto}.
+     * Updates given {@code MemberUpdateDto}.
      * 
-     * @param member the given {@code MemberViewDto}
+     * @param member the given {@code MemberUpdateDto}
      */
     void update(MemberUpdateDto member);
 

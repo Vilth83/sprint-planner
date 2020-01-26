@@ -10,6 +10,8 @@ import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 
@@ -57,5 +59,18 @@ public class CandidateServiceImpl extends AbstractService
     @Override
     public boolean existByMemberId(Long id) {
 	return candidateRepository.existsByMemberId(id);
+    }
+
+    @Override
+    public void update(CandidateUpdateDto inputs, Long id) {
+	Candidate candidate = candidateRepository.findById(id).get();
+	modelMapper.map(inputs, candidate);
+	candidateRepository.save(candidate);
+    }
+
+    @Override
+    public void delete(CandidateDeleteDto candidate) {
+	Candidate deleted = convert(candidate, Candidate.class);
+	candidateRepository.delete(deleted);
     }
 }
