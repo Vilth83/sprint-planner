@@ -2,6 +2,7 @@ package fr.vilth.sprintplanner.api.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 
 @RestController
 @RequestMapping("/projects")
@@ -24,5 +26,10 @@ public class ProjectController {
     @PostMapping
     public EntityIdDto save(@Valid @RequestBody ProjectCreateDto inputs) {
 	return projectService.save(inputs);
+    }
+
+    @GetMapping
+    public ProjectViewDto getProject() {
+	return projectService.getProject();
     }
 }

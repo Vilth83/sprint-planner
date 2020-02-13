@@ -10,4 +10,9 @@ public class ApiError {
 	this.field = field;
 	this.defaultMessage = defaultMessage;
     }
+
+    @Override
+    public String toString() {
+	return "{field=" + field + ", defaultMessage=" + defaultMessage + "}";
+    }
 }

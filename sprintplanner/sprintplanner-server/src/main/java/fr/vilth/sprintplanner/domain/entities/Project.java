@@ -7,6 +7,8 @@ import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 @Entity
 public class Project extends AbstractEntity {
 
+    private static final long serialVersionUID = -2558454895800372791L;
+
     private String name;
 
     private String email;
@@ -18,4 +20,16 @@ public class Project extends AbstractEntity {
     private String githubUser;
 
     private String githubRepo;
+
+    protected Project() {
+	//
+    }
+
+    @Override
+    public String toString() {
+	return "{name=" + name + ", email=" + email + ", piDuration="
+		+ piDuration + ", sprintDuration=" + sprintDuration
+		+ ", githubUser=" + githubUser + ", githubRepo=" + githubRepo
+		+ "}";
+    }
 }

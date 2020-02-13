@@ -30,7 +30,6 @@ public class CustomControllerAdvice {
 		.map(error -> new ApiError(error.getField(),
 			error.getDefaultMessage()))
 		.collect(Collectors.toList());
-	return new ResponseEntity<List<ApiError>>(apiErrors,
-		HttpStatus.UNPROCESSABLE_ENTITY);
+	return new ResponseEntity<>(apiErrors, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 }
