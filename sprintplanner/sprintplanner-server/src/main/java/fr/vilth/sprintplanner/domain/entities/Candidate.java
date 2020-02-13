@@ -56,4 +56,17 @@ public class Candidate extends AbstractEntity {
     public void incrementPriority() {
 	priority = priority + 1;
     }
+
+    /**
+     * Accessor returning {@code priority}.
+     * <p>
+     * needed by the
+     * {@linkplain #fr.vilth.sprintplanner.commons.utils.PriorityComparator
+     * PriorityComparator}
+     * 
+     * @return priority
+     */
+    public int getPriority() {
+	return priority;
+    }
 }
