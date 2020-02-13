@@ -21,6 +21,26 @@ public class ReleaseViewDto {
 	//
     }
 
+    public Long getId() {
+	return id;
+    }
+
+    public int getPi() {
+	return pi;
+    }
+
+    public int getSprint() {
+	return sprint;
+    }
+
+    public int getWeek() {
+	return week;
+    }
+
+    public CandidateViewDto getAssignee() {
+	return assignee;
+    }
+
     @Override
     public String toString() {
 	return "{id=" + id + ", pi=" + pi + ", sprint=" + sprint + ", week="

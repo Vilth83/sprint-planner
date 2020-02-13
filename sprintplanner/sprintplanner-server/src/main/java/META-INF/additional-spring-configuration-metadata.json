@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "cron.config.increment-version",
+  "type": "java.lang.String",
+  "description": "cron value to releaseVersion incrementation task"
+}]}

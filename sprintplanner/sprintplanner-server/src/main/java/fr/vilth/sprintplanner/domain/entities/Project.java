@@ -25,6 +25,14 @@ public class Project extends AbstractEntity {
 	//
     }
 
+    public int getPiDuration() {
+	return piDuration;
+    }
+
+    public int getSprintDuration() {
+	return sprintDuration;
+    }
+
     @Override
     public String toString() {
 	return "{name=" + name + ", email=" + email + ", piDuration="

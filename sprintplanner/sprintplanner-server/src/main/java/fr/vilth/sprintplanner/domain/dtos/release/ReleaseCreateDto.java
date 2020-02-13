@@ -1,7 +1,5 @@
 package fr.vilth.sprintplanner.domain.dtos.release;
 
-import javax.validation.constraints.NotNull;
-
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 
 public class ReleaseCreateDto {
@@ -12,7 +10,6 @@ public class ReleaseCreateDto {
 
     private int week;
 
-    @NotNull
     private EntityIdDto assignee;
 
     /**
@@ -20,6 +17,12 @@ public class ReleaseCreateDto {
      */
     protected ReleaseCreateDto() {
 	//
+    }
+
+    public ReleaseCreateDto(int pi, int sprint, int week) {
+	this.pi = pi;
+	this.sprint = sprint;
+	this.week = week;
     }
 
     @Override

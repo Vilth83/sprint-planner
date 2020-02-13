@@ -46,4 +46,7 @@ spring:
 
 logging:
   config: classpath:logback-spring.xml
-  #webhook test
+  
+cron:
+  config:
+    increment-version: "* * * * 1 *"

@@ -25,6 +25,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  * @author Thierry VILLEPREUX
  */
 @SpringBootApplication
+// @EnableScheduling
 public class SprintplannerApplication {
 
     /**
