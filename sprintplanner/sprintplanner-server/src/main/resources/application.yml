@@ -50,3 +50,4 @@ logging:
 cron:
   config:
     increment-version: "* * * * 1 *"
+    rotate-releasers: "* * * * 1 *"
