@@ -9,14 +9,14 @@
 
 
 <section class="container section">
-  <nav class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
+  <nav aria-label="currentTester" class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
     <span>Current Tester  <span class="fa fa-angle-down"></span></span>
   </nav>
   <article [collapse]="isCurrentCollapsed">
 	<app-current-candidate task="support"></app-current-candidate>
   </article>
 
-  <nav class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
+  <nav aria-label="manageTester" class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
     <span>Manage testers <span class="fa fa-angle-down"></span></span>
   </nav>
   <article [collapse]="isModificationCollapsed">
