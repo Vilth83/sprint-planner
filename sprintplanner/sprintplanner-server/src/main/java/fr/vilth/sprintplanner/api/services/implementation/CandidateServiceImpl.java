@@ -14,6 +14,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
+import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
  * Default concrete implementation of {@code CandidateService}.
@@ -72,5 +73,12 @@ public class CandidateServiceImpl extends AbstractService
     public void delete(CandidateDeleteDto candidate) {
 	Candidate deleted = convert(candidate, Candidate.class);
 	candidateRepository.delete(deleted);
+    }
+
+    @Override
+    public CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
+	    Status status) {
+	return candidateRepository.findFirstBytaskNameAndStatus(taskName,
+		status);
     }
 }

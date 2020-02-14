@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
+import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
  * {@code JpaRepository} to handle {@code Candidate} persistence.
@@ -38,4 +40,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
      *         {@code Member} id; {@code false} otherwise
      */
     boolean existsByMemberId(Long id);
+
+    CandidateViewDto findFirstBytaskNameAndStatus(String taskName,
+	    Status status);
 }

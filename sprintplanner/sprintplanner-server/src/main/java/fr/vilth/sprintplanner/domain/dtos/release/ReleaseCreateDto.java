@@ -19,7 +19,8 @@ public class ReleaseCreateDto {
 	//
     }
 
-    public ReleaseCreateDto(int pi, int sprint, int week) {
+    public ReleaseCreateDto(int pi, int sprint, int week,
+	    EntityIdDto assignee2) {
 	this.pi = pi;
 	this.sprint = sprint;
 	this.week = week;

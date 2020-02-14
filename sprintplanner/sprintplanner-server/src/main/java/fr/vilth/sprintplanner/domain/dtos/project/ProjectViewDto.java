@@ -25,4 +25,12 @@ public class ProjectViewDto {
 		+ ", githubUser=" + githubUser + ", githubRepo=" + githubRepo
 		+ "}";
     }
+
+    public int getSprintDuration() {
+	return sprintDuration;
+    }
+
+    public int getPiDuration() {
+	return piDuration;
+    }
 }

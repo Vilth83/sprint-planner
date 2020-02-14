@@ -2,12 +2,9 @@ package fr.vilth.sprintplanner.api.services;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
-import fr.vilth.sprintplanner.domain.entities.Project;
 
 public interface ReleaseService {
 
@@ -15,7 +12,7 @@ public interface ReleaseService {
 
     ReleaseViewDto findLastRelease();
 
-    EntityIdDto save(@Valid ReleaseCreateDto inputs);
+    EntityIdDto save(ReleaseCreateDto inputs);
 
-    void incrementReleaseVersion(Project project);
+    void incrementReleaseVersion();
 }

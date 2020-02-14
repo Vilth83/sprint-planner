@@ -7,14 +7,17 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.ReleaseRepository;
+import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.api.services.ReleaseService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
+import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
-import fr.vilth.sprintplanner.domain.entities.Project;
 import fr.vilth.sprintplanner.domain.entities.Release;
+import fr.vilth.sprintplanner.domain.types.Status;
 
 @Service
 public class ReleaseServiceImpl extends AbstractService
@@ -24,10 +27,13 @@ public class ReleaseServiceImpl extends AbstractService
 
     private final ProjectService projectService;
 
+    private final CandidateService candidateService;
+
     public ReleaseServiceImpl(ReleaseRepository releaseRepository,
-	    ProjectService projectService) {
+	    ProjectService projectService, CandidateService candidateService) {
 	this.releaseRepository = releaseRepository;
 	this.projectService = projectService;
+	this.candidateService = candidateService;
     }
 
     @Override
@@ -51,12 +57,29 @@ public class ReleaseServiceImpl extends AbstractService
     }
 
     @Override
-    public void incrementReleaseVersion(Project project) {
-	Release lastRelease = releaseRepository
-		.findFirstByOrderByPiDescSprintDescWeekDesc();
-	Release nextRelease = lastRelease.incrementRelease(project);
-	ReleaseCreateDto newRelease = modelMapper.map(nextRelease,
-		ReleaseCreateDto.class);
-	save(newRelease);
+    public void incrementReleaseVersion() {
+	ReleaseViewDto lastRelease = findLastRelease();
+	ReleaseCreateDto nextRelease = incrementRelease(lastRelease);
+	save(nextRelease);
+    }
+
+    private ReleaseCreateDto incrementRelease(ReleaseViewDto lastRelease) {
+	ProjectViewDto project = projectService.getProject();
+	int pi = lastRelease.getPi();
+	int week = lastRelease.getWeek();
+	int sprint = lastRelease.getSprint();
+	week++;
+	if (week > project.getSprintDuration()) {
+	    week = 1;
+	    sprint++;
+	    if (sprint > project.getPiDuration()) {
+		sprint = 1;
+		pi++;
+	    }
+	}
+	CandidateViewDto candidate = candidateService
+		.findFirstByTaskNameAndStatus("releaser", Status.CURRENT);
+	EntityIdDto assignee = convert(candidate, EntityIdDto.class);
+	return new ReleaseCreateDto(pi, sprint, week, assignee);
     }
 }

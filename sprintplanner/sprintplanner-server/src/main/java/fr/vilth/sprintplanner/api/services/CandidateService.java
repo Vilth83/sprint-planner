@@ -7,6 +7,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
+import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
  * Service to handle {@code Candidate} persistence.
@@ -60,4 +61,7 @@ public interface CandidateService {
      *        encapsulated in a {@code CandidateDeleteDto}.
      */
     void delete(CandidateDeleteDto candidate);
+
+    CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
+	    Status status);
 }
