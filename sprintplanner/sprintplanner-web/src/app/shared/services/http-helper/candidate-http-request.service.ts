@@ -41,4 +41,8 @@ export class CandidateHttpRequest {
     let url = this.endpoint + "/" + inputs.id;
     return this.http.put(url, inputs);
   }
+
+	public getCurrentCandidate(task:string): Observable<Candidate> {
+		return this.http.get(this.endpoint + "/" + task + "/current");
+	}
 }

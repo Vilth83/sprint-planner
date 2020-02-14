@@ -63,7 +63,7 @@ export class ManageCandidateComponent implements OnInit {
           field: 'status',
           cellEditor: 'agSelectCellEditor',
           cellEditorParams: {
-            values: ['UNAVAILABLE', 'AVAILABLE', 'NEXT']
+            values: ['UNAVAILABLE', 'AVAILABLE', 'CURRENT']
           }
         },
         {
