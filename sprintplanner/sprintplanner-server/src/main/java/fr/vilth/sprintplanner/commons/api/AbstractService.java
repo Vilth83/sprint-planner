@@ -57,6 +57,13 @@ public abstract class AbstractService {
 		.collect(Collectors.toSet());
     }
 
+    public <S, D> List<D> convertSetToList(Set<S> source,
+	    Class<D> destination) {
+	return source.stream()// -
+		.map(elt -> convert(elt, destination))// -
+		.collect(Collectors.toList());
+    }
+
     /**
      * Convert a source into given destination type.
      * <p>

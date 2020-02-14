@@ -69,4 +69,25 @@ public class Candidate extends AbstractEntity {
     public int getPriority() {
 	return priority;
     }
+
+    public Status getStatus() {
+	return status;
+    }
+
+    public void becomesPrevious() {
+	this.status = Status.AVAILABLE;
+	this.priority = 0;
+    }
+
+    public void becomesAvailable() {
+	this.status = Status.AVAILABLE;
+    }
+
+    public void becomesCurrent() {
+	this.status = Status.CURRENT;
+    }
+
+    public final boolean isAvailable() {
+	return this.status.equals(Status.AVAILABLE);
+    }
 }

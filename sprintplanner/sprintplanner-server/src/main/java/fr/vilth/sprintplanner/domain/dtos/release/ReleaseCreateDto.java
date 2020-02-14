@@ -20,10 +20,11 @@ public class ReleaseCreateDto {
     }
 
     public ReleaseCreateDto(int pi, int sprint, int week,
-	    EntityIdDto assignee2) {
+	    EntityIdDto assignee) {
 	this.pi = pi;
 	this.sprint = sprint;
 	this.week = week;
+	this.assignee = assignee;
     }
 
     @Override

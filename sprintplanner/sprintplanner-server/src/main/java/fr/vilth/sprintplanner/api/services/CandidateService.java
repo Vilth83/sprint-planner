@@ -64,4 +64,6 @@ public interface CandidateService {
 
     CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
 	    Status status);
+
+    void rotateCandidates(Set<CandidateViewDto> inputs);
 }

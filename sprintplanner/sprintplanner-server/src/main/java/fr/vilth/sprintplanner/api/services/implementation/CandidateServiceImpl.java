@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import fr.vilth.sprintplanner.api.repositories.CandidateRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.commons.utils.PriorityComparator;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -45,9 +46,9 @@ public class CandidateServiceImpl extends AbstractService
 		.findAllByTaskId(taskId);
 	candidates.forEach(Candidate::incrementPriority);
 	Candidate candidate = convert(inputs, Candidate.class);
-	Candidate candidateId = candidateRepository.save(candidate);
+	candidate = candidateRepository.save(candidate);
 	candidateRepository.saveAll(candidates);
-	return convert(candidateId, EntityIdDto.class);
+	return convert(candidate, EntityIdDto.class);
     }
 
     @Override
@@ -78,7 +79,29 @@ public class CandidateServiceImpl extends AbstractService
     @Override
     public CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
 	    Status status) {
-	return candidateRepository.findFirstBytaskNameAndStatus(taskName,
-		status);
+	Candidate candidate = candidateRepository
+		.findFirstBytaskNameAndStatus(taskName, status);
+	return convert(candidate, CandidateViewDto.class);
+    }
+
+    @Override
+    public void rotateCandidates(Set<CandidateViewDto> inputs) {
+	List<Candidate> candidates = convertSetToList(inputs, Candidate.class);
+	candidates.forEach(Candidate::incrementPriority);
+	rotate(candidates);
+	candidateRepository.saveAll(candidates);
+    }
+
+    private void rotate(List<Candidate> candidates) {
+	candidates.forEach(candidate -> {
+	    if (candidate.getStatus().equals(Status.CURRENT)) {
+		candidate.becomesPrevious();
+	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
+		candidate.becomesAvailable();
+	    }
+	});
+	candidates.stream().filter(Candidate::isAvailable)
+		.max(new PriorityComparator())
+		.ifPresent(Candidate::becomesCurrent);
     }
 }
