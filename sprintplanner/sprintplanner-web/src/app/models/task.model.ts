@@ -3,7 +3,7 @@ import { Member } from './member.model';
 export class Task {
 
   id: number;
-  name: String;
+  name: string;
   description: string;
   manager: Member;
 }

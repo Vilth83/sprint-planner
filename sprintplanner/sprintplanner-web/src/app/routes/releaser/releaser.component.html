@@ -9,14 +9,14 @@
 
 
 <section class="container section">
-  <nav class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
+  <nav aria-label="currentReleaser" class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
     <span>Current Releaser  <span class="fa fa-angle-down"></span></span>
   </nav>
   <article [collapse]="isCurrentCollapsed">
-
+	<app-current-candidate task="releaser"></app-current-candidate>
   </article>
 
-  <nav class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
+  <nav aria-label="manageReleaser" class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
     <span>Manage releasers <span class="fa fa-angle-down"></span></span>
   </nav>
   <article [collapse]="isModificationCollapsed">

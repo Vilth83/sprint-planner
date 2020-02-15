@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
@@ -24,6 +26,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
  * @author Thierry VILLEPREUX
  */
 @SpringBootApplication
+@EnableScheduling
 public class SprintplannerApplication {
 
     /**
@@ -51,6 +54,15 @@ public class SprintplannerApplication {
 		registry.addMapping("/**")
 			.allowedOrigins("http://localhost:4200")
 			.allowedMethods("*");
+	    }
+
+	    @Override
+	    public void addResourceHandlers(
+		    final ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("swagger-ui.html")
+			.addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations(
+			"classpath:/META-INF/resources/webjars/");
 	    }
 	};
     }

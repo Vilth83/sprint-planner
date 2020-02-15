@@ -21,6 +21,8 @@ import { ButtonRendererComponent } from './shared/components/button-renderer.com
 import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { ManageCandidateComponent } from './shared/components/candidate/manage-candidate/manage-candidate.component';
+import { CurrentCandidateComponent } from './shared/components/candidate/current-candidate/current-candidate.component';
+import { TesterComponent } from './routes/tester/tester.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { ManageCandidateComponent } from './shared/components/candidate/manage-c
     ButtonRendererComponent,
     ConfirmationModalComponent,
     ReleaserComponent,
-    ManageCandidateComponent
+    ManageCandidateComponent,
+    CurrentCandidateComponent,
+    TesterComponent
   ],
   imports: [
     BrowserModule,
