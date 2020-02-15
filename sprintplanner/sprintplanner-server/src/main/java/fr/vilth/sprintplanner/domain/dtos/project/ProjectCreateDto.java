@@ -22,7 +22,7 @@ public class ProjectCreateDto {
     @NotBlank
     private String githubRepo;
 
-    public ProjectCreateDto() {
+    protected ProjectCreateDto() {
 	//
     }
 
