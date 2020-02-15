@@ -17,3 +17,7 @@ insert into candidate (id, status, priority, member_id, task_id) values
 (-1, 'AVAILABLE', 0, -1,-1),
 (-2, 'CURRENT', 1, -2,-1),
 (-3, 'AVAILABLE', 2, -3,-2);
+
+insert into project (id, name, pi_duration, sprint_duration, github_user, github_repo)
+values
+(-1, "sprintplanner", 5, 2, "Vilth83", "sprintplanner");
