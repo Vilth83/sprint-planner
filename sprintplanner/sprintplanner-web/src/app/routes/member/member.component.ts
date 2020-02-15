@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MEMBER_TITLE, MEMBER_SUBTITLE } from 'src/app/shared/header-titles';
 
 @Component({
   selector: 'app-member',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class MemberComponent implements OnInit {
 
   view: string;
+
+  title: string = MEMBER_TITLE;
+  subtitle: string = MEMBER_SUBTITLE;
 
   constructor() { }
 

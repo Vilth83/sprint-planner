@@ -17,12 +17,8 @@ public class ReleaseViewDto {
     /**
      * Empty no-arg empty constructor.
      */
-    public ReleaseViewDto() {
+    protected ReleaseViewDto() {
 	//
-    }
-
-    public Long getId() {
-	return id;
     }
 
     public int getPi() {
@@ -35,10 +31,6 @@ public class ReleaseViewDto {
 
     public int getWeek() {
 	return week;
-    }
-
-    public CandidateViewDto getAssignee() {
-	return assignee;
     }
 
     @Override

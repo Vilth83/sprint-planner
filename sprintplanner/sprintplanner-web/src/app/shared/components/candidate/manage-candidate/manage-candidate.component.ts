@@ -13,6 +13,7 @@ import { Observable, Subscription } from 'rxjs';
 import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
 import { InformationModalComponent } from '../../information-modal/information-modal.component';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
+import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
 
 @Component({
   selector: 'app-manage-candidate',
@@ -31,6 +32,7 @@ export class ManageCandidateComponent implements OnInit {
   gridOptions: GridOptions;
   rowData: Candidate[];
   frameworkComponents = {};
+  overlayNoRowsTemplate: string;
 
   title: string;
   message: string;
@@ -85,6 +87,8 @@ export class ManageCandidateComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     }
+    this.overlayNoRowsTemplate = ERROR_NO_CANDIDATE;
+
   }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {
@@ -99,6 +103,9 @@ export class ManageCandidateComponent implements OnInit {
   public getCandidates() {
     this.http.get("/candidates/" + this.task).subscribe((candidates: Candidate[]) => {
       this.rowData = candidates;
+    }, () => {
+      console.log("in")
+      this.gridOptions.api.showNoRowsOverlay();
     })
   }
 

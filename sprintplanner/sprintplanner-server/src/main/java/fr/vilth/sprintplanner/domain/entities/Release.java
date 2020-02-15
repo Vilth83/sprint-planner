@@ -36,17 +36,4 @@ public class Release extends AbstractEntity {
     protected Release() {
 	// Empty protected constructor
     }
-
-    public final Release incrementRelease(Project project) {
-	week++;
-	if (week > project.getSprintDuration()) {
-	    week = 1;
-	    sprint++;
-	    if (sprint > project.getPiDuration()) {
-		sprint = 1;
-		pi++;
-	    }
-	}
-	return this;
-    }
 }

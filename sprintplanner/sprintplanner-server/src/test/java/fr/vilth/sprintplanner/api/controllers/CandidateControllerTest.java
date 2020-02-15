@@ -1,11 +1,10 @@
 package fr.vilth.sprintplanner.api.controllers;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Set;
-
-import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 
 /**
@@ -22,7 +23,6 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
  * 
  * @author Thierry VILLEPREUX
  */
-@Transactional
 public class CandidateControllerTest extends SetupIntTest {
 
     @Autowired
@@ -38,7 +38,38 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_candidates() {
-	Set<CandidateViewDto> actual = controller.findAllByTaskName("release");
-	assertEquals(1, actual.size());
+	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
+	assertEquals(2, actual.size());
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
+    void should_delete_candidate(String json) {
+	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
+	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
+	EntityIdDto tested = controller.save(dto);
+	controller.delete(modelMapper.map(tested, CandidateDeleteDto.class));
+	Set<CandidateViewDto> expected = controller
+		.findAllByTaskName("releaser");
+	assertEquals(expected.size(), actual.size());
+    }
+
+    @Test
+    void should_update_candidate() {
+	CandidateUpdateDto update = jsonConvert(
+		"{\"id\":-2, \"status\":\"UNAVAILABLE\"}",
+		CandidateUpdateDto.class);
+	controller.update(update, -2L);
+	Set<CandidateViewDto> candidates = controller
+		.findAllByTaskName("releaser");
+	assertTrue(candidates.stream().anyMatch(
+		candidate -> candidate.toString().contains("id=-2") && candidate
+			.toString().contains("status=UNAVAILABLE")));
+    }
+
+    @Test
+    void should_return_current_candidate() {
+	CandidateViewDto expected = controller.getCurrentByTask("releaser");
+	assertTrue(expected.toString().contains("status=CURRENT"));
     }
 }

@@ -1,4 +1,8 @@
-<div class="box-part">
+<span class="row submenu unselectable"
+      (click)="isModificationCollapsed = !isModificationCollapsed">
+  Manage {{task}}<span class="text-right fa fa-1x fa-angle-down"></span>
+</span>
+<div class="box-part" [collapse]="isModificationCollapsed">
   <ag-grid-angular
     #agGrid class="ag-theme-material"
     [rowData]="rowData"
@@ -6,9 +10,11 @@
     autoSize=true
     style="width:100%;"
     domLayout="autoHeight"
-    [frameworkComponents]="frameworkComponents">
+    [frameworkComponents]="frameworkComponents"
+    [overlayNoRowsTemplate]="overlayNoRowsTemplate">
   </ag-grid-angular>
-  <div class="container ">
+
+  <div class="container">
     <div class="row add text-center">
       <span class="col-md-3 add-part">add a new {{task}} </span>
       <select

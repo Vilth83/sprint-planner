@@ -1,18 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from '../../button-renderer.component';
 import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Member } from 'src/app/models/member.model';
-import { IdDto } from 'src/app/models/IdDto.model';
-import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
 import { Task } from 'src/app/models/task.model';
-import { CandidateEditorDto } from 'src/app/models/candidate-edit-dto.model';
-import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
-import { Observable, Subscription } from 'rxjs';
-import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
-import { InformationModalComponent } from '../../information-modal/information-modal.component';
-import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
+import { Subscription } from 'rxjs';
+import { ERROR_NO_CURRENT_CANDIDATE } from 'src/app/shared/constants';
 
 @Component({
 	selector: 'app-current-candidate',
@@ -31,6 +25,7 @@ export class CurrentCandidateComponent implements OnInit {
 	gridOptions: GridOptions;
 	rowData: Candidate[];
 	frameworkComponents = {};
+	overlayNoRowsTemplate: string;
 
 	title: string;
 	message: string;
@@ -38,7 +33,8 @@ export class CurrentCandidateComponent implements OnInit {
 	candidateEditionSubscription: Subscription;
 	deleteMemberSubscription: Subscription;
 
-	constructor(private http: HttpRequestBuilder, private candidateService: CandidateHttpRequest) {
+
+	constructor(private http: HttpRequestBuilder) {
 		 this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
@@ -62,7 +58,9 @@ export class CurrentCandidateComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     }
-	 }
+		this.overlayNoRowsTemplate = ERROR_NO_CURRENT_CANDIDATE;
+		 }
+
   public sizeColumnsToFit(gridOptions: GridOptions) {
     gridOptions.api.sizeColumnsToFit();
   }
@@ -75,9 +73,9 @@ export class CurrentCandidateComponent implements OnInit {
   public getCurrentCandidate(task: string) {
     this.http.get( "/candidates/" + task + "/current").subscribe((candidate: Candidate) => {
       this.rowData = [candidate];
-    }, (error) => {
-		this.rowData = [];
-	})
+    }, () => {
+			this.gridOptions.api.showNoRowsOverlay();
+		})
   }
 
   ngOnInit() {
