@@ -30,10 +30,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public abstract class SetupIntTest {
 
     @Autowired
-    private ObjectMapper objectMapper;
+    protected ObjectMapper objectMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
+    protected ModelMapper modelMapper;
 
     @Autowired
     private LocalValidatorFactoryBean validatorFactory;
