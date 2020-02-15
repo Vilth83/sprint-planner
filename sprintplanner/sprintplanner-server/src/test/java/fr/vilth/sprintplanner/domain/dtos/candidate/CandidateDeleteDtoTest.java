@@ -22,7 +22,7 @@ public class CandidateDeleteDtoTest extends SetupUnitTest {
     void should_return_toString(String json) {
 	CandidateDeleteDto candidate = jsonConvert(json,
 		CandidateDeleteDto.class);
-	String expected = "{id=1}";
+	String expected = "{id=-3}";
 	String actual = candidate.toString();
 	assertEquals(expected, actual);
     }

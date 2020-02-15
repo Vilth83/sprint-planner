@@ -27,7 +27,7 @@ public class CandidateCreateDtoTest extends SetupUnitTest {
     void should_return_toString(String json) {
 	CandidateCreateDto candidate = jsonConvert(json,
 		CandidateCreateDto.class);
-	String expected = "{member={id=1}, task={id=1}, priority=1, status=AVAILABLE}";
+	String expected = "{member={id=-1}, task={id=-2}, priority=1, status=AVAILABLE}";
 	String actual = candidate.toString();
 	assertEquals(expected, actual);
     }
