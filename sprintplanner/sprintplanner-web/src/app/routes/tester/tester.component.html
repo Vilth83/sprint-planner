@@ -1,25 +1,11 @@
-<header class="intro-area">
-  <div class="title">
-    <h1 class="text-center">Tester</h1>
-  </div>
-  <div class="subtitle">
-    <h2 class="text-center">Tester management</h2>
-  </div>
-</header>
-
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
 <section class="container section">
-  <nav aria-label="currentTester" class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
-    <span>Current Tester  <span class="fa fa-angle-down"></span></span>
-  </nav>
-  <article [collapse]="isCurrentCollapsed">
-	<app-current-candidate task="support"></app-current-candidate>
+  <article>
+	   <app-current-candidate task="tester"></app-current-candidate>
   </article>
-
-  <nav aria-label="manageTester" class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
-    <span>Manage testers <span class="fa fa-angle-down"></span></span>
-  </nav>
+ <hr>
   <article [collapse]="isModificationCollapsed">
-    <app-manage-candidate task="support"></app-manage-candidate>
+    <app-manage-candidate task="tester"></app-manage-candidate>
   </article>
 </section>

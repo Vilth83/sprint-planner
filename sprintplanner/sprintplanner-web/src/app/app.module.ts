@@ -23,6 +23,7 @@ import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { ManageCandidateComponent } from './shared/components/candidate/manage-candidate/manage-candidate.component';
 import { CurrentCandidateComponent } from './shared/components/candidate/current-candidate/current-candidate.component';
 import { TesterComponent } from './routes/tester/tester.component';
+import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TesterComponent } from './routes/tester/tester.component';
     ReleaserComponent,
     ManageCandidateComponent,
     CurrentCandidateComponent,
-    TesterComponent
+    TesterComponent,
+    PageHeaderComponent
   ],
   imports: [
     BrowserModule,

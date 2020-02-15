@@ -1,25 +1,11 @@
-<header class="intro-area">
-  <div class="title">
-    <h1 class="text-center">Releaser</h1>
-  </div>
-  <div class="subtitle">
-    <h2 class="text-center">Releaser management</h2>
-  </div>
-</header>
-
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
 <section class="container section">
-  <nav aria-label="currentReleaser" class="row submenu unselectable" (click)="isCurrentCollapsed = !isCurrentCollapsed">
-    <span>Current Releaser  <span class="fa fa-angle-down"></span></span>
-  </nav>
-  <article [collapse]="isCurrentCollapsed">
-	<app-current-candidate task="releaser"></app-current-candidate>
+  <article>
+	   <app-current-candidate task="releaser"></app-current-candidate>
   </article>
-
-  <nav aria-label="manageReleaser" class="row submenu unselectable" (click)="isModificationCollapsed = !isModificationCollapsed">
-    <span>Manage releasers <span class="fa fa-angle-down"></span></span>
-  </nav>
-  <article [collapse]="isModificationCollapsed">
+  <hr>
+  <article>
     <app-manage-candidate task="releaser"></app-manage-candidate>
   </article>
 </section>
