@@ -1,6 +1,7 @@
 package fr.vilth.sprintplanner.api.controllers;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
@@ -24,15 +25,23 @@ public class ReleaseControllerTest extends SetupIntTest {
     @Test
     void should_return_all_releases() {
 	List<ReleaseViewDto> releases = controller.findAll();
-	assertEquals(4, releases.size());
+	assertEquals(3, releases.size());
     }
 
     @Test
     void should_return_last_release() {
 	ReleaseViewDto release = controller.findLastRelease();
-	Assertions.assertAll(() -> assertEquals(1, release.getWeek()),
+	Assertions.assertAll(() -> assertEquals(2, release.getWeek()),
 		() -> assertEquals(1, release.getSprint()),
 		() -> assertEquals(2, release.getPi()));
+    }
+
+    @Test
+    void should_increment_release() {
+	List<ReleaseViewDto> releases = controller.findAll();
+	controller.incrementReleaseVersion();
+	List<ReleaseViewDto> actual = controller.findAll();
+	assertNotEquals(releases.size(), actual.size());
     }
 
     @ParameterizedTest

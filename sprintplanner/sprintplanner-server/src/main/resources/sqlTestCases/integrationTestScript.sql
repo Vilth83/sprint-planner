@@ -19,6 +19,7 @@ values
 insert into candidate (id, status, priority, member_id, task_id) values 
 (-1, 'AVAILABLE', 0, -1,-1),
 (-2, 'AVAILABLE', 1, -2,-1),
+(-4, 'CURRENT', 2, -1,-1),
 (-3, 'CURRENT', 2, -3,-2);
 
 insert into project (id, name, pi_duration, sprint_duration, github_user, github_repo)
@@ -27,6 +28,4 @@ values
 
 insert into release_version (pi, sprint, week, assignee_id)
 values
-(1,4,2,-1),
-(1,5,1,-2),
-(1,5,2,-3);
+(1,4,2,-1);

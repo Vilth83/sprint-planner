@@ -41,7 +41,7 @@ public class CandidateControllerTest extends SetupIntTest {
     @Test
     void should_return_candidates() {
 	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
-	assertEquals(2, actual.size());
+	assertEquals(3, actual.size());
     }
 
     @ParameterizedTest
@@ -78,6 +78,6 @@ public class CandidateControllerTest extends SetupIntTest {
     @Test
     void should_return_current_candidate_not_found() {
 	Assertions.assertThrows(ResourceNotFoundException.class,
-		() -> controller.getCurrentByTask("releaser"));
+		() -> controller.getCurrentByTask("support"));
     }
 }
