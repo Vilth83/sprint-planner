@@ -1,6 +1,7 @@
 delete from candidate where id < 0;
 delete from task where id < 0;
 delete from member where id < 0;
+delete from project where id < 0;
 
 insert into member (id, firstname, lastname, email, shift) 
 values 
