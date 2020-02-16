@@ -6,12 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Set;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.vilth.sprintplanner.SetupIntTest;
+import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -30,7 +32,7 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
-    void should_save_new_member(String json) {
+    void should_save_new_candidate(String json) {
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto actual = controller.save(dto);
 	assertNotNull(actual);
@@ -39,7 +41,7 @@ public class CandidateControllerTest extends SetupIntTest {
     @Test
     void should_return_candidates() {
 	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
-	assertEquals(2, actual.size());
+	assertEquals(3, actual.size());
     }
 
     @ParameterizedTest
@@ -69,7 +71,13 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_current_candidate() {
-	CandidateViewDto expected = controller.getCurrentByTask("releaser");
+	CandidateViewDto expected = controller.getCurrentByTask("tester");
 	assertTrue(expected.toString().contains("status=CURRENT"));
+    }
+
+    @Test
+    void should_return_current_candidate_not_found() {
+	Assertions.assertThrows(ResourceNotFoundException.class,
+		() -> controller.getCurrentByTask("support"));
     }
 }

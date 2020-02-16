@@ -39,4 +39,9 @@ public class ReleaseController {
     public EntityIdDto save(@Valid @RequestBody ReleaseCreateDto inputs) {
 	return releaseService.save(inputs);
     }
+
+    @PostMapping("/increment")
+    public void incrementReleaseVersion() {
+	releaseService.incrementReleaseVersion();
+    }
 }

@@ -45,7 +45,7 @@ public class MemberControllerTest extends SetupIntTest {
 	MemberCreateDto saved = jsonConvert(json, MemberCreateDto.class);
 	controller.save(saved);
 	Set<MemberViewDto> tested = controller.findAll();
-	assertEquals(5, tested.size());
+	assertEquals(4, tested.size());
     }
 
     @ParameterizedTest

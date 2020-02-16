@@ -19,8 +19,8 @@ public class TaskControllerTest extends SetupIntTest {
     private TaskController controller;
 
     @Test
-    void should_return_taske_by_name() {
-	TaskViewDto tested = controller.getByTaskName("release");
+    void should_return_task_by_name() {
+	TaskViewDto tested = controller.getByTaskName("releaser");
 	assertNotNull(tested);
     }
 }
