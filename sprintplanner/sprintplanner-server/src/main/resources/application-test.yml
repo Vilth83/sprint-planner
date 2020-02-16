@@ -1,6 +1,6 @@
 
 server:
-  port: 8081
+  port: 9090
   servlet:
       context-path: /api
       jsp:
@@ -18,8 +18,8 @@ spring:
     active: test
   datasource:
     url: jdbc:mysql://localhost:3306/sprintplannerTest?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
-    username: root
-    password: root
+    username: 
+    password: 
     data: classpath:sqlTestCases/integrationTestScript.sql
     initialization-mode: always 
   jpa:
