@@ -1,0 +1,19 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+
+<section class="container section">
+  <article>
+	   <app-current-candidate task="technical" [shift]="shift"></app-current-candidate>
+  </article>
+  <hr>
+  <article>
+    <app-manage-candidate task="technical" [shift]="shift"></app-manage-candidate>
+  </article>
+
+  <article>
+	   <app-current-candidate task="functional" [shift]="shift"></app-current-candidate>
+  </article>
+  <hr>
+  <article>
+    <app-manage-candidate task="functional" [shift]="shift"></app-manage-candidate>
+  </article>
+</section>

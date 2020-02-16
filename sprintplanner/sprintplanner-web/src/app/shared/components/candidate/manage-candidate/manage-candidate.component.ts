@@ -24,6 +24,8 @@ export class ManageCandidateComponent implements OnInit {
 
   @Input('task')
   task: string;
+  @Input('shift')
+  shift: string;
   taskObject: Task;
 
   selectedCandidate: number;
@@ -101,10 +103,14 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getCandidates() {
-    this.http.get("/candidates/" + this.task).subscribe((candidates: Candidate[]) => {
+    let url = "/candidates/" + this.task;
+    if (this.shift) {
+      console.log("in ", this.shift)
+      url += "/shift/" + this.shift;
+    }
+    this.http.get(url).subscribe((candidates: Candidate[]) => {
       this.rowData = candidates;
     }, () => {
-      console.log("in")
       this.gridOptions.api.showNoRowsOverlay();
     })
   }

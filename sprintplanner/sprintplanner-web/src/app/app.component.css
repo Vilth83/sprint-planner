@@ -1,14 +1,16 @@
-.navbar {
-  background-color: lightgrey;
+.main-menu {
+  background-color: #F8F8F8;
+  padding: 0 20%
 }
 
-.navbar-brand {
-  color: black;
+.nav-link a, .menu-item {
+  color: #777;
   font-weight: bold;
+  font-size: 1.2em;
 }
 
 .nav-link {
-  color:black;
+  color: black;
   margin-right: 5%;
 }
 

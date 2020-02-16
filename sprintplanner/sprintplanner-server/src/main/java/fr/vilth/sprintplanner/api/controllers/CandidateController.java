@@ -19,6 +19,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
+import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
@@ -96,5 +97,18 @@ public class CandidateController {
     public CandidateViewDto getCurrentByTask(@PathVariable String task) {
 	return candidateService.findFirstByTaskNameAndStatus(task,
 		Status.CURRENT);
+    }
+
+    @GetMapping("/{task}/current/{shift}")
+    public CandidateViewDto getCurrentByTask(@PathVariable String task,
+	    @PathVariable Shift shift) {
+	return candidateService.findFirstByTaskNameAndMemberShiftAndStatus(task,
+		Status.CURRENT, shift);
+    }
+
+    @GetMapping("/{taskName}/shift/{shift}")
+    public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
+	    @PathVariable String taskName, @PathVariable Shift shift) {
+	return candidateService.findAllByTaskAndShift(taskName, shift);
     }
 }

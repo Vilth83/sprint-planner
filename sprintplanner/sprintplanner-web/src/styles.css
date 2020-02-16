@@ -55,14 +55,6 @@ span {
   font-size: 15px;
 }
 
-.intro-area {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-size: cover;
-  background-color: darkred;
-  color: white;
-}
-
 .section {
   margin: 2% auto;
 }

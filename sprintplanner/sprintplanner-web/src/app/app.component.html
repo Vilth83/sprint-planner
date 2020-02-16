@@ -1,15 +1,17 @@
-<nav class="navbar navbar-expand-sm ">
-  <a class="navbar-brand" href="#">Sprint Planner</a>
+<nav class="main-menu navbar navbar-expand-sm">
+  <a class="navbar-brand" href="#">
+    <img class="sglogo" src="assets/logo.jpg" alt="SG">
+  </a>
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigate">
     <span class="navbar-toggler-icon"><em class="fa fa-bars fa-2x"></em></span>
   </button>
   <!-- navbar menu -->
-  <div class=" nav-menu collapse navbar-collapse" id="navigate">
+  <div class="nav-menu collapse navbar-collapse" id="navigate">
     <ul class="navbar-nav">
 
       <li class="nav-item">
-        <a class="nav-link" routerLink="/">Home</a>
+        <a class="menu-item nav-link" style="color:#777;" routerLink="/">Home</a>
       </li>
 
       <li class="nav-item">
@@ -18,6 +20,16 @@
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/releasers">Releasers</a>
             <a class="dropdown-item nav-link" routerLink="/testers">Testers</a>
+          </div>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="dropdown dropdown-toggle nav-link" dropdown>
+          <a dropdownToggle role="button">Support <em class="caret"></em></a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item nav-link" routerLink="/supports/paris">Paris</a>
+            <a class="dropdown-item nav-link" routerLink="/supports/bangalore">Bangalore</a>
           </div>
         </a>
       </li>

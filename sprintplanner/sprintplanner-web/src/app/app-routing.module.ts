@@ -4,6 +4,7 @@ import { HomeComponent } from './routes/home/home.component';
 import { MemberComponent } from './routes/member/member.component';
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { TesterComponent } from './routes/tester/tester.component';
+import { SupportComponent } from './routes/support/support.component';
 
 
 
@@ -12,7 +13,9 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'members', component: MemberComponent },
   { path: 'releasers', component: ReleaserComponent },
-  { path: 'testers', component: TesterComponent}
+  { path: 'testers', component: TesterComponent },
+  { path: 'supports/bangalore', component: SupportComponent },
+  { path: 'supports/paris', component: SupportComponent }
 ];
 
 @NgModule({

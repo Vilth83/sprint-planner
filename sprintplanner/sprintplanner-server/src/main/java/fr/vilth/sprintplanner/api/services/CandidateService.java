@@ -7,6 +7,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
+import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
@@ -66,4 +67,9 @@ public interface CandidateService {
 	    Status status);
 
     void rotateCandidates(Set<CandidateViewDto> inputs);
+
+    CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(String task,
+	    Status current, Shift shift);
+
+    Set<CandidateViewDto> findAllByTaskAndShift(String taskName, Shift shift);
 }

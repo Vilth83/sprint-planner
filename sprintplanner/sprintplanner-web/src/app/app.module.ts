@@ -24,6 +24,7 @@ import { ManageCandidateComponent } from './shared/components/candidate/manage-c
 import { CurrentCandidateComponent } from './shared/components/candidate/current-candidate/current-candidate.component';
 import { TesterComponent } from './routes/tester/tester.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
+import { SupportComponent } from './routes/support/support.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PageHeaderComponent } from './shared/components/page-header/page-header
     ManageCandidateComponent,
     CurrentCandidateComponent,
     TesterComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    SupportComponent
   ],
   imports: [
     BrowserModule,
