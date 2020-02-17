@@ -17,6 +17,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
+import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
 
 /**
@@ -108,5 +109,22 @@ public class CandidateServiceImpl extends AbstractService
 	candidates.stream().filter(Candidate::isAvailable)
 		.max(new PriorityComparator())
 		.ifPresent(Candidate::becomesCurrent);
+    }
+
+    @Override
+    public CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(
+	    String task, Status current, Shift shift) {
+	Candidate candidate = candidateRepository
+		.findFirstByTaskNameAndStatusAndMemberShift(task, current,
+			shift);
+	return convert(candidate, CandidateViewDto.class);
+    }
+
+    @Override
+    public Set<CandidateViewDto> findAllByTaskAndShift(String taskName,
+	    Shift shift) {
+	List<Candidate> candidates = candidateRepository
+		.findAllByTaskNameAndMemberShift(taskName, shift);
+	return convertToSet(candidates, CandidateViewDto.class);
     }
 }

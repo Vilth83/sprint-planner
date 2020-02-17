@@ -9,33 +9,35 @@ import { Subscription } from 'rxjs';
 import { ERROR_NO_CURRENT_CANDIDATE } from 'src/app/shared/constants';
 
 @Component({
-	selector: 'app-current-candidate',
-	templateUrl: './current-candidate.component.html',
-	styleUrls: ['./current-candidate.component.css']
+  selector: 'app-current-candidate',
+  templateUrl: './current-candidate.component.html',
+  styleUrls: ['./current-candidate.component.css']
 })
 export class CurrentCandidateComponent implements OnInit {
 
-	@Input('task')
-	task: string;
-	taskObject: Task;
+  @Input('task')
+  task: string;
+  @Input()
+  shift: string;
+  taskObject: Task;
 
-	selectedCandidate: number;
-	nonCandidates: Member[] = [];
+  selectedCandidate: number;
+  nonCandidates: Member[] = [];
 
-	gridOptions: GridOptions;
-	rowData: Candidate[];
-	frameworkComponents = {};
-	overlayNoRowsTemplate: string;
+  gridOptions: GridOptions;
+  rowData: Candidate[];
+  frameworkComponents = {};
+  overlayNoRowsTemplate: string;
 
-	title: string;
-	message: string;
+  title: string;
+  message: string;
 
-	candidateEditionSubscription: Subscription;
-	deleteMemberSubscription: Subscription;
+  candidateEditionSubscription: Subscription;
+  deleteMemberSubscription: Subscription;
 
 
-	constructor(private http: HttpRequestBuilder) {
-		 this.frameworkComponents = {
+  constructor(private http: HttpRequestBuilder) {
+    this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
     this.gridOptions = {
@@ -58,8 +60,8 @@ export class CurrentCandidateComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     }
-		this.overlayNoRowsTemplate = ERROR_NO_CURRENT_CANDIDATE;
-		 }
+    this.overlayNoRowsTemplate = ERROR_NO_CURRENT_CANDIDATE;
+  }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {
     gridOptions.api.sizeColumnsToFit();
@@ -70,15 +72,19 @@ export class CurrentCandidateComponent implements OnInit {
       this.taskObject = task);
   }
 
-  public getCurrentCandidate(task: string) {
-    this.http.get( "/candidates/" + task + "/current").subscribe((candidate: Candidate) => {
+  public getCurrentCandidate() {
+    let url = "/candidates/" + this.task + "/current";
+    if (this.shift) {
+      url += "/" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
       this.rowData = [candidate];
     }, () => {
-			this.gridOptions.api.showNoRowsOverlay();
-		})
+      this.gridOptions.api.showNoRowsOverlay();
+    })
   }
 
   ngOnInit() {
-    this.getCurrentCandidate(this.task);
+    this.getCurrentCandidate();
   }
 }
