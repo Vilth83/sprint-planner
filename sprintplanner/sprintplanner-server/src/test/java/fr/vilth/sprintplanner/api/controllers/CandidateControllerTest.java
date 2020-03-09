@@ -19,6 +19,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * Integration tests upon {@code CandidateController}.
@@ -78,6 +79,21 @@ public class CandidateControllerTest extends SetupIntTest {
     @Test
     void should_return_current_candidate_not_found() {
 	Assertions.assertThrows(ResourceNotFoundException.class,
-		() -> controller.getCurrentByTask("support"));
+		() -> controller.getCurrentByTask("notask"));
+    }
+
+    @Test
+    void should_return_current_candidate_by_shift() {
+	CandidateViewDto actual = controller.getCurrentByTask("support",
+		Shift.BGL);
+	Assertions.assertAll(() -> assertNotNull(actual),
+		() -> assertTrue(actual.toString().contains("shift=BGL")));
+    }
+
+    @Test
+    void should_find_all_members_by_task_and_shift() {
+	Set<CandidateViewDto> actuals = controller
+		.findAllByTaskNameAndMemberShift("support", Shift.PAR);
+	assertEquals(2, actuals.size());
     }
 }
