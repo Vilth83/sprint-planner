@@ -1,0 +1,35 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+
+<section class="container section">
+  <span class="row submenu unselectable">Current Version</span>
+  <div class="box-part">
+    <ag-grid-angular
+      #agGrid
+      class="ag-theme-material"
+      [rowData]="currentVersion"
+      [gridOptions]="gridOptions"
+      autoSize=true
+      style="width:100%;"
+      domLayout="autoHeight"
+      [frameworkComponents]="frameworkComponents"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate">
+    </ag-grid-angular>
+  </div>
+
+  <span class="row submenu unselectable">Previous Versions</span>
+  <div class="box-part">
+    <ag-grid-angular
+      #agGrid
+      class="ag-theme-material"
+      [rowData]="previousVersions"
+      [gridOptions]="gridOptions"
+      autoSize=true
+      style="width:100%;"
+      domLayout="autoHeight"
+      [frameworkComponents]="frameworkComponents"
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+      [pagination]="true"
+      [paginationPageSize]="paginationPageSize">
+    </ag-grid-angular>
+  </div>
+</section>

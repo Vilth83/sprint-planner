@@ -8,7 +8,7 @@ import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
 
 public interface ReleaseService {
 
-    List<ReleaseViewDto> findAll();
+    List<ReleaseViewDto> findAllOrdered();
 
     ReleaseViewDto findLastRelease();
 

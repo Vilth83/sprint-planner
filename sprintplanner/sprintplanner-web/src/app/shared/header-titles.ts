@@ -12,3 +12,6 @@ export const SUPPORT_SUBTITLE = "Support Management";
 
 export const MEMBER_TITLE="Configuration";
 export const MEMBER_SUBTITLE="Members Configuration";
+
+export const RELEASE_VERSION_TITLE = "Release versions";
+export const RELEASE_VERSION_SUBTITLE = "Shows previous and current release versions";

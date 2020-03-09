@@ -26,11 +26,11 @@ public class ReleaseController {
     }
 
     @GetMapping
-    public List<ReleaseViewDto> findAll() {
-	return releaseService.findAll();
+    public List<ReleaseViewDto> findAllOrdered() {
+	return releaseService.findAllOrdered();
     }
 
-    @GetMapping("last")
+    @GetMapping("/last")
     public ReleaseViewDto findLastRelease() {
 	return releaseService.findLastRelease();
     }
