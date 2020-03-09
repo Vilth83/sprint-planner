@@ -5,6 +5,7 @@ import { MemberComponent } from './routes/member/member.component';
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { TesterComponent } from './routes/tester/tester.component';
 import { SupportComponent } from './routes/support/support.component';
+import { ReleaseVersionComponent } from './release-version/release-version.component';
 
 
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'members', component: MemberComponent },
   { path: 'releasers', component: ReleaserComponent },
+  { path: 'releases', component: ReleaseVersionComponent },
   { path: 'testers', component: TesterComponent },
   { path: 'supports/bangalore', component: SupportComponent },
   { path: 'supports/paris', component: SupportComponent }

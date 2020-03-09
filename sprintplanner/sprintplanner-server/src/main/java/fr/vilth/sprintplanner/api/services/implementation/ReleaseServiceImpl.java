@@ -37,8 +37,9 @@ public class ReleaseServiceImpl extends AbstractService
     }
 
     @Override
-    public List<ReleaseViewDto> findAll() {
-	List<Release> releases = releaseRepository.findAll();
+    public List<ReleaseViewDto> findAllOrdered() {
+	List<Release> releases = releaseRepository
+		.findAllByOrderByPiDescSprintDescWeekDesc();
 	return convertList(releases, ReleaseViewDto.class);
     }
 

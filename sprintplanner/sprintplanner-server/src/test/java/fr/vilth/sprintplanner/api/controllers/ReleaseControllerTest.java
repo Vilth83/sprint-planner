@@ -24,7 +24,7 @@ public class ReleaseControllerTest extends SetupIntTest {
 
     @Test
     void should_return_all_releases() {
-	List<ReleaseViewDto> releases = controller.findAll();
+	List<ReleaseViewDto> releases = controller.findAllOrdered();
 	assertEquals(3, releases.size());
     }
 
@@ -38,9 +38,9 @@ public class ReleaseControllerTest extends SetupIntTest {
 
     @Test
     void should_increment_release() {
-	List<ReleaseViewDto> releases = controller.findAll();
+	List<ReleaseViewDto> releases = controller.findAllOrdered();
 	controller.incrementReleaseVersion();
-	List<ReleaseViewDto> actual = controller.findAll();
+	List<ReleaseViewDto> actual = controller.findAllOrdered();
 	assertNotEquals(releases.size(), actual.size());
     }
 
