@@ -104,6 +104,8 @@ public class CandidateServiceImpl extends AbstractService
 		candidate.becomesPrevious();
 	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
 		candidate.becomesAvailable();
+	    } else {
+		// No action if neither current not unavailable
 	    }
 	});
 	candidates.stream().filter(Candidate::isAvailable)
