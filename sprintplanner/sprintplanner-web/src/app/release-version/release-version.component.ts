@@ -30,7 +30,7 @@ export class ReleaseVersionComponent implements OnInit {
         { headerName: 'sprint', field: 'sprint', width: 120 },
         { headerName: 'week', field: 'week', width: 120 },
         { headerName: 'version', field: 'versionName' },
-        { headerName: 'releaser', field: 'assigneeName' }
+        { headerName: 'releaser', field: 'releaser' }
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     }
@@ -62,6 +62,5 @@ export class ReleaseVersionComponent implements OnInit {
 
   private setVersionName(version: ReleaseVersion) {
     version.versionName = "v" + version.pi + "." + version.sprint + "." + version.week + ".0";
-    version.assigneeName = version.assignee.member.firstname + " " + version.assignee.member.lastname;
   }
 }

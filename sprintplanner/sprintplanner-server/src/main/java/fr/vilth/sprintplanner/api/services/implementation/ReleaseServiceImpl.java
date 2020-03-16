@@ -12,7 +12,6 @@ import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.api.services.ReleaseService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
-import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
@@ -78,9 +77,9 @@ public class ReleaseServiceImpl extends AbstractService
 		pi++;
 	    }
 	}
-	CandidateViewDto candidate = candidateService
-		.findFirstByTaskNameAndStatus("releaser", Status.CURRENT);
-	EntityIdDto assignee = convert(candidate, EntityIdDto.class);
-	return new ReleaseCreateDto(pi, sprint, week, assignee);
+	String candidate = candidateService
+		.findCandidateFullNameByTaskAndStatus("releaser",
+			Status.CURRENT);
+	return new ReleaseCreateDto(pi, sprint, week, candidate);
     }
 }

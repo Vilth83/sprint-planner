@@ -1,7 +1,5 @@
 package fr.vilth.sprintplanner.domain.dtos.release;
 
-import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
-
 public class ReleaseViewDto {
 
     private Long id;
@@ -12,7 +10,7 @@ public class ReleaseViewDto {
 
     private int week;
 
-    private CandidateViewDto assignee;
+    private String releaser;
 
     /**
      * Empty no-arg empty constructor.
@@ -36,6 +34,6 @@ public class ReleaseViewDto {
     @Override
     public String toString() {
 	return "{id=" + id + ", pi=" + pi + ", sprint=" + sprint + ", week="
-		+ week + ", assignee=" + assignee + "}";
+		+ week + ", releaser=" + releaser + "}";
     }
 }

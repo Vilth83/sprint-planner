@@ -26,15 +26,23 @@ public class ReleaseJob extends AbstractService {
 	this.candidateService = candidateService;
     }
 
-    @Scheduled(cron = "${cron.config.increment-version}")
+    // @Scheduled(cron = "${cron.config.increment-version}")
     public void incrementReleaseVersion() {
 	releaseService.incrementReleaseVersion();
     }
 
-    @Scheduled(cron = "${cron.config.rotate-releasers}")
+    // @Scheduled(cron = "${cron.config.rotate-releasers}")
     public void rotateReleasers() {
 	Set<CandidateViewDto> candidates = candidateService
 		.findAllByTask(RELEASER);
 	candidateService.rotateCandidates(candidates);
+    }
+
+    @Scheduled(cron = "${cron.config.handle-release}")
+    public void handleRelease() {
+	// first, the releaser is changed
+	rotateReleasers();
+	// then, the release is incremented
+	incrementReleaseVersion();
     }
 }

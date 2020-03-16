@@ -49,5 +49,5 @@ logging:
   
 cron:
   config:
-    increment-version: "* * * * 1 *"
-    rotate-releasers: "* * * * 1 *"
+    handle-release: "* * * * 1 *"
+      

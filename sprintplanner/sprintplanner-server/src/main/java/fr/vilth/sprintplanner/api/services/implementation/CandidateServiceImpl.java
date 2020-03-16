@@ -127,4 +127,11 @@ public class CandidateServiceImpl extends AbstractService
 		.findAllByTaskNameAndMemberShift(taskName, shift);
 	return convertToSet(candidates, CandidateViewDto.class);
     }
+
+    @Override
+    public String findCandidateFullNameByTaskAndStatus(String taskName,
+	    Status status) {
+	return candidateRepository.findMemberNameByTaskAndStatus(taskName,
+		status);
+    }
 }
