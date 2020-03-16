@@ -11,14 +11,14 @@ public class ReleaseCreateDtoTest extends SetupUnitTest {
 
     @Test
     void should_construct() {
-	ReleaseCreateDto tested = new ReleaseCreateDto(1, 1, 1, null);
+	ReleaseCreateDto tested = new ReleaseCreateDto(1, 1, 1, "test");
 	assertNotNull(tested);
     }
 
     @Test
     void should_return_toString() {
-	ReleaseCreateDto actual = new ReleaseCreateDto(1, 1, 1, null);
-	String expected = "{pi=1, sprint=1, week=1, assignee=null}";
+	ReleaseCreateDto actual = new ReleaseCreateDto(1, 1, 1, "test");
+	String expected = "{pi=1, sprint=1, week=1, releaser=test}";
 	assertEquals(expected, actual.toString());
     }
 }

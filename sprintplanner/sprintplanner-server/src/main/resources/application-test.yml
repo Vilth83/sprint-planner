@@ -18,8 +18,8 @@ spring:
     active: test
   datasource:
     url: jdbc:mysql://localhost:3306/sprintplannerTest?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
-    username: 
-    password: 
+    username: root
+    password: root
     data: classpath:sqlTestCases/integrationTestScript.sql
     initialization-mode: always 
   jpa:
@@ -52,5 +52,5 @@ logging:
   
 cron:
   config:
-    handle-release: "*/10 * * * * *"
+    handle-release: "* * 1 * * *"
     
