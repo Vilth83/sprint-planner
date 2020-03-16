@@ -30,6 +30,7 @@ public class ReleaseCreateDto {
     @Override
     public String toString() {
 	return "{pi=" + pi + ", sprint=" + sprint + ", week=" + week
-		+ ", releaser=" + releaser + "}";
+		+ ",versionNumber=" + versionNumber + ", releaser=" + releaser
+		+ "}";
     }
 }

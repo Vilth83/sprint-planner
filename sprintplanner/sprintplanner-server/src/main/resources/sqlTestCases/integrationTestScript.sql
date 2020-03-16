@@ -31,6 +31,6 @@ insert into project (id, name, pi_duration, sprint_duration, github_user, github
 values
 (-1, "sprintplanner", 5, 2, "Vilth83", "sprintplanner");
 
-insert into release_version (pi, sprint, week, assignee_id)
+insert into release_version (pi, sprint, week, releaser)
 values
-(1,4,2,-1);
+(1,4,2,"dummy releaser");
