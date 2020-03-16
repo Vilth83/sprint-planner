@@ -111,4 +111,10 @@ public class CandidateController {
 	    @PathVariable String taskName, @PathVariable Shift shift) {
 	return candidateService.findAllByTaskAndShift(taskName, shift);
     }
+
+    @GetMapping("/test")
+    public String test() {
+	return candidateService.findCandidateFullNameByTaskAndStatus("releaser",
+		Status.CURRENT).toString();
+    }
 }

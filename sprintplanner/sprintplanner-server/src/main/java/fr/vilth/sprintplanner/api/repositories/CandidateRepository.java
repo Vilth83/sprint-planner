@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
@@ -50,4 +51,10 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
 
     Candidate findFirstByTaskNameAndStatusAndMemberShift(String task,
 	    Status current, Shift shift);
+
+    @Query("select concat(m.firstname, ' ', m.lastname) from Member m "
+	    + "join Candidate c on m.id = c.member "
+	    + "join Task t on t.id = c.task "
+	    + "where t.name = :taskName and c.status = :status")
+    String findMemberNameByTaskAndStatus(String taskName, Status status);
 }

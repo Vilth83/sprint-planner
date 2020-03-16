@@ -8,5 +8,10 @@
     "name": "cron.config.rotate-releasers",
     "type": "java.lang.String",
     "description": "cron value for releaser rotation task"
+  },
+  {
+    "name": "cron.config.handle-release",
+    "type": "java.lang.String",
+    "description": "cron value for release job trigger"
   }
 ]}

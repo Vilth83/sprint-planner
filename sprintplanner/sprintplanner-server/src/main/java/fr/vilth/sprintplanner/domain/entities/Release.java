@@ -2,7 +2,6 @@ package fr.vilth.sprintplanner.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
@@ -19,7 +18,7 @@ import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 @Table(name = "release_version")
 public class Release extends AbstractEntity {
 
-    private static final long serialVersionUID = 2252928912849412768L;
+    private static final long serialVersionUID = 6187563238894885084L;
 
     @Column
     private int pi;
@@ -30,10 +29,13 @@ public class Release extends AbstractEntity {
     @Column
     private int week;
 
-    @ManyToOne
-    private Candidate assignee;
+    @Column
+    private String versionNumber;
+
+    @Column
+    private String releaser;
 
     protected Release() {
-	// Empty protected constructor
+	// empty no-arg constructor
     }
 }
