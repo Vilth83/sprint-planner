@@ -49,6 +49,7 @@ spring:
 logging:
   config: classpath:logback-spring-dev.xml
   
+  
 cron:
   config:
     handle-release: "*/10 * * * * *"

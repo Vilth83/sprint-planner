@@ -28,6 +28,7 @@ import fr.vilth.sprintplanner.domain.types.Shift;
  */
 public class CandidateControllerTest extends SetupIntTest {
 
+    private static final String RELEASER = "releaser";
     @Autowired
     private CandidateController controller;
 
@@ -41,19 +42,19 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_candidates() {
-	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
+	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
 	assertEquals(3, actual.size());
     }
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
     void should_delete_candidate(String json) {
-	Set<CandidateViewDto> actual = controller.findAllByTaskName("releaser");
+	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto tested = controller.save(dto);
 	controller.delete(modelMapper.map(tested, CandidateDeleteDto.class));
 	Set<CandidateViewDto> expected = controller
-		.findAllByTaskName("releaser");
+		.findAllByTaskName(RELEASER);
 	assertEquals(expected.size(), actual.size());
     }
 
@@ -64,7 +65,7 @@ public class CandidateControllerTest extends SetupIntTest {
 		CandidateUpdateDto.class);
 	controller.update(update, -2L);
 	Set<CandidateViewDto> candidates = controller
-		.findAllByTaskName("releaser");
+		.findAllByTaskName(RELEASER);
 	assertTrue(candidates.stream().anyMatch(
 		candidate -> candidate.toString().contains("id=-2") && candidate
 			.toString().contains("status=UNAVAILABLE")));
