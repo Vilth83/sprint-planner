@@ -18,7 +18,7 @@ public class ReleaseCreateDtoTest extends SetupUnitTest {
     @Test
     void should_return_toString() {
 	ReleaseCreateDto actual = new ReleaseCreateDto(1, 1, 1, "test");
-	String expected = "{pi=1, sprint=1, week=1, releaser=test}";
+	String expected = "{pi=1, sprint=1, week=1, versionNumber=v1.1.1.0, releaser=test}";
 	assertEquals(expected, actual.toString());
     }
 }
