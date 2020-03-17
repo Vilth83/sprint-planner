@@ -37,8 +37,13 @@ export class CandidateHttpRequest {
     return this.http.delete(url, deletedCandidate);
   }
 
-  public put(inputs: CandidateEditorDto): Observable<any> {
+  public update(inputs: CandidateEditorDto): Observable<any> {
     let url = this.endpoint + "/" + inputs.id;
+    return this.http.put(url, inputs);
+  }
+
+  public updateToCurrent(inputs: CandidateEditorDto, taskName: string): Observable<any> {
+    let url = this.endpoint + "/" + inputs.id + "/current?taskName=" + taskName;
     return this.http.put(url, inputs);
   }
 
