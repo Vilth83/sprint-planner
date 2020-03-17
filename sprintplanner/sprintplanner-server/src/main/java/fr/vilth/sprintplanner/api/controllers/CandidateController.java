@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
@@ -80,6 +81,13 @@ public class CandidateController {
     public void update(@Valid @RequestBody CandidateUpdateDto inputs,
 	    @PathVariable Long id) {
 	candidateService.update(inputs, id);
+    }
+
+    @PutMapping("/{id}/current")
+    public void setToCurrent(@RequestParam String taskName,
+	    @Valid @RequestBody CandidateUpdateDto inputs,
+	    @PathVariable Long id) {
+	candidateService.setToCurrent(taskName, inputs, id);
     }
 
     /**
