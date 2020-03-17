@@ -2,6 +2,8 @@ package fr.vilth.sprintplanner.api.services;
 
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -76,4 +78,7 @@ public interface CandidateService {
     String findCandidateFullNameByTaskAndStatus(String taskName, Status shift);
 
     void setToCurrent(String taskName, CandidateUpdateDto inputs, Long id);
+
+    void setToCurrent(String taskName, @Valid CandidateUpdateDto inputs,
+	    Long id, Shift shift);
 }

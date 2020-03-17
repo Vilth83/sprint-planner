@@ -42,12 +42,16 @@ export class CandidateHttpRequest {
     return this.http.put(url, inputs);
   }
 
-  public updateToCurrent(inputs: CandidateEditorDto, taskName: string): Observable<any> {
-    let url = this.endpoint + "/" + inputs.id + "/current?taskName=" + taskName;
+  public updateToCurrent(inputs: CandidateEditorDto, taskName: string, shift?: string): Observable<any> {
+    let url = this.endpoint + "/" + inputs.id + "/current/";
+    if (shift) {
+      url += shift + "/shift"
+    }
+    url += "?taskName=" + taskName;
     return this.http.put(url, inputs);
   }
 
-	public getCurrentCandidate(task:string): Observable<Candidate> {
-		return this.http.get(this.endpoint + "/" + task + "/current");
-	}
+  public getCurrentCandidate(task: string): Observable<Candidate> {
+    return this.http.get(this.endpoint + "/" + task + "/current");
+  }
 }

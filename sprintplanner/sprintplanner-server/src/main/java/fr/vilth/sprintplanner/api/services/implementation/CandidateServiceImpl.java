@@ -113,15 +113,18 @@ public class CandidateServiceImpl extends AbstractService
 		.ifPresent(Candidate::becomesCurrent);
     }
 
+    // for support
     @Override
     public CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(
 	    String task, Status current, Shift shift) {
-	Candidate candidate = candidateRepository
+	Optional<Candidate> candidate = candidateRepository
 		.findFirstByTaskNameAndStatusAndMemberShift(task, current,
 			shift);
-	return convert(candidate, CandidateViewDto.class);
+	return candidate.map(elt -> convert(elt, CandidateViewDto.class))
+		.orElseThrow(ResourceNotFoundException::new);
     }
 
+    // For support
     @Override
     public Set<CandidateViewDto> findAllByTaskAndShift(String taskName,
 	    Shift shift) {
@@ -142,6 +145,16 @@ public class CandidateServiceImpl extends AbstractService
 	    Long id) {
 	Optional<Candidate> current = candidateRepository
 		.findFirstBytaskNameAndStatus(taskName, Status.CURRENT);
+	current.ifPresent(this::saveAsUnavailable);
+	update(inputs, id);
+    }
+
+    @Override
+    public void setToCurrent(String taskName, CandidateUpdateDto inputs,
+	    Long id, Shift shift) {
+	Optional<Candidate> current = candidateRepository
+		.findFirstByTaskNameAndStatusAndMemberShift(taskName,
+			Status.CURRENT, shift);
 	current.ifPresent(this::saveAsUnavailable);
 	update(inputs, id);
     }

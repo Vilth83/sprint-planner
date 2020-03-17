@@ -119,6 +119,7 @@ export class ManageCandidateComponent implements OnInit {
     this.http.get("/members/" + this.task + "/nonCandidates").subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
+
   }
 
   ngOnInit() {
@@ -180,9 +181,11 @@ export class ManageCandidateComponent implements OnInit {
 
   private edit(candidate: CandidateEditorDto) {
     let request: Observable<any>
-    if(candidate.status == Status.CURRENT)
-    request = this.candidateService.updateToCurrent(candidate, this.task);
-    else request = this.candidateService.update(candidate)
+    if (candidate.status == Status.CURRENT) {
+      request = this.candidateService.updateToCurrent(candidate, this.task, this.shift);
+    } else {
+      request = this.candidateService.update(candidate);
+    }
     this.candidateEditionSubscription = request.subscribe(() => {
       this.ngOnInit();
     }, (error) => {
