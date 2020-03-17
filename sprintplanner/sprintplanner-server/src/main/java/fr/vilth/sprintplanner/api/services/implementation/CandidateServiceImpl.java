@@ -92,20 +92,20 @@ public class CandidateServiceImpl extends AbstractService
 
     @Override
     public void rotateCandidates(Set<CandidateViewDto> inputs) {
-	List<Candidate> candidates = convertSetToList(inputs, Candidate.class);
+	Set<Candidate> candidates = convertSet(inputs, Candidate.class);
 	candidates.forEach(Candidate::incrementPriority);
 	rotate(candidates);
 	candidateRepository.saveAll(candidates);
     }
 
-    private void rotate(List<Candidate> candidates) {
+    private void rotate(Set<Candidate> candidates) {
 	candidates.forEach(candidate -> {
 	    if (candidate.getStatus().equals(Status.CURRENT)) {
 		candidate.becomesPrevious();
 	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
 		candidate.becomesAvailable();
 	    } else {
-		// No action if neither current not unavailable
+		// No action if neither current nor unavailable
 	    }
 	});
 	candidates.stream().filter(Candidate::isAvailable)
@@ -135,5 +135,20 @@ public class CandidateServiceImpl extends AbstractService
 	    Status status) {
 	return candidateRepository.findMemberNameByTaskAndStatus(taskName,
 		status);
+    }
+
+    @Override
+    public void setToCurrent(String taskName, CandidateUpdateDto inputs,
+	    Long id) {
+	Optional<Candidate> current = candidateRepository
+		.findFirstBytaskNameAndStatus(taskName, Status.CURRENT);
+	current.ifPresent(this::saveAsUnavailable);
+	update(inputs, id);
+    }
+
+    private void saveAsUnavailable(Candidate candidate) {
+	candidate.becomesUnavailable();
+	update(modelMapper.map(candidate, CandidateUpdateDto.class),
+		candidate.getId());
     }
 }

@@ -40,6 +40,23 @@ public abstract class AbstractService {
     }
 
     /**
+     * Convert a {@code Set} of objects into given destination {@code Class}.
+     * <p>
+     * utility generic method to handle {@code Set} conversion.
+     * 
+     * @param <S> source type
+     * @param <D> destination class
+     * @param source the set to convert
+     * @param destination the type in which the source is mapped
+     * @return a {@code Set} of given destination type.
+     */
+    public <S, D> Set<D> convertSet(Set<S> source, Class<D> destination) {
+	return source.stream()// -
+		.map(elt -> convert(elt, destination))// -
+		.collect(Collectors.toSet());
+    }
+
+    /**
      * Convert a {@code List} of objects into given destination type object in a
      * {@code Set}.
      * <p>
