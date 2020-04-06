@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 import fr.vilth.sprintplanner.domain.types.Shift;
@@ -24,21 +25,21 @@ import fr.vilth.sprintplanner.domain.types.Shift;
  * @author Thierry VILLEPREUX
  */
 @Entity
-@Table(name = "member")
+@Table(name = "members", uniqueConstraints = @UniqueConstraint(name = "members_email_UNIQUE", columnNames = "email"))
 public class Member extends AbstractEntity {
 
     private static final long serialVersionUID = 2229240326079763123L;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 50)
     private String firstname;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 50)
     private String lastname;
 
-    @Column(nullable = false, length = 100, unique = true)
+    @Column(nullable = false, length = 110)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "ENUM('PAR', 'BGL')")
     @Enumerated(value = EnumType.STRING)
     private Shift shift = Shift.PAR;
 
