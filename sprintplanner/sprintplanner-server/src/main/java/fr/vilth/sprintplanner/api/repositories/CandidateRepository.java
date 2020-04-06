@@ -49,7 +49,7 @@ public interface CandidateRepository extends JpaRepository<Candidate, Long> {
     List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
 	    Shift shift);
 
-    Candidate findFirstByTaskNameAndStatusAndMemberShift(String task,
+    Optional<Candidate> findFirstByTaskNameAndStatusAndMemberShift(String task,
 	    Status current, Shift shift);
 
     @Query("select concat(m.firstname, ' ', m.lastname) from Member m "

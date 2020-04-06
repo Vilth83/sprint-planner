@@ -90,6 +90,14 @@ public class CandidateController {
 	candidateService.setToCurrent(taskName, inputs, id);
     }
 
+    // for support
+    @PutMapping("/{id}/current/{shift}/shift")
+    public void setToCurrent(@RequestParam String taskName,
+	    @Valid @RequestBody CandidateUpdateDto inputs,
+	    @PathVariable Long id, @PathVariable Shift shift) {
+	candidateService.setToCurrent(taskName, inputs, id, shift);
+    }
+
     /**
      * Delete a {@code CandidateDeleteDto} by his id.
      * 
@@ -107,6 +115,7 @@ public class CandidateController {
 		Status.CURRENT);
     }
 
+    // for support
     @GetMapping("/{task}/current/{shift}")
     public CandidateViewDto getCurrentByTask(@PathVariable String task,
 	    @PathVariable Shift shift) {
