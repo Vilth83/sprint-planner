@@ -3,6 +3,7 @@ package fr.vilth.sprintplanner.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 
@@ -15,18 +16,19 @@ import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
  * @author Thierry VILLEPREUX
  */
 @Entity
-@Table(name = "release_version")
+@Table(name = "releases", uniqueConstraints = @UniqueConstraint(name = "releases_pi_sprint_week_UNIQUE", columnNames = {
+	"pi", "sprint", "week" }))
 public class Release extends AbstractEntity {
 
     private static final long serialVersionUID = 6187563238894885084L;
 
-    @Column
+    @Column(nullable = false)
     private int pi;
 
-    @Column
+    @Column(nullable = false)
     private int sprint;
 
-    @Column
+    @Column(nullable = false)
     private int week;
 
     @Column
