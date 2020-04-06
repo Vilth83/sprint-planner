@@ -5,7 +5,7 @@ import { MemberComponent } from './routes/member/member.component';
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { TesterComponent } from './routes/tester/tester.component';
 import { SupportComponent } from './routes/support/support.component';
-import { ReleaseVersionComponent } from './release-version/release-version.component';
+import { ReleaseVersionComponent } from './routes/release-version/release-version.component';
 
 
 
