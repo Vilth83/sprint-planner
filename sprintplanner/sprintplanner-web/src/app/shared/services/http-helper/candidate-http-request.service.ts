@@ -37,12 +37,21 @@ export class CandidateHttpRequest {
     return this.http.delete(url, deletedCandidate);
   }
 
-  public put(inputs: CandidateEditorDto): Observable<any> {
+  public update(inputs: CandidateEditorDto): Observable<any> {
     let url = this.endpoint + "/" + inputs.id;
     return this.http.put(url, inputs);
   }
 
-	public getCurrentCandidate(task:string): Observable<Candidate> {
-		return this.http.get(this.endpoint + "/" + task + "/current");
-	}
+  public updateToCurrent(inputs: CandidateEditorDto, taskName: string, shift?: string): Observable<any> {
+    let url = this.endpoint + "/" + inputs.id + "/current/";
+    if (shift) {
+      url += shift + "/shift"
+    }
+    url += "?taskName=" + taskName;
+    return this.http.put(url, inputs);
+  }
+
+  public getCurrentCandidate(task: string): Observable<Candidate> {
+    return this.http.get(this.endpoint + "/" + task + "/current");
+  }
 }

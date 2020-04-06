@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
@@ -82,6 +83,21 @@ public class CandidateController {
 	candidateService.update(inputs, id);
     }
 
+    @PutMapping("/{id}/current")
+    public void setToCurrent(@RequestParam String taskName,
+	    @Valid @RequestBody CandidateUpdateDto inputs,
+	    @PathVariable Long id) {
+	candidateService.setToCurrent(taskName, inputs, id);
+    }
+
+    // for support
+    @PutMapping("/{id}/current/{shift}/shift")
+    public void setToCurrent(@RequestParam String taskName,
+	    @Valid @RequestBody CandidateUpdateDto inputs,
+	    @PathVariable Long id, @PathVariable Shift shift) {
+	candidateService.setToCurrent(taskName, inputs, id, shift);
+    }
+
     /**
      * Delete a {@code CandidateDeleteDto} by his id.
      * 
@@ -99,6 +115,7 @@ public class CandidateController {
 		Status.CURRENT);
     }
 
+    // for support
     @GetMapping("/{task}/current/{shift}")
     public CandidateViewDto getCurrentByTask(@PathVariable String task,
 	    @PathVariable Shift shift) {
@@ -110,11 +127,5 @@ public class CandidateController {
     public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
 	    @PathVariable String taskName, @PathVariable Shift shift) {
 	return candidateService.findAllByTaskAndShift(taskName, shift);
-    }
-
-    @GetMapping("/test")
-    public String test() {
-	return candidateService.findCandidateFullNameByTaskAndStatus("releaser",
-		Status.CURRENT).toString();
     }
 }

@@ -50,4 +50,5 @@ logging:
 cron:
   config:
     handle-release: "* * * * 1 *"
+    handle-support: "* * * * 1 *"
       

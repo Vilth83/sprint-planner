@@ -92,13 +92,13 @@ public class CandidateServiceImpl extends AbstractService
 
     @Override
     public void rotateCandidates(Set<CandidateViewDto> inputs) {
-	List<Candidate> candidates = convertSetToList(inputs, Candidate.class);
+	Set<Candidate> candidates = convertSet(inputs, Candidate.class);
 	candidates.forEach(Candidate::incrementPriority);
 	rotate(candidates);
 	candidateRepository.saveAll(candidates);
     }
 
-    private void rotate(List<Candidate> candidates) {
+    private void rotate(Set<Candidate> candidates) {
 	candidates.forEach(candidate -> {
 	    if (candidate.getStatus().equals(Status.CURRENT)) {
 		candidate.becomesPrevious();
@@ -113,15 +113,18 @@ public class CandidateServiceImpl extends AbstractService
 		.ifPresent(Candidate::becomesCurrent);
     }
 
+    // for support
     @Override
     public CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(
 	    String task, Status current, Shift shift) {
-	Candidate candidate = candidateRepository
+	Optional<Candidate> candidate = candidateRepository
 		.findFirstByTaskNameAndStatusAndMemberShift(task, current,
 			shift);
-	return convert(candidate, CandidateViewDto.class);
+	return candidate.map(elt -> convert(elt, CandidateViewDto.class))
+		.orElseThrow(ResourceNotFoundException::new);
     }
 
+    // For support
     @Override
     public Set<CandidateViewDto> findAllByTaskAndShift(String taskName,
 	    Shift shift) {
@@ -135,5 +138,30 @@ public class CandidateServiceImpl extends AbstractService
 	    Status status) {
 	return candidateRepository.findMemberNameByTaskAndStatus(taskName,
 		status);
+    }
+
+    @Override
+    public void setToCurrent(String taskName, CandidateUpdateDto inputs,
+	    Long id) {
+	Optional<Candidate> current = candidateRepository
+		.findFirstBytaskNameAndStatus(taskName, Status.CURRENT);
+	current.ifPresent(this::saveAsUnavailable);
+	update(inputs, id);
+    }
+
+    @Override
+    public void setToCurrent(String taskName, CandidateUpdateDto inputs,
+	    Long id, Shift shift) {
+	Optional<Candidate> current = candidateRepository
+		.findFirstByTaskNameAndStatusAndMemberShift(taskName,
+			Status.CURRENT, shift);
+	current.ifPresent(this::saveAsUnavailable);
+	update(inputs, id);
+    }
+
+    private void saveAsUnavailable(Candidate candidate) {
+	candidate.becomesUnavailable();
+	update(modelMapper.map(candidate, CandidateUpdateDto.class),
+		candidate.getId());
     }
 }

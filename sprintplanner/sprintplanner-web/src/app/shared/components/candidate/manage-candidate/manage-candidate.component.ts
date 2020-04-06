@@ -14,6 +14,7 @@ import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candid
 import { InformationModalComponent } from '../../information-modal/information-modal.component';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
+import { Status } from 'src/app/models/status.model';
 
 @Component({
   selector: 'app-manage-candidate',
@@ -105,7 +106,6 @@ export class ManageCandidateComponent implements OnInit {
   public getCandidates() {
     let url = "/candidates/" + this.task;
     if (this.shift) {
-      console.log("in ", this.shift)
       url += "/shift/" + this.shift;
     }
     this.http.get(url).subscribe((candidates: Candidate[]) => {
@@ -119,6 +119,7 @@ export class ManageCandidateComponent implements OnInit {
     this.http.get("/members/" + this.task + "/nonCandidates").subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
+
   }
 
   ngOnInit() {
@@ -179,7 +180,12 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   private edit(candidate: CandidateEditorDto) {
-    let request: Observable<any> = this.candidateService.put(candidate);
+    let request: Observable<any>
+    if (candidate.status == Status.CURRENT) {
+      request = this.candidateService.updateToCurrent(candidate, this.task, this.shift);
+    } else {
+      request = this.candidateService.update(candidate);
+    }
     this.candidateEditionSubscription = request.subscribe(() => {
       this.ngOnInit();
     }, (error) => {

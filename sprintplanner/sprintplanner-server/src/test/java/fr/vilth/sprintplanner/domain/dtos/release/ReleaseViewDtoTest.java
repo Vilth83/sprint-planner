@@ -13,7 +13,7 @@ public class ReleaseViewDtoTest extends SetupUnitTest {
     @CsvFileSource(resources = "/releaseViewDto.csv", delimiter = ';')
     void should_return_toString(String json) {
 	ReleaseViewDto actual = jsonConvert(json, ReleaseViewDto.class);
-	String expected = "{id=1, pi=1, sprint=1, week=1, assignee=null}";
+	String expected = "{id=1, pi=1, sprint=1, week=1, releaser=test}";
 	assertEquals(expected, actual.toString());
     }
 }
