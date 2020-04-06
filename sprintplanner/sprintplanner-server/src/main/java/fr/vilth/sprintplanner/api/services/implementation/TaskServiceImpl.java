@@ -2,7 +2,7 @@ package fr.vilth.sprintplanner.api.services.implementation;
 
 import org.springframework.stereotype.Service;
 
-import fr.vilth.sprintplanner.api.repositories.TaskRepository;
+import fr.vilth.sprintplanner.api.repositories.TaskJpaRepository;
 import fr.vilth.sprintplanner.api.services.TaskService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.task.TaskViewDto;
@@ -16,7 +16,7 @@ import fr.vilth.sprintplanner.domain.entities.Task;
 @Service
 public class TaskServiceImpl extends AbstractService implements TaskService {
 
-    private final TaskRepository taskRepository;
+    private final TaskJpaRepository taskRepository;
 
     /**
      * Protected constructor to autowire needed bean.
@@ -26,7 +26,7 @@ public class TaskServiceImpl extends AbstractService implements TaskService {
      * 
      * @param taskRepository the injected {@code TaskRepository}
      */
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskJpaRepository taskRepository) {
 	this.taskRepository = taskRepository;
     }
 

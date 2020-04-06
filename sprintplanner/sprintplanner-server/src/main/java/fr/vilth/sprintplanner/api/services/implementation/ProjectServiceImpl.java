@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
-import fr.vilth.sprintplanner.api.repositories.ProjectRepository;
+import fr.vilth.sprintplanner.api.repositories.ProjectJpaRepository;
 import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
@@ -19,9 +19,9 @@ import fr.vilth.sprintplanner.domain.entities.Project;
 public class ProjectServiceImpl extends AbstractService
 	implements ProjectService {
 
-    private final ProjectRepository projectRepository;
+    private final ProjectJpaRepository projectRepository;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    public ProjectServiceImpl(ProjectJpaRepository projectRepository) {
 	this.projectRepository = projectRepository;
     }
 

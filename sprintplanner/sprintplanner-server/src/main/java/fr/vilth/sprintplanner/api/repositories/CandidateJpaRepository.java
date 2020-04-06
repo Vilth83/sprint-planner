@@ -15,7 +15,7 @@ import fr.vilth.sprintplanner.domain.types.Status;
  * 
  * @author Thierry VILLEPREUX
  */
-public interface CandidateRepository extends JpaRepository<Candidate, Long> {
+public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
 
     /**
      * Returns a {@code List} of {@code Candidate} for the given {@code Task}.
