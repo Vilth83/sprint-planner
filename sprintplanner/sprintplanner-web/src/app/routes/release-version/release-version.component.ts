@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RELEASE_VERSION_TITLE, RELEASE_VERSION_SUBTITLE } from '../shared/header-titles';
-import { ReleaseVersion } from '../models/releaseVersion.model';
 import { GridOptions } from 'ag-grid-community';
-import { HttpRequestBuilder } from '../shared/services/http-helper/http-request-builder.service';
+import { ReleaseVersion } from 'src/app/models/releaseVersion.model';
+import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
+import { RELEASE_VERSION_TITLE, RELEASE_VERSION_SUBTITLE } from 'src/app/shared/header-titles';
 
 @Component({
   selector: 'app-release-version',
