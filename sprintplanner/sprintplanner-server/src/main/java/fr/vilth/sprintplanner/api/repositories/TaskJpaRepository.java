@@ -9,7 +9,7 @@ import fr.vilth.sprintplanner.domain.entities.Task;
  * 
  * @author Thierry VILLEPREUX
  */
-public interface TaskRepository extends JpaRepository<Task, Long> {
+public interface TaskJpaRepository extends JpaRepository<Task, Long> {
 
     /**
      * Returns a {@code TaskViewDto} by its name

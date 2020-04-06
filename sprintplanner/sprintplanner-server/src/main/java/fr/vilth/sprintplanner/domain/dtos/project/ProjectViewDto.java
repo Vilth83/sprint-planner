@@ -2,6 +2,8 @@ package fr.vilth.sprintplanner.domain.dtos.project;
 
 public class ProjectViewDto {
 
+    private String trigram;
+
     private String name;
 
     private String email;
@@ -20,10 +22,10 @@ public class ProjectViewDto {
 
     @Override
     public String toString() {
-	return "{name=" + name + ", email=" + email + ", piDuration="
-		+ piDuration + ", sprintDuration=" + sprintDuration
-		+ ", githubUser=" + githubUser + ", githubRepo=" + githubRepo
-		+ "}";
+	return "{trigram=" + trigram + ", name=" + name + ", email=" + email
+		+ ", piDuration=" + piDuration + ", sprintDuration="
+		+ sprintDuration + ", githubUser=" + githubUser
+		+ ", githubRepo=" + githubRepo + "}";
     }
 
     public int getSprintDuration() {
