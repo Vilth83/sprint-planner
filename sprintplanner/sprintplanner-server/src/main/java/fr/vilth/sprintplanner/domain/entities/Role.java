@@ -3,20 +3,17 @@ package fr.vilth.sprintplanner.domain.entities;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 import fr.vilth.sprintplanner.commons.utils.BooleanConverter;
 
 @Entity
-public class Role {
+@Table(name = "roles", uniqueConstraints = @UniqueConstraint(name = "roles_code_UNIQUE", columnNames = "code"))
+public class Role extends AbstractEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(length = 256, nullable = false, unique = true)
+    @Column(length = 256, nullable = false)
     private String code;
 
     @Convert(converter = BooleanConverter.class)
@@ -29,10 +26,6 @@ public class Role {
 
     public Role(String code) {
 	setCode(code);
-    }
-
-    public Long getId() {
-	return id;
     }
 
     public String getCode() {
@@ -49,6 +42,6 @@ public class Role {
 
     @Override
     public String toString() {
-	return "{id=" + id + ", code=" + code + "}";
+	return "{id=" + getId() + ", code=" + code + "}";
     }
 }

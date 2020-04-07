@@ -27,4 +27,6 @@ public interface CustomUserJpaRepository
      * @return a projected view
      */
     Optional<CustomUserInfoDto> getById(Long id);
+
+    boolean existsByUsernameIgnoreCase(String username);
 }

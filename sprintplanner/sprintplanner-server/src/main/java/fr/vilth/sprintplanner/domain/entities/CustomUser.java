@@ -6,34 +6,38 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import fr.vilth.sprintplanner.commons.utils.BooleanConverter;
 
 @Entity
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "users_username_UNIQUE", columnNames = "username"))
 public class CustomUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 256, nullable = false, unique = true)
+    @Column(length = 256, nullable = false)
     private String username;
 
     @Column(length = 256, nullable = false)
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-
     // @formatter:off
-    @JoinTable(name = "custom_user_role", 
-    joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "users_roles", indexes = {
+	    @Index(name = "users_roles_user_id_IDX", columnList = "user_id"),
+	    @Index(name = "users_roles_role_id_IDX", columnList = "role_id") }, joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "users_roles_user_id_FK")), inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "users_roles_role_id_FK")))
     // @formatter:on
     private Set<Role> roles;
 
@@ -70,8 +74,9 @@ public class CustomUser {
      * @param username a unique username
      * @param roles some roles
      */
-    public CustomUser(String password, String username, Set<Role> roles) {
-	this(password, username, roles, true);
+    public CustomUser(String password, String username, String firstname,
+	    String lastname, Set<Role> roles) {
+	this(password, username, firstname, lastname, roles, true);
     }
 
     /**
@@ -82,10 +87,13 @@ public class CustomUser {
      * @param roles some roles
      * @param enabled {@code true} if enabled; {@code false} otherwise
      */
-    public CustomUser(String password, String username, Set<Role> roles,
+    public CustomUser(String password, String username, String firstname,
+	    String lastname, Set<Role> roles,
 	    boolean enabled) {
 	this.password = password;
 	this.username = username;
+	this.firstname = firstname;
+	this.lastname = lastname;
 	this.roles = roles;
 	this.enabled = enabled;
     }
