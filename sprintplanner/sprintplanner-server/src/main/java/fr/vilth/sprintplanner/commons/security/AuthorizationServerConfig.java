@@ -53,9 +53,6 @@ public class AuthorizationServerConfig
 
     private final CustomUserDetailsService userDetailsService;
 
-    @Value("${jwt-auth-server.clientPassword}")
-    private String password;
-
     private final CustomAccessTokenConverter customAccessTokenConverter;
 
     protected AuthorizationServerConfig(
@@ -145,7 +142,7 @@ public class AuthorizationServerConfig
     public void configure(ClientDetailsServiceConfigurer clients)
 	    throws Exception {
 	clients.inMemory().withClient("sprintplanner-web")
-		.secret(passwordEncoder().encode(password)).scopes("trusted")
+		.secret(passwordEncoder().encode("")).scopes("trusted")
 		.authorizedGrantTypes("password", "refresh_token")
 		.accessTokenValiditySeconds(accessTokenValiditySeconds)
 		.refreshTokenValiditySeconds(refreshTokenValiditySeconds);
