@@ -8,7 +8,8 @@ import javax.persistence.UniqueConstraint;
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 
 @Entity
-@Table(name = "projects", uniqueConstraints = @UniqueConstraint(name = "projects_trigram_UNIQUE", columnNames = "trigram"))
+@Table(name = "projects", uniqueConstraints = 
+@UniqueConstraint(name = "projects_trigram_UNIQUE", columnNames = "trigram"))
 public class Project extends AbstractEntity {
 
     private static final long serialVersionUID = -2558454895800372791L;

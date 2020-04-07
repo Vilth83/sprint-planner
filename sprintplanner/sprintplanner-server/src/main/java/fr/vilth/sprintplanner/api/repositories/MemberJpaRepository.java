@@ -13,7 +13,7 @@ import fr.vilth.sprintplanner.domain.entities.Member;
  * 
  * @author Thierry VILLEPREUX
  */
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberJpaRepository extends JpaRepository<Member, Long> {
 
     /**
      * Return either the {@code email} is unique or not.

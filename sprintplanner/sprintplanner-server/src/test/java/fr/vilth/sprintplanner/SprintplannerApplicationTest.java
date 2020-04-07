@@ -17,13 +17,13 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringBootTest
 @WebAppConfiguration
 @ContextConfiguration
-public class SprintplannerApplicationTest {
+public class SprintplannerApplicationTest extends SetupIntTest {
 
-	/**
-	 * Should launch the application correctly
-	 */
-	@Test
-	public void contextLoads() {
-		//
-	}
+    /**
+     * Should launch the application correctly
+     */
+    @Test
+    public void contextLoads() {
+	//
+    }
 }
