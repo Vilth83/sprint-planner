@@ -29,6 +29,7 @@ import fr.vilth.sprintplanner.domain.types.Shift;
 public class CandidateControllerTest extends SetupIntTest {
 
     private static final String RELEASER = "releaser";
+
     @Autowired
     private CandidateController controller;
 
@@ -38,12 +39,13 @@ public class CandidateControllerTest extends SetupIntTest {
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto actual = controller.save(dto);
 	assertNotNull(actual);
+	controller.delete(modelMapper.map(actual, CandidateDeleteDto.class));
     }
 
     @Test
     void should_return_candidates() {
 	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
-	assertEquals(3, actual.size());
+	assertEquals(2, actual.size());
     }
 
     @ParameterizedTest
@@ -53,8 +55,7 @@ public class CandidateControllerTest extends SetupIntTest {
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto tested = controller.save(dto);
 	controller.delete(modelMapper.map(tested, CandidateDeleteDto.class));
-	Set<CandidateViewDto> expected = controller
-		.findAllByTaskName(RELEASER);
+	Set<CandidateViewDto> expected = controller.findAllByTaskName(RELEASER);
 	assertEquals(expected.size(), actual.size());
     }
 

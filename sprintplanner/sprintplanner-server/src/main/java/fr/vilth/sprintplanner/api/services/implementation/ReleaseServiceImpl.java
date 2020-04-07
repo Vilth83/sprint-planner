@@ -6,7 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Service;
 
-import fr.vilth.sprintplanner.api.repositories.ReleaseRepository;
+import fr.vilth.sprintplanner.api.repositories.ReleaseJpaRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.api.services.ReleaseService;
@@ -22,13 +22,13 @@ import fr.vilth.sprintplanner.domain.types.Status;
 public class ReleaseServiceImpl extends AbstractService
 	implements ReleaseService {
 
-    private final ReleaseRepository releaseRepository;
+    private final ReleaseJpaRepository releaseRepository;
 
     private final ProjectService projectService;
 
     private final CandidateService candidateService;
 
-    public ReleaseServiceImpl(ReleaseRepository releaseRepository,
+    public ReleaseServiceImpl(ReleaseJpaRepository releaseRepository,
 	    ProjectService projectService, CandidateService candidateService) {
 	this.releaseRepository = releaseRepository;
 	this.projectService = projectService;

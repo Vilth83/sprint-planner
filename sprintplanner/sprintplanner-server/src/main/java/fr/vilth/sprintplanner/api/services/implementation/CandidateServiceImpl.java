@@ -6,7 +6,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import fr.vilth.sprintplanner.api.repositories.CandidateRepository;
+import fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
@@ -29,7 +29,7 @@ import fr.vilth.sprintplanner.domain.types.Status;
 public class CandidateServiceImpl extends AbstractService
 	implements CandidateService {
 
-    private final CandidateRepository candidateRepository;
+    private final CandidateJpaRepository candidateRepository;
 
     /**
      * Protected constructor to autowire needed bean.
@@ -38,7 +38,7 @@ public class CandidateServiceImpl extends AbstractService
      * 
      * @param candidateRepository the injected {@code CandidateRepository}
      */
-    public CandidateServiceImpl(CandidateRepository candidateRepository) {
+    public CandidateServiceImpl(CandidateJpaRepository candidateRepository) {
 	this.candidateRepository = candidateRepository;
     }
 
