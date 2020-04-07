@@ -30,8 +30,9 @@ import fr.vilth.sprintplanner.domain.types.Status;
 @Entity
 @Table(name = "candidates", indexes = {
 	@Index(name = "candidates_member_id_IDX", columnList = "member_id"),
-	@Index(name = "candidates_task_id_IDX", columnList = "task_id"), }, uniqueConstraints = @UniqueConstraint(name = "candidates_member_id_task_id_UNIQUE", columnNames = {
-		"member_id", "task_id" }))
+	@Index(name = "candidates_task_id_IDX", columnList = "task_id")
+}, uniqueConstraints = @UniqueConstraint(name = "candidates_member_id_task_id_UNIQUE", columnNames = {
+	"member_id", "task_id" }))
 public class Candidate extends AbstractEntity {
 
     private static final long serialVersionUID = -1843278774867807209L;
