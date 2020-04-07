@@ -34,8 +34,6 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 public class AuthorizationServerConfig
 	extends AuthorizationServerConfigurerAdapter {
 
-    // Get custom properties from application.properties
-    // Could be different between environments
     @Value("${jwt-auth-server.keyStore}")
     private String keyStore;
 
@@ -51,14 +49,13 @@ public class AuthorizationServerConfig
     @Value("${jwt-auth-server.refreshTokenValiditySeconds}")
     private int refreshTokenValiditySeconds;
 
-    // Defined as Spring bean in WebSecurity
     private final AuthenticationManager authenticationManager;
 
-    // Custom user details service to authenticate users with username and
-    // password from the database
     private final CustomUserDetailsService userDetailsService;
 
-    // Custom token converter to store custom info within access token
+    @Value("${jwt-auth-server.clientPassword}")
+    private String password;
+
     private final CustomAccessTokenConverter customAccessTokenConverter;
 
     protected AuthorizationServerConfig(
@@ -147,8 +144,8 @@ public class AuthorizationServerConfig
     @Override
     public void configure(ClientDetailsServiceConfigurer clients)
 	    throws Exception {
-	clients.inMemory().withClient("my-client-app")
-		.secret(passwordEncoder().encode("")).scopes("trusted")
+	clients.inMemory().withClient("sprintplanner-web")
+		.secret(passwordEncoder().encode(password)).scopes("trusted")
 		.authorizedGrantTypes("password", "refresh_token")
 		.accessTokenValiditySeconds(accessTokenValiditySeconds)
 		.refreshTokenValiditySeconds(refreshTokenValiditySeconds);

@@ -29,7 +29,12 @@ public class CustomUser {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "custom_user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+
+    // @formatter:off
+    @JoinTable(name = "custom_user_role", 
+    joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    // @formatter:on
     private Set<Role> roles;
 
     @Convert(converter = BooleanConverter.class)

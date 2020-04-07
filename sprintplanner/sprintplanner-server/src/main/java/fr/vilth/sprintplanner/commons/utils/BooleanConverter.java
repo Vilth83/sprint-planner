@@ -17,7 +17,10 @@ public class BooleanConverter implements AttributeConverter<Boolean, String> {
 
     @Override
     public String convertToDatabaseColumn(Boolean value) {
-	return Boolean.TRUE.equals(value) ? "T" : "F";
+	if (Boolean.TRUE.equals(value)) {
+	    return "T";
+	}
+	return "F";
     }
 
     @Override
