@@ -1,19 +1,29 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
 <section class="container section">
-  <article>
-    <app-current-candidate task="technical" [shift]="shift"></app-current-candidate>
-  </article>
-  <hr>
-  <article>
-    <app-manage-candidate task="technical" [shift]="shift"></app-manage-candidate>
-  </article>
 
-  <article>
-    <app-current-candidate task="functional" [shift]="shift"></app-current-candidate>
-  </article>
-  <hr>
-  <article>
-    <app-manage-candidate task="functional" [shift]="shift"></app-manage-candidate>
-  </article>
+  <span class="row submenu unselectable" (click)="isTechnicalCollapsed = !isTechnicalCollapsed">
+    technical support<span class="text-right"></span>
+  </span>
+  <div [collapse]="isTechnicalCollapsed">
+    <div>
+      <app-current-candidate task="technical" [shift]="shift"></app-current-candidate>
+    </div>
+
+    <div>
+      <app-manage-candidate task="technical" [shift]="shift"></app-manage-candidate>
+    </div>
+  </div>
+
+  <span class="row submenu unselectable" (click)="isFunctionalCollapsed = !isFunctionalCollapsed">
+    Functional support<span class="text-right"></span>
+  </span>
+  <div [collapse]="isFunctionalCollapsed">
+    <div>
+      <app-current-candidate task="functional" [shift]="shift"></app-current-candidate>
+    </div>
+    <div>
+      <app-manage-candidate task="functional" [shift]="shift"></app-manage-candidate>
+    </div>
+  </div>
 </section>

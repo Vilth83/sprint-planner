@@ -26,6 +26,7 @@ import { TesterComponent } from './routes/tester/tester.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
 import { SupportComponent } from './routes/support/support.component';
 import { ReleaseVersionComponent } from './routes/release-version/release-version.component';
+import { CurrentReleaseComponent } from './routes/release-version/current-release/current-release.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ReleaseVersionComponent } from './routes/release-version/release-versio
     TesterComponent,
     PageHeaderComponent,
     SupportComponent,
-    ReleaseVersionComponent
+    ReleaseVersionComponent,
+    CurrentReleaseComponent
   ],
   imports: [
     BrowserModule,

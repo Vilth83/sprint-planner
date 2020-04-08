@@ -3,10 +3,10 @@ import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from '../../button-renderer.component';
 import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
-import { Member } from 'src/app/models/member.model';
 import { Task } from 'src/app/models/task.model';
 import { Subscription } from 'rxjs';
 import { ERROR_NO_CURRENT_CANDIDATE } from 'src/app/shared/constants';
+import { Shift } from 'src/app/models/shift.model';
 
 @Component({
   selector: 'app-current-candidate',
@@ -20,14 +20,9 @@ export class CurrentCandidateComponent implements OnInit {
   @Input()
   shift: string;
   taskObject: Task;
+  taskTitle: string = "";
 
-  selectedCandidate: number;
-  nonCandidates: Member[] = [];
-
-  gridOptions: GridOptions;
-  rowData: Candidate[];
-  frameworkComponents = {};
-  overlayNoRowsTemplate: string;
+  currentCandidate: String = "";
 
   title: string;
   message: string;
@@ -37,51 +32,36 @@ export class CurrentCandidateComponent implements OnInit {
 
 
   constructor(private http: HttpRequestBuilder) {
-    this.frameworkComponents = {
-      buttonRenderer: ButtonRendererComponent
-    }
-    this.gridOptions = {
-      rowHeight: 50,
-      defaultColDef: { sortable: true, resizable: true },
-      columnDefs: [
-        { headerName: 'id', field: 'id', hide: true },
-        { headerName: 'priority', field: 'priority', editable: true },
-        { headerName: 'firstname', field: 'member.firstname' },
-        { headerName: 'lastname', field: 'member.lastname' },
-        {
-          headerName: 'status',
-          editable: true,
-          field: 'status',
-          cellEditor: 'agSelectCellEditor',
-          cellEditorParams: {
-            values: ['UNAVAILABLE', 'AVAILABLE', 'CURRENT']
-          }
-        }
-      ],
-      onFirstDataRendered: this.sizeColumnsToFit
-    }
-    this.overlayNoRowsTemplate = ERROR_NO_CURRENT_CANDIDATE;
   }
 
-  public sizeColumnsToFit(gridOptions: GridOptions) {
-    gridOptions.api.sizeColumnsToFit();
-  }
 
   public getTask() {
-    this.http.get("/tasks/" + this.task + "/name").subscribe(task =>
-      this.taskObject = task);
+    this.http.get("/tasks/" + this.task + "/name").subscribe(task => {
+      this.taskObject = task;
+      this.taskTitle = task;
+    }
+    );
   }
 
   public getCurrentCandidate() {
     let url = "/candidates/" + this.task + "/current";
+    this.taskTitle = this.getTaskTitle();
     if (this.shift) {
       url += "/" + this.shift;
     }
     this.http.get(url).subscribe((candidate: Candidate) => {
-      this.rowData = [candidate];
-    }, () => {
-      this.gridOptions.api.showNoRowsOverlay();
+      this.currentCandidate = candidate.member.firstname + " " + candidate.member.lastname;
     })
+  }
+
+  private getTaskTitle(): string {
+    if (this.shift == Shift.PAR) {
+      return this.task + ' (Paris)';
+    } else if (this.shift == Shift.BGL) {
+      return this.task + ' (Bangalore)';
+    } else {
+      return this.task;
+    }
   }
 
   ngOnInit() {

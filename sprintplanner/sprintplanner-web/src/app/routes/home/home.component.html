@@ -1,54 +1,83 @@
 <app-page-header title="Sprint Planner" subtitle="Manage your Releases"></app-page-header>
 
-<!-- menu cards -->
+<!--onscreen info-->
 
-  <div class="container section">
-    <div class="row">
 
-      <!-- Releaser -->
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <div class="menu-part text-center">
-          <i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
-          <div class="title">
-            <h1 class="card-title">Release</h1>
-          </div>
-          <div class="text">
-            <span class="card-text">view and manage release and releasers</span>
-          </div>
-          <a routerLink="/releasers" class="btn btn-primary">Releasers</a>
-          <a routerLink="/releases" class="btn btn-primary">Releases</a>
-          <a routerLink="/testers" class="btn btn-primary">Testers</a>
-        </div>
+<div class="container section">
+  <div class="row col-lg-12">
+    <div class="col-lg-12">
+    <app-current-release></app-current-release>
+</div>
+      <div class="col-lg-6">
+        <app-current-candidate task="releaser"></app-current-candidate>
       </div>
-
-      <!-- Support -->
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <div class="menu-part text-center">
-          <i class="fa fa-life-ring fa-3x" aria-hidden="true"></i>
-          <div class="title">
-            <h1 class="card-title">Support</h1>
-          </div>
-          <div class="text">
-            <span class="card-text">view and manage support</span>
-          </div>
-          <a routerLink="/supports/paris" class="btn btn-primary">Paris</a>
-          <a routerLink="/supports/bangalore" class="btn btn-primary">Bangalore</a>
-        </div>
+      <div class="col-lg-6">
+        <app-current-candidate task="tester"></app-current-candidate>
       </div>
-
-      <!-- configuration -->
-      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <div class="menu-part text-center">
-          <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
-          <div class="title">
-            <h1 class="card-title">Configuration</h1>
-          </div>
-          <div class="text">
-            <span class="card-text">Organize members and jobs</span>
-          </div>
-          <a routerLink="/members" class="btn btn-primary">Members</a>
-        </div>
-      </div>
-
     </div>
+
+  <div class="row col-lg-12">
+    <div class="col-lg-6">
+      <app-current-candidate task="functional" shift="PAR"></app-current-candidate>
+    </div>
+    <div class="col-lg-6">
+      <app-current-candidate task="functional" shift="BGL"></app-current-candidate>
+    </div>
+    <div class="col-lg-6">
+      <app-current-candidate task="technical" shift="PAR"></app-current-candidate>
+    </div>
+    <div class="col-lg-6">
+      <app-current-candidate task="technical" shift="BGL"></app-current-candidate>
+    </div>
+  </div>
+</div>
+
+<!-- menu cards -->
+<div class="container section">
+  <div class="row col-lg-12">
+
+    <!-- Releaser -->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="menu-part text-center">
+        <i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
+        <div class="title">
+          <h1 class="card-title">Release</h1>
+        </div>
+        <div class="text">
+          <span class="card-text">view and manage release and releasers</span>
+        </div>
+        <a routerLink="/releasers" class="btn btn-primary">Releasers / Testers</a>
+        <a routerLink="/releases" class="btn btn-primary">Releases</a>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="menu-part text-center">
+        <i class="fa fa-life-ring fa-3x" aria-hidden="true"></i>
+        <div class="title">
+          <h1 class="card-title">Support</h1>
+        </div>
+        <div class="text">
+          <span class="card-text">view and manage support</span>
+        </div>
+        <a routerLink="/supports/paris" class="btn btn-primary">Paris</a>
+        <a routerLink="/supports/bangalore" class="btn btn-primary">Bangalore</a>
+      </div>
+    </div>
+
+    <!-- configuration -->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="menu-part text-center">
+        <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
+        <div class="title">
+          <h1 class="card-title">Configuration</h1>
+        </div>
+        <div class="text">
+          <span class="card-text">Organize members and jobs</span>
+        </div>
+        <a routerLink="/members" class="btn btn-primary">Members</a>
+      </div>
+    </div>
+  </div>
 </div>
