@@ -1,8 +1,4 @@
-<span class="row submenu unselectable"
-      (click)="isModificationCollapsed = !isModificationCollapsed">
-  Manage {{task}}<span class="text-right fa fa-1x fa-angle-down"></span>
-</span>
-<div class="box-part" [collapse]="isModificationCollapsed">
+<div class="box-part">
   <ag-grid-angular
     #agGrid class="ag-theme-material"
     [rowData]="rowData"

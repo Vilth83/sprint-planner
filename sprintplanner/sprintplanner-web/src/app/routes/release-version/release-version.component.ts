@@ -15,7 +15,7 @@ export class ReleaseVersionComponent implements OnInit {
   subtitle: string = RELEASE_VERSION_SUBTITLE;
 
   previousVersions: ReleaseVersion[];
-  currentVersion: ReleaseVersion[];
+  currentVersion: ReleaseVersion;
 
   gridOptions: GridOptions;
   paginationPageSize: number = 5;
@@ -34,7 +34,6 @@ export class ReleaseVersionComponent implements OnInit {
       ],
       onFirstDataRendered: this.sizeColumnsToFit
     }
-    this.getCurrentVersion();
     this.getPreviousVersions();
   }
 
@@ -46,21 +45,14 @@ export class ReleaseVersionComponent implements OnInit {
     gridOptions.api.sizeColumnsToFit();
   }
 
-  public getCurrentVersion() {
-    this.http.get("/releases/last").subscribe((version: ReleaseVersion) => {
-      this.setVersionName(version);
-      this.currentVersion = [version];
-    });
-  }
-
   public getPreviousVersions() {
     this.http.get("/releases").subscribe((versions: ReleaseVersion[]) => {
-      versions.map(version => this.setVersionName(version));
+      versions.map(version => ReleaseVersionComponent.setVersionName(version));
       this.previousVersions = versions;
     });
   }
 
-  private setVersionName(version: ReleaseVersion) {
+  static setVersionName(version: ReleaseVersion) {
     version.versionName = "v" + version.pi + "." + version.sprint + "." + version.week + ".0";
   }
 }

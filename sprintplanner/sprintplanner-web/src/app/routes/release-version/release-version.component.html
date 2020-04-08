@@ -1,22 +1,8 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
+<app-current-release></app-current-release>
 <section class="container section">
-  <span class="row submenu unselectable">Current Version</span>
-  <div class="box-part">
-    <ag-grid-angular
-      #agGrid
-      class="ag-theme-material"
-      [rowData]="currentVersion"
-      [gridOptions]="gridOptions"
-      autoSize=true
-      style="width:100%;"
-      domLayout="autoHeight"
-      [frameworkComponents]="frameworkComponents"
-      [overlayNoRowsTemplate]="overlayNoRowsTemplate">
-    </ag-grid-angular>
-  </div>
-
-  <span class="row submenu unselectable">Previous Versions</span>
+  <span class="row submenu unselectable">All Release Versions</span>
   <div class="box-part">
     <ag-grid-angular
       #agGrid

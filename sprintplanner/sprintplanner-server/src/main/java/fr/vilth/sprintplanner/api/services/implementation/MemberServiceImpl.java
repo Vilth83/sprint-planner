@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import fr.vilth.sprintplanner.api.repositories.MemberRepository;
+import fr.vilth.sprintplanner.api.repositories.MemberJpaRepository;
 import fr.vilth.sprintplanner.api.services.MemberService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
@@ -24,7 +24,7 @@ import fr.vilth.sprintplanner.domain.entities.Member;
 public class MemberServiceImpl extends AbstractService
 	implements MemberService {
 
-    private final MemberRepository memberRepository;
+    private final MemberJpaRepository memberRepository;
 
     /**
      * Protected constructor to autowire needed bean.
@@ -34,7 +34,7 @@ public class MemberServiceImpl extends AbstractService
      * 
      * @param memberRepository the injected {@code MemberRepository}
      */
-    protected MemberServiceImpl(MemberRepository memberRepository) {
+    protected MemberServiceImpl(MemberJpaRepository memberRepository) {
 	this.memberRepository = memberRepository;
     }
 

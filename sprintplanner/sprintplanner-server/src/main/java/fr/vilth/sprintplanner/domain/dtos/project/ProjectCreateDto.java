@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 
 public class ProjectCreateDto {
 
+    private String trigram;
+
     @NotBlank
     private String name;
 
@@ -28,9 +30,9 @@ public class ProjectCreateDto {
 
     @Override
     public String toString() {
-	return "{name=" + name + ", email=" + email + ", piDuration="
-		+ piDuration + ", sprintDuration=" + sprintDuration
-		+ ", githubUser=" + githubUser + ", githubRepo=" + githubRepo
-		+ "}";
+	return "{trigram=" + trigram + ", name=" + name + ", email=" + email
+		+ ", piDuration=" + piDuration + ", sprintDuration="
+		+ sprintDuration + ", githubUser=" + githubUser
+		+ ", githubRepo=" + githubRepo + "}";
     }
 }

@@ -59,8 +59,7 @@ public class ReleaseJob extends AbstractService {
     }
 
     private void rotateSupport(String task) {
-	List<Shift> shifts = Arrays
-		.asList(new Shift[] { Shift.BGL, Shift.PAR });
+	List<Shift> shifts = Arrays.asList(Shift.BGL, Shift.PAR);
 	shifts.forEach(shift -> {
 	    Set<CandidateViewDto> candidates = candidateService
 		    .findAllByTaskAndShift(task, shift);

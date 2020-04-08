@@ -2,7 +2,6 @@
 server:
   port: 80
   servlet:
-      context-path: /api
       jsp:
         registered: false
   error:
@@ -51,4 +50,11 @@ cron:
   config:
     handle-release: "* * * * 1 *"
     handle-support: "* * * * 1 *"
+    
+jwt-auth-server:
+  keyStore: jwt.jks
+  keyPass: 123456
+  keyAlias: jwt
+  accessTokenValiditySeconds: 1800
+  refreshTokenValiditySeconds: 86400
       

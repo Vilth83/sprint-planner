@@ -1,11 +1,27 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
 <section class="container section">
-  <article>
-	   <app-current-candidate task="releaser"></app-current-candidate>
-  </article>
-  <hr>
-  <article>
-    <app-manage-candidate task="releaser"></app-manage-candidate>
-  </article>
+  <span class="row submenu unselectable" (click)="isReleaserCollapsed = !isReleaserCollapsed">
+    Releaser <span class="text-right"></span>
+  </span>
+  <div [collapse]="isReleaserCollapsed">
+    <div>
+      <app-current-candidate task="releaser"></app-current-candidate>
+    </div>
+    <div>
+      <app-manage-candidate task="releaser"></app-manage-candidate>
+    </div>
+  </div>
+
+  <span class="row submenu unselectable" (click)="isTesterCollapsed = !isTesterCollapsed">
+    Non Regression tester <span class="text-right"></span>
+  </span>
+  <div [collapse]="isTesterCollapsed">
+    <div>
+      <app-current-candidate task="tester"></app-current-candidate>
+    </div>
+    <div>
+      <app-manage-candidate task="tester"></app-manage-candidate>
+    </div>
+  </div>
 </section>
