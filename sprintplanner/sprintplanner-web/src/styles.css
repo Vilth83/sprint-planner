@@ -58,7 +58,7 @@ html {
 }
 
 .btn:hover, .btn:active, .btn:focus,
-btn-primary.focus {
+.btn-primary.focus {
   color: white;
   background-color: darkred !important;
   border-color: darkred !important;
