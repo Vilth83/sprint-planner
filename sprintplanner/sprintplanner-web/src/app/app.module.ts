@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
@@ -27,6 +28,9 @@ import { PageHeaderComponent } from './shared/components/page-header/page-header
 import { SupportComponent } from './routes/support/support.component';
 import { ReleaseVersionComponent } from './routes/release-version/release-version.component';
 import { CurrentReleaseComponent } from './routes/release-version/current-release/current-release.component';
+import { ConfigurationComponent } from './routes/configuration/configuration.component';
+import { ProjectConfigurationComponent } from './routes/configuration/project-configuration/project-configuration.component';
+import { JobConfigurationComponent } from './routes/configuration/job-configuration/job-configuration.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { CurrentReleaseComponent } from './routes/release-version/current-releas
     PageHeaderComponent,
     SupportComponent,
     ReleaseVersionComponent,
-    CurrentReleaseComponent
+    CurrentReleaseComponent,
+    ConfigurationComponent,
+    ProjectConfigurationComponent,
+    JobConfigurationComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,7 @@ import { CurrentReleaseComponent } from './routes/release-version/current-releas
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    TooltipModule.forRoot(),
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent])

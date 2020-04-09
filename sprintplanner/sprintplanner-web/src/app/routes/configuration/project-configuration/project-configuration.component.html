@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-sm-12">
+    <span class="row submenu unselectable" (click)="isProjectConfigCollapsed = !isProjectConfigCollapsed">
+      Project configuration</span>
+    <div [collapse]="isProjectConfigCollapsed">
+      <div class="info-part text-center">
+        <form class="row">
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">Project name
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6" type="text" name="name" [(ngModel)]="project.name">
+          </label>
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">Planner email
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6 " type="email" name="email" [(ngModel)]="project.email">
+          </label>
+
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">PI duration
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6" type="number" name="piDuration" [(ngModel)]="project.piDuration">
+          </label>
+
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">Sprint duration
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6" type="number" name="sprintDuration" [(ngModel)]="project.sprintDuration">
+          </label>
+
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">Github User
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6" type="text" name="githubUser" [(ngModel)]="project.githubUser">
+          </label>
+
+          <label class="col-lg-6 col-sm-12 col-xs-12 text-left">
+            <span class="col-lg-6 col-sm-6 col-xs-6">Github Repository
+              <span class="fa fa-info-circle" tooltip="to be defined"></span>
+            </span>
+            <input class="col-lg-6 col-sm-6 col-xs-6" type="text" name="githubRepo" [(ngModel)]="project.githubRepo">
+
+          </label>
+          <div class="col text-center">
+            <button class="btn btn-small btn-primary fa fa-save" (click)="saveProject(project)"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

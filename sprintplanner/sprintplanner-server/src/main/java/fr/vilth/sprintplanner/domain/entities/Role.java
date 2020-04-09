@@ -13,6 +13,8 @@ import fr.vilth.sprintplanner.commons.utils.BooleanConverter;
 @Table(name = "roles", uniqueConstraints = @UniqueConstraint(name = "roles_code_UNIQUE", columnNames = "code"))
 public class Role extends AbstractEntity {
 
+    private static final long serialVersionUID = -7736465755017636243L;
+
     @Column(length = 256, nullable = false)
     private String code;
 

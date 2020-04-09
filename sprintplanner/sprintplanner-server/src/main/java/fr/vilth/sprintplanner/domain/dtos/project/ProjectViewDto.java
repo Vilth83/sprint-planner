@@ -2,6 +2,8 @@ package fr.vilth.sprintplanner.domain.dtos.project;
 
 public class ProjectViewDto {
 
+    private Long id;
+
     private String trigram;
 
     private String name;

@@ -22,7 +22,7 @@ export class CurrentCandidateComponent implements OnInit {
   taskObject: Task;
   taskTitle: string = "";
 
-  currentCandidate: String = "";
+  currentCandidate: string = "";
 
   title: string;
   message: string;

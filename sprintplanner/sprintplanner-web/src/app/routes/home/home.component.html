@@ -5,29 +5,30 @@
 
 <div class="container section">
   <div class="row col-lg-12">
-    <div class="col-lg-12">
-    <app-current-release></app-current-release>
-</div>
-      <div class="col-lg-6">
-        <app-current-candidate task="releaser"></app-current-candidate>
+    <div class="info-part text-center col-lg-12">
+      <app-current-release></app-current-release>
+    </div>
+    <div class="info-part text-left col-lg-12">
+      <div class="row col-lg-12">
+        <div class="col-lg-6">
+          <app-current-candidate task="releaser"></app-current-candidate>
+        </div>
+        <div class="col-lg-6">
+          <app-current-candidate task="tester"></app-current-candidate>
+        </div>
+        <div class="col-lg-6">
+          <app-current-candidate task="functional" shift="PAR"></app-current-candidate>
+        </div>
+        <div class="col-lg-6">
+          <app-current-candidate task="functional" shift="BGL"></app-current-candidate>
+        </div>
+        <div class="col-lg-6">
+          <app-current-candidate task="technical" shift="PAR"></app-current-candidate>
+        </div>
+        <div class="col-lg-6">
+          <app-current-candidate task="technical" shift="BGL"></app-current-candidate>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <app-current-candidate task="tester"></app-current-candidate>
-      </div>
-    </div>
-
-  <div class="row col-lg-12">
-    <div class="col-lg-6">
-      <app-current-candidate task="functional" shift="PAR"></app-current-candidate>
-    </div>
-    <div class="col-lg-6">
-      <app-current-candidate task="functional" shift="BGL"></app-current-candidate>
-    </div>
-    <div class="col-lg-6">
-      <app-current-candidate task="technical" shift="PAR"></app-current-candidate>
-    </div>
-    <div class="col-lg-6">
-      <app-current-candidate task="technical" shift="BGL"></app-current-candidate>
     </div>
   </div>
 </div>
@@ -77,6 +78,8 @@
           <span class="card-text">Organize members and jobs</span>
         </div>
         <a routerLink="/members" class="btn btn-primary">Members</a>
+        <a routerLink="/configuration" class="btn btn-primary">Project</a>
+
       </div>
     </div>
   </div>
