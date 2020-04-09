@@ -27,7 +27,9 @@ public class ProjectServiceImpl extends AbstractService
 
     @Override
     public EntityIdDto save(@Valid ProjectCreateDto inputs) {
-	Project project = modelMapper.map(inputs, Project.class);
+	Project project = projectRepository
+		.findByTrigram(inputs.getTrigram());
+	modelMapper.map(inputs, project);
 	project = projectRepository.save(project);
 	return modelMapper.map(project, EntityIdDto.class);
     }

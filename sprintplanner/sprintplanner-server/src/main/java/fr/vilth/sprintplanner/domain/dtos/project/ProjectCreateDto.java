@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank;
 
 public class ProjectCreateDto {
 
+    private Long id;
+
     private String trigram;
 
     @NotBlank
@@ -34,5 +36,9 @@ public class ProjectCreateDto {
 		+ ", piDuration=" + piDuration + ", sprintDuration="
 		+ sprintDuration + ", githubUser=" + githubUser
 		+ ", githubRepo=" + githubRepo + "}";
+    }
+
+    public String getTrigram() {
+	return trigram;
     }
 }
