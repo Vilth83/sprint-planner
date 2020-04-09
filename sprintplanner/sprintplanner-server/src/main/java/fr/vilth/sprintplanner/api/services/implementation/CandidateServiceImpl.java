@@ -98,7 +98,7 @@ public class CandidateServiceImpl extends AbstractService
 	candidateRepository.saveAll(candidates);
     }
 
-    private void rotate(Set<Candidate> candidates) {
+    private static void rotate(Set<Candidate> candidates) {
 	candidates.forEach(candidate -> {
 	    if (candidate.getStatus().equals(Status.CURRENT)) {
 		candidate.becomesPrevious();

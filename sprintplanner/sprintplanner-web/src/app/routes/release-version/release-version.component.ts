@@ -47,7 +47,7 @@ export class ReleaseVersionComponent implements OnInit {
 
   public getPreviousVersions() {
     this.http.get("/releases").subscribe((versions: ReleaseVersion[]) => {
-      versions.map(version => ReleaseVersionComponent.setVersionName(version));
+      versions.forEach(version => ReleaseVersionComponent.setVersionName(version));
       this.previousVersions = versions;
     });
   }
