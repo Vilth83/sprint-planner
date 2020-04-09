@@ -26,4 +26,8 @@ export class HttpRequestBuilder {
     return this.http.request('delete', this.baseUrl + endpoint, { body: inputs });
   }
 
+  public patch(endpoint: string, object: any): Observable<any> {
+    return this.http.patch(this.baseUrl + endpoint, object);
+  }
+
 }

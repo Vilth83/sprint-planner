@@ -11,6 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { UiSwitchModule } from 'ngx-ui-switch';
 import { RouterModule } from '@angular/router';
 import { routes } from './app-routing.module';
 import { HomeComponent } from './routes/home/home.component';
@@ -54,6 +55,7 @@ import { JobConfigurationComponent } from './routes/configuration/job-configurat
     JobConfigurationComponent
   ],
   imports: [
+    UiSwitchModule,
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),

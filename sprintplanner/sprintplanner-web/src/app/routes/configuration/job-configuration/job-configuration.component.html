@@ -1,14 +1,54 @@
 <div class="row">
   <div class="col-sm-12">
-    <span class="row submenu unselectable" (click)="isJobConfigCollapsed = !isJobConfigCollapsed">
-      Job activation</span>
-    <div [collapse]="isJobConfigCollapsed">
-      <!-- to be implemented -->
-      <p>
-        job-configuration works!
-      </p>
-      <p>Still implementation is in progress...</p>
+    <div class="info-part text-center">
+      <span class="{{icon}}"></span>
+      <div class="title">
+        <h4>{{job}}</h4>
+      </div>
 
+      <div class="row toggle-part">
+        <!-- releaser -->
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="text-center">
+            <div class="title">
+              <h4>Releaser</h4>
+            </div>
+            <div class="text">
+              <span>activate / deactivate releaser {{job}}</span>
+            </div>
+            <ui-switch defaultBgColor="#FD6969" checkedLabel="activated" uncheckedLabel="deactivated" [checked]="releaserStatus" (valueChange)="activate($event, 'releaser')">
+            </ui-switch>
+          </div>
+        </div>
+
+        <!-- tester -->
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="text-center">
+            <div class="title">
+              <h4>tester</h4>
+            </div>
+            <div class="text">
+              <span>activate / deactivate tester {{job}}</span>
+            </div>
+            <ui-switch defaultBgColor="#FD6969" checkedLabel="activated" uncheckedLabel="deactivated" [checked]="testerStatus" (valueChange)="activate($event, 'tester')">
+            </ui-switch>
+          </div>
+        </div>
+
+        <!-- support -->
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+          <div class="text-center">
+            <div class="title">
+              <h4>support</h4>
+            </div>
+            <div class="text">
+              <span>activate / deactivate support {{job}}</span>
+            </div>
+            <ui-switch defaultBgColor="#FD6969" checkedLabel="activated" uncheckedLabel="deactivated" [checked]="supportStatus" (valueChange)="activate($event, 'support')">
+            </ui-switch>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

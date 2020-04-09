@@ -30,7 +30,8 @@
     "rxjs": "~6.3.3",
     "ts-helpers": "^1.1.2",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "ngx-ui-switch": "^8.2.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.9",
