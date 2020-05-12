@@ -65,19 +65,14 @@ public interface CandidateService {
      */
     void delete(CandidateDeleteDto candidate);
 
-    CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
-	    Status status);
-
     void rotateCandidates(Set<CandidateViewDto> inputs);
 
-    CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(String task,
+    CandidateViewDto findFirstByTaskNameAndStatusAndMemberShift(String task,
 	    Status current, Shift shift);
 
     Set<CandidateViewDto> findAllByTaskAndShift(String taskName, Shift shift);
 
     String findCandidateFullNameByTaskAndStatus(String taskName, Status shift);
-
-    void setToCurrent(String taskName, CandidateUpdateDto inputs, Long id);
 
     void setToCurrent(String taskName, @Valid CandidateUpdateDto inputs,
 	    Long id, Shift shift);

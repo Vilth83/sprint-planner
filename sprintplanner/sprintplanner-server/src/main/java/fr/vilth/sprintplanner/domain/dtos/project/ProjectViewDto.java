@@ -37,4 +37,8 @@ public class ProjectViewDto {
     public int getPiDuration() {
 	return piDuration;
     }
+
+    public String getEmail() {
+	return email;
+    }
 }

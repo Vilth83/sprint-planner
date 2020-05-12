@@ -50,7 +50,7 @@ export class CurrentCandidateComponent implements OnInit {
     let url = "/candidates/" + this.task + "/current";
     this.taskTitle = this.getTaskTitle();
     if (this.shift) {
-      url += "/" + this.shift;
+      url += "?shift=" + this.shift;
     }
     this.http.get(url).subscribe((candidate: Candidate) => {
       this.currentCandidate = candidate;
@@ -62,7 +62,7 @@ export class CurrentCandidateComponent implements OnInit {
     let url = "/candidates/" + this.task + "/available";
     this.taskTitle = this.getTaskTitle();
     if (this.shift) {
-      url += "/" + this.shift;
+      url += "?shift=" + this.shift;
     }
     this.http.get(url).subscribe((candidate: Candidate) => {
       console.log(candidate)

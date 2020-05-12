@@ -86,15 +86,8 @@ public class CandidateController {
     @PutMapping("/{id}/current")
     public void setToCurrent(@RequestParam String taskName,
 	    @Valid @RequestBody CandidateUpdateDto inputs,
-	    @PathVariable Long id) {
-	candidateService.setToCurrent(taskName, inputs, id);
-    }
-
-    // for support
-    @PutMapping("/{id}/current/{shift}/shift")
-    public void setToCurrent(@RequestParam String taskName,
-	    @Valid @RequestBody CandidateUpdateDto inputs,
-	    @PathVariable Long id, @PathVariable Shift shift) {
+	    @PathVariable Long id,
+	    @RequestParam(required = false) Shift shift) {
 	candidateService.setToCurrent(taskName, inputs, id, shift);
     }
 
@@ -110,30 +103,16 @@ public class CandidateController {
     }
 
     @GetMapping("/{task}/current")
-    public CandidateViewDto getCurrentByTask(@PathVariable String task) {
-	return candidateService.findFirstByTaskNameAndStatus(task,
-		Status.CURRENT);
-    }
-
-    // for support
-    @GetMapping("/{task}/current/{shift}")
     public CandidateViewDto getCurrentByTask(@PathVariable String task,
-	    @PathVariable Shift shift) {
-	return candidateService.findFirstByTaskNameAndMemberShiftAndStatus(task,
+	    @RequestParam(required = false) Shift shift) {
+	return candidateService.findFirstByTaskNameAndStatusAndMemberShift(task,
 		Status.CURRENT, shift);
     }
 
     @GetMapping("/{task}/available")
-    public CandidateViewDto getFirstAvailableByTask(@PathVariable String task) {
-	return candidateService.findFirstByTaskNameAndStatus(task,
-		Status.AVAILABLE);
-    }
-
-    // for support
-    @GetMapping("/{task}/available/{shift}")
     public CandidateViewDto getFirstAvailableByTask(@PathVariable String task,
-	    @PathVariable Shift shift) {
-	return candidateService.findFirstByTaskNameAndMemberShiftAndStatus(task,
+	    @RequestParam(required = false) Shift shift) {
+	return candidateService.findFirstByTaskNameAndStatusAndMemberShift(task,
 		Status.AVAILABLE, shift);
     }
 

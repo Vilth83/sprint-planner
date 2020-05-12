@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner;
+package fr.vilth.sprintplanner.jobs;
 
 import java.util.Arrays;
 import java.util.List;

@@ -25,6 +25,10 @@ public class MemberViewDto {
 	// private empty no-arg constructor
     }
 
+    public String buildFullName() {
+	return firstname + " " + lastname;
+    }
+
     @Override
     public String toString() {
 	return "{id=" + id + ", firstname=" + firstname + ", lastname="

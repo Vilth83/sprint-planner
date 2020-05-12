@@ -81,17 +81,6 @@ public class CandidateServiceImpl extends AbstractService
     }
 
     @Override
-    public CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
-	    Status status) {
-	Optional<Candidate> option = candidateRepository
-		.findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
-			status);
-	return option
-		.map(candidate -> convert(candidate, CandidateViewDto.class))
-		.orElseThrow(ResourceNotFoundException::new);
-    }
-
-    @Override
     public void rotateCandidates(Set<CandidateViewDto> inputs) {
 	Set<Candidate> candidates = convertSet(inputs, Candidate.class);
 	candidates.forEach(Candidate::incrementPriority);
@@ -114,19 +103,23 @@ public class CandidateServiceImpl extends AbstractService
 		.ifPresent(Candidate::becomesCurrent);
     }
 
-    // for support
     @Override
-    public CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(
+    public CandidateViewDto findFirstByTaskNameAndStatusAndMemberShift(
 	    String task, Status current, Shift shift) {
-	Optional<Candidate> candidate = candidateRepository
-		.findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
-			task, current,
-			shift);
+	Optional<Candidate> candidate;
+	if (shift != null) {
+	    candidate = candidateRepository
+		    .findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
+			    task, current, shift);
+	} else {
+	    candidate = candidateRepository
+		    .findFirstByTaskNameAndStatusOrderByPriorityDesc(
+			    task, current);
+	}
 	return candidate.map(elt -> convert(elt, CandidateViewDto.class))
 		.orElseThrow(ResourceNotFoundException::new);
     }
 
-    // For support
     @Override
     public Set<CandidateViewDto> findAllByTaskAndShift(String taskName,
 	    Shift shift) {
@@ -144,21 +137,18 @@ public class CandidateServiceImpl extends AbstractService
 
     @Override
     public void setToCurrent(String taskName, CandidateUpdateDto inputs,
-	    Long id) {
-	Optional<Candidate> current = candidateRepository
-		.findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
-			Status.CURRENT);
-	current.ifPresent(this::saveAsUnavailable);
-	update(inputs, id);
-    }
-
-    @Override
-    public void setToCurrent(String taskName, CandidateUpdateDto inputs,
 	    Long id, Shift shift) {
-	Optional<Candidate> current = candidateRepository
-		.findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
-			taskName,
-			Status.CURRENT, shift);
+	Optional<Candidate> current;
+	if (shift == null) {
+	    current = candidateRepository
+		    .findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
+			    Status.CURRENT);
+	} else {
+	    current = candidateRepository
+		    .findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
+			    taskName,
+			    Status.CURRENT, shift);
+	}
 	current.ifPresent(this::saveAsUnavailable);
 	update(inputs, id);
     }

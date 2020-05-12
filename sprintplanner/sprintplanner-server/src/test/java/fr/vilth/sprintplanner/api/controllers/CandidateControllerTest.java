@@ -74,14 +74,14 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_current_candidate() {
-	CandidateViewDto expected = controller.getCurrentByTask("tester");
+	CandidateViewDto expected = controller.getCurrentByTask("tester", null);
 	assertTrue(expected.toString().contains("status=CURRENT"));
     }
 
     @Test
     void should_return_current_candidate_not_found() {
 	Assertions.assertThrows(ResourceNotFoundException.class,
-		() -> controller.getCurrentByTask("notask"));
+		() -> controller.getCurrentByTask("notask", null));
     }
 
     @Test

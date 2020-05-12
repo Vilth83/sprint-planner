@@ -50,7 +50,7 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
     List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
 	    Shift shift);
 
-    Optional<Candidate> findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
+    Optional<Candidate> findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
 	    String task,
 	    Status current, Shift shift);
 
