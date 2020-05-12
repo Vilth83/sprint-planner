@@ -1,12 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GridOptions } from 'ag-grid-community';
-import { ButtonRendererComponent } from '../../button-renderer.component';
 import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Task } from 'src/app/models/task.model';
 import { Subscription } from 'rxjs';
-import { ERROR_NO_CURRENT_CANDIDATE } from 'src/app/shared/constants';
 import { Shift } from 'src/app/models/shift.model';
+import { Config } from 'src/app/shared/services/config';
 
 @Component({
   selector: 'app-current-candidate',
@@ -36,11 +34,10 @@ export class CurrentCandidateComponent implements OnInit {
 
 
   public getTask() {
-    this.http.get("/tasks/" + this.task + "/name").subscribe(task => {
+    this.http.get(Config.endpoints.tasks + '/' + this.task + "/name").subscribe(task => {
       this.taskObject = task;
       this.taskTitle = task;
-    }
-    );
+    });
   }
 
   public getCurrentCandidate() {

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ReleaseVersion } from 'src/app/models/releaseVersion.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { ReleaseVersionComponent } from '../release-version.component';
+import { Config } from 'src/app/shared/services/config';
 
 @Component({
   selector: 'app-current-release',
@@ -20,7 +21,7 @@ export class CurrentReleaseComponent implements OnInit {
   }
 
   public getCurrentVersion() {
-    this.http.get("/releases/last").subscribe((version: ReleaseVersion) => {
+    this.http.get(Config.endpoints.releases.last).subscribe((version: ReleaseVersion) => {
       ReleaseVersionComponent.setVersionName(version);
       this.currentVersion = version;
     });

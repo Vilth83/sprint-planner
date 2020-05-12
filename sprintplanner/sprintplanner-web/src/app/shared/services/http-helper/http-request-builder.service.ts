@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { Config } from '../config';
 @Injectable({
   providedIn: 'root',
 })
 export class HttpRequestBuilder {
 
-  private baseUrl: string = "http://localhost:8081/api";
+  private baseUrl: string = Config.uris.api
 
   constructor(private http: HttpClient) { }
 
@@ -30,4 +31,9 @@ export class HttpRequestBuilder {
     return this.http.patch(this.baseUrl + endpoint, object);
   }
 
+  public unsubscribe(subscription: Subscription): void {
+    if(subscription) {
+      subscription.unsubscribe();
+    }
+  }
 }

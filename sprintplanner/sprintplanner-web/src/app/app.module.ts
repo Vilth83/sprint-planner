@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -17,10 +17,10 @@ import { routes } from './app-routing.module';
 import { HomeComponent } from './routes/home/home.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MemberComponent } from './routes/member/member.component';
-import { InformationModalComponent } from './shared/components/information-modal/information-modal.component';
+import { InformationModalComponent } from './shared/modals/information-modal/information-modal.component';
 import { MemberModificationComponent } from './routes/member/member-modification/member-modification.component';
 import { ButtonRendererComponent } from './shared/components/button-renderer.component';
-import { ConfirmationModalComponent } from './shared/components/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from './shared/modals/confirmation-modal/confirmation-modal.component';
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { ManageCandidateComponent } from './shared/components/candidate/manage-candidate/manage-candidate.component';
 import { CurrentCandidateComponent } from './shared/components/candidate/current-candidate/current-candidate.component';
@@ -32,6 +32,8 @@ import { CurrentReleaseComponent } from './routes/release-version/current-releas
 import { ConfigurationComponent } from './routes/configuration/configuration.component';
 import { ProjectConfigurationComponent } from './routes/configuration/project-configuration/project-configuration.component';
 import { JobConfigurationComponent } from './routes/configuration/job-configuration/job-configuration.component';
+import { LoginModalComponent } from './shared/modals/login-modal/login-modal.component';
+import { TokenInterceptor } from './shared/services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { JobConfigurationComponent } from './routes/configuration/job-configurat
     CurrentReleaseComponent,
     ConfigurationComponent,
     ProjectConfigurationComponent,
-    JobConfigurationComponent
+    JobConfigurationComponent,
+    LoginModalComponent
   ],
   imports: [
     UiSwitchModule,
@@ -69,7 +72,11 @@ import { JobConfigurationComponent } from './routes/configuration/job-configurat
     CollapseModule.forRoot(),
     AgGridModule.withComponents([ButtonRendererComponent])
   ],
-  providers: [],
+  providers: [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

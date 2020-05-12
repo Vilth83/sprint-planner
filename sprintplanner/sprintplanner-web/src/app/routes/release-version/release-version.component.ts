@@ -3,6 +3,7 @@ import { GridOptions } from 'ag-grid-community';
 import { ReleaseVersion } from 'src/app/models/releaseVersion.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { RELEASE_VERSION_TITLE, RELEASE_VERSION_SUBTITLE } from 'src/app/shared/header-titles';
+import { Config } from 'src/app/shared/services/config';
 
 @Component({
   selector: 'app-release-version',
@@ -46,7 +47,7 @@ export class ReleaseVersionComponent implements OnInit {
   }
 
   public getPreviousVersions() {
-    this.http.get("/releases").subscribe((versions: ReleaseVersion[]) => {
+    this.http.get(Config.endpoints.releases.all).subscribe((versions: ReleaseVersion[]) => {
       versions.forEach(version => ReleaseVersionComponent.setVersionName(version));
       this.previousVersions = versions;
     });

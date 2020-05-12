@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { JobUpdateDto } from 'src/app/models/job-update-dto.model';
+import { Config } from 'src/app/shared/services/config';
+import { JobStatus } from 'src/app/models/job-status.model';
+import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 
 @Component({
   selector: 'app-job-configuration',
@@ -12,7 +14,7 @@ export class JobConfigurationComponent implements OnInit {
   releaserStatus: boolean;
   testerStatus: boolean;
   supportStatus: boolean;
-  private url : string;
+  private endpoint : string;
   @Input() job : string = "";
   @Input() icon = "";
 
@@ -20,27 +22,27 @@ export class JobConfigurationComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url = "/jobs/" + this.job;
+    this.endpoint = Config.endpoints.job + '/' + this.job
     this.getJobStatuses();
 
   }
 
   private getJobStatuses() {
-    this.http.get(this.url + "?task=releaser" ).subscribe(status =>
-      this.releaserStatus = status.active
+    this.http.get(this.endpoint + Config.tasks.releaser).subscribe((job: JobStatus) =>
+      this.releaserStatus = job.active
     )
 
-    this.http.get(this.url + "?task=support").subscribe(status =>
-      this.supportStatus = status.active
+    this.http.get(this.endpoint + Config.tasks.support).subscribe((job: JobStatus) =>
+      this.supportStatus = job.active
     )
 
-    this.http.get(this.url + "?task=tester").subscribe(status =>
-      this.testerStatus = status.active
+    this.http.get(this.endpoint + Config.tasks.tester).subscribe((job: JobStatus) =>
+      this.testerStatus = job.active
     )
   }
 
 
-  activate($event, task: string) {
+  activate(_$event: any, task: string) {
     this.toggleJob(task);
   }
 

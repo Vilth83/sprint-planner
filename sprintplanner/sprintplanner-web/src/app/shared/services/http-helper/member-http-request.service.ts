@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpRequestBuilder } from './http-request-builder.service';
 import { Member } from 'src/app/models/member.model';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MemberDeleteDto } from 'src/app/models/memberDeleteDto.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MemberHttpRequest {
-
-
-  public unsubscribe(subscription: Subscription): void {
-    if(subscription) {
-      subscription.unsubscribe();
-    }
-  }
 
   private endpoint = "/members";
 

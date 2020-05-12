@@ -33,8 +33,13 @@
   </div>
 </div>
 
+
+
+<!-- if logged in -->
+<ng-template #guest> Log in or sign up to access resources </ng-template>
+<!-- User / Admin Role -->
 <!-- menu cards -->
-<div class="container section">
+<div *ngIf="isAuthenticated; else guest" class="container section">
   <div class="row col-lg-12">
 
     <!-- Releaser -->
@@ -67,6 +72,7 @@
       </div>
     </div>
 
+<!-- only admin -->
     <!-- configuration -->
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       <div class="menu-part text-center">

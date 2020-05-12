@@ -58,7 +58,7 @@ public class CandidateController {
 
     /**
      * Returns a {@code Set} of {@code Candidate} by given {@code Task} name.
-     * 
+     *
      * @param taskName the name of the given {@code Task}
      * @return a {@code Set} of {@code Candidate}
      */
