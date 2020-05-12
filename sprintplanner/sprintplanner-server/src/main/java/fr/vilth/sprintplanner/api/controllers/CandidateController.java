@@ -123,6 +123,20 @@ public class CandidateController {
 		Status.CURRENT, shift);
     }
 
+    @GetMapping("/{task}/available")
+    public CandidateViewDto getFirstAvailableByTask(@PathVariable String task) {
+	return candidateService.findFirstByTaskNameAndStatus(task,
+		Status.AVAILABLE);
+    }
+
+    // for support
+    @GetMapping("/{task}/available/{shift}")
+    public CandidateViewDto getFirstAvailableByTask(@PathVariable String task,
+	    @PathVariable Shift shift) {
+	return candidateService.findFirstByTaskNameAndMemberShiftAndStatus(task,
+		Status.AVAILABLE, shift);
+    }
+
     @GetMapping("/{taskName}/shift/{shift}")
     public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
 	    @PathVariable String taskName, @PathVariable Shift shift) {

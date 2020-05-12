@@ -84,7 +84,8 @@ public class CandidateServiceImpl extends AbstractService
     public CandidateViewDto findFirstByTaskNameAndStatus(String taskName,
 	    Status status) {
 	Optional<Candidate> option = candidateRepository
-		.findFirstBytaskNameAndStatus(taskName, status);
+		.findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
+			status);
 	return option
 		.map(candidate -> convert(candidate, CandidateViewDto.class))
 		.orElseThrow(ResourceNotFoundException::new);
@@ -118,7 +119,8 @@ public class CandidateServiceImpl extends AbstractService
     public CandidateViewDto findFirstByTaskNameAndMemberShiftAndStatus(
 	    String task, Status current, Shift shift) {
 	Optional<Candidate> candidate = candidateRepository
-		.findFirstByTaskNameAndStatusAndMemberShift(task, current,
+		.findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
+			task, current,
 			shift);
 	return candidate.map(elt -> convert(elt, CandidateViewDto.class))
 		.orElseThrow(ResourceNotFoundException::new);
@@ -144,7 +146,8 @@ public class CandidateServiceImpl extends AbstractService
     public void setToCurrent(String taskName, CandidateUpdateDto inputs,
 	    Long id) {
 	Optional<Candidate> current = candidateRepository
-		.findFirstBytaskNameAndStatus(taskName, Status.CURRENT);
+		.findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
+			Status.CURRENT);
 	current.ifPresent(this::saveAsUnavailable);
 	update(inputs, id);
     }
@@ -153,7 +156,8 @@ public class CandidateServiceImpl extends AbstractService
     public void setToCurrent(String taskName, CandidateUpdateDto inputs,
 	    Long id, Shift shift) {
 	Optional<Candidate> current = candidateRepository
-		.findFirstByTaskNameAndStatusAndMemberShift(taskName,
+		.findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
+			taskName,
 			Status.CURRENT, shift);
 	current.ifPresent(this::saveAsUnavailable);
 	update(inputs, id);

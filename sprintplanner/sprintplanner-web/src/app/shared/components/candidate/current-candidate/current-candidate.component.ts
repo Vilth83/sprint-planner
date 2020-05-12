@@ -2,9 +2,12 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Task } from 'src/app/models/task.model';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { Shift } from 'src/app/models/shift.model';
 import { Config } from 'src/app/shared/services/config';
+import { CandidateEditorDto } from 'src/app/models/candidate-edit-dto.model';
+import { Status } from 'src/app/models/status.model';
+import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
 
 @Component({
   selector: 'app-current-candidate',
@@ -20,7 +23,8 @@ export class CurrentCandidateComponent implements OnInit {
   taskObject: Task;
   taskTitle: string = "";
 
-  currentCandidate: string = "";
+  currentCandidate: Candidate;
+  currentCandidateName: string = "";
 
   title: string;
   message: string;
@@ -28,8 +32,10 @@ export class CurrentCandidateComponent implements OnInit {
   candidateEditionSubscription: Subscription;
   deleteMemberSubscription: Subscription;
 
+  private endpoint = "/candidates";
 
-  constructor(private http: HttpRequestBuilder) {
+
+  constructor(private http: HttpRequestBuilder, private candidateService: CandidateHttpRequest) {
   }
 
 
@@ -47,7 +53,24 @@ export class CurrentCandidateComponent implements OnInit {
       url += "/" + this.shift;
     }
     this.http.get(url).subscribe((candidate: Candidate) => {
-      this.currentCandidate = candidate.member.firstname + " " + candidate.member.lastname;
+      this.currentCandidate = candidate;
+      this.currentCandidateName = candidate.member.firstname + " " + candidate.member.lastname;
+    })
+  }
+
+  public getAvailableCandidate(): void {
+    let url = "/candidates/" + this.task + "/available";
+    this.taskTitle = this.getTaskTitle();
+    if (this.shift) {
+      url += "/" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
+      console.log(candidate)
+      const updateCandidate ={ id: candidate.id, priority: candidate.priority, status: Status.CURRENT };
+      this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
+      .subscribe(
+        ()=> this.ngOnInit()
+      );
     })
   }
 
@@ -60,6 +83,7 @@ export class CurrentCandidateComponent implements OnInit {
       return this.task;
     }
   }
+
 
   ngOnInit() {
     this.getCurrentCandidate();

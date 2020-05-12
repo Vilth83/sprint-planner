@@ -43,13 +43,15 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      */
     boolean existsByMemberId(Long id);
 
-    Optional<Candidate> findFirstBytaskNameAndStatus(String taskName,
+    Optional<Candidate> findFirstByTaskNameAndStatusOrderByPriorityDesc(
+	    String taskName,
 	    Status status);
 
     List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
 	    Shift shift);
 
-    Optional<Candidate> findFirstByTaskNameAndStatusAndMemberShift(String task,
+    Optional<Candidate> findFirstByTaskNameAndMemberShiftAndStatusOrderByPriorityDesc(
+	    String task,
 	    Status current, Shift shift);
 
     @Query("select concat(m.firstname, ' ', m.lastname) from Member m "
