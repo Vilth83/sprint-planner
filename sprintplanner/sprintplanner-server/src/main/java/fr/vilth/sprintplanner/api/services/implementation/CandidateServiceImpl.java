@@ -158,4 +158,12 @@ public class CandidateServiceImpl extends AbstractService
 	update(modelMapper.map(candidate, CandidateUpdateDto.class),
 		candidate.getId());
     }
+
+    @Override
+    public String findCandidateFullNameByTaskAndStatusAndShift(String taskName,
+	    Status status, Shift shift) {
+	return candidateRepository.findMemberNameByTaskAndStatusAndShift(
+		taskName,
+		status, shift);
+    }
 }

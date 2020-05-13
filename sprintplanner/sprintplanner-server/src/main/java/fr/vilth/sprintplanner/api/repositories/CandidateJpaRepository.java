@@ -59,4 +59,11 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
 	    + "join Task t on t.id = c.task "
 	    + "where t.name = :taskName and c.status = :status")
     String findMemberNameByTaskAndStatus(String taskName, Status status);
+
+    @Query("select concat(m.firstname, ' ', m.lastname) from Member m "
+	    + "join Candidate c on m.id = c.member "
+	    + "join Task t on t.id = c.task "
+	    + "where t.name = :taskName and c.status = :status and m.shift = :shift")
+    String findMemberNameByTaskAndStatusAndShift(String taskName, Status status,
+	    Shift shift);
 }

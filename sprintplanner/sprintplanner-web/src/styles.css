@@ -18,18 +18,12 @@ html {
   padding: 5% 10%;
 }
 
-.toggle-part {
-  margin: 1% 0;
-  background-color: white;
-  padding: 5% 10%;
-}
-
 .info-part {
   margin: 1% 0;
   border-radius: 0;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  padding: 2% 2%;
+  padding: 5% 2%;
   height: 90%;
 }
 

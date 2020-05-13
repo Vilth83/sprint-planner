@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	</head>
+	<body>
+		<p>Dear <span th:text="${releaser}"></span> and <span th:text="${tester}"></span></p>
+		<div>
+			<p>You have been selected to proceed the next release.<p>
+			<p><span th:text="${releaser}"></span> will take the deployement in charge, and <span th:text="${tester}"></span> will do the non regression tests.</p>
+		</div>
+	</body>
+</html>

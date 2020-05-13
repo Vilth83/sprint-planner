@@ -72,7 +72,11 @@ public interface CandidateService {
 
     Set<CandidateViewDto> findAllByTaskAndShift(String taskName, Shift shift);
 
-    String findCandidateFullNameByTaskAndStatus(String taskName, Status shift);
+    String findCandidateFullNameByTaskAndStatus(String taskName, Status status);
+
+    String findCandidateFullNameByTaskAndStatusAndShift(String taskName,
+	    Status status,
+	    Shift shift);
 
     void setToCurrent(String taskName, @Valid CandidateUpdateDto inputs,
 	    Long id, Shift shift);

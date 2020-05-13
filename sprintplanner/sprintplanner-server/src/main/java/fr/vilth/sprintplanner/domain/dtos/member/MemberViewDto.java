@@ -25,6 +25,10 @@ public class MemberViewDto {
 	// private empty no-arg constructor
     }
 
+    public String getEmail() {
+	return email;
+    }
+
     public String buildFullName() {
 	return firstname + " " + lastname;
     }

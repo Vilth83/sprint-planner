@@ -34,8 +34,8 @@ public class JavaMailConfig {
 	javaMailSender.setProtocol(protocol);
 	javaMailSender.setPort(port);
 	final Properties props = javaMailSender.getJavaMailProperties();
-	props.put("mail.smtp.auth", "true");
-	props.put("mail.smtp.starttls", "true");
+	props.put("mail.smtp.auth", "false");
+	props.put("mail.smtp.starttls", "false");
 	props.put("mail.debug", "false");
 	return javaMailSender;
     }
