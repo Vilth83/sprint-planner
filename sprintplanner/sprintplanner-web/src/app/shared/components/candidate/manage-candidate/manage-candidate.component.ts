@@ -29,6 +29,8 @@ export class ManageCandidateComponent implements OnInit {
   shift: string;
   taskObject: Task;
 
+  currentCandidateName: string = "";
+  currentCandidate: Candidate;
   selectedCandidate: number;
   nonCandidates: Member[] = [];
 
@@ -99,8 +101,9 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getTask() {
-    this.http.get("/tasks/" + this.task + "/name").subscribe(task =>
-      this.taskObject = task);
+    this.http.get("/tasks/" + this.task + "/name").subscribe((task:Task) => {
+      this.taskObject = task
+    });
   }
 
   public getCandidates() {
@@ -119,12 +122,38 @@ export class ManageCandidateComponent implements OnInit {
     this.http.get("/members/" + this.task + "/nonCandidates").subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
+  }
 
+  public getCurrentCandidate() {
+    let url = "/candidates/" + this.task + "/current";
+    if (this.shift) {
+      url += "?shift=" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
+      this.currentCandidate = candidate;
+      this.currentCandidateName = candidate.member.firstname + " " + candidate.member.lastname;
+    })
+  }
+
+  public getAvailableCandidate(): void {
+    let url = "/candidates/" + this.task + "/available";
+    if (this.shift) {
+      url += "?shift=" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
+      console.log(candidate)
+      const updateCandidate ={ id: candidate.id, priority: candidate.priority, status: Status.CURRENT };
+      this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
+      .subscribe(
+        ()=> this.ngOnInit()
+      );
+    })
   }
 
   ngOnInit() {
     this.getCandidates();
     this.getNonCandidates();
+    this.getCurrentCandidate();
     this.getTask();
   }
 

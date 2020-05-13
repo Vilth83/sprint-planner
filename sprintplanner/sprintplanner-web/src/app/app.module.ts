@@ -24,7 +24,6 @@ import { ConfirmationModalComponent } from './shared/modals/confirmation-modal/c
 import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { ManageCandidateComponent } from './shared/components/candidate/manage-candidate/manage-candidate.component';
 import { CurrentCandidateComponent } from './shared/components/candidate/current-candidate/current-candidate.component';
-import { TesterComponent } from './routes/tester/tester.component';
 import { PageHeaderComponent } from './shared/components/page-header/page-header.component';
 import { SupportComponent } from './routes/support/support.component';
 import { ReleaseVersionComponent } from './routes/release-version/release-version.component';
@@ -47,7 +46,6 @@ import { TokenInterceptor } from './shared/services/token-interceptor.service';
     ReleaserComponent,
     ManageCandidateComponent,
     CurrentCandidateComponent,
-    TesterComponent,
     PageHeaderComponent,
     SupportComponent,
     ReleaseVersionComponent,
