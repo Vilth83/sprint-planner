@@ -8,10 +8,10 @@ import { IdDto } from 'src/app/models/IdDto.model';
 import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
 import { Task } from 'src/app/models/task.model';
 import { CandidateEditorDto } from 'src/app/models/candidate-edit-dto.model';
-import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from 'src/app/shared/modals/index';
 import { Observable, Subscription } from 'rxjs';
 import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
-import { InformationModalComponent } from '../../information-modal/information-modal.component';
+import { InformationModalComponent } from 'src/app/shared/modals/index';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
 import { Status } from 'src/app/models/status.model';
@@ -29,6 +29,8 @@ export class ManageCandidateComponent implements OnInit {
   shift: string;
   taskObject: Task;
 
+  currentCandidateName: string = "";
+  currentCandidate: Candidate;
   selectedCandidate: number;
   nonCandidates: Member[] = [];
 
@@ -99,8 +101,9 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getTask() {
-    this.http.get("/tasks/" + this.task + "/name").subscribe(task =>
-      this.taskObject = task);
+    this.http.get("/tasks/" + this.task + "/name").subscribe((task:Task) => {
+      this.taskObject = task
+    });
   }
 
   public getCandidates() {
@@ -119,12 +122,38 @@ export class ManageCandidateComponent implements OnInit {
     this.http.get("/members/" + this.task + "/nonCandidates").subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
+  }
 
+  public getCurrentCandidate() {
+    let url = "/candidates/" + this.task + "/current";
+    if (this.shift) {
+      url += "?shift=" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
+      this.currentCandidate = candidate;
+      this.currentCandidateName = candidate.member.firstname + " " + candidate.member.lastname;
+    })
+  }
+
+  public getAvailableCandidate(): void {
+    let url = "/candidates/" + this.task + "/available";
+    if (this.shift) {
+      url += "?shift=" + this.shift;
+    }
+    this.http.get(url).subscribe((candidate: Candidate) => {
+      console.log(candidate)
+      const updateCandidate ={ id: candidate.id, priority: candidate.priority, status: Status.CURRENT };
+      this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
+      .subscribe(
+        ()=> this.ngOnInit()
+      );
+    })
   }
 
   ngOnInit() {
     this.getCandidates();
     this.getNonCandidates();
+    this.getCurrentCandidate();
     this.getTask();
   }
 

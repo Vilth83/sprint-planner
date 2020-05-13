@@ -6,10 +6,6 @@
     technical support<span class="text-right"></span>
   </span>
   <div [collapse]="isTechnicalCollapsed">
-    <div class="info-part text-center col-lg-12">
-      <app-current-candidate task="technical" [shift]="shift"></app-current-candidate>
-    </div>
-
     <div>
       <app-manage-candidate task="technical" [shift]="shift"></app-manage-candidate>
     </div>
@@ -19,9 +15,6 @@
     Functional support<span class="text-right"></span>
   </span>
   <div [collapse]="isFunctionalCollapsed">
-    <div class="info-part text-center col-lg-12">
-      <app-current-candidate task="functional" [shift]="shift"></app-current-candidate>
-    </div>
     <div>
       <app-manage-candidate task="functional" [shift]="shift"></app-manage-candidate>
     </div>

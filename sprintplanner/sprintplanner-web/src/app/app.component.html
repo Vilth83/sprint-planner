@@ -43,8 +43,10 @@
           </div>
         </a>
       </li>
-
+<!-- login button -->
+      <button class="btn btn-primary fa fa-sign-in" (click)="signin()"></button>
     </ul>
   </div>
 </nav>
 <router-outlet></router-outlet>
+<app-login-modal #login></app-login-modal>

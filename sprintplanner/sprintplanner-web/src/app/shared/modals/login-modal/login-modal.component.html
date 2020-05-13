@@ -1,0 +1,17 @@
+
+<ng-template #login>
+
+<p>
+  login-modal works!
+</p>
+
+<form>
+  <label>
+    <input type="text" name="username" [(ngModel)]="user.username">
+  </label>
+  <label>
+    <input type="password" name="password" [(ngModel)]="user.password">
+  </label>
+  <button class="btn btn-small btn-primary fa fa-save" (click)="submit(user)"></button>
+</form>
+</ng-template>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { LoginModalComponent } from './shared/modals/index';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'sprint-planner';
+
+  constructor() {}
+
+  @ViewChild('login') private loginModal: LoginModalComponent;
+
+
+
+  public signin() {
+    console.log("login modal : ", this.loginModal)
+    this.loginModal.openModal(this.loginModal.template);
+  }
+
 }

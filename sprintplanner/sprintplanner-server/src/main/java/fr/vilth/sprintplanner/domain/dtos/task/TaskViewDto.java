@@ -25,6 +25,10 @@ public class TaskViewDto {
 	// protected empty no-arg constructor
     }
 
+    public String getEmail() {
+	return email;
+    }
+
     @Override
     public String toString() {
 	return "{id=" + id + ", name=" + name + ", description=" + description

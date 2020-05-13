@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Config } from 'src/app/shared/services/config';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 
 @Component({
@@ -18,15 +19,12 @@ export class ProjectConfigurationComponent implements OnInit {
   }
 
   private getProject() {
-    this.http.get("/projects").subscribe(project => {
+    this.http.get(Config.endpoints.project).subscribe(project => {
       this.project = project
-      console.log(project)
     })
   }
 
   public saveProject(project: any) {
-    console.log(project);
-    this.http.post("/projects", project).subscribe();
+    this.http.post(Config.endpoints.project, project).subscribe();
   }
-
 }

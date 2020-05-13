@@ -31,6 +31,10 @@ public class ReleaseViewDto {
 	return week;
     }
 
+    public String getReleaseVersion() {
+	return "v" + pi + "." + sprint + "." + week;
+    }
+
     @Override
     public String toString() {
 	return "{id=" + id + ", pi=" + pi + ", sprint=" + sprint + ", week="

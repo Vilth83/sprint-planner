@@ -27,6 +27,10 @@ public class CandidateViewDto {
 	// protected empty no-arg constructor
     }
 
+    public MemberViewDto getMember() {
+	return member;
+    }
+
     @Override
     public String toString() {
 	return "{id=" + id + ", member=" + member + ", status=" + status

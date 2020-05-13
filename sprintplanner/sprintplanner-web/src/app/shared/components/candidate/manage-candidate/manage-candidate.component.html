@@ -1,21 +1,24 @@
+<div class="info-part row">
+  <div class="col-lg-4 col-md-4">
+    {{task}}
+  </div>
+  <div class="col-lg-4 col-md-4">
+    <span class="info">{{currentCandidateName}}</span>
+  </div>
+  <div class="col-lg-2 col-md-2">
+    <button (click)="getAvailableCandidate()" class="btn btn-primary"><span class="fa fa-refresh"></span></button>
+  </div>
+</div>
+
+
 <div class="box-part">
-  <ag-grid-angular
-    #agGrid class="ag-theme-material"
-    [rowData]="rowData"
-    [gridOptions]="gridOptions"
-    autoSize=true
-    style="width:100%;"
-    domLayout="autoHeight"
-    [frameworkComponents]="frameworkComponents"
-    [overlayNoRowsTemplate]="overlayNoRowsTemplate">
+  <ag-grid-angular #agGrid class="ag-theme-material" [rowData]="rowData" [gridOptions]="gridOptions" autoSize=true style="width:100%;" domLayout="autoHeight" [frameworkComponents]="frameworkComponents" [overlayNoRowsTemplate]="overlayNoRowsTemplate">
   </ag-grid-angular>
 
   <div class="container">
     <div class="row add text-center">
       <span class="col-md-3 add-part">add a new {{task}} </span>
-      <select
-       [(ngModel)]="selectedCandidate"
-       class="col-md-4 add-part">
+      <select [(ngModel)]="selectedCandidate" class="col-md-4 add-part">
         <option *ngFor="let member of nonCandidates" value="{{member.id}}">{{member.firstname}} {{member.lastname}}</option>
       </select>
       <button class="col-md-1 add-part btn btn-primary fa fa-save" (click)="onSaveClick()"></button>

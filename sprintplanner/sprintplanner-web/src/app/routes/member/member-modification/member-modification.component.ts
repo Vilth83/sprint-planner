@@ -2,11 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Member } from 'src/app/models/member.model';
 import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from 'src/app/shared/components/button-renderer.component';
-import { InformationModalComponent } from 'src/app/shared/components/information-modal/information-modal.component';
-import { ConfirmationModalComponent } from 'src/app/shared/components/confirmation-modal/confirmation-modal.component';
-import { MemberHttpRequest } from 'src/app/shared/services/http-helper/member-http-request.service';
+import { InformationModalComponent } from 'src/app/shared/modals/index';
+import { ConfirmationModalComponent } from 'src/app/shared/modals/index';
 import { Subscription, Observable } from 'rxjs';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
+import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
+import { Config } from 'src/app/shared/services/config';
 
 @Component({
   selector: 'app-member-modification',
@@ -31,7 +32,7 @@ export class MemberModificationComponent implements OnInit {
   inputs: Member;
 
 
-  constructor(private http: MemberHttpRequest) {
+  constructor(private http: HttpRequestBuilder) {
     this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
@@ -85,7 +86,7 @@ export class MemberModificationComponent implements OnInit {
   }
 
   public getMembers() {
-    const request = this.http.get();
+    const request = this.http.get(Config.endpoints.members);
     request.subscribe((members: Member[]) => {
       this.rowData = members;
     })
@@ -94,9 +95,9 @@ export class MemberModificationComponent implements OnInit {
   private edit(member: Member) {
     let request: Observable<any>;
     if (member.id) {
-      request = this.http.put(member);
+      request = this.http.put(Config.endpoints.members + '/' + member.id, member);
     } else {
-      request = this.http.post(member)
+      request = this.http.post(Config.endpoints.members, member)
     }
     this.memberEditionSubscription = request.subscribe(() => {
       this.openInfoModal('Update is successful !', member.firstname + " infos has been updated");
@@ -110,7 +111,7 @@ export class MemberModificationComponent implements OnInit {
 
   private delete(member: Member) {
     const name = member.firstname;
-    const request = this.http.delete(member);
+    const request = this.http.delete(Config.endpoints.members + '/' + member.id, member);
     this.deleteMemberSubscription =
       request.subscribe(() => {
         this.openInfoModal('Deletion is successful !', name + " has been deleted.");
