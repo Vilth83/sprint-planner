@@ -10,7 +10,7 @@ However you can use another database. MySql is provided as an option. To use a M
 - Edit application.yml :
   - Comment H2 related configuration
   - Uncomment / adapt MySQL related configuration
-- execute de sprintplanner.ddl script on your MySQL database to create schema and tables
+- execute sprintplanner.ddl script on your MySQL database to create schema and tables
 - execute sprintplanner.dml script to fill configuration tables
 
 You are free to choose your own database system. If so, as provided sql scripts are written in MySQL grammar, they may have to be adapted to another SQL grammar.
