@@ -4,12 +4,14 @@ import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 
 @RestController
+@RequestMapping("/users")
 public class CustomUserDetailsController {
 
     private final CustomUserDetailsService service;

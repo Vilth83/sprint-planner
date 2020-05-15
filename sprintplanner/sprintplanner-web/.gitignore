@@ -1,4 +1,6 @@
-.project
-node_modules/
-.vscode/
-/package-lock.json
+/.classpath
+target/
+src/main/web/dist/
+src/main/web/node/
+src/main/web/node_modules/
+src/main/web/package-lock.json

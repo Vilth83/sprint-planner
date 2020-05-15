@@ -3,3 +3,4 @@
 .settings/
 .project
 /src/main/resources/application-dev.yml
+/.sts4-cache/

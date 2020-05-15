@@ -77,7 +77,7 @@ public class EmailJob {
     private String getSubject(String taskName) {
 	ReleaseViewDto release = releaserService.findLastRelease();
 	String releaseVersion = release.getReleaseVersion();
-	String firstPart = isSupportTask(taskName) ? "Support of the day"
+	String firstPart = taskName.equals(Constants.SUPPORT) ? "Support of the day"
 		: "Releaser and tester of the week";
 	String secondPart = " have been selected for version ";
 	StringBuffer subject = new StringBuffer("[SPRINTPLANNER] ")
@@ -96,7 +96,7 @@ public class EmailJob {
     }
 
     private String getTaskMail(String taskName) {
-	if (isSupportTask(taskName)) {
+	if (taskName.equals(Constants.SUPPORT)) {
 	    return taskService.getByTaskName(Constants.FUNCTIONAL).getEmail();
 	}
 	return taskService.getByTaskName(Constants.RELEASER).getEmail();
@@ -112,8 +112,8 @@ public class EmailJob {
     }
 
     private Map<String, CandidateViewDto> getCandidates(String taskName) {
-	Map<String, CandidateViewDto> args = new HashMap<>();
-	if (taskName.equals("releaser")) {
+	Map<String, CandidateViewDto> candidates = new HashMap<>();
+	if (taskName.equals(Constants.RELEASER)) {
 	    CandidateViewDto releaser = candidateService
 		    .findFirstByTaskNameAndStatusAndMemberShift(
 			    Constants.RELEASER,
@@ -122,9 +122,9 @@ public class EmailJob {
 		    .findFirstByTaskNameAndStatusAndMemberShift(
 			    Constants.TESTER,
 			    Status.CURRENT, null);
-	    args.put("releaser", releaser);
-	    args.put("tester", tester);
-	} else if (isSupportTask(taskName)) {
+	    candidates.put(Constants.RELEASER, releaser);
+	    candidates.put(Constants.TESTER, tester);
+	} else if (taskName.equals(Constants.SUPPORT)) {
 	    Arrays.asList(Shift.PAR, Shift.BGL)
 		    .forEach(shift -> Arrays
 			    .asList(Constants.FUNCTIONAL, Constants.TECHNICAL)
@@ -132,16 +132,12 @@ public class EmailJob {
 				final CandidateViewDto candidate = candidateService
 					.findFirstByTaskNameAndStatusAndMemberShift(
 						task, Status.CURRENT, shift);
-				args.put(task + shift.name(), candidate);
+				candidates.put(task + shift.name(), candidate);
 			    }));
 	} else {
 	    throw new NotYetImplementedException(
 		    "given task (" + taskName + ") is not yet handled...");
 	}
-	return args;
-    }
-
-    private boolean isSupportTask(String taskName) {
-	return taskName.equals(Constants.SUPPORT);
+	return candidates;
     }
 }
