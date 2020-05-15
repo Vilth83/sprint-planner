@@ -1,10 +1,7 @@
 package fr.vilth.sprintplanner;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Main application class providing spring boot main method and configuration
@@ -14,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author Thierry VILLEPREUX
  */
 @SpringBootApplication
-//@EnableScheduling
+// @EnableScheduling
 public class SprintplannerApplication {
 
     /**
