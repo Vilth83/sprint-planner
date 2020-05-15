@@ -3,10 +3,12 @@ package fr.vilth.sprintplanner.commons.config;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -74,5 +76,10 @@ public class BeanConfig {
 	mapper.registerModule(new JavaTimeModule());
 	mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 	return mapper;
+    }
+
+    @Bean
+    public RestTemplate template(RestTemplateBuilder builder) {
+	return builder.build();
     }
 }
