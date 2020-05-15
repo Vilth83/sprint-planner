@@ -3,8 +3,10 @@ package fr.vilth.sprintplanner.api.repositories;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
@@ -43,27 +45,35 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      */
     boolean existsByMemberId(Long id);
 
-    Optional<Candidate> findFirstByTaskNameAndStatusOrderByPriorityDesc(
-	    String taskName,
-	    Status status);
-
     List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
 	    Shift shift);
 
-    Optional<Candidate> findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
-	    String task,
-	    Status current, Shift shift);
+    /**
+     * @param task
+     * @param status
+     * @param shift
+     * @param pageable
+     * @return A {@code List} containing 0 or 1 candidate
+     */
+    @Query("select c "
+	    + "from Member m join Candidate c on m.id = c.member "
+	    + "join Task t on t.id = c.task where t.name = :task "
+	    + "and c.status = :status and (:shift is null "
+	    + "or m.shift = :shift)"
+	    + "order by c.priority desc")
+    List<Candidate> findFirstCandidateByParameters(
+	    @Param("task") String task,
+	    @Param("status") Status status,
+	    @Param("shift") Shift shift,
+	    Pageable pageable);
 
-    @Query("select concat(m.firstname, ' ', m.lastname) from Member m "
-	    + "join Candidate c on m.id = c.member "
-	    + "join Task t on t.id = c.task "
-	    + "where t.name = :taskName and c.status = :status")
-    String findMemberNameByTaskAndStatus(String taskName, Status status);
-
-    @Query("select concat(m.firstname, ' ', m.lastname) from Member m "
-	    + "join Candidate c on m.id = c.member "
-	    + "join Task t on t.id = c.task "
-	    + "where t.name = :taskName and c.status = :status and m.shift = :shift")
-    String findMemberNameByTaskAndStatusAndShift(String taskName, Status status,
-	    Shift shift);
+    // @Query("select new
+    // fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname,
+    // m.lastname) "
+    // + "from Member m "
+    // + "join Candidate c on m.id = c.member "
+    // + "join Task t on t.id = c.task "
+    // + "where t.name = :taskName and c.status = :status")
+    Optional<Candidate> findMemberNameByTaskNameAndStatus(String taskName,
+	    Status status);
 }

@@ -43,11 +43,12 @@ export class CandidateHttpRequest {
   }
 
   public updateToCurrent(inputs: CandidateEditorDto, taskName: string, shift?: string): Observable<any> {
-    let url = this.endpoint + "/" + inputs.id + "/current/";
-    if (shift) {
-      url += shift + "/shift"
-    }
+    let url = this.endpoint + "/" + inputs.id + "/current";
+
     url += "?taskName=" + taskName;
+    if (shift) {
+      url += "&shift=" + shift;
+    }
     return this.http.put(url, inputs);
   }
 

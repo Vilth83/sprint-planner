@@ -45,7 +45,7 @@ public class CandidateControllerTest extends SetupIntTest {
     @Test
     void should_return_candidates() {
 	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
-	assertEquals(2, actual.size());
+	assertEquals(3, actual.size());
     }
 
     @ParameterizedTest

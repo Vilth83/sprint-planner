@@ -21,12 +21,14 @@ values
 
 insert into candidates (id, status, priority, member_id, task_id) values 
 (-1, 'AVAILABLE', 0, -1,-1),
-(-2, 'AVAILABLE', 1, -2,-1),
+(-2, 'CURRENT', 2, -2,-1),
+(-8, 'AVAILABLE', 1, -3,-1),
+(-3, 'CURRENT', 2, -3,-2),
 (-4, 'CURRENT', 2, -1,-2),
 (-5, 'CURRENT', 3, -2,-3),
 (-6, 'AVAILABLE', 2, -3,-3),
-(-7, 'CURRENT', 3, -1,-3),
-(-3, 'CURRENT', 2, -3,-2);
+(-7, 'CURRENT', 3, -1,-3);
+
 
 insert into projects (id, name, pi_duration, sprint_duration, github_user, github_repo, trigram, email)
 values
