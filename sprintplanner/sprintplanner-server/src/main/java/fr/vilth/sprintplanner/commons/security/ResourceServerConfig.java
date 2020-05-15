@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter.XFrameOptionsMode;
 
 @Configuration
 @EnableResourceServer
@@ -28,5 +30,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.authorizeRequests().antMatchers("/api/public/**").permitAll()
 		.antMatchers("/api/userInfo", "/api/private/**")
 		.authenticated();
+	http.headers().addHeaderWriter(
+		new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN));
     }
 }
