@@ -43,10 +43,10 @@ spring:
     favicon:
       enabled: false
   resources:
-    add-mappings: false
+    add-mappings: true
 
 logging:
-  config: classpath:logback-spring-dev.xml
+  config: classpath:logback-spring.xml
   
   
 cron:
