@@ -15,10 +15,20 @@ spring:
     location: classpath:banner.txt
   profiles:
     active: prod
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/sprintplanner?createDatabaseIfNotExist=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
+#    username:
+#    password:
+  h2:
+    console:
+      settings:
+        trace: false
+        web-allow-others: false
   datasource:
-    url: jdbc:mysql://localhost:3306/sprintplanner?createDatabaseIfNotExist=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
-    username:
-    password:
+    url: jdbc:h2:./data/sprintplanner;DB_CLOSE_ON_EXIT=false;DATABASE_TO_UPPER=false;SCHEMA=sprintplanner
+    driverClassName: org.h2.Driver
+    username: 
+    password: 
   jpa:
     open-in-view: false
     show-sql: false
@@ -27,7 +37,8 @@ spring:
        ddl-auto: update
     properties: 
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.H2Dialect
+#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         format_sql: false
         jdbc:
           batch_size: 10
