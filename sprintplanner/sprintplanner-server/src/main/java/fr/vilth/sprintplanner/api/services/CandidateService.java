@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.types.Shift;
@@ -72,11 +73,8 @@ public interface CandidateService {
 
     Set<CandidateViewDto> findAllByTaskAndShift(String taskName, Shift shift);
 
-    String findCandidateFullNameByTaskAndStatus(String taskName, Status status);
-
-    String findCandidateFullNameByTaskAndStatusAndShift(String taskName,
-	    Status status,
-	    Shift shift);
+    CandidateNameDto findCandidateFullNameByTaskAndStatus(String taskName,
+	    Status status);
 
     void setToCurrent(String taskName, @Valid CandidateUpdateDto inputs,
 	    Long id, Shift shift);

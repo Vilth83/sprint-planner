@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository;
@@ -14,6 +15,7 @@ import fr.vilth.sprintplanner.commons.utils.PriorityComparator;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
@@ -105,18 +107,13 @@ public class CandidateServiceImpl extends AbstractService
 
     @Override
     public CandidateViewDto findFirstByTaskNameAndStatusAndMemberShift(
-	    String task, Status current, Shift shift) {
-	Optional<Candidate> candidate;
-	if (shift != null) {
-	    candidate = candidateRepository
-		    .findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
-			    task, current, shift);
-	} else {
-	    candidate = candidateRepository
-		    .findFirstByTaskNameAndStatusOrderByPriorityDesc(
-			    task, current);
-	}
-	return candidate.map(elt -> convert(elt, CandidateViewDto.class))
+	    String task, Status status, Shift shift) {
+	List<Candidate> candidates = candidateRepository
+		.findFirstCandidateByParameters(
+			task, status, shift,
+			PageRequest.of(0, 1));
+	return candidates.stream().findFirst()
+		.map(elt -> convert(elt, CandidateViewDto.class))
 		.orElseThrow(ResourceNotFoundException::new);
     }
 
@@ -129,27 +126,31 @@ public class CandidateServiceImpl extends AbstractService
     }
 
     @Override
-    public String findCandidateFullNameByTaskAndStatus(String taskName,
+    public CandidateNameDto findCandidateFullNameByTaskAndStatus(
+	    String taskName,
 	    Status status) {
-	return candidateRepository.findMemberNameByTaskAndStatus(taskName,
-		status);
+	Optional<Candidate> candidate = candidateRepository
+		.findMemberNameByTaskNameAndStatus(taskName,
+			status);
+	return candidate.map(this::getCandidateNameDto)
+		.orElse(new CandidateNameDto("", ""));
+    }
+
+    private CandidateNameDto getCandidateNameDto(Candidate candidate) {
+	CandidateViewDto candidateView = convert(candidate,
+		CandidateViewDto.class);
+	return new CandidateNameDto(candidateView.getMember().getFirstname(),
+		candidateView.getMember().getLastname());
     }
 
     @Override
     public void setToCurrent(String taskName, CandidateUpdateDto inputs,
 	    Long id, Shift shift) {
-	Optional<Candidate> current;
-	if (shift == null) {
-	    current = candidateRepository
-		    .findFirstByTaskNameAndStatusOrderByPriorityDesc(taskName,
-			    Status.CURRENT);
-	} else {
-	    current = candidateRepository
-		    .findFirstByTaskNameAndStatusAndMemberShiftOrderByPriorityDesc(
-			    taskName,
-			    Status.CURRENT, shift);
-	}
-	current.ifPresent(this::saveAsUnavailable);
+	List<Candidate> candidates = candidateRepository
+		.findFirstCandidateByParameters(
+			taskName, Status.CURRENT, shift,
+			PageRequest.of(0, 1));
+	candidates.stream().findFirst().ifPresent(this::saveAsUnavailable);
 	update(inputs, id);
     }
 
@@ -157,13 +158,5 @@ public class CandidateServiceImpl extends AbstractService
 	candidate.becomesUnavailable();
 	update(modelMapper.map(candidate, CandidateUpdateDto.class),
 		candidate.getId());
-    }
-
-    @Override
-    public String findCandidateFullNameByTaskAndStatusAndShift(String taskName,
-	    Status status, Shift shift) {
-	return candidateRepository.findMemberNameByTaskAndStatusAndShift(
-		taskName,
-		status, shift);
     }
 }
