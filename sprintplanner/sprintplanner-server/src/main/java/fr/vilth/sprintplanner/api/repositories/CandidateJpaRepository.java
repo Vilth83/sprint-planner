@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import fr.vilth.sprintplanner.commons.utils.Constants;
+import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
@@ -49,24 +51,28 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
 	    Shift shift);
 
     /**
-     * @param task
-     * @param status
-     * @param shift
-     * @param pageable
+     * Returns the {@code Candidate} with the highest priority for given
+     * {@code task}, {@code Status} and {@code Shift}.
+     * <p>
+     * Return type is a pageable list with only one or zero elements, to be sure
+     * to obtain the highest priority member. This is ensured by the order of
+     * the return (Priority DESC).
+     * 
+     * @param task the {@code Task} name
+     * @param status the {@code Status}
+     * @param shift the {@code Shift} (PAR or BGL)
+     * @param pageable a PageRequest of 1 element.
      * @return A {@code List} containing 0 or 1 candidate
      */
-    @Query("select c "
-	    + "from Member m join Candidate c on m.id = c.member "
-	    + "join Task t on t.id = c.task where t.name = :task "
-	    + "and c.status = :status and (:shift is null "
-	    + "or m.shift = :shift)"
-	    + "order by c.priority desc")
+    @Query(Constants.FIRST_ELIGIBLE_CANDIDATE)
     List<Candidate> findFirstCandidateByParameters(
 	    @Param("task") String task,
 	    @Param("status") Status status,
 	    @Param("shift") Shift shift,
 	    Pageable pageable);
 
-    Optional<Candidate> findMemberNameByTaskNameAndStatus(String taskName,
+    @Query(Constants.CANDIDATE_NAME_QUERY)
+    Optional<CandidateNameDto> findCandidateNameByTaskNameAndStatus(
+	    String taskName,
 	    Status status);
 }

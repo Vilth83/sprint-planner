@@ -32,7 +32,7 @@ insert into candidates (id, status, priority, member_id, task_id) values
 
 insert into projects (id, name, pi_duration, sprint_duration, github_user, github_repo, trigram, email)
 values
-(-1, "sprintplanner", 5, 2, "Vilth83", "sprintplanner", "TEST", "sprintplanner@bot");
+(-1, "sprintplanner", 5, 2, "Vilth83", "sprintplanner", "SPL", "sprintplanner@bot");
 
 insert into releases (pi, sprint, week, releaser)
 values

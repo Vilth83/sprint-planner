@@ -129,18 +129,10 @@ public class CandidateServiceImpl extends AbstractService
     public CandidateNameDto findCandidateFullNameByTaskAndStatus(
 	    String taskName,
 	    Status status) {
-	Optional<Candidate> candidate = candidateRepository
-		.findMemberNameByTaskNameAndStatus(taskName,
+	Optional<CandidateNameDto> candidate = candidateRepository
+		.findCandidateNameByTaskNameAndStatus(taskName,
 			status);
-	return candidate.map(this::getCandidateNameDto)
-		.orElse(new CandidateNameDto("", ""));
-    }
-
-    private CandidateNameDto getCandidateNameDto(Candidate candidate) {
-	CandidateViewDto candidateView = convert(candidate,
-		CandidateViewDto.class);
-	return new CandidateNameDto(candidateView.getMember().getFirstname(),
-		candidateView.getMember().getLastname());
+	return candidate.orElse(new CandidateNameDto("no", "candidate"));
     }
 
     @Override

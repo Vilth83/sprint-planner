@@ -30,4 +30,13 @@ public class TaskViewDtoTest extends SetupUnitTest {
 	String actual = task.toString();
 	assertEquals(expected, actual);
     }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/taskCreation.csv", delimiter = ';')
+    void should_return_email(String json) {
+	TaskViewDto task = jsonConvert(json, TaskViewDto.class);
+	String actual = "release@mail";
+	String expected = task.getEmail();
+	assertEquals(expected, actual);
+    }
 }
