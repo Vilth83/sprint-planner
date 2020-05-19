@@ -11,4 +11,6 @@ public interface GithubService {
     List<Branch> findAllBranches();
 
     Set<CommitHolder> getCommitPerBranch(String sha);
+    
+	Set<CommitHolder> compareBranches(String currentBranch, String previousBranch);
 }
