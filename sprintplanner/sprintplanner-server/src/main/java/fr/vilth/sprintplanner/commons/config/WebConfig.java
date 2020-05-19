@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.security;
+package fr.vilth.sprintplanner.commons.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
