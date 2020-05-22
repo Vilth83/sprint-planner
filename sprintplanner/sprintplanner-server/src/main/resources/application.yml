@@ -1,7 +1,8 @@
 
 server:
-  port: 80
+  port: 9000
   servlet:
+      context-path: /
       jsp:
         registered: false
   error:
@@ -12,39 +13,28 @@ spring:
   application:
     name: sprintplanner
   banner:
-    location: classpath:banner.txt
+    location: classpath:banner-dev.txt
   profiles:
-    active: prod
-#  datasource:
-#    url: jdbc:mysql://127.0.0.1:3306/sprintplanner?createDatabaseIfNotExist=false&useSSL=true&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
-#    username:
-#    password:
-  h2:
-    console:
-      settings:
-        trace: false
-        web-allow-others: false
+    active: dev
   datasource:
-    url: jdbc:h2:./data/sprintplanner;DB_CLOSE_ON_EXIT=false;DATABASE_TO_UPPER=false;SCHEMA=sprintplanner
-    driverClassName: org.h2.Driver
-    username: 
-    password: 
+    url: jdbc:mysql://localhost:3306/sprintplanner_dev_test?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
+    username: root
+    password: root
   jpa:
     open-in-view: false
-    show-sql: false
-    generate-ddl: true
+    show-sql: true
+    generate-ddl: false
     hibernate:
-       ddl-auto: update
+       ddl-auto: none
     properties: 
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
-#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-        format_sql: false
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        format_sql: true
         jdbc:
           batch_size: 10
         order_inserts: false
         order_updates: false
-        generate_statistics: false
+        generate_statistics: true
   messages:
     use-code-as-default-message: false
   mvc:
@@ -53,19 +43,27 @@ spring:
       enabled: false
   resources:
     add-mappings: true
+  mail:
+    default-encoding: UTF-8
+    host: 
+    port: 2525
+    protocol: smtp
 
 logging:
-  config: classpath:logback-spring.xml
-  
+  config: classpath:logback-spring-dev.xml
+    
 cron:
   config:
-    handle-release: "* * * * 1 *"
-    handle-support: "* * * * 1 *"
+    handle-release: "5 */1 * * * *"
+    handle-support: "6 */1 * * * *"
+    send-releaser-mail: "8 */1  * * * *"
+    send-support-mail: "10 */1  * * * *"
     
 jwt-auth-server:
   keyStore: jwt.jks
   keyPass: 123456
   keyAlias: jwt
-  accessTokenValiditySeconds: 1800
+  accessTokenValiditySeconds: 86400
   refreshTokenValiditySeconds: 86400
-      
+    
+    

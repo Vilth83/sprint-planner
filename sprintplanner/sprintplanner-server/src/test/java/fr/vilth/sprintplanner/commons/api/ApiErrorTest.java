@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.common.api;
+package fr.vilth.sprintplanner.commons.api;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

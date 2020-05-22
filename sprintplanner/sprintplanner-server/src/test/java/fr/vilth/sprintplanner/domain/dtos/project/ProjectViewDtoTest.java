@@ -2,6 +2,7 @@ package fr.vilth.sprintplanner.domain.dtos.project;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
@@ -21,15 +22,11 @@ public class ProjectViewDtoTest extends SetupUnitTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/projectCreation.csv", delimiter = ';')
-    void should_return_piDuration(String json) {
+    void should_return_getters(String json) {
 	ProjectViewDto actual = jsonConvert(json, ProjectViewDto.class);
-	assertEquals(5, actual.getPiDuration());
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/projectCreation.csv", delimiter = ';')
-    void should_return_sprintDuration(String json) {
-	ProjectViewDto actual = jsonConvert(json, ProjectViewDto.class);
-	assertEquals(2, actual.getSprintDuration());
+	Assertions.assertAll(
+		() -> assertEquals(5, actual.getPiDuration()),
+		() -> assertEquals(2, actual.getSprintDuration()),
+		() -> assertEquals("sprint@planner", actual.getEmail()));
     }
 }

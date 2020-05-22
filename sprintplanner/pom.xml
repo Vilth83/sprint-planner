@@ -19,7 +19,7 @@
 	<artifactId>sprintplanner-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>AppName</name>
+	<name>sprintplanner-parent</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -27,5 +27,14 @@
 		<node.version>v10.16.3</node.version>
 		<npm.version>6.13.7</npm.version>
 	</properties>
-
+	
+	<distributionManagement>
+	    <repository>
+	      <uniqueVersion>false</uniqueVersion>
+	      <id>SPL</id>
+	      <name>Sprintplanner repo</name>
+	      <url>file:///c:/deployments/sprintplanner</url>
+	      <layout>default</layout>
+	    </repository>
+	</distributionManagement>
 </project>

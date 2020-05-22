@@ -141,7 +141,6 @@ export class ManageCandidateComponent implements OnInit {
       url += "?shift=" + this.shift;
     }
     this.http.get(url).subscribe((candidate: Candidate) => {
-      console.log(candidate)
       const updateCandidate ={ id: candidate.id, priority: candidate.priority, status: Status.CURRENT };
       this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
       .subscribe(

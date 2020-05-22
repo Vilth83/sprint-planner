@@ -5,4 +5,4 @@
 /src/main/resources/application-dev.yml
 /src/main/resources/application-h2-dev.yml
 /.sts4-cache/
-/data
+data/
