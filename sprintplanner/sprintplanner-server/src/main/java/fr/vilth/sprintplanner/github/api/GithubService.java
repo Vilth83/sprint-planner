@@ -4,13 +4,11 @@ import java.util.List;
 import java.util.Set;
 
 import fr.vilth.sprintplanner.github.model.Branch;
-import fr.vilth.sprintplanner.github.model.Commit;
+import fr.vilth.sprintplanner.github.model.CommitHolder;
 
 public interface GithubService {
 
     List<Branch> findAllBranches();
 
-    Set<Commit> getCommitPerBranch(String sha);
-    
-	Set<Commit> compareBranches(String currentBranch, String previousBranch);
+    Set<CommitHolder> getCommitPerBranch(String sha);
 }

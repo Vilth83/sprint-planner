@@ -9,30 +9,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.github.model.Branch;
-import fr.vilth.sprintplanner.github.model.Commit;
+import fr.vilth.sprintplanner.github.model.CommitHolder;
 
 @RestController
 @RequestMapping("/github")
 public class GithubController {
 
-	private final GithubService githubService;
+    private final GithubService githubService;
 
-	public GithubController(GithubService githubService) {
-		this.githubService = githubService;
-	}
+    public GithubController(GithubService githubService) {
+	this.githubService = githubService;
+    }
 
-	@GetMapping("/branches")
-	public List<Branch> findAllBranches() {
-		return githubService.findAllBranches();
-	}
+    @GetMapping("/branches")
+    public List<Branch> findAllBranches() {
+	return githubService.findAllBranches();
+    }
 
-	@GetMapping("/filter")
-	public Set<Commit> getCommitPerBranch(@RequestParam String sha) {
-		return githubService.getCommitPerBranch(sha);
-	}
-
-	@GetMapping("/compare")
-	public Set<Commit> compareBranches(@RequestParam String currentBranch, @RequestParam String previousBranch) {
-		return githubService.compareBranches(currentBranch, previousBranch);
-	}
+    @GetMapping("/filter")
+    public Set<CommitHolder> getCommitPerBranch(@RequestParam String sha) {
+	return githubService.getCommitPerBranch(sha);
+    }
 }
