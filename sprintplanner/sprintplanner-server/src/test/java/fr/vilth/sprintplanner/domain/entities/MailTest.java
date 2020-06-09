@@ -12,6 +12,11 @@ import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
 
+/**
+ * Test on {@code Mail}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public class MailTest extends SetupUnitTest {
 
     private static final String CONTENT = "content";
@@ -28,13 +33,13 @@ public class MailTest extends SetupUnitTest {
     }
 
     @Test
-    public void should_construct() {
+    void should_construct() {
 	Mail tested = new Mail(SENDER, RECIPIENTS, SUBJECT, CONTENT);
 	assertNotNull(tested);
     }
 
     @Test
-    public void should_return_values() {
+    void should_return_values() {
 	Mail tested = new Mail(SENDER, RECIPIENTS, SUBJECT, CONTENT);
 	Assertions.assertAll( // -
 		() -> assertEquals(SENDER, tested.getSender()),
