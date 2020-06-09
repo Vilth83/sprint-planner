@@ -5,90 +5,171 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+/**
+ * Class representing a Jira {@code Ticket} field.
+ * <p>
+ * JIRA API returns {@code Field} as an object, encapsulating different fields.
+ * We need to mirror this behavior to retrieve {@code Ticket}s.
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public class Field {
 
-	private Long id;
+    private Long id;
 
-	private TeamMember reporter;
-	private TeamMember assignee;
-	private TeamMember requestor;
+    private TeamMember reporter;
 
-	private Category issueType;
-	private Category priority;
-	private Category status;
+    private TeamMember assignee;
 
-	private Parent parent;
-	private String summary;
+    private TeamMember requestor;
 
-	private List<FixVersion> fixVersions;
-	@JsonAlias("attachment")
-	private List<Attachment> attachments;
+    private Category issueType;
 
-	public Long getId() {
-		return id;
-	}
+    private Category priority;
 
-	public String getReporter() {
-		return reporter.displayName;
-	}
+    private Category status;
 
-	public String getAssignee() {
-		return assignee.displayName;
-	}
+    private Parent parent;
 
-	public String getRequestor() {
-		return requestor.displayName;
-	}
+    private String summary;
 
-	public String getIssueType() {
-		return issueType.name;
-	}
+    private List<FixVersion> fixVersions;
 
-	public String getPriority() {
-		return priority.name;
-	}
+    @JsonAlias("attachment")
+    private List<Attachment> attachments;
 
-	public String getStatus() {
-		return status.name;
-	}
+    /**
+     * id getter
+     * 
+     * @return id
+     */
+    public Long getId() {
+	return id;
+    }
 
-	public String getParent() {
-		return parent.key;
-	}
+    /**
+     * getter returning this {@code Field} {@code Reporter}'s display name
+     * 
+     * @return the name of the {@code Reporter}
+     */
+    public String getReporter() {
+	return reporter.displayName;
+    }
 
-	public String getSummary() {
-		return summary;
-	}
+    /**
+     * getter returning this {@code Field} {@code Assignee}'s display name
+     * 
+     * @return the name of the {@code Assignee}
+     */
+    public String getAssignee() {
+	return assignee.displayName;
+    }
 
-	public List<String> getFixVersions() {
-		return fixVersions.stream().map(fv -> fv.name).collect(Collectors.toList());
-	}
+    /**
+     * getter returning this {@code Field} {@code Requestor}'s display name
+     * 
+     * @return the name of the {@code Requestor}
+     */
+    public String getRequestor() {
+	return requestor.displayName;
+    }
 
-	public List<Attachment> getAttachments() {
-		return attachments;
-	}
+    /**
+     * getter returning this {@code Field} {@code IssueType}'s name
+     * 
+     * @return the name of the {@code IssueType}
+     */
+    public String getIssueType() {
+	return issueType.name;
+    }
 
+    /**
+     * getter returning this {@code Field} {@code Priority}'s name
+     * 
+     * @return the name of the {@code Priority}
+     */
+    public String getPriority() {
+	return priority.name;
+    }
+
+    /**
+     * getter returning this {@code Field} {@code Status}'s name
+     * 
+     * @return the name of the {@code Status}
+     */
+    public String getStatus() {
+	return status.name;
+    }
+
+    /**
+     * getter returning this {@code Field} {@code Parent}'s key
+     * 
+     * @return the key of the {@code Parent}
+     */
+    public String getParent() {
+	return parent.key;
+    }
+
+    /**
+     * getter returning this {@code Field} summary
+     * 
+     * @return the summary
+     */
+    public String getSummary() {
+	return summary;
+    }
+
+    /**
+     * Getter for the {@code List} of {@code FixVersion}
+     * <p>
+     * get the {@code name} of each {@code FixVersion} and returns them as a
+     * {@code List}
+     * 
+     * @return a {@code List} of {@code FixVersion} name
+     */
+    public List<String> getFixVersions() {
+	return fixVersions.stream().map(fv -> fv.name)
+		.collect(Collectors.toList());
+    }
+
+    /**
+     * Getter for {@code Attachement}
+     * 
+     * @return the {@code List} of {@code Attachement}s
+     */
+    public List<Attachment> getAttachments() {
+	return attachments;
+    }
 }
 
 class Category {
-	private Long id;
 
-	String name;
+    @SuppressWarnings("unused") // required for Jakson mapping
+    private Long id;
+
+    String name;
 }
 
 class TeamMember {
-	private Long id;
 
-	String displayName;
+    @SuppressWarnings("unused") // required for Jakson mapping
+    private Long id;
+
+    String displayName;
 }
 
 class Parent {
-	private Long id;
 
-	String key;
+    @SuppressWarnings("unused") // required for Jakson mapping
+    private Long id;
+
+    String key;
 }
 
 class FixVersion {
-	String name;
-	private String id;
+
+    @SuppressWarnings("unused") // required for Jakson mapping
+    private String id;
+
+    String name;
 }

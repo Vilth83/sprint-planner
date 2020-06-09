@@ -32,14 +32,6 @@ public class CandidateTest extends SetupUnitTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
-    void should_become_available(String json) {
-	Candidate candidate = jsonConvert(json, Candidate.class);
-	candidate.becomesAvailable();
-	assertEquals(Status.AVAILABLE, candidate.getStatus());
-    }
-
-    @ParameterizedTest
-    @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
     void should_become_previous(String json) {
 	Candidate candidate = jsonConvert(json, Candidate.class);
 	candidate.becomesPrevious();
@@ -57,7 +49,7 @@ public class CandidateTest extends SetupUnitTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
-    void should_return_unavailable_if_available(String json) {
+    void should_return_unavailable_if_not_available(String json) {
 	Candidate candidate = jsonConvert(json, Candidate.class);
 	candidate.becomesCurrent();
 	assertFalse(candidate.isAvailable());

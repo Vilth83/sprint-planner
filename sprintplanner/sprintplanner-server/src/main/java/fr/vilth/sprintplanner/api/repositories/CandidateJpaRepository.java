@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import fr.vilth.sprintplanner.commons.utils.Constants;
+import fr.vilth.sprintplanner.commons.utils.JpqlQuery;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
@@ -64,14 +64,14 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      * @param pageable a PageRequest of 1 element.
      * @return A {@code List} containing 0 or 1 candidate
      */
-    @Query(Constants.FIRST_ELIGIBLE_CANDIDATE)
+    @Query(JpqlQuery.FIRST_ELIGIBLE_CANDIDATE)
     List<Candidate> findFirstCandidateByParameters(
 	    @Param("task") String task,
 	    @Param("status") Status status,
 	    @Param("shift") Shift shift,
 	    Pageable pageable);
 
-    @Query(Constants.CANDIDATE_NAME_QUERY)
+    @Query(JpqlQuery.CANDIDATE_NAME_QUERY)
     Optional<CandidateNameDto> findCandidateNameByTaskNameAndStatus(
 	    String taskName,
 	    Status status);

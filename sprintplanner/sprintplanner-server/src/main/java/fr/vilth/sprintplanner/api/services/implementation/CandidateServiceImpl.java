@@ -95,7 +95,7 @@ public class CandidateServiceImpl extends AbstractService
 	    if (candidate.getStatus().equals(Status.CURRENT)) {
 		candidate.becomesPrevious();
 	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
-		candidate.becomesAvailable();
+		candidate.setStatus(Status.AVAILABLE);
 	    } else {
 		// No action if neither current nor unavailable
 	    }
@@ -147,7 +147,7 @@ public class CandidateServiceImpl extends AbstractService
     }
 
     private void saveAsUnavailable(Candidate candidate) {
-	candidate.becomesUnavailable();
+	candidate.setStatus(Status.UNAVAILABLE);
 	update(modelMapper.map(candidate, CandidateUpdateDto.class),
 		candidate.getId());
     }

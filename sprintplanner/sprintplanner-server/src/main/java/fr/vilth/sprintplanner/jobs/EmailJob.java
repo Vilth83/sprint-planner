@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.mail.MessagingException;
 
 import org.hibernate.cfg.NotYetImplementedException;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.api.services.EmailService;
@@ -25,7 +25,18 @@ import fr.vilth.sprintplanner.domain.entities.Mail;
 import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
 
-@Configuration
+/**
+ * Component building mail to be sent by scheduled jobs.
+ * <p>
+ * build mail with given taskname, by retrieving recipients, subject, template
+ * and building a {@code Mail} with {@code JavaMailBuilder}
+ * <p>
+ * Please not that this class is annotated {@code @Component} to autowire
+ * services and thus prevent to autowire them in {@code Jobtriggers}
+ * 
+ * @author Thierry VILLEPREUX
+ */
+@Component
 public class EmailJob {
 
     private final ProjectService projectService;
@@ -40,6 +51,16 @@ public class EmailJob {
 
     private final EmailService emailService;
 
+    /**
+     * Autowires required service {@code Beans}
+     * 
+     * @param projectService {@code Autowired}
+     * @param candidateService {@code Autowired}
+     * @param taskService {@code Autowired}
+     * @param javaMailBuilder {@code Autowired}
+     * @param releaserService {@code Autowired}
+     * @param emailService {@code Autowired}
+     */
     public EmailJob(ProjectService projectService,
 	    CandidateService candidateService, TaskService taskService,
 	    JavaMailConfig javaMailBuilder, ReleaseService releaserService,
@@ -57,11 +78,26 @@ public class EmailJob {
 	return project.getEmail();
     }
 
-    public void buildAndSend(String taskName) throws MessagingException {
-	Mail mail = buildMail(taskName);
-	emailService.sendMail(taskName, mail);
+    /**
+     * send a {@code Mail}.
+     * 
+     * @param mail the {@code Mail} to be sent
+     * @throws MessagingException thrown by JavaMailSender if any error while
+     *         creating or sending {@code MimeMessage}
+     */
+    public void send(Mail mail) throws MessagingException {
+	emailService.sendMail(mail);
     }
 
+    /**
+     * Build a {@code Mail} for given task.
+     * <p>
+     * Retrieves sender and subject, constructs subject regarding task,
+     * retrieves recipients and constructs content.
+     * 
+     * @param taskName the givent task
+     * @return a {@code Mail}
+     */
     public Mail buildMail(String taskName) {
 	String sender = getSender();
 	String template = taskName + "_mail";
@@ -77,7 +113,8 @@ public class EmailJob {
     private String getSubject(String taskName) {
 	ReleaseViewDto release = releaserService.findLastRelease();
 	String releaseVersion = release.getReleaseVersion();
-	String firstPart = taskName.equals(Constants.SUPPORT) ? "Support of the day"
+	String firstPart = taskName.equals(Constants.SUPPORT)
+		? "Support of the day"
 		: "Releaser and tester of the week";
 	String secondPart = " have been selected for version ";
 	StringBuffer subject = new StringBuffer("[SPRINTPLANNER] ")

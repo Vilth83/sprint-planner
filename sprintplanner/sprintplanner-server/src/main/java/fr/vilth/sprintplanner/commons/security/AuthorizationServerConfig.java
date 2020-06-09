@@ -27,6 +27,14 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 
+/**
+ * Configuration of the {@code AuthorizationServer}.
+ * <p>
+ * Configures Oauth2 with JWT token store, token enhancer and provides standard
+ * auth endpoint.
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Configuration
 @EnableAuthorizationServer
 @RestController // for "/me" endpoint
@@ -69,7 +77,11 @@ public class AuthorizationServerConfig
 
     /**
      * Token service using random UUID values for the access token and refresh
-     * token values. Specifies the token store and enables the refresh token.
+     * token values.
+     * <p>
+     * Specifies the token store and enables the refresh token.
+     * 
+     * @return a {@code TokenService}
      */
     @Bean
     protected DefaultTokenServices tokenServices() {
@@ -80,20 +92,30 @@ public class AuthorizationServerConfig
     }
 
     /**
-     * JwtTokenStore can read and write JWT thanks to the token converter.
+     * returns a JwtTokenStore to read and write JWT thanks to the token
+     * converter.
+     * 
+     * @return a {@code JwtTokenStore}
      */
     @Bean
     protected TokenStore tokenStore() {
 	return new JwtTokenStore(accessTokenConverter());
     }
 
+    /**
+     * Bean that returns a
+     * {@linkplain fr.vilth.sprintplanner.commons.security.CustomTokenEnhancer
+     * custom token enhancer}
+     * 
+     * @return a custom token enhancer
+     */
     @Bean
     public TokenEnhancer tokenEnhancer() {
 	return new CustomTokenEnhancer();
     }
 
     /**
-     * All in one.
+     * All in one configuration.
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer configurer)
@@ -109,6 +131,8 @@ public class AuthorizationServerConfig
     /**
      * A token converter for JWT and specifies a signing key (private/public key
      * pair).
+     * 
+     * @return an access token converter
      */
     @Bean
     protected JwtAccessTokenConverter accessTokenConverter() {

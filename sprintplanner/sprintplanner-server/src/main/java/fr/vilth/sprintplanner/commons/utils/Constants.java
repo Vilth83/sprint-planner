@@ -1,23 +1,37 @@
 package fr.vilth.sprintplanner.commons.utils;
 
+/**
+ * Utility class that provides hard coded {@code String} expressions.
+ * <p>
+ * Using this utility class ensures consistency in the code : "magical Strings"
+ * should not be provided anywhere else in this application
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public class Constants {
 
+    /**
+     * releaser task {@code String}
+     */
     public static final String RELEASER = "releaser";
 
+    /**
+     * tester task {@code String}
+     */
     public static final String TESTER = "tester";
 
+    /**
+     * support task {@code String}
+     */
     public static final String SUPPORT = "support";
 
+    /**
+     * technical task {@code String} for support
+     */
     public static final String TECHNICAL = "technical";
 
+    /**
+     * functional task {@code String} for support
+     */
     public static final String FUNCTIONAL = "functional";
-
-    public static final String CANDIDATE_NAME_QUERY = // -
-	    "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
-		    + "from Member m join Candidate c on m.id = c.member join Task t on t.id = c.task "
-		    + "where t.name = :taskName and c.status = :status";
-
-    public static final String FIRST_ELIGIBLE_CANDIDATE = "select c from Member m join Candidate c on m.id = c.member "
-	    + "join Task t on t.id = c.task where t.name = :task and c.status = :status and (:shift is null "
-	    + "or m.shift = :shift) order by c.priority desc";
 }

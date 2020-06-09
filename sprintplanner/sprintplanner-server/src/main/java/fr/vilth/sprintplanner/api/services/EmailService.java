@@ -6,5 +6,5 @@ import fr.vilth.sprintplanner.domain.entities.Mail;
 
 public interface EmailService {
 
-    void sendMail(String taskName, Mail mail) throws MessagingException;
+    void sendMail(Mail mail) throws MessagingException;
 }
