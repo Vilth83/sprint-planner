@@ -8,6 +8,11 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserAuthDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 import fr.vilth.sprintplanner.domain.entities.CustomUser;
 
+/**
+ * {@code JpaRepository} to handle {@code CustomUser}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public interface CustomUserJpaRepository
 	extends JpaRepository<CustomUser, Long> {
 
@@ -28,5 +33,12 @@ public interface CustomUserJpaRepository
      */
     Optional<CustomUserInfoDto> getById(Long id);
 
+    /**
+     * Retrieves wether or not given username exists in database
+     * 
+     * @param username the given username to test
+     * @return {@code true} if the username exists in database; {@code false}
+     *         otherwise
+     */
     boolean existsByUsernameIgnoreCase(String username);
 }

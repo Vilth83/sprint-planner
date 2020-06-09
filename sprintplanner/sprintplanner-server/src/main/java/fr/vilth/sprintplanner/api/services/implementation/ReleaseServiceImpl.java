@@ -20,6 +20,11 @@ import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
 import fr.vilth.sprintplanner.domain.entities.Release;
 import fr.vilth.sprintplanner.domain.types.Status;
 
+/**
+ * Implementation of {@code ReleaseService}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class ReleaseServiceImpl extends AbstractService
 	implements ReleaseService {
@@ -30,7 +35,7 @@ public class ReleaseServiceImpl extends AbstractService
 
     private final CandidateService candidateService;
 
-    public ReleaseServiceImpl(ReleaseJpaRepository releaseRepository,
+    protected ReleaseServiceImpl(ReleaseJpaRepository releaseRepository,
 	    ProjectService projectService, CandidateService candidateService) {
 	this.releaseRepository = releaseRepository;
 	this.projectService = projectService;
