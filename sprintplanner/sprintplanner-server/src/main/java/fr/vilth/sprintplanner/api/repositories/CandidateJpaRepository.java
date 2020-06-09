@@ -47,6 +47,14 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      */
     boolean existsByMemberId(Long id);
 
+    /**
+     * Returns a {@code List} of {@code Candidate}s by given task and
+     * {@code Shift}.
+     * 
+     * @param taskName given task name
+     * @param shift given {@code Shift}
+     * @return a {@code List} of {@code Candidate}
+     */
     List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
 	    Shift shift);
 
@@ -71,6 +79,14 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
 	    @Param("shift") Shift shift,
 	    Pageable pageable);
 
+    /**
+     * Returns the {@code Candidate} for given task and with given
+     * {@code Status} full name in the form of a {@code CandidateNameDto}
+     * 
+     * @param taskName the given task
+     * @param status the given {@code Status}
+     * @return a {@code CandidateViexwDto}
+     */
     @Query(JpqlQuery.CANDIDATE_NAME_QUERY)
     Optional<CandidateNameDto> findCandidateNameByTaskNameAndStatus(
 	    String taskName,

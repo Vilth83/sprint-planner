@@ -83,6 +83,15 @@ public class CandidateController {
 	candidateService.update(inputs, id);
     }
 
+    /**
+     * Set {@code Candidate} with given id to {@code Status.CURRENT} candidate
+     * for given task
+     * 
+     * @param taskName the task concerned by the candidate
+     * @param inputs a {@code DTO} representation containing the modifications
+     * @param id the id of the {@code Candidate}
+     * @param shift optional : if given, the shift of the candidate to modify
+     */
     @PutMapping("/{id}/current")
     public void setToCurrent(@RequestParam String taskName,
 	    @Valid @RequestBody CandidateUpdateDto inputs,
@@ -102,6 +111,13 @@ public class CandidateController {
 	candidateService.delete(candidate);
     }
 
+    /**
+     * Returns a candidate by its task and shift
+     * 
+     * @param task the given task
+     * @param shift optional: the given shift
+     * @return a {@code CandidateViewDto} representing a {@code Candidate}
+     */
     @GetMapping("/{task}/current")
     public CandidateViewDto getCurrentByTask(@PathVariable String task,
 	    @RequestParam(required = false) Shift shift) {
@@ -109,6 +125,14 @@ public class CandidateController {
 		Status.CURRENT, shift);
     }
 
+    /**
+     * Returns the {@code Candidate} with the highest priority and the
+     * {@code Status.CURRENT}.
+     * 
+     * @param task the given task
+     * @param shift optional: the given shift
+     * @return a {@code CandidateViewDto} representing a {@code Candidate}
+     */
     @GetMapping("/{task}/available")
     public CandidateViewDto getFirstAvailableByTask(@PathVariable String task,
 	    @RequestParam(required = false) Shift shift) {
@@ -116,6 +140,14 @@ public class CandidateController {
 		Status.AVAILABLE, shift);
     }
 
+    /**
+     * Returns all the {@code Candidate} for a given task and a given shift
+     * 
+     * @param taskName the given task
+     * @param shift the given shift
+     * @return a {@code Set} of {@code CandidateViewDto} representing
+     *         {@code Candidate}s
+     */
     @GetMapping("/{taskName}/shift/{shift}")
     public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
 	    @PathVariable String taskName, @PathVariable Shift shift) {

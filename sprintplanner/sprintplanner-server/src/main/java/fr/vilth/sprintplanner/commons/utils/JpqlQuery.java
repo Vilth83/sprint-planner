@@ -12,6 +12,11 @@ public class JpqlQuery {
 
     /**
      * Retrieve a {@code DTO} representing a {@code Candidate} full name
+     * <p>
+     * Query written to retrieace a candidate full name based on its
+     * {@code Status} and given task. Used by
+     * {@linkplain fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository#findCandidateNameByTaskNameAndStatus(String, fr.vilth.sprintplanner.domain.types.Status)
+     * findCandidateNameByTaskNameAndStatus}
      */
     public static final String CANDIDATE_NAME_QUERY = // -
 	    "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "

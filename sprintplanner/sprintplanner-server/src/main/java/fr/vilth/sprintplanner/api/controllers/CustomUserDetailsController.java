@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 
+/**
+ * A {@code RestController} to handle {@code CustomUserDetails}.
+ * 
+ * @author vilth
+ */
 @RestController
 @RequestMapping("/users")
 public class CustomUserDetailsController {
