@@ -8,12 +8,22 @@ import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.job.JobUpdateDto;
 import fr.vilth.sprintplanner.domain.entities.Job;
 
+/**
+ * Implementation of {@code JobService}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class JobServiceImpl extends AbstractService implements JobService {
 
     private final JobJpaRepository jobRepository;
 
-    public JobServiceImpl(JobJpaRepository jobRepository) {
+    /**
+     * Protected constructor to autowire needed beans
+     * 
+     * @param jobRepository injected {@code JobRepository}
+     */
+    protected JobServiceImpl(JobJpaRepository jobRepository) {
 	this.jobRepository = jobRepository;
     }
 

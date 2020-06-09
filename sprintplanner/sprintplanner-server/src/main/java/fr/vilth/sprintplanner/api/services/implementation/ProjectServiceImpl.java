@@ -15,13 +15,23 @@ import fr.vilth.sprintplanner.domain.dtos.project.ProjectCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.domain.entities.Project;
 
+/**
+ * Implementation of {@code ProjectService}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class ProjectServiceImpl extends AbstractService
 	implements ProjectService {
 
     private final ProjectJpaRepository projectRepository;
 
-    public ProjectServiceImpl(ProjectJpaRepository projectRepository) {
+    /**
+     * Protected constructor to autowire needed beans
+     * 
+     * @param projectRepository injectyed {@code PorjectRepository}
+     */
+    protected ProjectServiceImpl(ProjectJpaRepository projectRepository) {
 	this.projectRepository = projectRepository;
     }
 

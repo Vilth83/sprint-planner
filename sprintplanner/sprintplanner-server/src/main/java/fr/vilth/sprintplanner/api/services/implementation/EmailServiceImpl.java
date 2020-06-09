@@ -10,6 +10,11 @@ import org.springframework.stereotype.Service;
 import fr.vilth.sprintplanner.api.services.EmailService;
 import fr.vilth.sprintplanner.domain.entities.Mail;
 
+/**
+ * Implementation of {@code EmailService}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class EmailServiceImpl implements EmailService {
 
@@ -19,7 +24,14 @@ public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
 
-    public EmailServiceImpl(JavaMailSender javaMailSender) {
+    /**
+     * Protected constructor to autowire needed beans.
+     * <p>
+     * injects {@code JavaMailSender}
+     * 
+     * @param javaMailSender the injected {@code JavaMailSender} bean.
+     */
+    protected EmailServiceImpl(JavaMailSender javaMailSender) {
 	this.javaMailSender = javaMailSender;
     }
 
@@ -27,11 +39,11 @@ public class EmailServiceImpl implements EmailService {
     public void sendMail(Mail mail) throws MessagingException {
 	MimeMessage message = javaMailSender.createMimeMessage();
 	MimeMessageHelper helper = new MimeMessageHelper(message, true,
-		"utf-8");
+		ENCODING);
 	helper.setFrom(mail.getSender());
 	helper.setTo(mail.getRecipients().toArray(new String[0]));
 	helper.setSubject(mail.getSubject());
-	message.setContent(mail.getContent(), "text/html");
+	message.setContent(mail.getContent(), TYPE);
 	javaMailSender.send(message);
     }
 }

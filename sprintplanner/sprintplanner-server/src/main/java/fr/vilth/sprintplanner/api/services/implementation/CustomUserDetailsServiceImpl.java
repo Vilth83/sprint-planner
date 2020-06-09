@@ -20,6 +20,11 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 import fr.vilth.sprintplanner.domain.entities.CustomUser;
 import fr.vilth.sprintplanner.domain.entities.Role;
 
+/**
+ * Implementation of {@code CustomUserDetailsService}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Service
 public class CustomUserDetailsServiceImpl extends AbstractService
 	implements CustomUserDetailsService {
@@ -30,7 +35,8 @@ public class CustomUserDetailsServiceImpl extends AbstractService
 
     private final PasswordEncoder passwordEncoder;
 
-    public CustomUserDetailsServiceImpl(CustomUserJpaRepository userRepository,
+    protected CustomUserDetailsServiceImpl(
+	    CustomUserJpaRepository userRepository,
 	    RoleJpaRepository roleRepository,
 	    PasswordEncoder passwordEncoder) {
 	this.userRepository = userRepository;

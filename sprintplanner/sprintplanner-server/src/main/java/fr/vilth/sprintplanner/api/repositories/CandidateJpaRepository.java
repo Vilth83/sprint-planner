@@ -85,7 +85,7 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      * 
      * @param taskName the given task
      * @param status the given {@code Status}
-     * @return a {@code CandidateViexwDto}
+     * @return a {@code CandidateViewDto}
      */
     @Query(JpqlQuery.CANDIDATE_NAME_QUERY)
     Optional<CandidateNameDto> findCandidateNameByTaskNameAndStatus(
