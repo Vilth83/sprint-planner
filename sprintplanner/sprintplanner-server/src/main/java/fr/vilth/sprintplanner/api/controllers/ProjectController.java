@@ -2,7 +2,6 @@ package fr.vilth.sprintplanner.api.controllers;
 
 import javax.validation.Valid;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,7 +40,7 @@ public class ProjectController {
      * @return a {@code Dto} representation of the returned id
      */
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public EntityIdDto save(@Valid @RequestBody ProjectCreateDto inputs) {
 	return projectService.save(inputs);
     }
@@ -57,7 +56,7 @@ public class ProjectController {
      * @return the {@code Project}
      */
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ProjectViewDto getProject() {
 	return projectService.getProject();
     }

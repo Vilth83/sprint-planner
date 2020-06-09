@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.api.repositories;
+*package fr.vilth.sprintplanner.api.repositories;
 
 import java.util.List;
 import java.util.Optional;
