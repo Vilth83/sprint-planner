@@ -15,6 +15,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+/**
+ * Configuration class declaring configuration beans.
+ * <p>
+ * Provides default configuration for beans such as {@code ObjectMapper},
+ * {@code ModelMapper} or {@code RestTemplate}. Please note that those beans are
+ * configured for the sake of all this application and SHOULD NOT be overridden.
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @Configuration
 public class BeanConfig {
 
@@ -78,6 +87,16 @@ public class BeanConfig {
 	return mapper;
     }
 
+    /**
+     * Default configuration of a {@code RestTemplate}.
+     * <p>
+     * No specific configuration is needed, so this {@code Bean} returns a
+     * standard {@code RestTemplate}
+     * 
+     * @param builder the {@code RestTemplateBuilder} needed to build a
+     *        {@code RestTemplate}
+     * @return {@code RestTemplate}
+     */
     @Bean
     public RestTemplate template(RestTemplateBuilder builder) {
 	return builder.build();

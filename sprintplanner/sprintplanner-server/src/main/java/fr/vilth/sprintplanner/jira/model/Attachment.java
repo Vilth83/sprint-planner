@@ -1,21 +1,26 @@
 package fr.vilth.sprintplanner.jira.model;
 
+/**
+ * Attachment of a Jira {@code Ticket}
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public class Attachment {
-	private Long id;
 
-	private String filename;
-	private String content;
+    @SuppressWarnings("unused") // Mandatory for jackson mapping
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    private String filename;
 
-	public String getFilename() {
-		return filename;
-	}
+    @SuppressWarnings("unused") // Mandatory for jackson mapping
+    private String content;
 
-	public String getContent() {
-		return content;
-	}
-
+    /**
+     * Returns the file name of this {@code Attachement}
+     * 
+     * @return a {@code String} corresponding to the file name
+     */
+    public String getFilename() {
+	return filename;
+    }
 }

@@ -74,6 +74,17 @@ public abstract class AbstractService {
 		.collect(Collectors.toSet());
     }
 
+    /**
+     * Receive a {@code Set} of {@code Object} and convert it to a {@code List}
+     * of another type
+     * 
+     * @param <S> the given source type
+     * @param <D> the given destination type
+     * @param source the {@code Set} to be converted
+     * @param destination the {@code Class} type to convert {@code Set} elements
+     *        into
+     * @return a {@code List} of objects of given destination type
+     */
     public <S, D> List<D> convertSetToList(Set<S> source,
 	    Class<D> destination) {
 	return source.stream()// -

@@ -6,8 +6,12 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
-import fr.vilth.sprintplanner.commons.api.ApiError;
 
+/**
+ * Test against ApiError
+ * 
+ * @author Thierry VILLEPREUX
+ */
 public class ApiErrorTest extends SetupUnitTest {
 
     @Test

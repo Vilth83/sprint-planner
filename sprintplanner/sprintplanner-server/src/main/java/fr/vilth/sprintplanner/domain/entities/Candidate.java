@@ -79,31 +79,53 @@ public class Candidate extends AbstractEntity {
 	return priority;
     }
 
+    /**
+     * Returns the {@code Status} of this {@code Candidate}
+     * 
+     * @return a {@code Status}
+     */
     public Status getStatus() {
 	return status;
     }
 
+    /**
+     * Make this {@code Candidate} previous candidate.
+     * <p>
+     * {@code Status} becomes {@code AVAILABLE} and priority is set to 0, so
+     * this {@code Candidate} go to queue of the round robin selection.
+     */
     public void becomesPrevious() {
 	this.status = Status.AVAILABLE;
 	this.priority = 0;
     }
 
-    public void becomesAvailable() {
-	this.status = Status.AVAILABLE;
-    }
-
+    /**
+     * Set this {@code Candidate} {@code Status} to given {@code Status}
+     * 
+     * @param status the {@code Status} to be set
+     */
     public void setStatus(Status status) {
 	this.status = status;
     }
 
+    /**
+     * Set this {@code Candidate} {@code Status} to {@code CURRENT}.
+     * <p>
+     * Utility method to permit method reference in lambda, to ease readibility.
+     */
     public void becomesCurrent() {
 	this.status = Status.CURRENT;
     }
 
-    public void becomesUnavailable() {
-	this.status = Status.UNAVAILABLE;
-    }
-
+    /**
+     * Return wether or not this {@code Candidate} {@code Status} is equal to
+     * {@code UNAVAILABLE}.
+     * <p>
+     * Utility method to permit method reference in lambda, to ease readibility.
+     * 
+     * @return {@code true} if this {@code Candidate} {@code status} is equal to
+     *         {@code Status.AVAILABLE}; {@code false} otherwise
+     */
     public final boolean isAvailable() {
 	return this.status.equals(Status.AVAILABLE);
     }

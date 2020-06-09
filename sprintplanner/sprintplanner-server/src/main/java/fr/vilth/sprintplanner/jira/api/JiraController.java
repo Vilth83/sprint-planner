@@ -7,18 +7,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.jira.model.Ticket;
 
+// FIXME: Controller created for testing purpose. Should be deleting when
+// IssueReconciliation is implemented
+@SuppressWarnings("javadoc")
 @RestController
 @RequestMapping("/jira")
 public class JiraController {
 
-	private final JiraService jiraService;
+    private final JiraService jiraService;
 
-	public JiraController(JiraService jiraService) {
-		this.jiraService = jiraService;
-	}
+    public JiraController(JiraService jiraService) {
+	this.jiraService = jiraService;
+    }
 
-	@GetMapping("/ticket/{key}")
-	public Ticket getByKey(@PathVariable String key) {
-		return jiraService.getByKey(key);
-	}
+    @GetMapping("/ticket/{key}")
+    public Ticket getByKey(@PathVariable String key) {
+	return jiraService.getByKey(key);
+    }
 }
