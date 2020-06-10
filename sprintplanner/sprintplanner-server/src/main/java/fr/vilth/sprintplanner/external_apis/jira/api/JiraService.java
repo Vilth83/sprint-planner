@@ -1,6 +1,6 @@
-package fr.vilth.sprintplanner.jira.api;
+package fr.vilth.sprintplanner.external_apis.jira.api;
 
-import fr.vilth.sprintplanner.jira.model.Ticket;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 // FIXME: Controller created for testing purpose. Should be deleting when
 // IssueReconciliation is implemented

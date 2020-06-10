@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.jira.model;
+package fr.vilth.sprintplanner.external_apis.jira.model;
 
 import java.util.List;
 import java.util.regex.Pattern;

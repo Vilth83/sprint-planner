@@ -9,21 +9,26 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
 
+/**
+ * Test on CandidateUpdateDto
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class CandidateUpdateDtoTest extends SetupUnitTest {
 
-    @Test
-    void should_construct() {
-	CandidateUpdateDto actual = new CandidateUpdateDto();
-	assertNotNull(actual);
-    }
+	@Test
+	void should_construct() {
+		CandidateUpdateDto actual = new CandidateUpdateDto();
+		assertNotNull(actual);
+	}
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/candidateUpdate.csv", delimiter = ';')
-    void should_return_toString(String json) {
-	CandidateUpdateDto candidate = jsonConvert(json,
-		CandidateUpdateDto.class);
-	String expected = "{id=1, priority=10, status=AVAILABLE}";
-	String actual = candidate.toString();
-	assertEquals(expected, actual);
-    }
+	@ParameterizedTest
+	@CsvFileSource(resources = "/candidateUpdate.csv", delimiter = ';')
+	void should_return_toString(String json) {
+		CandidateUpdateDto candidate = jsonConvert(json, CandidateUpdateDto.class);
+		String expected = "{id=1, priority=10, status=AVAILABLE}";
+		String actual = candidate.toString();
+		assertEquals(expected, actual);
+	}
 }

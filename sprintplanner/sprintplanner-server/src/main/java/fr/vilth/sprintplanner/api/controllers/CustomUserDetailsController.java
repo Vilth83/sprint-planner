@@ -13,25 +13,25 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 /**
  * A {@code RestController} to handle {@code CustomUserDetails}.
  * 
- * @author vilth
+ * @author Thierry VILLEPREUX
  */
 @RestController
 @RequestMapping("/users")
 public class CustomUserDetailsController {
 
-    private final CustomUserDetailsService service;
+	private final CustomUserDetailsService service;
 
-    protected CustomUserDetailsController(CustomUserDetailsService service) {
-	this.service = service;
-    }
+	protected CustomUserDetailsController(CustomUserDetailsService service) {
+		this.service = service;
+	}
 
-    /**
-     * Creates a new user with given username and password, and default role.
-     *
-     * @param inputs the inputs
-     */
-    @PostMapping
-    protected void create(@RequestBody @Valid CustomUserCreateDto inputs) {
-	service.create(inputs);
-    }
+	/**
+	 * Creates a new user with given username and password, and default role.
+	 *
+	 * @param inputs the inputs
+	 */
+	@PostMapping
+	protected void create(@RequestBody @Valid CustomUserCreateDto inputs) {
+		service.create(inputs);
+	}
 }

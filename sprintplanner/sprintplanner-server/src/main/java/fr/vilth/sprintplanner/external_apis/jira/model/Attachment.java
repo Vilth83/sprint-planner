@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.jira.model;
+package fr.vilth.sprintplanner.external_apis.jira.model;
 
 /**
  * Attachment of a Jira {@code Ticket}
