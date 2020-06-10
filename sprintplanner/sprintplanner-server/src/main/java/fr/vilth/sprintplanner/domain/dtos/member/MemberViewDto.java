@@ -11,39 +11,50 @@ import fr.vilth.sprintplanner.domain.types.Shift;
  */
 public class MemberViewDto {
 
-    private Long id;
+	private Long id;
 
-    private String firstname;
+	private String firstname;
 
-    private String lastname;
+	private String lastname;
 
-    private String email;
+	private String email;
 
-    private Shift shift;
+	private Shift shift;
 
-    protected MemberViewDto() {
-	// private empty no-arg constructor
-    }
+	protected MemberViewDto() {
+		// private empty no-arg constructor
+	}
 
-    public String getEmail() {
-	return email;
-    }
+	/**
+	 * Getter for email
+	 * 
+	 * @return an email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    public String getFirstname() {
-	return firstname;
-    }
+	/**
+	 * Getter for firstname
+	 * 
+	 * @return a firstname
+	 */
+	public String getFirstname() {
+		return firstname;
+	}
 
-    public String getLastname() {
-	return lastname;
-    }
+	/**
+	 * Getter for lastname.
+	 * 
+	 * @return a lastname
+	 */
+	public String getLastname() {
+		return lastname;
+	}
 
-    public String buildFullName() {
-	return firstname + " " + lastname;
-    }
-
-    @Override
-    public String toString() {
-	return "{id=" + id + ", firstname=" + firstname + ", lastname="
-		+ lastname + ", email=" + email + ", shift=" + shift + "}";
-    }
+	@Override
+	public String toString() {
+		return "{id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email + ", shift="
+				+ shift + "}";
+	}
 }

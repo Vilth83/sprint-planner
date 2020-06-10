@@ -1,22 +1,43 @@
 package fr.vilth.sprintplanner.domain.dtos.job;
 
+/**
+ * {@code Dto} representing a {@code Job} to update.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class JobUpdateDto {
 
-    private String title;
+	private String title;
 
-    private String task;
+	private String task;
 
-    private boolean active;
+	private boolean active;
 
-    public String getTitle() {
-	return title;
-    }
+	/**
+	 * Getter for title
+	 * 
+	 * @return a title
+	 */
+	public String getTitle() {
+		return title;
+	}
 
-    public String getTask() {
-	return task;
-    }
+	/**
+	 * Getter for task
+	 * 
+	 * @return a task
+	 */
+	public String getTask() {
+		return task;
+	}
 
-    public boolean isActive() {
-	return active;
-    }
+	/**
+	 * Getter for active.
+	 * 
+	 * @return {@code true} if is active; {@code false} otherwise
+	 */
+	public boolean isActive() {
+		return active;
+	}
 }

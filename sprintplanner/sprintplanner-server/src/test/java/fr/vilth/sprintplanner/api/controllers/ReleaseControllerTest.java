@@ -17,38 +17,43 @@ import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
 
+/**
+ * Integration test of ReleaseController
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class ReleaseControllerTest extends SetupIntTest {
 
-    @Autowired
-    private ReleaseController controller;
+	@Autowired
+	private ReleaseController controller;
 
-    @Test
-    void should_return_all_releases() {
-	List<ReleaseViewDto> releases = controller.findAllOrdered();
-	assertEquals(3, releases.size());
-    }
+	@Test
+	void should_return_all_releases() {
+		List<ReleaseViewDto> releases = controller.findAllOrdered();
+		assertEquals(3, releases.size());
+	}
 
-    @Test
-    void should_return_last_release() {
-	ReleaseViewDto release = controller.findLastRelease();
-	Assertions.assertAll(() -> assertEquals(2, release.getWeek()),
-		() -> assertEquals(1, release.getSprint()),
-		() -> assertEquals(2, release.getPi()));
-    }
+	@Test
+	void should_return_last_release() {
+		ReleaseViewDto release = controller.findLastRelease();
+		Assertions.assertAll(() -> assertEquals(2, release.getWeek()), () -> assertEquals(1, release.getSprint()),
+				() -> assertEquals(2, release.getPi()));
+	}
 
-    @Test
-    void should_increment_release() {
-	List<ReleaseViewDto> releases = controller.findAllOrdered();
-	controller.incrementReleaseVersion();
-	List<ReleaseViewDto> actual = controller.findAllOrdered();
-	assertNotEquals(releases.size(), actual.size());
-    }
+	@Test
+	void should_increment_release() {
+		List<ReleaseViewDto> releases = controller.findAllOrdered();
+		controller.incrementReleaseVersion();
+		List<ReleaseViewDto> actual = controller.findAllOrdered();
+		assertNotEquals(releases.size(), actual.size());
+	}
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/releaseCreation.csv", delimiter = ';')
-    void should_save_release(String json) {
-	ReleaseCreateDto release = jsonConvert(json, ReleaseCreateDto.class);
-	EntityIdDto tested = controller.save(release);
-	assertNotNull(tested);
-    }
+	@ParameterizedTest
+	@CsvFileSource(resources = "/releaseCreation.csv", delimiter = ';')
+	void should_save_release(String json) {
+		ReleaseCreateDto release = jsonConvert(json, ReleaseCreateDto.class);
+		EntityIdDto tested = controller.save(release);
+		assertNotNull(tested);
+	}
 }

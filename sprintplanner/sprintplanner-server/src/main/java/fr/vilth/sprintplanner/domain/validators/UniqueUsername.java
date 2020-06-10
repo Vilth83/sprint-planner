@@ -21,14 +21,14 @@ import javax.validation.Payload;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE,
-	ElementType.PARAMETER })
+@Target({ ElementType.FIELD, ElementType.ANNOTATION_TYPE, ElementType.PARAMETER })
 @Constraint(validatedBy = UniqueUsernameValidator.class)
+@SuppressWarnings("javadoc") // ignored for IDE warnings purposes
 public @interface UniqueUsername {
 
-    String message() default "";
+	String message() default "";
 
-    Class<?>[] groups() default {};
+	Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default {};
+	Class<? extends Payload>[] payload() default {};
 }

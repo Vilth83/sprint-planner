@@ -19,6 +19,7 @@ public class Commit {
 
 	private String key;
 
+	@SuppressWarnings("unused") // required for Jackson mapping
 	private String url;
 
 	/**
