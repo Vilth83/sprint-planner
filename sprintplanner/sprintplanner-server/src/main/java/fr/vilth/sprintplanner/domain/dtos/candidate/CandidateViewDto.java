@@ -13,27 +13,32 @@ import fr.vilth.sprintplanner.domain.types.Status;
  */
 public class CandidateViewDto {
 
-    private Long id;
+	private Long id;
 
-    private MemberViewDto member;
+	private MemberViewDto member;
 
-    private Status status;
+	private Status status;
 
-    private TaskViewDto task;
+	private TaskViewDto task;
 
-    private int priority;
+	private int priority;
 
-    protected CandidateViewDto() {
-	// protected empty no-arg constructor
-    }
+	protected CandidateViewDto() {
+		// protected empty no-arg constructor
+	}
 
-    public MemberViewDto getMember() {
-	return member;
-    }
+	/**
+	 * Getter for member
+	 * 
+	 * @return a {@code MemberViewDto}
+	 */
+	public MemberViewDto getMember() {
+		return member;
+	}
 
-    @Override
-    public String toString() {
-	return "{id=" + id + ", member=" + member + ", status=" + status
-		+ ", task=" + task + ", priority=" + priority + "}";
-    }
+	@Override
+	public String toString() {
+		return "{id=" + id + ", member=" + member + ", status=" + status + ", task=" + task + ", priority=" + priority
+				+ "}";
+	}
 }

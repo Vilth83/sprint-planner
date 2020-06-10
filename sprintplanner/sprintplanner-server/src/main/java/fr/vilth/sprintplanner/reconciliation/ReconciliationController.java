@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.vilth.sprintplanner.github.api.GithubController;
-import fr.vilth.sprintplanner.github.model.Commit;
-import fr.vilth.sprintplanner.jira.api.JiraController;
-import fr.vilth.sprintplanner.jira.model.Ticket;
+import fr.vilth.sprintplanner.external_apis.github.api.GithubController;
+import fr.vilth.sprintplanner.external_apis.github.model.Commit;
+import fr.vilth.sprintplanner.external_apis.jira.api.JiraController;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 @RestController
 @RequestMapping("/reconciliation")

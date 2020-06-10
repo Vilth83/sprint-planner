@@ -6,9 +6,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
-import fr.vilth.sprintplanner.github.model.Commit;
-import fr.vilth.sprintplanner.jira.model.Ticket;
+import fr.vilth.sprintplanner.external_apis.github.model.Commit;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
+/**
+ * Represents a reconciliation between Jira and Github.
+ * <p>
+ * Takes Jira {@code Ticket} associated with corresponding Github {@code Commit}
+ * informations and agglomerate them.
+ * <p>
+ * Jira {@code Ticket} and Github {@code Commit} a considered corresponding when
+ * their key is identical.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
+@SuppressWarnings("unused") // Required fields for JacksonMapping
 public class ReconciliatedIssue {
 
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'",
@@ -28,8 +41,8 @@ public class ReconciliatedIssue {
 	private boolean testProofed;
 	private String url;
 
-	public ReconciliatedIssue() {
-
+	protected ReconciliatedIssue() {
+		// protected no args empty constructor
 	}
 
 	public ReconciliatedIssue withCommit(Commit commit) {

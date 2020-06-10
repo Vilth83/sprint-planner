@@ -1,12 +1,31 @@
 package fr.vilth.sprintplanner.commons.exceptions;
 
+/**
+ * Exception thrown if resource is not found.
+ * <p>
+ * Used to handle 404 Http error.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class ResourceNotFoundException extends RuntimeException {
 
-    public ResourceNotFoundException() {
-	super();
-    }
+	private static final long serialVersionUID = -5437163224457589318L;
 
-    public ResourceNotFoundException(String string) {
-	super(string);
-    }
+	/**
+	 * Public empty no-arg constructor calling {@link RuntimeException} constructor.
+	 */
+	public ResourceNotFoundException() {
+		super();
+	}
+
+	/**
+	 * Public constructor calling {@link RuntimeException} constructor with given
+	 * message.
+	 * 
+	 * @param message the message given when throwing the exception
+	 */
+	public ResourceNotFoundException(String message) {
+		super(message);
+	}
 }

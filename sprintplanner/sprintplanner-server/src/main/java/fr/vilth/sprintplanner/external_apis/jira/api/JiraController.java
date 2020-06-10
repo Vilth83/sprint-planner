@@ -1,11 +1,11 @@
-package fr.vilth.sprintplanner.jira.api;
+package fr.vilth.sprintplanner.external_apis.jira.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.vilth.sprintplanner.jira.model.Ticket;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 // FIXME: Controller created for testing purpose. Should be deleting when
 // IssueReconciliation is implemented

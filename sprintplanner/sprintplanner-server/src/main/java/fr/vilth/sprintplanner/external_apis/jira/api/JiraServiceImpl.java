@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.jira.api;
+package fr.vilth.sprintplanner.external_apis.jira.api;
 
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import fr.vilth.sprintplanner.commons.api.AbstractService;
-import fr.vilth.sprintplanner.jira.model.Ticket;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 // FIXME: modify visibility of unused methods when IssueReconciliation will be
 // implemented

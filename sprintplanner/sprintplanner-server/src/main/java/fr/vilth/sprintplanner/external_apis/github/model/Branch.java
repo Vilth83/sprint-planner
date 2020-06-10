@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.github.model;
+package fr.vilth.sprintplanner.external_apis.github.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
