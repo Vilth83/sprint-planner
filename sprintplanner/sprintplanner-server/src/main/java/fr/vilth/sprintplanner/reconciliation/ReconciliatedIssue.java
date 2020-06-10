@@ -27,7 +27,7 @@ public class ReconciliatedIssue {
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'",
 			Locale.ENGLISH);
 	private String key; // ticket number
-	private State state; // Closed / Opened / not matching
+	private IssueState state; // Closed / Opened / not matching
 	private LocalDate creationDate; // PR creation date
 	private String title; // Github name
 	private List<String> fixVersion;
@@ -45,6 +45,12 @@ public class ReconciliatedIssue {
 		// protected no args empty constructor
 	}
 
+	/**
+	 * Returns this instance filled with {@code Commit} informations.
+	 * 
+	 * @param commit the commit to extract informations from
+	 * @return this for chaining
+	 */
 	public ReconciliatedIssue withCommit(Commit commit) {
 		this.key = commit.getKey();
 		this.title = commit.getMessage().substring(0, commit.getMessage().indexOf("\n"));
@@ -52,9 +58,16 @@ public class ReconciliatedIssue {
 		LocalDateTime creation = LocalDateTime.parse(creationDateString, FORMATTER);
 		this.creationDate = creation.toLocalDate();
 		this.url = commit.getHtmlUrl();
+
 		return this;
 	}
 
+	/**
+	 * Returns this instance filled with {@code Ticket} informations.
+	 * 
+	 * @param ticket the ticket to extract informations from
+	 * @return this for chaining
+	 */
 	public ReconciliatedIssue withTicket(Ticket ticket) {
 		this.assignee = ticket.getFields().getAssignee();
 		this.reporter = ticket.getFields().getReporter();

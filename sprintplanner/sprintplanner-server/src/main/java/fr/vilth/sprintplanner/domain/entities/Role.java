@@ -9,41 +9,64 @@ import javax.persistence.UniqueConstraint;
 import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
 import fr.vilth.sprintplanner.commons.utils.BooleanConverter;
 
+/**
+ * Entity representing a {@code Role}.
+ * <p>
+ * Role define {@code CustomUser} atuhorizations.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 @Entity
 @Table(name = "roles", uniqueConstraints = @UniqueConstraint(name = "roles_code_UNIQUE", columnNames = "code"))
 public class Role extends AbstractEntity {
 
-    private static final long serialVersionUID = -7736465755017636243L;
+	private static final long serialVersionUID = -7736465755017636243L;
 
-    @Column(length = 256, nullable = false)
-    private String code;
+	@Column(length = 256, nullable = false)
+	private String code;
 
-    @Convert(converter = BooleanConverter.class)
-    @Column(length = 1, nullable = false)
-    private boolean defaultRole = false;
+	@Convert(converter = BooleanConverter.class)
+	@Column(length = 1, nullable = false)
+	private boolean defaultRole = false;
 
-    protected Role() {
-	// Empty no-arg constructor for JPA
-    }
+	protected Role() {
+		// protected empty no-arg constructor
+	}
 
-    public Role(String code) {
-	setCode(code);
-    }
+	/**
+	 * Create a new {@code Role} with given code
+	 * 
+	 * @param code the given code
+	 */
+	public Role(String code) {
+		setCode(code);
+	}
 
-    public String getCode() {
-	return code;
-    }
+	/**
+	 * Getter for code
+	 * 
+	 * @return a code
+	 */
+	public String getCode() {
+		return code;
+	}
 
-    private void setCode(String code) {
-	this.code = code;
-    }
+	private void setCode(String code) {
+		this.code = code;
+	}
 
-    public boolean isDefaultRole() {
-	return defaultRole;
-    }
+	/**
+	 * Getter for defaultRole.
+	 * 
+	 * @return {@code true} if is default {@code Role}; {@code false} otherwise
+	 */
+	public boolean isDefaultRole() {
+		return defaultRole;
+	}
 
-    @Override
-    public String toString() {
-	return "{id=" + getId() + ", code=" + code + "}";
-    }
+	@Override
+	public String toString() {
+		return "{id=" + getId() + ", code=" + code + "}";
+	}
 }

@@ -2,26 +2,30 @@ package fr.vilth.sprintplanner.domain.dtos.custom_user;
 
 import java.util.Set;
 
+import fr.vilth.sprintplanner.domain.entities.CustomUser;
 import fr.vilth.sprintplanner.domain.entities.Role;
 
 /**
  * A projection of a {@code CustomUser} for authentication.
+ * 
+ * @see CustomUser
  */
+@SuppressWarnings("javadoc") // Getters of CustomUser
 public interface CustomUserAuthDto {
 
-    Long getId();
+	Long getId();
 
-    String getUsername();
+	String getUsername();
 
-    String getPassword();
+	String getPassword();
 
-    Set<Role> getRoles();
+	Set<Role> getRoles();
 
-    boolean isEnabled();
+	boolean isEnabled();
 
-    boolean isAccountNonExpired();
+	boolean isAccountNonExpired();
 
-    boolean isAccountNonLocked();
+	boolean isAccountNonLocked();
 
-    boolean isCredentialsNonExpired();
+	boolean isCredentialsNonExpired();
 }

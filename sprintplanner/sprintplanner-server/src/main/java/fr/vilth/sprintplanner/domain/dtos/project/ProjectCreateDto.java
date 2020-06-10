@@ -3,42 +3,53 @@ package fr.vilth.sprintplanner.domain.dtos.project;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * {@code Dto} representing a {@code Project} to create.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class ProjectCreateDto {
 
-    private Long id;
+	@SuppressWarnings("unused") // required for Jackson mapping
+	private Long id;
 
-    private String trigram;
+	private String trigram;
 
-    @NotBlank
-    private String name;
+	@NotBlank
+	private String name;
 
-    @Email
-    @NotBlank
-    private String email;
+	@Email
+	@NotBlank
+	private String email;
 
-    private int piDuration;
+	private int piDuration;
 
-    private int sprintDuration;
+	private int sprintDuration;
 
-    @NotBlank
-    private String githubUser;
+	@NotBlank
+	private String githubUser;
 
-    @NotBlank
-    private String githubRepo;
+	@NotBlank
+	private String githubRepo;
 
-    protected ProjectCreateDto() {
-	//
-    }
+	protected ProjectCreateDto() {
+		//
+	}
 
-    @Override
-    public String toString() {
-	return "{trigram=" + trigram + ", name=" + name + ", email=" + email
-		+ ", piDuration=" + piDuration + ", sprintDuration="
-		+ sprintDuration + ", githubUser=" + githubUser
-		+ ", githubRepo=" + githubRepo + "}";
-    }
+	@Override
+	public String toString() {
+		return "{trigram=" + trigram + ", name=" + name + ", email=" + email + ", piDuration=" + piDuration
+				+ ", sprintDuration=" + sprintDuration + ", githubUser=" + githubUser + ", githubRepo=" + githubRepo
+				+ "}";
+	}
 
-    public String getTrigram() {
-	return trigram;
-    }
+	/**
+	 * Getter for trigram
+	 * 
+	 * @return the trigram
+	 */
+	public String getTrigram() {
+		return trigram;
+	}
 }

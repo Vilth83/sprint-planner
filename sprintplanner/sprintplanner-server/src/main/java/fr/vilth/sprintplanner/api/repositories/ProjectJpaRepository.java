@@ -1,5 +1,7 @@
 package fr.vilth.sprintplanner.api.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.vilth.sprintplanner.domain.entities.Project;
@@ -11,11 +13,11 @@ import fr.vilth.sprintplanner.domain.entities.Project;
  */
 public interface ProjectJpaRepository extends JpaRepository<Project, Long> {
 
-    /**
-     * Find a {@code Project} with given Trigram
-     * 
-     * @param trigram the code identifying the application
-     * @return a {@code Project}
-     */
-    Project findByTrigram(String trigram);
+	/**
+	 * Find an option of {@code Project} with given Trigram
+	 * 
+	 * @param trigram the code identifying the application
+	 * @return a {@code Project}
+	 */
+	Optional<Project> findByTrigram(String trigram);
 }

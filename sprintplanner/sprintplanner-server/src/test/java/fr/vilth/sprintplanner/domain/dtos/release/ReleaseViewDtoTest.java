@@ -7,13 +7,19 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
 
+/**
+ * Unit Test pof ReleaseViewDto.
+ * 
+ * @author Thierry VILLEPREUX
+ *
+ */
 public class ReleaseViewDtoTest extends SetupUnitTest {
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/releaseViewDto.csv", delimiter = ';')
-    void should_return_toString(String json) {
-	ReleaseViewDto actual = jsonConvert(json, ReleaseViewDto.class);
-	String expected = "{id=1, pi=1, sprint=1, week=1, releaser=test}";
-	assertEquals(expected, actual.toString());
-    }
+	@ParameterizedTest
+	@CsvFileSource(resources = "/releaseViewDto.csv", delimiter = ';')
+	void should_return_toString(String json) {
+		ReleaseViewDto actual = jsonConvert(json, ReleaseViewDto.class);
+		String expected = "{id=1, pi=1, sprint=1, week=1, releaser=test}";
+		assertEquals(expected, actual.toString());
+	}
 }

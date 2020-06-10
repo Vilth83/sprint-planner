@@ -11,27 +11,32 @@ import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
  */
 public class TaskViewDto {
 
-    private Long id;
+	private Long id;
 
-    private String name;
+	private String name;
 
-    private String description;
+	private String description;
 
-    private String email;
+	private String email;
 
-    private MemberViewDto manager;
+	private MemberViewDto manager;
 
-    protected TaskViewDto() {
-	// protected empty no-arg constructor
-    }
+	protected TaskViewDto() {
+		// protected empty no-arg constructor
+	}
 
-    public String getEmail() {
-	return email;
-    }
+	/**
+	 * Getter for email.
+	 * 
+	 * @return an email
+	 */
+	public String getEmail() {
+		return email;
+	}
 
-    @Override
-    public String toString() {
-	return "{id=" + id + ", name=" + name + ", description=" + description
-		+ ", email=" + email + ", manager=" + manager + "}";
-    }
+	@Override
+	public String toString() {
+		return "{id=" + id + ", name=" + name + ", description=" + description + ", email=" + email + ", manager="
+				+ manager + "}";
+	}
 }
