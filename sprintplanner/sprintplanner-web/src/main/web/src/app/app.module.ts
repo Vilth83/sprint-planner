@@ -33,6 +33,7 @@ import { ProjectConfigurationComponent } from './routes/configuration/project-co
 import { JobConfigurationComponent } from './routes/configuration/job-configuration/job-configuration.component';
 import { LoginModalComponent } from './shared/modals/login-modal/login-modal.component';
 import { TokenInterceptor } from './shared/services/token-interceptor.service';
+import { IssueReconciliationComponent } from './routes/issue-reconciliation/issue-reconciliation.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TokenInterceptor } from './shared/services/token-interceptor.service';
     ConfigurationComponent,
     ProjectConfigurationComponent,
     JobConfigurationComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    IssueReconciliationComponent
   ],
   imports: [
     UiSwitchModule,

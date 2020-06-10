@@ -1,0 +1,14 @@
+<app-page-header title="Issue Reconciliation" subtitle="Reconciliation between Jira and Github"></app-page-header>
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="button submenu text-center" (click)="isBranchSelectionCollapsed = ! isBranchSelectionCollapsed">
+        <h4 class="unselectable">Branch selection <span class="fa fa-caret-down"></span></h4>
+      </div>
+      <div [collapse]="isBranchSelectionCollapsed">
+        collapse...
+      </div>
+    </div>
+  </div>
+</div>

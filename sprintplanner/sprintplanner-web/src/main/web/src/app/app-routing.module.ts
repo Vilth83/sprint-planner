@@ -6,6 +6,7 @@ import { ReleaserComponent } from './routes/releaser/releaser.component';
 import { SupportComponent } from './routes/support/support.component';
 import { ReleaseVersionComponent } from './routes/release-version/release-version.component';
 import { ConfigurationComponent } from './routes/configuration/configuration.component';
+import { IssueReconciliationComponent } from './routes/issue-reconciliation/issue-reconciliation.component';
 
 
 
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'members', component: MemberComponent },
   { path: 'releasers', component: ReleaserComponent },
   { path: 'releases', component: ReleaseVersionComponent },
+  {path: 'issues', component: IssueReconciliationComponent},
   { path: 'supports/bangalore', component: SupportComponent },
   { path: 'supports/paris', component: SupportComponent },
   { path: 'configuration', component: ConfigurationComponent }

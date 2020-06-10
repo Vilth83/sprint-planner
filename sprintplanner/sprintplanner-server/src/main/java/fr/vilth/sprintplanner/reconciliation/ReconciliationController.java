@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.vilth.sprintplanner.external_apis.github.api.GithubController;
+import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
-import fr.vilth.sprintplanner.external_apis.jira.api.JiraController;
+import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
 import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 /**
@@ -21,13 +21,13 @@ import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
  *
  */
 @RestController
-@RequestMapping("/reconciliation")
+@RequestMapping("/reconciliations")
 public class ReconciliationController {
 
 	@Autowired
-	GithubController githubController;
+	private GithubService githubService;
 	@Autowired
-	JiraController jiraController;
+	private JiraService jiraService;
 
 	/**
 	 * Returns a {@code List} of {@code ReconciliatedIssue}.
@@ -42,12 +42,12 @@ public class ReconciliationController {
 	 * @param previousBranch the previous release's branch
 	 * @return a {@code List} of {@code reconciliatedIssue}
 	 */
-	@GetMapping("/test")
+	@GetMapping("/reconciliate")
 	public List<ReconciliatedIssue> getIssue(String currentBranch, String previousBranch) {
-		Set<Commit> commits = githubController.compareBranches(currentBranch, previousBranch);
+		Set<Commit> commits = githubService.compareBranches(currentBranch, previousBranch);
 
 		return commits.parallelStream().map(commit -> {
-			Ticket ticket = jiraController.getByKey(commit.getKey());
+			Ticket ticket = jiraService.getByKey(commit.getKey());
 			return new ReconciliatedIssue().withTicket(ticket).withCommit(commit);
 		}).collect(Collectors.toList());
 	}
