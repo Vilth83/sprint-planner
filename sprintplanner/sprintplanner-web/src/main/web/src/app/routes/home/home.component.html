@@ -1,21 +1,23 @@
 <app-page-header title="Sprint Planner" subtitle="Manage your Releases"></app-page-header>
 
 <!--onscreen info-->
-
-
 <div class="container section">
   <div class="row">
-    <div class="info-part text-center col-lg-12">
-      <app-current-release></app-current-release>
-    </div>
     <div class="info-part text-left col-lg-12">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="info col-12 text-center">Release</div>
+        <div class="col-lg-4 text-right">
+
           <app-current-candidate task="releaser"></app-current-candidate>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4 text-center">
           <app-current-candidate task="tester"></app-current-candidate>
         </div>
+        <div class="col-lg-4 text-left">
+          <app-current-release></app-current-release>
+        </div>
+        <hr>
+        <div class="info col-12 text-center">Support</div>
         <div class="col-lg-6">
           <app-current-candidate task="functional" shift="PAR"></app-current-candidate>
         </div>
@@ -32,7 +34,7 @@
     </div>
   </div>
 
-  <!-- if logged in -->
+  <!-- if not logged in -->
   <ng-template #guest> Log in or sign up to access resources </ng-template>
   <!-- User / Admin Role -->
   <!-- menu cards -->

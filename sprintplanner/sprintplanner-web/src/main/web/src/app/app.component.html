@@ -1,6 +1,6 @@
 <nav class="main-menu navbar navbar-expand-sm">
   <a class="navbar-brand" href="#">
-    <img class="sglogo" src="assets/logo.jpg" alt="SG">
+    <img src="assets/icon.jpg" alt="SG">
   </a>
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigate">
@@ -9,13 +9,14 @@
   <!-- navbar menu -->
   <div class="nav-menu collapse navbar-collapse" id="navigate">
     <ul class="navbar-nav">
-
       <li class="nav-item">
-        <a class="menu-item nav-link" style="color:#777;" routerLink="/">Home</a>
+        <a class="nav-link">
+          <a role="button nav-link" routerLink="/home">Home </a>
+        </a>
       </li>
 
       <li class="nav-item">
-        <a class="dropdown dropdown-toggle nav-link" dropdown>
+        <a class="dropdown nav-link" dropdown>
           <a dropdownToggle role="button">Release <em class="caret"></em></a>
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/releasers">Releasers</a>
@@ -26,7 +27,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="dropdown dropdown-toggle nav-link" dropdown>
+        <a class="dropdown nav-link" dropdown>
           <a dropdownToggle role="button">Support <em class="caret"></em></a>
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/supports/paris">Paris</a>
@@ -36,12 +37,13 @@
       </li>
 
       <li class="nav-item">
-        <a class="menu-item nav-link" style="color:#777;" routerLink="/issues">Issue Reconciliation</a>
+        <a class="nav-link">
+          <a role="button nav-link" routerLink="/issues">Issue Reconciliation </a>
+        </a>
       </li>
 
-
       <li class="nav-item">
-        <a class="dropdown dropdown-toggle nav-link" dropdown>
+        <a class="dropdown nav-link" dropdown>
           <a dropdownToggle role="button">Configuration <em class="caret"></em></a>
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/members">Members</a>
@@ -49,9 +51,12 @@
           </div>
         </a>
       </li>
-<!-- login button -->
-      <button class="btn btn-primary fa fa-sign-in" (click)="signin()"></button>
     </ul>
+<!-- login button -->
+<div class="col-6 text-right">
+  <button class="btn btn-primary" (click)="signin()">Sign in</button>
+  <button class="btn btn-primary" (click)="signin()">Sign up</button>
+</div>
   </div>
 </nav>
 <router-outlet></router-outlet>

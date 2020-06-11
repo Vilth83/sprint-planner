@@ -14,14 +14,15 @@ import { BooleanRendererComponent } from 'src/app/shared/components/grid-compone
 export class IssueReconciliationComponent implements OnInit {
 
   private branchesSubscription: Subscription;
-  branches: Branch[];
-  private rowData: Branch[];
   private currentBranch: Branch;
   private previousBranch: Branch;
 
   gridOptions: GridOptions;
-  gridApi;
-  gridColumnApi;
+  gridApi: any;
+  gridColumnApi: any;
+
+  branches: Branch[];
+  rowData: Branch[];
 
   constructor(public http: HttpRequestBuilder) {
     this.gridOptions = {
@@ -70,5 +71,4 @@ export class IssueReconciliationComponent implements OnInit {
     this.http.get(Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam)
       .subscribe((issues: any[]) => this.rowData = issues, error => console.error(error));
   }
-
 }

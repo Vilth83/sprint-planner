@@ -28,15 +28,15 @@ export class JobConfigurationComponent implements OnInit {
   }
 
   private getJobStatuses() {
-    this.http.get(this.endpoint + Config.tasks.releaser).subscribe((job: JobStatus) =>
+    this.http.get(this.endpoint + Config.params.releaser).subscribe((job: JobStatus) =>
       this.releaserStatus = job.active
     )
 
-    this.http.get(this.endpoint + Config.tasks.support).subscribe((job: JobStatus) =>
+    this.http.get(this.endpoint + Config.params.support).subscribe((job: JobStatus) =>
       this.supportStatus = job.active
     )
 
-    this.http.get(this.endpoint + Config.tasks.tester).subscribe((job: JobStatus) =>
+    this.http.get(this.endpoint + Config.params.tester).subscribe((job: JobStatus) =>
       this.testerStatus = job.active
     )
   }
