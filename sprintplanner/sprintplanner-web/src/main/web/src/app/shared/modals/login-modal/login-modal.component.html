@@ -1,17 +1,23 @@
-
 <ng-template #login>
+  <div class="container section">
 
-<p>
-  login-modal works!
-</p>
+    <div class="row text-right">
+      <p class="closeBtn col-12 info" (click)="closeModal()">x</p>
+    </div>
 
-<form>
-  <label>
-    <input type="text" name="username" [(ngModel)]="user.username">
-  </label>
-  <label>
-    <input type="password" name="password" [(ngModel)]="user.password">
-  </label>
-  <button class="btn btn-small btn-primary fa fa-save" (click)="submit(user)"></button>
-</form>
+    <div class="row text-center">
+      <p class="col-12 info">Enter your credentials</p>
+    </div>
+
+    <form>
+      <label class="col-12"> Username
+        <input class="col-12" type="text" name="username" [(ngModel)]="user.username" (change)="clearErrorMessage()">
+      </label>
+      <label class="col-12"> Password
+        <input class="col-12" type="password" name="password" [(ngModel)]="user.password">
+      </label>
+      <p style="color:red">{{errorMessage}}</p>
+      <button class="btn btn-primary fa fa-submit" (click)="submit(user)">log me in</button>
+    </form>
+  </div>
 </ng-template>
