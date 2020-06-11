@@ -1,0 +1,16 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+
+<div class="container section">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="button submenu text-center" (click)="isReleaserCollapsed = ! isReleaserCollapsed">
+        <span class="unselectable">Tester <span class="fa fa-caret-down"></span></span>
+      </div>
+      <div [collapse]="isReleaserCollapsed">
+        <div>
+          <app-manage-candidate task="tester"></app-manage-candidate>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

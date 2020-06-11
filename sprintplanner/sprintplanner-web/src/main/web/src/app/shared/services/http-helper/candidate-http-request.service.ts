@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
 import { CandidateEditorDto } from 'src/app/models/candidate-edit-dto.model';
 import { Candidate } from 'src/app/models/candidate.model';
+import { Config } from '../config';
 
 @Injectable({
   providedIn: 'root',
@@ -45,9 +46,9 @@ export class CandidateHttpRequest {
   public updateToCurrent(inputs: CandidateEditorDto, taskName: string, shift?: string): Observable<any> {
     let url = this.endpoint + "/" + inputs.id + "/current";
 
-    url += "?taskName=" + taskName;
+    url += Config.params.taskName + taskName;
     if (shift) {
-      url += "&shift=" + shift;
+      url += Config.params.shift + shift;
     }
     return this.http.put(url, inputs);
   }

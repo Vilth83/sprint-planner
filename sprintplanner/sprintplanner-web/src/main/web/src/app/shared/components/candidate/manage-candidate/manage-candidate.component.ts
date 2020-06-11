@@ -78,7 +78,7 @@ export class ManageCandidateComponent implements OnInit {
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onEditClick.bind(this),
-            btnClass: 'btn btn-primary fa fa-save  fa-lg'
+            btnClass: 'btn btn-primary fa fa-save fa-lg'
           }
         },
         {

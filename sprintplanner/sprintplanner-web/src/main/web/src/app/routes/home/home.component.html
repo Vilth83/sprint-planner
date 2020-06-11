@@ -4,12 +4,12 @@
 
 
 <div class="container section">
-  <div class="row col-lg-12">
+  <div class="row">
     <div class="info-part text-center col-lg-12">
       <app-current-release></app-current-release>
     </div>
     <div class="info-part text-left col-lg-12">
-      <div class="row col-lg-12">
+      <div class="row">
         <div class="col-lg-6">
           <app-current-candidate task="releaser"></app-current-candidate>
         </div>
@@ -31,61 +31,73 @@
       </div>
     </div>
   </div>
-</div>
 
+  <!-- if logged in -->
+  <ng-template #guest> Log in or sign up to access resources </ng-template>
+  <!-- User / Admin Role -->
+  <!-- menu cards -->
+  <div *ngIf="isAuthenticated; else guest">
+    <div class="row">
 
-
-<!-- if logged in -->
-<ng-template #guest> Log in or sign up to access resources </ng-template>
-<!-- User / Admin Role -->
-<!-- menu cards -->
-<div *ngIf="isAuthenticated; else guest" class="container section">
-  <div class="row col-lg-12">
-
-    <!-- Releaser -->
-    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <div class="menu-part text-center">
-        <i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
-        <div class="title">
-          <h1 class="card-title">Release</h1>
+      <!-- Releaser -->
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="menu-part text-center">
+          <i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
+          <div class="title">
+            <h1 class="card-title">Release</h1>
+          </div>
+          <div class="text">
+            <span class="card-text">view and manage release and releasers</span>
+          </div>
+          <a routerLink="/releasers" class="btn btn-primary">Releasers</a>
+          <a routerLink="/releases" class="btn btn-primary">Releases</a>
+          <a routerLink="/testers" class="btn btn-primary">Testers</a>
         </div>
-        <div class="text">
-          <span class="card-text">view and manage release and releasers</span>
-        </div>
-        <a routerLink="/releasers" class="btn btn-primary">Releasers / Testers</a>
-        <a routerLink="/releases" class="btn btn-primary">Releases</a>
       </div>
-    </div>
 
-    <!-- Support -->
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="menu-part text-center">
-        <i class="fa fa-life-ring fa-3x" aria-hidden="true"></i>
-        <div class="title">
-          <h1 class="card-title">Support</h1>
+      <!-- Support -->
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="menu-part text-center">
+          <i class="fa fa-life-ring fa-3x" aria-hidden="true"></i>
+          <div class="title">
+            <h1 class="card-title">Support</h1>
+          </div>
+          <div class="text">
+            <span class="card-text">view and manage support</span>
+          </div>
+          <a routerLink="/supports/paris" class="btn btn-primary">Paris</a>
+          <a routerLink="/supports/bangalore" class="btn btn-primary">Bangalore</a>
         </div>
-        <div class="text">
-          <span class="card-text">view and manage support</span>
-        </div>
-        <a routerLink="/supports/paris" class="btn btn-primary">Paris</a>
-        <a routerLink="/supports/bangalore" class="btn btn-primary">Bangalore</a>
       </div>
-    </div>
 
-<!-- only admin -->
-    <!-- configuration -->
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-      <div class="menu-part text-center">
-        <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
-        <div class="title">
-          <h1 class="card-title">Configuration</h1>
+      <!-- Issue Reconciliation -->
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="menu-part text-center">
+          <i class="fa fa-code-fork fa-3x" aria-hidden="true"></i>
+          <div class="title">
+            <h1 class="card-title">Issue Reconciliation</h1>
+          </div>
+          <div class="text">
+            <span class="card-text">reconciliate Github/Jira issues</span>
+          </div>
+          <a routerLink="/issues" class="btn btn-primary">Issue Reconciliation</a>
         </div>
-        <div class="text">
-          <span class="card-text">Organize members and jobs</span>
-        </div>
-        <a routerLink="/members" class="btn btn-primary">Members</a>
-        <a routerLink="/configuration" class="btn btn-primary">Project</a>
+      </div>
 
+      <!-- only admin -->
+      <!-- configuration -->
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="menu-part text-center">
+          <i class="fa fa-cog fa-3x" aria-hidden="true"></i>
+          <div class="title">
+            <h1 class="card-title">Configuration</h1>
+          </div>
+          <div class="text">
+            <span class="card-text">Organize members and jobs</span>
+          </div>
+          <a routerLink="/members" class="btn btn-primary">Members</a>
+          <a routerLink="/configuration" class="btn btn-primary">Project</a>
+        </div>
       </div>
     </div>
   </div>

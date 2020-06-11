@@ -1,13 +1,57 @@
 <app-page-header title="Issue Reconciliation" subtitle="Reconciliation between Jira and Github"></app-page-header>
 
 <div class="container section">
+  <!-- Branch selection -->
   <div class="row">
     <div class="col-sm-12">
       <div class="button submenu text-center" (click)="isBranchSelectionCollapsed = ! isBranchSelectionCollapsed">
-        <h4 class="unselectable">Branch selection <span class="fa fa-caret-down"></span></h4>
+        <span class="unselectable">Branch selection <span class="fa fa-caret-down"></span></span>
       </div>
       <div [collapse]="isBranchSelectionCollapsed">
-        collapse...
+        <div class="info-part text-center">
+          <div class="row">
+            <p>Select branches for comparison</p>
+              <span class="col-lg-2 col-md-2 col-xs-12 col-sm-12">Current branch <span style="color:red;">*</span></span>
+              <select class="col-lg-2 col-md-2 col-xs-12 col-sm-12" [(ngModel)]="currentBranch">
+                <option *ngFor="let branch of branches" [ngValue]="branch">{{branch.name}}</option>
+              </select>
+              <span class="col-lg-2 col-md-2 col-xs-12 col-sm-12">Previous branch <span style="color:red;">*</span></span>
+              <select class="col-lg-2 col-md-2 col-xs-12 col-sm-12" [(ngModel)]="previousBranch">
+                <option *ngFor="let branch of branches" [ngValue]="branch">{{branch.name}}</option>
+              </select>
+          </div>
+          <div class="btn btn-primary" (click)="getReconciliatedIssues()">
+            click me
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Render -->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="button submenu text-center" (click)="isReconciliationCollapsed = !isReconciliationCollapsed">
+        <span class="unselectable">Eligible issues <span class="fa fa-caret-down"></span></span>
+      </div>
+      <div [collapse]="isReconciliationCollapsed">
+        test
+        <div class="row text-center">
+          <div class="col-sm-12">
+            <ag-grid-angular
+              #agGrid
+              class="ag-theme-material"
+              [rowData]="rowData"
+              [gridOptions]="gridOptions"
+              autoSize=true
+              style="width:100%;"
+              domLayout="autoHeight"
+              [overlayLoadingTemplate]="overlayLoadingTemplate"
+              (onGridReady)="onGridReady($event)">
+            </ag-grid-angular>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

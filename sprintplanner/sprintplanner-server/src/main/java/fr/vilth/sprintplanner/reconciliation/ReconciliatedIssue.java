@@ -19,67 +19,79 @@ import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
  * their key is identical.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 @SuppressWarnings("unused") // Required fields for JacksonMapping
 public class ReconciliatedIssue {
 
-	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'",
-			Locale.ENGLISH);
-	private String key; // ticket number
-	private IssueState state; // Closed / Opened / not matching
-	private LocalDate creationDate; // PR creation date
-	private String title; // Github name
-	private List<String> fixVersion;
-	private String priority;
-	private String requestor;
-	private String type;
-	private String reporter;
-	private String assignee;
-	private String parentKey;
-	private String jiraState;
-	private boolean testProofed;
-	private String url;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter
+	    .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'",
+		    Locale.ENGLISH);
 
-	protected ReconciliatedIssue() {
-		// protected no args empty constructor
-	}
+    private String key; // ticket number
 
-	/**
-	 * Returns this instance filled with {@code Commit} informations.
-	 * 
-	 * @param commit the commit to extract informations from
-	 * @return this for chaining
-	 */
-	public ReconciliatedIssue withCommit(Commit commit) {
-		this.key = commit.getKey();
-		this.title = commit.getMessage().substring(0, commit.getMessage().indexOf("\n"));
-		String creationDateString = commit.getCommitDate();
-		LocalDateTime creation = LocalDateTime.parse(creationDateString, FORMATTER);
-		this.creationDate = creation.toLocalDate();
-		this.url = commit.getHtmlUrl();
+    private IssueState state; // Closed / Opened / not matching
 
-		return this;
-	}
+    private LocalDate creationDate; // PR creation date
 
-	/**
-	 * Returns this instance filled with {@code Ticket} informations.
-	 * 
-	 * @param ticket the ticket to extract informations from
-	 * @return this for chaining
-	 */
-	public ReconciliatedIssue withTicket(Ticket ticket) {
-		this.assignee = ticket.getFields().getAssignee();
-		this.reporter = ticket.getFields().getReporter();
-		this.requestor = ticket.getFields().getRequestor();
-		this.priority = ticket.getFields().getPriority();
-		this.fixVersion = ticket.getFields().getFixVersions();
-		this.type = ticket.getFields().getIssueType();
-		this.parentKey = ticket.getFields().getParent();
-		this.jiraState = ticket.getFields().getStatus();
-		this.testProofed = ticket.isTestProofed();
+    private String title; // Github name
 
-		return this;
-	}
+    private List<String> fixVersion;
 
+    private String priority;
+
+    private String requestor;
+
+    private String type;
+
+    private String reporter;
+
+    private String assignee;
+
+    private String parentKey;
+
+    private String jiraState;
+
+    private boolean testProofed;
+
+    private String url;
+
+    protected ReconciliatedIssue() {
+	// protected no args empty constructor
+    }
+
+    /**
+     * Returns this instance filled with {@code Commit} informations.
+     * 
+     * @param commit the commit to extract informations from
+     * @return this for chaining
+     */
+    public ReconciliatedIssue withCommit(Commit commit) {
+	this.key = commit.getKey();
+	this.title = commit.getMessage();
+	String creationDateString = commit.getCommitDate();
+	LocalDateTime creation = LocalDateTime.parse(creationDateString,
+		FORMATTER);
+	this.creationDate = creation.toLocalDate();
+	this.url = commit.getHtmlUrl();
+	return this;
+    }
+
+    /**
+     * Returns this instance filled with {@code Ticket} informations.
+     * 
+     * @param ticket the ticket to extract informations from
+     * @return this for chaining
+     */
+    public ReconciliatedIssue withTicket(Ticket ticket) {
+	this.assignee = ticket.getFields().getAssignee();
+	this.reporter = ticket.getFields().getReporter();
+	this.requestor = ticket.getFields().getRequestor();
+	this.priority = ticket.getFields().getPriority();
+	this.fixVersion = ticket.getFields().getFixVersions();
+	this.type = ticket.getFields().getIssueType();
+	this.parentKey = ticket.getFields().getParent();
+	this.jiraState = ticket.getFields().getStatus();
+	this.testProofed = ticket.isTestProofed();
+	return this;
+    }
 }

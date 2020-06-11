@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SUPPORT_TITLE, SUPPORT_SUBTITLE } from 'src/app/shared/header-titles';
 import { Router } from '@angular/router';
 import { Shift } from 'src/app/models/shift.model';
+import { Config } from 'src/app/shared/services/config';
 
 @Component({
   selector: 'app-support',
@@ -20,9 +21,9 @@ export class SupportComponent implements OnInit {
 
   ngOnInit() {
     const url = this.router.url.toString();
-    if(url.includes("paris")) {
+    if(url.includes(Config.shifts.paris)) {
       this.shift = Shift.PAR;
-    } else if(url.includes("bangalore")) {
+    } else if(url.includes(Config.shifts.bangalore)) {
       this.shift = Shift.BGL;
     }
   }
