@@ -46,6 +46,12 @@ export class IssueReconciliationComponent implements OnInit {
     }
   }
 
+  onGridReady(grid) {
+    this.gridOptions.api.hideOverlay();
+    this.gridApi = grid.api;
+    this.gridColumnApi = grid.columnApi;
+  }
+
   ngOnInit() {
     this.getBranches();
   }
