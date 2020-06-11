@@ -50,6 +50,9 @@ export const Config = {
   title: 'sprintplanner: handle your releases',
 
   params: {
+    releaser: "?task=releaser",
+    support: "?task=support",
+    tester: "?task=tester",
     taskName: '?taskName=',
     shift: '&shift=',
     currentBranch: '?currentBranch=',
