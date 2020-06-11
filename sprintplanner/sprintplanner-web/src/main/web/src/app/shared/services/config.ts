@@ -19,8 +19,13 @@ export const Config = {
       all: '/releases',
       last: '/releases/last'
     },
-    tasks: '/tasks'
-
+    tasks: '/tasks',
+    reconciliation: {
+      reconciliate: '/reconciliations/reconciliate'
+    },
+    github: {
+      branches: '/github/branches'
+    }
   },
 
   httpOptions: {
@@ -44,9 +49,15 @@ export const Config = {
   refreshToken: "&refresh_token=",
   title: 'sprintplanner: handle your releases',
 
-  tasks: {
-    releaser: '?task=releaser',
-    support: '?task=support',
-    tester: '?task=tester'
+  params: {
+    taskName: '?taskName=',
+    shift: '&shift=',
+    currentBranch: '?currentBranch=',
+    previousBranch: '&previousBranch='
+  },
+
+  shifts: {
+    paris: 'paris',
+    bangalore: 'bangalore'
   }
 };

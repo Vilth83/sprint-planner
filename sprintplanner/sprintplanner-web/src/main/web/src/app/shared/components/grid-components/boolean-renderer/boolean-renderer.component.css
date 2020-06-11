@@ -1,0 +1,9 @@
+.isTrue {
+  color: green;
+  test-align: center;
+}
+
+.isFalse {
+    color: red;
+    test-align: center;
+}
