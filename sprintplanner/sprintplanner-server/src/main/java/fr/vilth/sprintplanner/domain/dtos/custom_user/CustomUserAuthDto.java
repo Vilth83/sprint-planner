@@ -2,30 +2,59 @@ package fr.vilth.sprintplanner.domain.dtos.custom_user;
 
 import java.util.Set;
 
-import fr.vilth.sprintplanner.domain.entities.CustomUser;
 import fr.vilth.sprintplanner.domain.entities.Role;
 
 /**
- * A projection of a {@code CustomUser} for authentication.
- * 
- * @see CustomUser
+ * {@code Dto} representation of a {@code CustomUser} for authentication.
  */
-@SuppressWarnings("javadoc") // Getters of CustomUser
-public interface CustomUserAuthDto {
+@SuppressWarnings("unused") // Required for Jackson mapping
+public class CustomUserAuthDto {
 
-	Long getId();
+    private Long id;
 
-	String getUsername();
+    private String username;
 
-	String getPassword();
+    private String password;
 
-	Set<Role> getRoles();
+    private Set<Role> roles;
 
-	boolean isEnabled();
+    private boolean enabled;
 
-	boolean isAccountNonExpired();
+    private boolean accountNonExpired;
 
-	boolean isAccountNonLocked();
+    private boolean accountNonLocked;
 
-	boolean isCredentialsNonExpired();
+    private boolean credentialsNonExpired;
+
+    public Long getId() {
+	return id;
+    }
+
+    public String getUsername() {
+	return username;
+    }
+
+    public String getPassword() {
+	return password;
+    }
+
+    public Set<Role> getRoles() {
+	return roles;
+    }
+
+    public boolean isEnabled() {
+	return enabled;
+    }
+
+    public boolean isAccountNonExpired() {
+	return accountNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+	return accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+	return credentialsNonExpired;
+    }
 }

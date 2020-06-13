@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public class MemberController {
      * @return the attributed id encapsulated in a {@code EntityIdDto}.
      */
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public EntityIdDto save(@Valid @RequestBody MemberCreateDto member) {
 	return memberService.save(member);
     }
@@ -62,6 +64,7 @@ public class MemberController {
      * @return {@code Set} of {@code Member}
      */
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     public Set<MemberViewDto> findAll() {
 	return memberService.findAll();
     }
@@ -95,6 +98,7 @@ public class MemberController {
      * @param member the {@code MemberUpdateDto} to update
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void update(@Valid @RequestBody MemberUpdateDto member) {
 	memberService.update(member);
     }
@@ -109,6 +113,7 @@ public class MemberController {
      *        a {@code MemberDeleteDto}.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@Valid @RequestBody MemberDeleteDto member) {
 	memberService.delete(member);
     }

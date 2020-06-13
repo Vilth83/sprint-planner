@@ -8,7 +8,7 @@ package fr.vilth.sprintplanner.commons.utils;
  * 
  * @author Thierry VILLEPREUX
  */
-public class Constants {
+public interface Constants {
 
     /**
      * releaser task {@code String}

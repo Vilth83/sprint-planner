@@ -1,25 +1,21 @@
 export class Token {
     accessToken: string;
-    tokentType: string;
+    tokenType: string;
     refreshToken: string;
     expiresIn: number;
     scope: string;
-    role: [ { authority: string } ];
+    jti: string;
     userId: number;
-    username: string;
-    avatar: string;
 
-    constructor(accessToken: string, tokentType: string, refreshToken: string, expiresIn: number,
-                scope: string, role: [ { authority: string } ], userId: number, username: string, avatar: string) {
+    constructor(accessToken: string, tokenType: string, refreshToken: string, expiresIn: number,
+                scope: string, jti: string, userId: number) {
             this.accessToken = accessToken;
-            this.tokentType = tokentType;
+            this.tokenType = tokenType;
             this.refreshToken = refreshToken;
             this.expiresIn = expiresIn;
             this.scope = scope;
-            this.role = role;
+            this.jti = jti;
             this.userId = userId;
-            this.username = username;
-            this.avatar = avatar;
     }
 
 }

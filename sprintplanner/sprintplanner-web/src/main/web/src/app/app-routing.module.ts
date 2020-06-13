@@ -8,20 +8,21 @@ import { ReleaseVersionComponent } from './routes/release-version/release-versio
 import { ConfigurationComponent } from './routes/configuration/configuration.component';
 import { IssueReconciliationComponent } from './routes/issue-reconciliation/issue-reconciliation.component';
 import { TesterComponent } from './routes/tester/tester.component';
+import { AuthGuard } from './shared/services/authentication/auth.guard';
 
 
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'members', component: MemberComponent },
-  { path: 'releasers', component: ReleaserComponent },
-  { path: 'testers', component: TesterComponent },
-  { path: 'releases', component: ReleaseVersionComponent },
-  {path: 'issues', component: IssueReconciliationComponent},
-  { path: 'supports/bangalore', component: SupportComponent },
-  { path: 'supports/paris', component: SupportComponent },
-  { path: 'configuration', component: ConfigurationComponent }
+  { path: 'members', component: MemberComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'releasers', component: ReleaserComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'testers', component: TesterComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'releases', component: ReleaseVersionComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'issues', component: IssueReconciliationComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'supports/bangalore', component: SupportComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'supports/paris', component: SupportComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'configuration', component: ConfigurationComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN"] } }
 ];
 
 @NgModule({
