@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
@@ -35,6 +36,7 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_save_new_candidate(String json) {
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto actual = controller.save(dto);
@@ -50,6 +52,7 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_delete_candidate(String json) {
 	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
@@ -60,6 +63,7 @@ public class CandidateControllerTest extends SetupIntTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "pwd", roles = "USER")
     void should_update_candidate() {
 	CandidateUpdateDto update = jsonConvert(
 		"{\"id\":-2, \"status\":\"UNAVAILABLE\"}",

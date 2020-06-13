@@ -9,9 +9,11 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import fr.vilth.sprintplanner.SetupIntTest;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
@@ -33,19 +35,18 @@ public class MemberControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_save_new_member(String json) {
 	MemberCreateDto dto = jsonConvert(json, MemberCreateDto.class);
 	EntityIdDto actual = controller.save(dto);
 	assertNotNull(actual);
     }
 
-    @ParameterizedTest
-    @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
-    void should_return_all_members(String json) {
-	MemberCreateDto saved = jsonConvert(json, MemberCreateDto.class);
-	controller.save(saved);
+    @Test
+    @WithMockUser(username = "user", password = "pwd", roles = "USER")
+    void should_return_all_members() {
 	Set<MemberViewDto> tested = controller.findAll();
-	assertEquals(4, tested.size());
+	assertEquals(3, tested.size());
     }
 
     @ParameterizedTest
@@ -64,6 +65,7 @@ public class MemberControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/memberModification.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_modify_existing_member(String json) {
 	MemberUpdateDto tested = jsonConvert(json, MemberUpdateDto.class);
 	assertDoesNotThrow(() -> controller.update(tested));
@@ -71,6 +73,7 @@ public class MemberControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/memberCreation.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_return_non_candidate_to_given_task(String json) {
 	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
 	controller.save(member);
@@ -88,6 +91,7 @@ public class MemberControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/memberDeletion.csv", delimiter = ';')
+    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_delete_member(String json) {
 	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
 	EntityIdDto saved = controller.save(member);

@@ -1,5 +1,6 @@
 package fr.vilth.sprintplanner.api.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -54,6 +55,7 @@ public class JobController {
      *        given {@code Job}
      */
     @PutMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void updateJob(@RequestBody JobUpdateDto status) {
 	jobService.updateJob(status);
     }

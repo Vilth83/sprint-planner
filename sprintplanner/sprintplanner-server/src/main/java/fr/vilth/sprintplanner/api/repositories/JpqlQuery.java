@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.utils;
+package fr.vilth.sprintplanner.api.repositories;
 
 /**
  * Utility class providing Jpql Queries.
@@ -8,17 +8,17 @@ package fr.vilth.sprintplanner.commons.utils;
  * 
  * @author Thierry VILLEPREUX
  */
-public class JpqlQuery {
+interface JpqlQuery {
 
     /**
      * Retrieve a {@code DTO} representing a {@code Candidate} full name
      * <p>
-     * Query written to retrieace a candidate full name based on its
+     * Query written to retrieve a candidate full name based on its
      * {@code Status} and given task. Used by
      * {@linkplain fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository#findCandidateNameByTaskNameAndStatus(String, fr.vilth.sprintplanner.domain.types.Status)
      * findCandidateNameByTaskNameAndStatus}
      */
-    public static final String CANDIDATE_NAME_QUERY = // -
+    static final String CANDIDATE_NAME_QUERY = // -
 	    "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
 		    + "from Member m join Candidate c on m.id = c.member join Task t on t.id = c.task "
 		    + "where t.name = :taskName and c.status = :status";
@@ -32,7 +32,7 @@ public class JpqlQuery {
      */
     // This method could be written with {@code Spring JPA} derived queries, but
     // a standard query is more readable
-    public static final String FIRST_ELIGIBLE_CANDIDATE = "select c from Member m join Candidate c on m.id = c.member "
+    static final String FIRST_ELIGIBLE_CANDIDATE = "select c from Member m join Candidate c on m.id = c.member "
 	    + "join Task t on t.id = c.task where t.name = :task and c.status = :status and (:shift is null "
 	    + "or m.shift = :shift) order by c.priority desc";
 }

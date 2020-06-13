@@ -8,10 +8,11 @@ export const Config = {
   uris: {
     root: url,
     api: api,
-    token: url + '/oauth/token'
+    token: url + '/oauth/token',
   },
 
   endpoints: {
+    userInfo: '/userInfo',
     project: '/projects',
     members: '/members',
     job: '/jobs',
@@ -56,7 +57,10 @@ export const Config = {
     taskName: '?taskName=',
     shift: '&shift=',
     currentBranch: '?currentBranch=',
-    previousBranch: '&previousBranch='
+    previousBranch: '&previousBranch=',
+    username: '&username=',
+    password: '&password='
+
   },
 
   shifts: {

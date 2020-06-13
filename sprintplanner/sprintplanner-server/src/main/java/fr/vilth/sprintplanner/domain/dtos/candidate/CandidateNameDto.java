@@ -59,7 +59,7 @@ public class CandidateNameDto {
 	 * {@linkplain fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository#findCandidateNameByTaskNameAndStatus
 	 * findCandidateNameByTaskNameAndStatus}
 	 * 
-	 * @see {@linkplain fr.vilth.sprintplanner.commons.utils.JpqlQuery#CANDIDATE_NAME_QUERY
+	 * @see {@linkplain fr.vilth.sprintplanner.api.repositories.JpqlQuery#CANDIDATE_NAME_QUERY
 	 *      CANDIDATE_NAME_QUERY}
 	 * @param firstname
 	 * @param lastname

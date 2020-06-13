@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,7 @@ public class CandidateController {
      * @return the attributed id encapsulated in a {@code EntityIdDto}.
      */
     @PostMapping
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public EntityIdDto save(@Valid @RequestBody CandidateCreateDto inputs) {
 	return candidateService.save(inputs);
     }
@@ -78,6 +80,7 @@ public class CandidateController {
      * @param id the id of the {@code Candidate} to delete.
      */
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public void update(@Valid @RequestBody CandidateUpdateDto inputs,
 	    @PathVariable Long id) {
 	candidateService.update(inputs, id);
@@ -93,6 +96,7 @@ public class CandidateController {
      * @param shift optional : if given, the shift of the candidate to modify
      */
     @PutMapping("/{id}/current")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
     public void setToCurrent(@RequestParam String taskName,
 	    @Valid @RequestBody CandidateUpdateDto inputs,
 	    @PathVariable Long id,
@@ -107,6 +111,7 @@ public class CandidateController {
      *        encapsulated in a {@code CandidateDeleteDto}.
      */
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void delete(@RequestBody CandidateDeleteDto candidate) {
 	candidateService.delete(candidate);
     }

@@ -117,13 +117,6 @@
 			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
 			<version>2.2.2.RELEASE</version>
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!--             <groupId>fr.vilth</groupId> -->
-<!--             <artifactId>sprintplanner-web</artifactId> -->
-<!--             <version>${project.version}</version> -->
-<!--             <scope>runtime</scope> -->
-<!--         </dependency> -->
 	</dependencies>
 
 	<build>

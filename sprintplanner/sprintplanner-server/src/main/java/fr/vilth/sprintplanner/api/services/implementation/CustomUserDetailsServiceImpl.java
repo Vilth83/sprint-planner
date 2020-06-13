@@ -49,6 +49,7 @@ public class CustomUserDetailsServiceImpl extends AbstractService
     public UserDetails loadUserByUsername(String username)
 	    throws UsernameNotFoundException {
 	CustomUserAuthDto user = userRepository.findByUsername(username)
+		.map(customUser -> convert(customUser, CustomUserAuthDto.class))
 		.orElseThrow(() -> new UsernameNotFoundException(
 			"no user found with username: " + username));
 	return new CustomUserDetails(user);
@@ -57,8 +58,10 @@ public class CustomUserDetailsServiceImpl extends AbstractService
     // Throws ResourceNotFoundException (restful practice)
     @Override
     public CustomUserInfoDto getCurrentUserInfo(Long id) {
-	return userRepository.getById(id).orElseThrow(
-		() -> new ResourceNotFoundException("with id:" + id));
+	return userRepository.getById(id)
+		.map(customUser -> convert(customUser, CustomUserInfoDto.class))
+		.orElseThrow(
+			() -> new ResourceNotFoundException("with id:" + id));
     }
 
     @Override

@@ -1,20 +1,22 @@
 package fr.vilth.sprintplanner.domain.dtos.custom_user;
 
-import fr.vilth.sprintplanner.domain.entities.CustomUser;
+import java.util.Set;
+
+import fr.vilth.sprintplanner.domain.entities.Role;
 
 /**
- * A projection of a {@code CustomUser} for user info.
- * 
- * @see CustomUser
+ * {@code Dto} representation of a {@code CustomUser}
  */
-@SuppressWarnings("javadoc")
-public interface CustomUserInfoDto {
+@SuppressWarnings("unused") // Required for Jackson mapping
+public class CustomUserInfoDto {
 
-	Long getId();
+    private Long id;
 
-	String getUsername();
+    private String username;
 
-	String getFirstname();
+    private String firstname;
 
-	String getLastname();
+    private String lastname;
+
+    private Set<Role> roles;
 }

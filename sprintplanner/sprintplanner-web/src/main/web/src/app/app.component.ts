@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { LoginModalComponent } from './shared/modals/index';
+import { AuthenticationService } from './shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -8,15 +9,15 @@ import { LoginModalComponent } from './shared/modals/index';
 })
 export class AppComponent {
 
-  constructor() {}
+  constructor(private authService: AuthenticationService) {}
 
   @ViewChild('login') private loginModal: LoginModalComponent;
 
-
-
   public signin() {
-    console.log("login modal : ", this.loginModal)
     this.loginModal.openModal(this.loginModal.template);
   }
 
+  public logout() {
+    this.authService.logout();
+  }
 }

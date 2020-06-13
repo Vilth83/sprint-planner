@@ -32,10 +32,10 @@ import { ConfigurationComponent } from './routes/configuration/configuration.com
 import { ProjectConfigurationComponent } from './routes/configuration/project-configuration/project-configuration.component';
 import { JobConfigurationComponent } from './routes/configuration/job-configuration/job-configuration.component';
 import { LoginModalComponent } from './shared/modals/login-modal/login-modal.component';
-import { TokenInterceptor } from './shared/services/token-interceptor.service';
 import { IssueReconciliationComponent } from './routes/issue-reconciliation/issue-reconciliation.component';
 import { TesterComponent } from './routes/tester/tester.component';
 import { BooleanRendererComponent } from './shared/components/grid-components/boolean-renderer/boolean-renderer.component';
+import { TokenInterceptor } from './shared/services/authentication/token-interceptor.service';
 
 @NgModule({
   declarations: [
