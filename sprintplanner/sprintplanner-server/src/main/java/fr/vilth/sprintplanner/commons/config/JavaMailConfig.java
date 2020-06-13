@@ -30,6 +30,8 @@ public class JavaMailConfig {
 
     private final TemplateEngine templateEngine;
 
+    private final static String FALSE = "false";
+
     /**
      * Protected constructor to autowire needed bean.
      * <p>
@@ -57,9 +59,9 @@ public class JavaMailConfig {
 	javaMailSender.setProtocol(protocol);
 	javaMailSender.setPort(port);
 	final Properties props = javaMailSender.getJavaMailProperties();
-	props.put("mail.smtp.auth", "false");
-	props.put("mail.smtp.starttls", "false");
-	props.put("mail.debug", "false");
+	props.put("mail.smtp.auth", FALSE);
+	props.put("mail.smtp.starttls", FALSE);
+	props.put("mail.debug", FALSE);
 	return javaMailSender;
     }
 

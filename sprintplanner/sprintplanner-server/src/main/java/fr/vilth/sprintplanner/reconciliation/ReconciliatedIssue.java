@@ -20,20 +20,20 @@ import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
  * 
  * @author Thierry VILLEPREUX
  */
-@SuppressWarnings("unused") // Required fields for JacksonMapping
+@SuppressWarnings("unused") // Required fields for ModelMapper
 public class ReconciliatedIssue {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter
 	    .ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'",
 		    Locale.ENGLISH);
 
-    private String key; // ticket number
+    private String key;
 
-    private IssueState state; // Closed / Opened / not matching
+    private IssueState state;
 
-    private LocalDate creationDate; // PR creation date
+    private LocalDate creationDate;
 
-    private String title; // Github name
+    private String title;
 
     private List<String> fixVersion;
 

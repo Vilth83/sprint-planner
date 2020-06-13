@@ -8,8 +8,6 @@ import org.springframework.web.client.RestTemplate;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
-// FIXME: modify visibility of unused methods when IssueReconciliation will be
-// implemented
 /**
  * Service calling Jira Api to retrieve {@code Ticket}
  * 
@@ -36,7 +34,6 @@ public class JiraServiceImpl extends AbstractService implements JiraService {
 	String url = "http://localhost:9999/jira/ticket/" + key;
 	ResponseEntity<Ticket> response = restTemplate.exchange(url,
 		HttpMethod.GET, null, Ticket.class);
-	Ticket ticket = response.getBody();
-	return ticket;
+	return response.getBody();
     }
 }
