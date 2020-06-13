@@ -8,14 +8,18 @@ package fr.vilth.sprintplanner.api.repositories;
  * 
  * @author Thierry VILLEPREUX
  */
-interface JpqlQuery {
+public final class JpqlQuery {
+
+    private JpqlQuery() {
+	// private constructor to ensure non-instanciability.
+    }
 
     /**
      * Retrieve a {@code DTO} representing a {@code Candidate} full name
      * <p>
      * Query written to retrieve a candidate full name based on its
      * {@code Status} and given task. Used by
-     * {@linkplain fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository#findCandidateNameByTaskNameAndStatus(String, fr.vilth.sprintplanner.domain.types.Status)
+     * {@link CandidateJpaRepository#findCandidateNameByTaskNameAndStatus
      * findCandidateNameByTaskNameAndStatus}
      */
     static final String CANDIDATE_NAME_QUERY = // -

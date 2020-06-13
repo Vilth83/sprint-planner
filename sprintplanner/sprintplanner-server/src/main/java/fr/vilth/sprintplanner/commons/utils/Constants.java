@@ -8,8 +8,11 @@ package fr.vilth.sprintplanner.commons.utils;
  * 
  * @author Thierry VILLEPREUX
  */
-public interface Constants {
+public final class Constants {
 
+    private Constants() {
+	// private Constructor to ensure non-instantiability
+    }
     /**
      * releaser task {@code String}
      */

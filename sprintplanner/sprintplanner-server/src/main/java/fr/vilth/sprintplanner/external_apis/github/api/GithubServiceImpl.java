@@ -22,65 +22,73 @@ import fr.vilth.sprintplanner.external_apis.github.model.Commit;
  * @author Thierry VILLEPREUX
  */
 @Service
-public class GithubServiceImpl extends AbstractService implements GithubService {
+public class GithubServiceImpl extends AbstractService
+	implements GithubService {
 
-	private final RestTemplate restTemplate;
+    private static final Pattern KEY_PATTERN = Pattern.compile("(?)SPL-\\d+");
 
-	/**
-	 * Protected constructor to autowire needed bean.
-	 * <p>
-	 * injects {@code RestTemplate} interface to call external API.
-	 * 
-	 * @param restTemplate the injected {@code RestTemplate}
-	 */
-	public GithubServiceImpl(RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
-	}
+    private final RestTemplate restTemplate;
 
-	@Override
-	public List<Branch> findAllBranches() {
-		String url = "https://api.github.com/repos/vilth83/sprint-planner/branches";
-		ParameterizedTypeReference<List<Branch>> listType = new ParameterizedTypeReference<List<Branch>>() {
-			//
-		};
-		ResponseEntity<List<Branch>> response = restTemplate.exchange(url, HttpMethod.GET, null, listType);
-		List<Branch> branches = response.getBody();
-		return branches;
-	}
+    /**
+     * Protected constructor to autowire needed bean.
+     * <p>
+     * injects {@code RestTemplate} interface to call external API.
+     * 
+     * @param restTemplate the injected {@code RestTemplate}
+     */
+    public GithubServiceImpl(RestTemplate restTemplate) {
+	this.restTemplate = restTemplate;
+    }
 
-	@Override
-	public Set<Commit> compareBranches(String currentBranch, String previousBranch) {
-		Set<Commit> currentBranchCommits = getCommitPerBranch(currentBranch);
-		Set<Commit> previousBranchCommits = getCommitPerBranch(previousBranch);
-		return compareBranches(currentBranchCommits, previousBranchCommits);
-	}
+    @Override
+    public List<Branch> findAllBranches() {
+	String url = "https://api.github.com/repos/vilth83/sprint-planner/branches";
+	ParameterizedTypeReference<List<Branch>> listType = new ParameterizedTypeReference<List<Branch>>() {
+	    //
+	};
+	ResponseEntity<List<Branch>> response = restTemplate.exchange(url,
+		HttpMethod.GET, null, listType);
+	return response.getBody();
+    }
 
-	private Set<Commit> compareBranches(Set<Commit> currentBranchCommits, Set<Commit> previousBranchCommits) {
-		currentBranchCommits.removeIf(previousBranchCommits::contains);
-		return currentBranchCommits;
-	}
+    @Override
+    public Set<Commit> compareBranches(String currentBranch,
+	    String previousBranch) {
+	Set<Commit> currentBranchCommits = getCommitPerBranch(currentBranch);
+	Set<Commit> previousBranchCommits = getCommitPerBranch(previousBranch);
+	return compareBranches(currentBranchCommits, previousBranchCommits);
+    }
 
-	private Set<Commit> getCommitPerBranch(String sha) {
-		String url = "https://api.github.com/repos/vilth83/sprint-planner/commits?sha=" + sha + "&page=1&per_page=100";
-		ParameterizedTypeReference<List<Object>> listType = new ParameterizedTypeReference<List<Object>>() {
-			//
-		};
-		ResponseEntity<List<Object>> response = restTemplate.exchange(url, HttpMethod.GET, null, listType);
-		List<Object> commits = response.getBody();
-		return commits.parallelStream().map(commit -> convert(commit, Commit.class)).filter(this::hasKey)
-				.map(this::setCommitKey).collect(Collectors.toSet());
-	}
+    private Set<Commit> compareBranches(Set<Commit> currentBranchCommits,
+	    Set<Commit> previousBranchCommits) {
+	currentBranchCommits.removeIf(previousBranchCommits::contains);
+	return currentBranchCommits;
+    }
 
-	private Commit setCommitKey(Commit commit) {
-		Pattern pattern = Pattern.compile("(?)SPL-\\d+");
-		Matcher matcher = pattern.matcher(commit.getMessage());
-		commit.setKey(matcher.find() ? matcher.group() : null);
-		return commit;
-	}
+    private Set<Commit> getCommitPerBranch(String sha) {
+	String url = "https://api.github.com/repos/vilth83/sprint-planner/commits?sha="
+		+ sha + "&page=1&per_page=100";
+	ParameterizedTypeReference<List<Object>> listType = new ParameterizedTypeReference<List<Object>>() {
+	    //
+	};
+	ResponseEntity<List<Object>> response = restTemplate.exchange(url,
+		HttpMethod.GET, null, listType);
+	List<Object> commits = response.getBody();
+	return commits.parallelStream()
+		.map(commit -> convert(commit, Commit.class))
+		.filter(this::hasKey)
+		.map(this::setCommitKey)
+		.collect(Collectors.toSet());
+    }
 
-	private boolean hasKey(Commit commit) {
-		Pattern pattern = Pattern.compile("(?)SPL-\\d+");
-		Matcher matcher = pattern.matcher(commit.getMessage());
-		return matcher.find();
-	}
+    private Commit setCommitKey(Commit commit) {
+	Matcher matcher = KEY_PATTERN.matcher(commit.getMessage());
+	commit.setKey(hasKey(commit) ? matcher.group() : null);
+	return commit;
+    }
+
+    private boolean hasKey(Commit commit) {
+	Matcher matcher = KEY_PATTERN.matcher(commit.getMessage());
+	return matcher.find();
+    }
 }
