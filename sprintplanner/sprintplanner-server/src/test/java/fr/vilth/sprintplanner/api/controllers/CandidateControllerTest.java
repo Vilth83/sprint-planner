@@ -97,6 +97,7 @@ public class CandidateControllerTest extends SetupIntTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "pwd", roles = "USER")
     void should_find_all_members_by_task_and_shift() {
 	Set<CandidateViewDto> actuals = controller
 		.findAllByTaskNameAndMemberShift("support", Shift.PAR);

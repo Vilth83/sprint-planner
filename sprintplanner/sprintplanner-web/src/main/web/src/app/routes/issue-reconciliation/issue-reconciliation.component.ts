@@ -14,6 +14,9 @@ import { BooleanRendererComponent } from 'src/app/shared/components/grid-compone
 export class IssueReconciliationComponent implements OnInit {
 
   private branchesSubscription: Subscription;
+  private reconciliationSubscription: Subscription;
+
+
   private currentBranch: Branch;
   private previousBranch: Branch;
 
@@ -66,9 +69,12 @@ export class IssueReconciliationComponent implements OnInit {
   }
 
   getReconciliatedIssues() {
+    if (this.reconciliationSubscription) {
+      this.reconciliationSubscription.unsubscribe();
+    }
     const currentBranchParam = Config.params.currentBranch + this.currentBranch.commit.sha;
     const previousBranchParam = Config.params.previousBranch + this.previousBranch.commit.sha;
-    this.http.get(Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam)
+    this.reconciliationSubscription = this.http.get(Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam)
       .subscribe((issues: any[]) => this.rowData = issues, error => console.error(error));
   }
 }

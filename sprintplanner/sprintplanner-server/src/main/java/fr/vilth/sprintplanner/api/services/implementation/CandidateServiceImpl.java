@@ -72,7 +72,7 @@ public class CandidateServiceImpl extends AbstractService
     public void update(CandidateUpdateDto inputs, Long id) {
 	Candidate candidate = candidateRepository.findById(id)
 		.orElseThrow(ResourceNotFoundException::new);
-	modelMapper.map(inputs, candidate);
+	merge(inputs, candidate);
 	candidateRepository.save(candidate);
     }
 

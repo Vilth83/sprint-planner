@@ -9,7 +9,12 @@ import { AuthenticationService } from './shared/services/authentication/authenti
 })
 export class AppComponent {
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService) {
+
+  }
+
+  ngOnInit() {
+  }
 
   @ViewChild('login') private loginModal: LoginModalComponent;
 
@@ -19,5 +24,13 @@ export class AppComponent {
 
   public logout() {
     this.authService.logout();
+  }
+
+  isAuthenticated(): boolean {
+    return this.authService.isAuthenticated();
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 }

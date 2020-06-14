@@ -36,6 +36,7 @@ import { IssueReconciliationComponent } from './routes/issue-reconciliation/issu
 import { TesterComponent } from './routes/tester/tester.component';
 import { BooleanRendererComponent } from './shared/components/grid-components/boolean-renderer/boolean-renderer.component';
 import { TokenInterceptor } from './shared/services/authentication/token-interceptor.service';
+import { AccountComponent } from './routes/account/account.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { TokenInterceptor } from './shared/services/authentication/token-interce
     LoginModalComponent,
     IssueReconciliationComponent,
     TesterComponent,
-    BooleanRendererComponent
+    BooleanRendererComponent,
+    AccountComponent
   ],
   imports: [
     UiSwitchModule,

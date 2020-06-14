@@ -7,6 +7,7 @@ import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * Service to handle {@code Member} persistence.
@@ -63,9 +64,11 @@ public interface MemberService {
      * <li>He is present in {@code Candidate} table for another {@code Task} but
      * not for the given one.
      * </ul>
+     * if {@code Shift} is provided, research is limited to given {@code Shift}
      * 
      * @param task the given {@code Task} name.
+     * @param shift given {@code Shidt}. Optional
      * @return {@code Set} of {@code Member}
      */
-    Set<MemberViewDto> findAllNonCandidatesByTask(String task);
+    Set<MemberViewDto> findAllNonCandidatesByTask(String task, Shift shift);
 }

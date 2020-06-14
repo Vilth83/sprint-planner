@@ -78,7 +78,7 @@ public class MemberControllerTest extends SetupIntTest {
 	MemberCreateDto member = jsonConvert(json, MemberCreateDto.class);
 	controller.save(member);
 	Set<MemberViewDto> nonCandidates = controller
-		.findAllNonCandidates("release");
+		.findAllNonCandidates("release", null);
 	assertEquals(4, nonCandidates.size());
     }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { UserCredentials } from 'src/app/models/user-credentials.model';
-import { HttpClient } from '@angular/common/http';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
@@ -17,12 +16,16 @@ export class LoginModalComponent implements OnInit {
   errorMessage = "";
   @ViewChild('login') template: TemplateRef<any>;
 
-  constructor(public modalService: BsModalService, public http: HttpClient, public authService : AuthenticationService) {
-  this.config = {
-    backdrop: false,
-    ignoreBackdropClick: true,
-    keyboard: false
-  }}
+  constructor(
+    private modalService: BsModalService,
+    private authService: AuthenticationService
+  ) {
+    this.config = {
+      backdrop: false,
+      ignoreBackdropClick: true,
+      keyboard: false
+    }
+  }
 
   ngOnInit() {
   }
@@ -37,13 +40,16 @@ export class LoginModalComponent implements OnInit {
   public submit(user: UserCredentials) {
     this.authService.login(user)
       .subscribe(
-        () => this.closeModal(),
+        () => {
+          this.closeModal();
+          window.location.reload()
+        },
         () => this.errorMessage = "invalid credentials !"
       )
   }
 
   private clearErrorMessage() {
-    this.errorMessage= "";
+    this.errorMessage = "";
   }
   closeModal() {
     this.clearErrorMessage();

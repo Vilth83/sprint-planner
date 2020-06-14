@@ -4,10 +4,11 @@ import { GridOptions } from 'ag-grid-community';
 import { ButtonRendererComponent } from 'src/app/shared/components/button-renderer.component';
 import { InformationModalComponent } from 'src/app/shared/modals/index';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/index';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Config } from 'src/app/shared/services/config';
+import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-member-modification',
@@ -32,13 +33,13 @@ export class MemberModificationComponent implements OnInit {
   inputs: Member;
 
 
-  constructor(private http: HttpRequestBuilder) {
+  constructor(private http: HttpRequestBuilder, private authService: AuthenticationService) {
     this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
     this.gridOptions = {
       rowHeight: 50,
-      defaultColDef: { editable: true, sortable: true, resizable: true },
+      defaultColDef: { editable: this.isAdmin(), sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
         { headerName: `firstname`, field: 'firstname' },
@@ -47,25 +48,17 @@ export class MemberModificationComponent implements OnInit {
         {
           headerName: 'shift',
           field: 'shift',
+          width: 120,
           cellEditor: "agSelectCellEditor",
           cellEditorParams: {
             values: ["PAR", "BGL"]
           }
         },
         {
-          hide: false,
-          headerName: 'edit',
-          editable: false,
-          cellRenderer: 'buttonRenderer',
-          cellRendererParams: {
-            onClick: this.onEditClick.bind(this),
-            btnClass: 'btn btn-primary fa fa-save  fa-lg'
-          }
-        },
-        {
-          hide: false,
+          hide: !this.authService.isAdmin(),
           headerName: 'delete',
           editable: false,
+          width: 160,
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
             onClick: this.onDeleteClick.bind(this),
@@ -92,29 +85,10 @@ export class MemberModificationComponent implements OnInit {
     })
   }
 
-  private edit(member: Member) {
-    let request: Observable<any>;
-    if (member.id) {
-      request = this.http.put(Config.endpoints.members + '/' + member.id, member);
-    } else {
-      request = this.http.post(Config.endpoints.members, member)
-    }
-    this.memberEditionSubscription = request.subscribe(() => {
-      this.openInfoModal('Update is successful !', member.firstname + " infos has been updated");
-      this.ngOnInit();
-    }, (error) => {
-      const message = ErrorHandler.catch(error);
-      this.openInfoModal("An error has occurred...", message);
-    });
-    this.ngOnInit();
-  }
-
   private delete(member: Member) {
-    const name = member.firstname;
-    const request = this.http.delete(Config.endpoints.members + '/' + member.id, member);
+    const request = this.http.delete(Config.endpoints.members + '/' + member.id, { id: member.id });
     this.deleteMemberSubscription =
       request.subscribe(() => {
-        this.openInfoModal('Deletion is successful !', name + " has been deleted.");
         this.ngOnInit();
       }, (error) => {
         const message = ErrorHandler.catch(error);
@@ -142,26 +116,13 @@ export class MemberModificationComponent implements OnInit {
     this.openConfirmationModal('delete', params.rowData);
   }
 
-  private onEditClick(params: any) {
-    this.openConfirmationModal('modify', params.rowData);
-  }
-
   public createNewData() {
     const newData = new Member();
     this.rowData = this.rowData.concat([newData]);
   }
 
   public confirm() {
-    switch (this.action) {
-      case 'modify':
-        this.edit(this.inputs);
-        break;
-      case 'delete':
-        this.delete(this.inputs);
-        break;
-      default:
-        this.decline();
-    }
+    this.delete(this.inputs);
   }
 
   private decline() {
@@ -172,5 +133,49 @@ export class MemberModificationComponent implements OnInit {
     this.http.unsubscribe(this.getMembersSubscription);
     this.http.unsubscribe(this.deleteMemberSubscription);
     this.http.unsubscribe(this.memberEditionSubscription);
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
+  }
+
+  editExisting(member: Member) {
+    const request = this.http.put(Config.endpoints.members + '/' + member.id, member);
+
+    this.memberEditionSubscription = request.subscribe(() => {
+      // no action, rowData is updated automatically by agGrid.
+    }, (error) => {
+      const message = ErrorHandler.catch(error);
+      this.openInfoModal("An error has occurred...", message);
+    });
+    this.ngOnInit();
+  }
+
+  createMember(member: Member) {
+    if (this.isValid(member)) {
+      const request = this.http.post(Config.endpoints.members, member)
+
+      this.memberEditionSubscription = request.subscribe(
+        () => this.getMembers(),
+        (error) => {
+          const message = ErrorHandler.catch(error);
+          this.openInfoModal("An error has occurred...", message);
+        });
+    }
+  }
+
+  private isValid(member: Member) {
+    return member.hasOwnProperty("shift")
+      && member.hasOwnProperty("firstname")
+      && member.hasOwnProperty("lastname")
+      && member.hasOwnProperty("email");
+  }
+
+  onCellValueChanged(event: any) {
+    if (event.data.hasOwnProperty('id')) {
+      this.editExisting(event.data);
+    } else {
+      this.createMember(event.data);
+    }
   }
 }

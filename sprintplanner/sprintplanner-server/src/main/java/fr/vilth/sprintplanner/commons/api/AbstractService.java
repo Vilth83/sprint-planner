@@ -106,4 +106,16 @@ public abstract class AbstractService {
     public <S, D> D convert(S source, Class<D> destination) {
 	return modelMapper.map(source, destination);
     }
+
+    /**
+     * Merge update {@code Dto} to given {@code Object}. *
+     * 
+     * @param <S> source type
+     * @param <D> destination {@code Object}
+     * @param source the {@code Dto} containing fields to merge
+     * @param destination the {@code Object} to update
+     */
+    public <S, D> void merge(S source, D destination) {
+	modelMapper.map(source, destination);
+    }
 }
