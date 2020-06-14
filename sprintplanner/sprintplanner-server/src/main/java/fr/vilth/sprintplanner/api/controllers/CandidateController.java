@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
+import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
+import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -53,7 +54,7 @@ public class CandidateController {
      * @return the attributed id encapsulated in a {@code EntityIdDto}.
      */
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @HasRoleUser
     public EntityIdDto save(@Valid @RequestBody CandidateCreateDto inputs) {
 	return candidateService.save(inputs);
     }
@@ -80,7 +81,7 @@ public class CandidateController {
      * @param id the id of the {@code Candidate} to delete.
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @HasRoleUser
     public void update(@Valid @RequestBody CandidateUpdateDto inputs,
 	    @PathVariable Long id) {
 	candidateService.update(inputs, id);
@@ -96,7 +97,7 @@ public class CandidateController {
      * @param shift optional : if given, the shift of the candidate to modify
      */
     @PutMapping("/{id}/current")
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @HasRoleUser
     public void setToCurrent(@RequestParam String taskName,
 	    @Valid @RequestBody CandidateUpdateDto inputs,
 	    @PathVariable Long id,
@@ -111,7 +112,7 @@ public class CandidateController {
      *        encapsulated in a {@code CandidateDeleteDto}.
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @HasRoleAdmin
     public void delete(@RequestBody CandidateDeleteDto candidate) {
 	candidateService.delete(candidate);
     }
@@ -132,13 +133,14 @@ public class CandidateController {
 
     /**
      * Returns the {@code Candidate} with the highest priority and the
-     * {@code Status.CURRENT}.
+     * {@code Status.AVAILABLE}.
      * 
      * @param task the given task
      * @param shift optional: the given shift
      * @return a {@code CandidateViewDto} representing a {@code Candidate}
      */
     @GetMapping("/{task}/available")
+    @HasRoleUser
     public CandidateViewDto getFirstAvailableByTask(@PathVariable String task,
 	    @RequestParam(required = false) Shift shift) {
 	return candidateService.findFirstByTaskNameAndStatusAndMemberShift(task,
@@ -154,6 +156,7 @@ public class CandidateController {
      *         {@code Candidate}s
      */
     @GetMapping("/{taskName}/shift/{shift}")
+    @HasRoleUser
     public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
 	    @PathVariable String taskName, @PathVariable Shift shift) {
 	return candidateService.findAllByTaskAndShift(taskName, shift);

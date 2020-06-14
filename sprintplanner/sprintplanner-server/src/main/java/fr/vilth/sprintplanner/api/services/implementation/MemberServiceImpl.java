@@ -14,6 +14,7 @@ import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 import fr.vilth.sprintplanner.domain.entities.Member;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * Default concrete implementation of {@code MemberService}.
@@ -70,9 +71,10 @@ public class MemberServiceImpl extends AbstractService
     }
 
     @Override
-    public Set<MemberViewDto> findAllNonCandidatesByTask(String task) {
+    public Set<MemberViewDto> findAllNonCandidatesByTask(String task,
+	    Shift shift) {
 	List<Member> members = memberRepository
-		.findAllNonCandidatesByTask(task);
+		.findAllNonCandidatesByTask(task, shift);
 	return convertToSet(members, MemberViewDto.class);
     }
 }

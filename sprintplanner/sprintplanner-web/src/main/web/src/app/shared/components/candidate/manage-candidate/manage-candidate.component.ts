@@ -15,6 +15,7 @@ import { InformationModalComponent } from 'src/app/shared/modals/index';
 import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
 import { Status } from 'src/app/models/status.model';
+import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-manage-candidate',
@@ -52,7 +53,11 @@ export class ManageCandidateComponent implements OnInit {
 
 
 
-  constructor(private http: HttpRequestBuilder, private candidateService: CandidateHttpRequest) {
+  constructor(
+      private http: HttpRequestBuilder,
+      private candidateService: CandidateHttpRequest,
+      private authService: AuthenticationService
+    ) {
     this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
@@ -74,14 +79,7 @@ export class ManageCandidateComponent implements OnInit {
           }
         },
         {
-          headerName: 'save',
-          cellRenderer: 'buttonRenderer',
-          cellRendererParams: {
-            onClick: this.onEditClick.bind(this),
-            btnClass: 'btn btn-primary fa fa-save fa-lg'
-          }
-        },
-        {
+          hide: !this.authService.isAdmin(),
           headerName: 'delete',
           cellRenderer: 'buttonRenderer',
           cellRendererParams: {
@@ -119,7 +117,11 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getNonCandidates() {
-    this.http.get("/members/" + this.task + "/nonCandidates").subscribe((members: Member[]) => {
+    let url = "/members/" + this.task + "/nonCandidates";
+    if (this.shift) {
+      url += "?shift=" + this.shift;
+    }
+    this.http.get(url).subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
   }
@@ -170,11 +172,6 @@ export class ManageCandidateComponent implements OnInit {
     this.openConfirmationModal('delete', candidate);
   }
 
-  onEditClick(params: any) {
-    const candidate: Candidate = params.rowData;
-    this.openConfirmationModal('modify', candidate);
-  }
-
   public confirm(action: string, inputs: Candidate) {
     switch (action) {
       case 'modify':
@@ -201,6 +198,11 @@ export class ManageCandidateComponent implements OnInit {
     this.title = title;
     this.message = message;
     this.infoModal.openModal(this.infoModal.template);
+  }
+
+  onCellValueChanged(event: any) {
+    const candidate : CandidateEditorDto = {status: event.data.status, id: event.data.id, priority: event.data.priority}
+    this.edit(candidate);
   }
 
   private decline() {

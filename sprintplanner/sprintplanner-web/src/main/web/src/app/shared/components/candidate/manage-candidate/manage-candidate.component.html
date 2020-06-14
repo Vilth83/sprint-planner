@@ -20,7 +20,8 @@
       style="width:100%;"
       domLayout="autoHeight"
       [frameworkComponents]="frameworkComponents"
-      [overlayNoRowsTemplate]="overlayNoRowsTemplate">
+      [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+      (cellValueChanged)="onCellValueChanged($event)">
   </ag-grid-angular>
 
   <div class="container">

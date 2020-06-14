@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import fr.vilth.sprintplanner.domain.entities.Member;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * {@code JpaRepository} to handle {@code Member} persistence.
@@ -35,9 +36,7 @@ public interface MemberJpaRepository extends JpaRepository<Member, Long> {
      * @param task the given {@code Task} name.
      * @return {@code List} of {@code Member}
      */
-    @Query("select m from Member m where m.id not in "
-	    + "(select mem.id from Member mem left join Candidate c "
-	    + "ON mem.id = c.member.id left join Task t "
-	    + "on c.task.id = t.id where t.name = :task)")
-    List<Member> findAllNonCandidatesByTask(@Param("task") String task);
+    @Query(JpqlQuery.ALL_NON_CANDIDATE_BY_TASK_AND_SHIFT)
+    List<Member> findAllNonCandidatesByTask(@Param("task") String task,
+	    @Param("shift") Shift shift);
 }

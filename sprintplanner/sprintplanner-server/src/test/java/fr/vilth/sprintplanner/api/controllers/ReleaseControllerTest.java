@@ -45,6 +45,7 @@ public class ReleaseControllerTest extends SetupIntTest {
     }
 
     @Test
+    @WithMockUser(username = "user", password = "pwd", roles = "USER")
     void should_increment_release() {
 	List<ReleaseViewDto> releases = controller.findAllOrdered();
 	controller.incrementReleaseVersion();

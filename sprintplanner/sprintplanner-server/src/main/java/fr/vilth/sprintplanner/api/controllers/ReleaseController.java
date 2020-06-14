@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.ReleaseService;
+import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.release.ReleaseViewDto;
@@ -42,6 +42,7 @@ public class ReleaseController {
      * @return a {@code List} of {@code ReleaseViewDto}
      */
     @GetMapping
+    @HasRoleUser
     public List<ReleaseViewDto> findAllOrdered() {
 	return releaseService.findAllOrdered();
     }
@@ -64,7 +65,7 @@ public class ReleaseController {
      *         {@code Release}
      */
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+    @HasRoleUser
     public EntityIdDto save(@Valid @RequestBody ReleaseCreateDto inputs) {
 	return releaseService.save(inputs);
     }

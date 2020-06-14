@@ -7,61 +7,66 @@
     <span class="navbar-toggler-icon"><em class="fa fa-bars fa-2x"></em></span>
   </button>
   <!-- navbar menu -->
-  <div class="row">
 
-    <div class="nav-menu collapse navbar-collapse" id="navigate">
-      <ul class="navbar-nav col-12">
-        <li class="nav-item col-2">
-          <a class="nav-link">
-            <a role="button nav-link" routerLink="/home">Home </a>
-          </a>
-        </li>
+  <div class="nav-menu collapse navbar-collapse" id="navigate">
+    <ul class="navbar-nav col-12">
+      <li class="nav-item col-2">
+        <a class="nav-link">
+          <a role="button nav-link" routerLink="/home">Home </a>
+        </a>
+      </li>
 
-        <li class="nav-item col-2">
-          <a class="dropdown nav-link" dropdown>
-            <a dropdownToggle role="button">Release <em class="caret"></em></a>
-            <div *dropdownMenu class="dropdown-menu">
-              <a class="dropdown-item nav-link" routerLink="/releasers">Releasers</a>
-              <a class="dropdown-item nav-link" routerLink="/releases">Releases</a>
-              <a class="dropdown-item nav-link" routerLink="/testers">Testers</a>
-            </div>
-          </a>
-        </li>
+      <li class="nav-item col-2" *ngIf="isAuthenticated()">
+        <a class="dropdown nav-link" dropdown>
+          <a dropdownToggle role="button">Release <em class="caret"></em></a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item nav-link" routerLink="/releasers">Releasers</a>
+            <a class="dropdown-item nav-link" routerLink="/releases">Releases</a>
+            <a class="dropdown-item nav-link" routerLink="/testers">Testers</a>
+          </div>
+        </a>
+      </li>
 
-        <li class="nav-item col-2">
-          <a class="dropdown nav-link" dropdown>
-            <a dropdownToggle role="button">Support <em class="caret"></em></a>
-            <div *dropdownMenu class="dropdown-menu">
-              <a class="dropdown-item nav-link" routerLink="/supports/paris">Paris</a>
-              <a class="dropdown-item nav-link" routerLink="/supports/bangalore">Bangalore</a>
-            </div>
-          </a>
-        </li>
+      <li class="nav-item col-2" *ngIf="isAuthenticated()">
+        <a class="dropdown nav-link" dropdown>
+          <a dropdownToggle role="button">Support <em class="caret"></em></a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item nav-link" routerLink="/supports/paris">Paris</a>
+            <a class="dropdown-item nav-link" routerLink="/supports/bangalore">Bangalore</a>
+          </div>
+        </a>
+      </li>
 
-        <li class="nav-item col-3">
-          <a class="nav-link">
-            <a role="button nav-link" routerLink="/issues">Reconciliation </a>
-          </a>
-        </li>
+      <li class="nav-item col-3" *ngIf="isAuthenticated()">
+        <a class="nav-link">
+          <a role="button nav-link" routerLink="/issues">Reconciliation </a>
+        </a>
+      </li>
 
-        <li class="nav-item col-2">
-          <a class="dropdown nav-link" dropdown>
-            <a dropdownToggle role="button">Configuration <em class="caret"></em></a>
-            <div *dropdownMenu class="dropdown-menu">
-              <a class="dropdown-item nav-link" routerLink="/members">Members</a>
-              <a class="dropdown-item nav-link" routerLink="/configuration">Project</a>
-            </div>
-          </a>
-        </li>
-      </ul>
-      <!-- login button -->
-      <div class="col-sm-1 col-md-1 col-lg-2 col-xl-4 text-right">
-        <button class="btn btn-primary" (click)="signin()">Log in</button>
-        <button class="btn btn-primary" (click)="logout()">Log out</button>
-      </div>
-    </div>
+      <li class="nav-item col-2" *ngIf="isAuthenticated()">
+        <a class="dropdown nav-link" dropdown>
+          <a dropdownToggle role="button">Configuration <em class="caret"></em></a>
+          <div *dropdownMenu class="dropdown-menu">
+            <a class="dropdown-item nav-link" routerLink="/members">Members</a>
+            <a class="dropdown-item nav-link" routerLink="/configuration" *ngIf="isAdmin()">Project</a>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- login button -->
+
+  <div class="col-3 text-center" *ngIf="!isAuthenticated(); else guest">
+    <button class="btn btn-primary fa fa-unlock text-center" (click)="signin()" tooltip="log in"></button>
+    <button class="btn btn-primary fa fa-user-plus" (click)="signup()" tooltip="create a new account"></button>
   </div>
 
+  <ng-template #guest>
+    <div class="col-3 text-center" >
+      <button class="btn btn-primary fa fa-user-circle" routerLink="/account" tooltip="account management"></button>
+      <button class="btn btn-primary fa fa-sign-out" (click)="logout()" tooltip="logout"></button>
+    </div>
+  </ng-template>
 </nav>
 <router-outlet></router-outlet>
 <app-login-modal #login></app-login-modal>

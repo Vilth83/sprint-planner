@@ -12,14 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.MemberService;
+import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
+import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
+import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**
  * a {@code RestController} to handle {@code Member}.
@@ -50,7 +54,7 @@ public class MemberController {
      * @return the attributed id encapsulated in a {@code EntityIdDto}.
      */
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @HasRoleAdmin
     public EntityIdDto save(@Valid @RequestBody MemberCreateDto member) {
 	return memberService.save(member);
     }
@@ -64,7 +68,7 @@ public class MemberController {
      * @return {@code Set} of {@code Member}
      */
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
+    @HasRoleUser
     public Set<MemberViewDto> findAll() {
 	return memberService.findAll();
     }
@@ -82,11 +86,13 @@ public class MemberController {
      * </ul>
      * 
      * @param task the given {@code Task} name.
+     * @param shift the given {@code Shift}. Optional.
      * @return {@code Set} of {@code Member}
      */
     @GetMapping("/{task}/nonCandidates")
-    public Set<MemberViewDto> findAllNonCandidates(@PathVariable String task) {
-	return memberService.findAllNonCandidatesByTask(task);
+    public Set<MemberViewDto> findAllNonCandidates(@PathVariable String task,
+	    @RequestParam(required = false) Shift shift) {
+	return memberService.findAllNonCandidatesByTask(task, shift);
     }
 
     /**

@@ -15,3 +15,6 @@ export const MEMBER_SUBTITLE="Members Configuration";
 
 export const RELEASE_VERSION_TITLE = "Release versions";
 export const RELEASE_VERSION_SUBTITLE = "Shows previous and current release versions";
+
+export const ACCOUNT_TITLE="Account";
+export const ACCOUNT_SUBTITLE="Modify your account";

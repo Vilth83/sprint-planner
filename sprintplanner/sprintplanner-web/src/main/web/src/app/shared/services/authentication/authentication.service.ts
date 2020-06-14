@@ -4,11 +4,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from 'src/app/models/user.model';
 import { TokenStorageService } from './token-storage.service';
-import { Router } from '@angular/router';
 import { Config } from '../config';
 import { UserCredentials } from 'src/app/models/user-credentials.model';
 import { Token } from 'src/app/models/token.model';
 import * as jwtDecode from 'jwt-decode';
+import { Role } from 'src/app/models/role.model';
 
 
 
@@ -17,12 +17,12 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
-  constructor(private http: HttpClient, private tokenStore: TokenStorageService, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  constructor(private http: HttpClient, private tokenStore: TokenStorageService) {
+    this.currentUserSubject = new BehaviorSubject<User>(this.decodeUser());
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public currentUserValue(): User {
     return this.currentUserSubject.value;
   }
 
@@ -53,9 +53,19 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user cookie to log user out
     this.tokenStore.clearToken();
-    //this.currentUserSubject.next(null);
-    this.router.navigate(['/home']);
+    window.location.reload()
+  }
+
+  isAuthenticated(): boolean {
+    return this.isUser() || this.isAdmin();
+  }
+
+  isAdmin(): boolean {
+    return this.currentUserValue() && this.currentUserValue().authorities.includes(Role.ROLE_ADMIN);
+  }
+
+  isUser() {
+    return this.currentUserValue() && this.currentUserValue().authorities.includes(Role.ROLE_USER);
   }
 }
