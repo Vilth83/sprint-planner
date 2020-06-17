@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
@@ -38,22 +37,6 @@ public class CustomUserTest extends SetupUnitTest {
 	CustomUser customUser = new CustomUser(PASSWORD, USER, FIRSTNAME,
 		LASTNAME, new HashSet<Role>(), true);
 	assertNotNull(customUser);
-    }
-
-    @Test
-    void should_return_getters() {
-	Set<Role> roles = new HashSet<>();
-	CustomUser actual = new CustomUser(PASSWORD, USER, FIRSTNAME, LASTNAME,
-		roles, true);
-	Assertions.assertAll(() -> assertEquals(PASSWORD, actual.getPassword()),
-		() -> assertEquals(USER, actual.getUsername()),
-		() -> assertEquals(FIRSTNAME, actual.getFirstname()),
-		() -> assertEquals(LASTNAME, actual.getLastname()),
-		() -> assertEquals(roles, actual.getRoles()),
-		() -> assertEquals(false, actual.isAccountNonExpired()),
-		() -> assertEquals(false, actual.isAccountNonLocked()),
-		() -> assertEquals(false, actual.isCredentialsNonExpired()),
-		() -> assertEquals(true, actual.isEnabled()));
     }
 
     @Test

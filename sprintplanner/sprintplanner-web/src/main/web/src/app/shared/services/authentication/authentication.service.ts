@@ -45,8 +45,8 @@ export class AuthenticationService {
 
   decodeUser() {
     if (this.tokenStore.checkToken()) {
-      var token = this.tokenStore.getToken();
-      var decoded = jwtDecode(token.accessToken);
+      const token = this.tokenStore.getToken();
+      const decoded = jwtDecode(token.accessToken);
       return new User(decoded.authorities, decoded.user_name, decoded.userId);
     }
     return null;

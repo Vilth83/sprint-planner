@@ -4,7 +4,6 @@ import java.util.Set;
 
 import javax.validation.Valid;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -104,7 +103,7 @@ public class MemberController {
      * @param member the {@code MemberUpdateDto} to update
      */
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @HasRoleAdmin
     public void update(@Valid @RequestBody MemberUpdateDto member) {
 	memberService.update(member);
     }
@@ -119,7 +118,7 @@ public class MemberController {
      *        a {@code MemberDeleteDto}.
      */
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @HasRoleAdmin
     public void delete(@Valid @RequestBody MemberDeleteDto member) {
 	memberService.delete(member);
     }

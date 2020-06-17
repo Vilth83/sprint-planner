@@ -29,6 +29,7 @@ export class LoginModalComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   ngOnChange() {
     this.clearErrorMessage();
   }

@@ -15,7 +15,7 @@ html {
   border-radius: 0;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  padding: 5% 10%;
+  padding: 10% 10%;
 }
 
 .info-part {
@@ -23,7 +23,7 @@ html {
   border-radius: 0;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  padding: 5% 2%;
+  padding: 5% 5%;
   height: 90%;
 }
 
@@ -96,6 +96,16 @@ span {
 
 .submenu {
   cursor: pointer;
+  border-radius: 0;
+  margin: 2% 0;
+  padding: 2% 2%;
+  color: black;
+  font-weight: bold;
+  background-color: lightgrey;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.subsection {
   border-radius: 0;
   margin: 2% 0;
   padding: 2% 2%;

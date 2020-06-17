@@ -13,10 +13,10 @@ values
 
 insert into tasks (id, name, description, email, manager_id) 
 values
-(-1, 'releaser', "release object for int tests", "task@mail", -1),
-(-2, 'tester', "tester object for int tests", "tester@mail", -1),
-(-3, 'support', "support object for int tests", "support@mail", -1),
-(-4, 'other', "support object for int tests", "support@mail", -1);
+(-1, 'releaser', 'release object for int tests', 'task@mail', -1),
+(-2, 'tester', 'tester object for int tests', 'tester@mail', -1),
+(-3, 'support', 'support object for int tests', 'support@mail', -1),
+(-4, 'other', 'support object for int tests', 'support@mail', -1);
 
 
 insert into candidates (id, status, priority, member_id, task_id) values 
@@ -32,8 +32,8 @@ insert into candidates (id, status, priority, member_id, task_id) values
 
 insert into projects (id, name, pi_duration, sprint_duration, github_user, github_repo, trigram, email)
 values
-(-1, "sprintplanner", 5, 2, "Vilth83", "sprintplanner", "SPL", "sprintplanner@bot");
+(-1, 'sprintplanner', 5, 2, 'Vilth83', 'sprintplanner', 'SPL', 'sprintplanner@bot');
 
 insert into releases (pi, sprint, week, releaser)
 values
-(1,4,2,"dummy releaser");
+(1,4,2,'dummy releaser');

@@ -10,10 +10,12 @@ import { TokenStorageService } from './token-storage.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
+
   constructor(public tokenStore: TokenStorageService) { }
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.tokenStore.getToken();
     if (this.tokenStore.checkToken()) {
+      const token = this.tokenStore.getToken();
       request = request.clone({
         setHeaders: {
           Authorization: 'Bearer ' + token.accessToken

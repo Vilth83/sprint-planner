@@ -8,10 +8,17 @@ import java.lang.annotation.Target;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 
+/**
+ * Custom annotation to manage <code>@PreAuthorized</code>
+ * {@code ROLE.ROLE_ADMIN}.
+ * <p>
+ * 
+ * @author Thierry VILLEPREUX
+ */
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.METHOD, ElementType.TYPE })
 public @interface HasRoleAdmin {
-    // empty interface to encapsulate @PreAuthorize roles
+    // no action, encapsulate PreAuthorized roles for readibility
 }

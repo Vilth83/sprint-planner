@@ -16,7 +16,8 @@ spring:
   profiles:
     active: test
   datasource:
-    url: jdbc:mysql://localhost:3306/sprintplannerTest?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
+    url: jdbc:h2:mem:testdb;DATABASE_TO_UPPER=FALSE
+    driverClassName: org.h2.Driver
     username: root
     password: root
     data: classpath:sqlTestCases/integrationTestScript.sql
@@ -29,7 +30,7 @@ spring:
        ddl-auto: create
     properties: 
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.H2Dialect
         format_sql: true
         jdbc:
           batch_size: 10
@@ -46,7 +47,7 @@ spring:
     add-mappings: true
 
 logging:
-  config: classpath:logback-spring.xml
+  config: classpath:logback-spring-dev.xml
   
   
 cron:
