@@ -1,22 +1,6 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
 
 <section class="container section">
-
-  <span class="row submenu unselectable" (click)="isTechnicalCollapsed = !isTechnicalCollapsed">
-    technical support<span class="text-right"></span>
-  </span>
-  <div [collapse]="isTechnicalCollapsed">
-    <div>
       <app-manage-candidate task="technical" [shift]="shift"></app-manage-candidate>
-    </div>
-  </div>
-
-  <span class="row submenu unselectable" (click)="isFunctionalCollapsed = !isFunctionalCollapsed">
-    Functional support<span class="text-right"></span>
-  </span>
-  <div [collapse]="isFunctionalCollapsed">
-    <div>
       <app-manage-candidate task="functional" [shift]="shift"></app-manage-candidate>
-    </div>
-  </div>
 </section>

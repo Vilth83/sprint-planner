@@ -14,5 +14,4 @@ export class ReleaserComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

@@ -63,7 +63,7 @@ export class IssueReconciliationComponent implements OnInit {
     if (this.branchesSubscription) {
       this.branchesSubscription.unsubscribe();
     }
-    this.branchesSubscription = this.http.get(Config.endpoints.github.branches).subscribe((branches: Branch[]) => {
+    this.branchesSubscription = this.http.get(Config.endpoints.reconciliation.branches).subscribe((branches: Branch[]) => {
       this.branches = branches;
     });
   }

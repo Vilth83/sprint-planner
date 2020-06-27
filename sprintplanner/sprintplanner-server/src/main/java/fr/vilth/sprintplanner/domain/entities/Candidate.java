@@ -70,7 +70,7 @@ public class Candidate extends AbstractEntity {
      * Accessor returning {@code priority}.
      * <p>
      * needed by the
-     * {@linkplain #fr.vilth.sprintplanner.commons.utils.PriorityComparator
+     * {@link #fr.vilth.sprintplanner.commons.utils.PriorityComparator
      * PriorityComparator}
      * 
      * @return priority

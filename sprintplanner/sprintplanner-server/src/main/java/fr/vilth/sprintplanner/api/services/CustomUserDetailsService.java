@@ -12,32 +12,31 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
  * implementation.
  * 
  * @author Thierry VILLEPREUX
- *
  */
 public interface CustomUserDetailsService extends UserDetailsService {
 
-	/**
-	 * Returns current authenticated {@code CustomUser}.
-	 * 
-	 * @param id the identifier of currently authenticated {@code CustomUser}
-	 * @return {@code CustomUserInfo} representing a {@code CustomUser}
-	 */
-	CustomUserInfoDto getCurrentUserInfo(Long id);
+    /**
+     * Returns current authenticated {@code CustomUser}.
+     * 
+     * @param id the identifier of currently authenticated {@code CustomUser}
+     * @return {@code CustomUserInfo} representing a {@code CustomUser}
+     */
+    CustomUserInfoDto getCurrentUserInfo(Long id);
 
-	/**
-	 * Retrieves wether or not given username exists in database
-	 * 
-	 * @param username the given username to test
-	 * @return {@code true} if the username exists in database; {@code false}
-	 *         otherwise
-	 */
-	boolean usernameIsUnique(String username);
+    /**
+     * Retrieves wether or not given username exists in database
+     * 
+     * @param username the given username to test
+     * @return {@code true} if the username exists in database; {@code false}
+     *         otherwise
+     */
+    boolean usernameIsUnique(String username);
 
-	/**
-	 * Persist given {@code CustomUser}
-	 * 
-	 * @param inputs {@code CustomUserCreateDto} representing a {@code CustomUser}
-	 *               to persist
-	 */
-	void create(CustomUserCreateDto inputs);
+    /**
+     * Persist given {@code CustomUser}
+     * 
+     * @param inputs {@code CustomUserCreateDto} representing a
+     *        {@code CustomUser} to persist
+     */
+    void create(CustomUserCreateDto inputs);
 }

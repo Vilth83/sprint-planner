@@ -180,7 +180,6 @@ public class AuthorizationServerConfig
      * <p>
      * Could be in a "user controller".
      *
-     * @param authentication injected authentication object
      * @return a view of the current authenticated user
      */
     @GetMapping("/userInfo")

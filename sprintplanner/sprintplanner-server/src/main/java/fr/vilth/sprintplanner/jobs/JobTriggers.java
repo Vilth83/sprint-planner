@@ -13,13 +13,14 @@ import fr.vilth.sprintplanner.domain.entities.Mail;
 /**
  * Service activating job at scheduled time.
  * <p>
- * Scheduling is done with CRON expressions passed in application.yml.
+ * Scheduling is done with CRON expressions passed in application.yml. Autowires
+ * :
  * <ul>
- * Autowires :
  * <li>{@code EmailJob} to build and send mails
  * <li>{@code ReleaseJob} for round robin and releaase incrementation
  * <li>{@code JobService} to check if given job is active before executing it
- *
+ * </ul>
+ * 
  * @author Thierry VILLEPREUX
  */
 @Service
@@ -31,6 +32,8 @@ public class JobTriggers {
 
     private final JobService jobService;
 
+    private final SupportJob supportJob;
+
     /**
      * Constructor for JobTriggers.
      * <p>
@@ -41,11 +44,12 @@ public class JobTriggers {
      * @param jobService {@code Autowired}
      */
     public JobTriggers(EmailJob emailJob, ReleaseJob releaseJob,
-	    JobService jobService) {
+	    JobService jobService, SupportJob supportJob) {
 	super();
 	this.emailJob = emailJob;
 	this.releaseJob = releaseJob;
 	this.jobService = jobService;
+	this.supportJob = supportJob;
     }
 
     /**
@@ -82,8 +86,6 @@ public class JobTriggers {
      * Scheduled round robin task for release.
      * <p>
      * make releaser rotation and increment release version number.
-     * 
-     * @throws MessagingException if error with {@code JavaMailSender}
      */
     @Scheduled(cron = "${cron.config.handle-release}")
     public void handleRelease() {
@@ -101,8 +103,6 @@ public class JobTriggers {
      * Scheduled round robin task for support.
      * <p>
      * make support rotation for every shift and every support task
-     * 
-     * @throws MessagingException if error with {@code JavaMailSender}
      */
     @Scheduled(cron = "${cron.config.handle-support}")
     public void handleSupport() {
@@ -110,8 +110,8 @@ public class JobTriggers {
 	Job job = jobService.findByTitleAndTask("roundRobin",
 		Constants.SUPPORT);
 	if (job.isActive()) {
-	    releaseJob.rotateSupport(Constants.TECHNICAL);
-	    releaseJob.rotateSupport(Constants.FUNCTIONAL);
+	    supportJob.rotateSupport(Constants.TECHNICAL);
+	    supportJob.rotateSupport(Constants.FUNCTIONAL);
 	}
     }
 }

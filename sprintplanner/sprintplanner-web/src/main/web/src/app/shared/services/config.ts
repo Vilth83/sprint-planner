@@ -22,10 +22,8 @@ export const Config = {
     },
     tasks: '/tasks',
     reconciliation: {
+      branches: '/reconciliations/branches',
       reconciliate: '/reconciliations/reconciliate'
-    },
-    github: {
-      branches: '/github/branches'
     }
   },
 

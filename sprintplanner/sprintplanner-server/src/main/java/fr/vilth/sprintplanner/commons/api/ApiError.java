@@ -6,6 +6,7 @@ package fr.vilth.sprintplanner.commons.api;
  * <ul>
  * <li>field : field in error (in case of {@code InvalidArgumentException})
  * <li>defaultMessage : message given by default by the exception
+ * </ul>
  * 
  * @author Thierry VILLEPREUX
  */

@@ -21,8 +21,8 @@
           <a dropdownToggle role="button">Release <em class="caret"></em></a>
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/releasers">Releasers</a>
-            <a class="dropdown-item nav-link" routerLink="/releases">Releases</a>
             <a class="dropdown-item nav-link" routerLink="/testers">Testers</a>
+            <a class="dropdown-item nav-link" routerLink="/versions">Versions</a>
           </div>
         </a>
       </li>
@@ -57,13 +57,12 @@
   <!-- login button -->
 
   <div class="col-3 text-center" *ngIf="!isAuthenticated(); else guest">
-    <button class="btn btn-primary fa fa-unlock text-center" (click)="signin()" tooltip="log in"></button>
+    <button class="btn btn-primary fa fa-sign-in text-center" (click)="signin()" tooltip="log in"></button>
     <button class="btn btn-primary fa fa-user-plus" (click)="signup()" tooltip="create a new account"></button>
   </div>
 
   <ng-template #guest>
     <div class="col-3 text-center" >
-      <button class="btn btn-primary fa fa-user-circle" routerLink="/account" tooltip="account management"></button>
       <button class="btn btn-primary fa fa-sign-out" (click)="logout()" tooltip="logout"></button>
     </div>
   </ng-template>

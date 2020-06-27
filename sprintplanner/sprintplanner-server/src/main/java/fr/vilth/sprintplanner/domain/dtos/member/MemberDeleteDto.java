@@ -14,7 +14,7 @@ import fr.vilth.sprintplanner.domain.validators.NotManager;
  * <li>the {@code Member} to be deleted must not be {@code Candidate} for any
  * {@code Task}</li>
  * <li>the {@code Member} to be deleted must not be manager for any
- * {@codeTask}</li>
+ * {@code Task}</li>
  * </ul>
  * 
  * @author Thierry VILLEPREUX

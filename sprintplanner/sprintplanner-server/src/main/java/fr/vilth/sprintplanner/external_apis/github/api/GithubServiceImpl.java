@@ -6,13 +6,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.common.base.Strings;
+
 import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 
@@ -25,7 +29,8 @@ import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 public class GithubServiceImpl extends AbstractService
 	implements GithubService {
 
-    private static final Pattern KEY_PATTERN = Pattern.compile("(?)SPL-\\d+");
+    @Value("${config.external-apis.urls.github}")
+    private String githubUrl;
 
     private final RestTemplate restTemplate;
 
@@ -41,8 +46,9 @@ public class GithubServiceImpl extends AbstractService
     }
 
     @Override
-    public List<Branch> findAllBranches() {
-	String url = "https://api.github.com/repos/vilth83/sprint-planner/branches";
+    public List<Branch> findAllBranches(ProjectViewDto project,
+	    String repository) {
+	String url = formUrl(project, repository) + "/branches";
 	ParameterizedTypeReference<List<Branch>> listType = new ParameterizedTypeReference<List<Branch>>() {
 	    //
 	};
@@ -52,10 +58,17 @@ public class GithubServiceImpl extends AbstractService
     }
 
     @Override
-    public Set<Commit> compareBranches(String currentBranch,
+    public Set<Commit> compareBranches(
+	    ProjectViewDto project,
+	    String repository,
+	    String currentBranch,
 	    String previousBranch) {
-	Set<Commit> currentBranchCommits = getCommitPerBranch(currentBranch);
-	Set<Commit> previousBranchCommits = getCommitPerBranch(previousBranch);
+	Set<Commit> currentBranchCommits = getCommitPerBranch(project,
+		repository,
+		currentBranch);
+	Set<Commit> previousBranchCommits = getCommitPerBranch(project,
+		repository,
+		previousBranch);
 	return compareBranches(currentBranchCommits, previousBranchCommits);
     }
 
@@ -65,8 +78,9 @@ public class GithubServiceImpl extends AbstractService
 	return currentBranchCommits;
     }
 
-    private Set<Commit> getCommitPerBranch(String sha) {
-	String url = "https://api.github.com/repos/vilth83/sprint-planner/commits?sha="
+    private Set<Commit> getCommitPerBranch(ProjectViewDto project,
+	    String repository, String sha) {
+	String url = formUrl(project, repository) + "/commits?sha="
 		+ sha + "&page=1&per_page=100";
 	ParameterizedTypeReference<List<Object>> listType = new ParameterizedTypeReference<List<Object>>() {
 	    //
@@ -82,13 +96,23 @@ public class GithubServiceImpl extends AbstractService
     }
 
     private Commit setCommitKey(Commit commit) {
-	Matcher matcher = KEY_PATTERN.matcher(commit.getMessage());
-	commit.setKey(hasKey(commit) ? matcher.group() : null);
+	Matcher matcher = Pattern.compile("(?)SPL-\\d+")
+		.matcher(commit.getMessage());
+	commit.setKey(matcher.find() ? matcher.group() : null);
 	return commit;
     }
 
     private boolean hasKey(Commit commit) {
-	Matcher matcher = KEY_PATTERN.matcher(commit.getMessage());
+	Matcher matcher = Pattern.compile("(?)SPL-\\d+")
+		.matcher(commit.getMessage());
 	return matcher.find();
+    }
+
+    private String formUrl(ProjectViewDto project, String repository) {
+	String githubRepo = Strings.isNullOrEmpty(repository)
+		? project.getGithubRepo()
+		: repository;
+	return githubUrl + project.getGithubUser() + "/"
+		+ githubRepo;
     }
 }
