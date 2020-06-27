@@ -1,5 +1,6 @@
 package fr.vilth.sprintplanner.external_apis.jira.api;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,9 @@ import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 @Service
 public class JiraServiceImpl extends AbstractService implements JiraService {
 
+    @Value("${config.external-apis.urls.jira")
+    private String jiraUrl;
+
     private final RestTemplate restTemplate;
 
     /**
@@ -31,7 +35,7 @@ public class JiraServiceImpl extends AbstractService implements JiraService {
 
     @Override
     public Ticket getByKey(String key) {
-	String url = "http://localhost:9999/jira/ticket/" + key;
+	String url = jiraUrl + key;
 	ResponseEntity<Ticket> response = restTemplate.exchange(url,
 		HttpMethod.GET, null, Ticket.class);
 	return response.getBody();

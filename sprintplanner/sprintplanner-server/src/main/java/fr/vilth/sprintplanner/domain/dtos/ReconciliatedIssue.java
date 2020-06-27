@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.reconciliation;
+package fr.vilth.sprintplanner.domain.dtos;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 
+import fr.vilth.sprintplanner.domain.types.IssueState;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
@@ -93,5 +94,9 @@ public class ReconciliatedIssue {
 	this.jiraState = ticket.getFields().getStatus();
 	this.testProofed = ticket.isTestProofed();
 	return this;
+    }
+
+    public static ReconciliatedIssue newInstance() {
+	return new ReconciliatedIssue();
     }
 }

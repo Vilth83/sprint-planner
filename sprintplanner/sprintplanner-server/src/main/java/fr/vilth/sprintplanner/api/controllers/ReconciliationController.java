@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.reconciliation;
+package fr.vilth.sprintplanner.api.controllers;
 
 import java.util.List;
 import java.util.Set;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.ProjectService;
 import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
+import fr.vilth.sprintplanner.domain.dtos.ReconciliatedIssue;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
-import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 /**
  * {@code RestController} to handle {@code IssueReconciliation}
@@ -53,6 +53,7 @@ public class ReconciliationController {
     /**
      * Returns a {@code List} of {@code ReconciliatedIssue}.
      * <p>
+     * <ul>
      * <li>compares two Github {@code Branches} to retrieve a {@code Set} of
      * {@code commit}
      * <li>retrieve Jira {@code Ticket} for each {@code Commit} of the
@@ -60,6 +61,7 @@ public class ReconciliationController {
      * <li>build a {@code ReconciliatedIssue} with {@code Commit} and
      * {@code Ticket}
      * <li>returns the created {@code List} of {@code ReconciliatedIssue}
+     * </ul>
      * 
      * @param repository optional. If given issues are compared for given
      *        repository
@@ -78,8 +80,8 @@ public class ReconciliationController {
 		currentBranch,
 		previousBranch);
 	return commits.parallelStream().map(commit -> {
-	    Ticket ticket = jiraService.getByKey(commit.getKey());
-	    return new ReconciliatedIssue().withTicket(ticket)
+	    // Ticket ticket = jiraService.getByKey(commit.getKey());
+	    return ReconciliatedIssue.newInstance()// .withTicket(ticket)
 		    .withCommit(commit);
 	}).collect(Collectors.toList());
     }

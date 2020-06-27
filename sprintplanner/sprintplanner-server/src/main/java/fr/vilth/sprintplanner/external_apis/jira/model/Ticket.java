@@ -12,9 +12,6 @@ import java.util.regex.Pattern;
  */
 public class Ticket {
 
-    private static final Pattern TEST_PROOF_PATTERN = Pattern
-	    .compile("(?i)(test)+[-_ ]+(proof)");
-
     private String id;
 
     private String key;
@@ -60,7 +57,9 @@ public class Ticket {
      */
     public boolean isTestProofed() {
 	List<Attachment> attachments = this.fields.getAttachments();
-	return attachments.stream().anyMatch(attachment -> TEST_PROOF_PATTERN
+	Pattern pattern = Pattern
+		.compile("(?i)(test)+[-_ ]+(proof)");
+	return attachments.stream().anyMatch(attachment -> pattern
 		.matcher(attachment.getFilename()).find());
     }
 }

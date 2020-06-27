@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.reconciliation;
+package fr.vilth.sprintplanner.domain.types;
 
 /**
  * Enum defining consistency between Jira {@code Ticket} and Github

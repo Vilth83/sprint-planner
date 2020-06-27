@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'members', component: MemberComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
   { path: 'releasers', component: ReleaserComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
   { path: 'testers', component: TesterComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
-  { path: 'releases', component: ReleaseVersionComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
+  { path: 'versions', component: ReleaseVersionComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
   { path: 'issues', component: IssueReconciliationComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
   { path: 'supports/bangalore', component: SupportComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },
   { path: 'supports/paris', component: SupportComponent, canActivate: [AuthGuard], data: { roles: ["ROLE_ADMIN", "ROLE_USER"] } },

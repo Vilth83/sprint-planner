@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,8 @@ import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 public class GithubServiceImpl extends AbstractService
 	implements GithubService {
 
-    private static final String BASE_URL = "https://api.github.com/repos/";
+    @Value("${config.external-apis.urls.github}")
+    private String githubUrl;
 
     private final RestTemplate restTemplate;
 
@@ -110,7 +112,7 @@ public class GithubServiceImpl extends AbstractService
 	String githubRepo = Strings.isNullOrEmpty(repository)
 		? project.getGithubRepo()
 		: repository;
-	return BASE_URL + project.getGithubUser() + "/"
+	return githubUrl + project.getGithubUser() + "/"
 		+ githubRepo;
     }
 }
