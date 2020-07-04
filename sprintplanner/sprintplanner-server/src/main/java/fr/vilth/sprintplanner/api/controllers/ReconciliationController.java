@@ -80,21 +80,14 @@ public class ReconciliationController {
 	Set<Commit> commits = githubService.compareBranches(project, repository,
 		currentBranch,
 		previousBranch);
-	return commits.parallelStream().map(commit -> {
-	    Ticket ticket = jiraService.getByKey(commit.getKey());
-	    ReconciliatedIssue ri = ReconciliatedIssue.newInstance()
-		    .withCommit(commit);
-	    if (ticket != null) {
-		ri = ri.withTicket(ticket);
-	    }
-	    return ri;
-	}).collect(Collectors.toList());
+	return commits.parallelStream()
+		.map(commit -> ReconciliatedIssue.ofCommit(commit)
+			.withTicket(getTicket(commit)))
+		.collect(Collectors.toList());
     }
 
-    private void setTicket(Commit commit) {
-	Ticket ticket = jiraService.getByKey(commit.getKey());
-	if (ticket != null) {
-	}
+    private Ticket getTicket(Commit commit) {
+	return jiraService.getByKey(commit.getKey());
     }
 
     /**
