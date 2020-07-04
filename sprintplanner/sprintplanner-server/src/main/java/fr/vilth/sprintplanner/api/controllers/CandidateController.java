@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -24,6 +22,8 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
+import fr.vilth.sprintplanner.security.annotations.HasRoleAdmin;
+import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 
 /**
  * a {@code RestController} to handle {@code Candidate}.

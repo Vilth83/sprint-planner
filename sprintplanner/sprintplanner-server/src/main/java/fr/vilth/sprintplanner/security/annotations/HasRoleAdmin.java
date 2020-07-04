@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.security.annotations;
+package fr.vilth.sprintplanner.security.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

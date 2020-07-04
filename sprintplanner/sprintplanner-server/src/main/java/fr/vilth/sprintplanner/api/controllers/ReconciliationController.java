@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.ProjectService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.ReconciliatedIssue;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
@@ -18,6 +17,7 @@ import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
 import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
+import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 
 /**
  * {@code RestController} to handle {@code IssueReconciliation}

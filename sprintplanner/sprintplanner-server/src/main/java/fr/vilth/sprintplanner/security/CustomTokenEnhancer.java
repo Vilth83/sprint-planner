@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.security;
+package fr.vilth.sprintplanner.security;
 
 import java.util.HashMap;
 import java.util.Map;

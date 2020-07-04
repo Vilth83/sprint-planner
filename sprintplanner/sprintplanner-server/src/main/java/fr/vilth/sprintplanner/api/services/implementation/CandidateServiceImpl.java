@@ -11,7 +11,6 @@ import fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
-import fr.vilth.sprintplanner.domain.RoundRobinHandler;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -21,6 +20,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
+import fr.vilth.sprintplanner.domain.utils.RoundRobinHandler;
 
 /**
  * Default concrete implementation of {@code CandidateService}.

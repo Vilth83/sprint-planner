@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.MemberService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberUpdateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberViewDto;
 import fr.vilth.sprintplanner.domain.types.Shift;
+import fr.vilth.sprintplanner.security.annotations.HasRoleAdmin;
+import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 
 /**
  * a {@code RestController} to handle {@code Member}.

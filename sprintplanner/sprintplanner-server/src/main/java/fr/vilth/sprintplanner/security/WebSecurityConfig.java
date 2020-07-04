@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.security;
+package fr.vilth.sprintplanner.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

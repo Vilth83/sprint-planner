@@ -11,6 +11,7 @@ import com.google.common.collect.Sets;
 import fr.vilth.sprintplanner.SetupUnitTest;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Status;
+import fr.vilth.sprintplanner.domain.utils.RoundRobinHandler;
 
 public class RoundRobinHandlerTest extends SetupUnitTest {
 

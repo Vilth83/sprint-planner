@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.ProjectService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
+import fr.vilth.sprintplanner.security.annotations.HasRoleAdmin;
 
 /**
  * a {@code RestController} to handle {@code Project}

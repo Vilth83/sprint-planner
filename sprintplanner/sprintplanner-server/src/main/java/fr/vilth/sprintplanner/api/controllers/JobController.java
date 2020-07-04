@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.JobService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleAdmin;
 import fr.vilth.sprintplanner.domain.dtos.job.JobUpdateDto;
 import fr.vilth.sprintplanner.domain.entities.Job;
+import fr.vilth.sprintplanner.security.annotations.HasRoleAdmin;
 
 /**
  * A {@code RestController} to handle {@code Job}
