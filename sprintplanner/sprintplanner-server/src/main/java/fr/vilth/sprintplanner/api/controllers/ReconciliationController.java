@@ -17,6 +17,7 @@ import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 /**
  * {@code RestController} to handle {@code IssueReconciliation}
@@ -80,10 +81,20 @@ public class ReconciliationController {
 		currentBranch,
 		previousBranch);
 	return commits.parallelStream().map(commit -> {
-	    // Ticket ticket = jiraService.getByKey(commit.getKey());
-	    return ReconciliatedIssue.newInstance()// .withTicket(ticket)
+	    Ticket ticket = jiraService.getByKey(commit.getKey());
+	    ReconciliatedIssue ri = ReconciliatedIssue.newInstance()
 		    .withCommit(commit);
+	    if (ticket != null) {
+		ri = ri.withTicket(ticket);
+	    }
+	    return ri;
 	}).collect(Collectors.toList());
+    }
+
+    private void setTicket(Commit commit) {
+	Ticket ticket = jiraService.getByKey(commit.getKey());
+	if (ticket != null) {
+	}
     }
 
     /**

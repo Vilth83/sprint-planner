@@ -62,7 +62,11 @@ public class Field {
      * @return the name of the {@code Assignee}
      */
     public String getAssignee() {
-	return assignee.displayName;
+	return getOrNull(assignee);
+    }
+
+    private String getOrNull(TeamMember tested) {
+	return tested != null ? tested.displayName : null;
     }
 
     /**
@@ -71,7 +75,7 @@ public class Field {
      * @return the name of the {@code Requestor}
      */
     public String getRequestor() {
-	return requestor.displayName;
+	return getOrNull(requestor);
     }
 
     /**
@@ -107,7 +111,7 @@ public class Field {
      * @return the key of the {@code Parent}
      */
     public String getParent() {
-	return parent.key;
+	return parent != null ? parent.key : null;
     }
 
     /**

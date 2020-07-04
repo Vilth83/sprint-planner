@@ -23,17 +23,16 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      * Configures the HTTP security for this application.
      * <p>
      * Defines this application as stateless (no HTTP session), and disables
-     * HTTP basic auth, CSRF and Spring default login form.
+     * HTTP basic auth and Spring default login form.
      *
      * @param http the HttpSecurity to configure
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
-	http.httpBasic().disable().csrf().disable().sessionManagement()
+	http.httpBasic().disable().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 		.authorizeRequests()
-		.antMatchers("/api/public/**").permitAll()
-		.antMatchers("/api/userInfo", "/api/private/**")
+		.antMatchers("/api/userInfo")
 		.authenticated();
 	http.headers().addHeaderWriter(
 		new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN));
