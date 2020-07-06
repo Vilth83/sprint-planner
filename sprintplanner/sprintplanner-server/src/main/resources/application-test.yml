@@ -52,13 +52,17 @@ logging:
   
 cron:
   config:
-    handle-release: "* * 1 * * *"
-    handle-support: "* * 1 * * *"
+    handle-release: "5 0 */6 * * *"
+    handle-support: "6 0 */6 * * *"
+    send-releaser-mail: "8 0 */6 * * *"
+    send-support-mail: "10 0 */6 * * *"
     
 config:
   external-apis:
     urls: 
-      github: "https://api.github.com/repos/"
+      github: 
+        repos: "https://api.github.com/repos/"
+        users: "https://api.github.com/users/"
       jira: "http://localhost:9999/jira/ticket/"
     
     
