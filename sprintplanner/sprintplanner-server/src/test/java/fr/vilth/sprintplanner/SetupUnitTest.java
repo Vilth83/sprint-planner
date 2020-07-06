@@ -1,6 +1,9 @@
 package fr.vilth.sprintplanner;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeAll;
 
@@ -44,6 +47,22 @@ public class SetupUnitTest {
 	    throw new IllegalArgumentException(
 		    "wrong json format in csv source file", ex);
 	}
+	return converted;
+    }
+
+    protected final <D> Set<D> jsonListConvert(String[] inputs,
+	    Class<D> destinationType) {
+	Set<D> converted = null;
+	converted = Arrays.stream(inputs)
+		.map(input -> {
+		    try {
+			return MAPPER.readValue(input, destinationType);
+		    } catch (IOException ex) {
+			ex.printStackTrace();
+		    }
+		    return null;
+		})
+		.collect(Collectors.toSet());
 	return converted;
     }
 }

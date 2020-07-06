@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.security;
+package fr.vilth.sprintplanner.security;
 
 import java.util.Arrays;
 
@@ -104,7 +104,7 @@ public class AuthorizationServerConfig
 
     /**
      * Bean that returns a
-     * {@linkplain fr.vilth.sprintplanner.commons.security.CustomTokenEnhancer
+     * {@linkplain fr.vilth.sprintplanner.security.CustomTokenEnhancer
      * custom token enhancer}
      * 
      * @return a custom token enhancer

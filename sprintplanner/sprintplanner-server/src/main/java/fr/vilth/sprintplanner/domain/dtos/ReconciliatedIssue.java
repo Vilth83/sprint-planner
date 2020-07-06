@@ -66,7 +66,7 @@ public class ReconciliatedIssue {
      * @param commit the commit to extract informations from
      * @return this for chaining
      */
-    public ReconciliatedIssue withCommit(Commit commit) {
+    private ReconciliatedIssue withCommit(Commit commit) {
 	this.key = commit.getKey();
 	this.title = commit.getMessage();
 	String creationDateString = commit.getCommitDate();
@@ -84,19 +84,21 @@ public class ReconciliatedIssue {
      * @return this for chaining
      */
     public ReconciliatedIssue withTicket(Ticket ticket) {
-	this.assignee = ticket.getFields().getAssignee();
-	this.reporter = ticket.getFields().getReporter();
-	this.requestor = ticket.getFields().getRequestor();
-	this.priority = ticket.getFields().getPriority();
-	this.fixVersion = ticket.getFields().getFixVersions();
-	this.type = ticket.getFields().getIssueType();
-	this.parentKey = ticket.getFields().getParent();
-	this.jiraState = ticket.getFields().getStatus();
-	this.testProofed = ticket.isTestProofed();
+	if (ticket != null) {
+	    this.assignee = ticket.getFields().getAssignee();
+	    this.reporter = ticket.getFields().getReporter();
+	    this.requestor = ticket.getFields().getRequestor();
+	    this.priority = ticket.getFields().getPriority();
+	    this.fixVersion = ticket.getFields().getFixVersions();
+	    this.type = ticket.getFields().getIssueType();
+	    this.parentKey = ticket.getFields().getParent();
+	    this.jiraState = ticket.getFields().getStatus();
+	    this.testProofed = ticket.isTestProofed();
+	}
 	return this;
     }
 
-    public static ReconciliatedIssue newInstance() {
-	return new ReconciliatedIssue();
+    public static ReconciliatedIssue ofCommit(Commit commit) {
+	return new ReconciliatedIssue().withCommit(commit);
     }
 }

@@ -17,7 +17,7 @@ import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 @Service
 public class JiraServiceImpl extends AbstractService implements JiraService {
 
-    @Value("${config.external-apis.urls.jira")
+    @Value("${config.external-apis.urls.jira}")
     private String jiraUrl;
 
     private final RestTemplate restTemplate;

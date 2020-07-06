@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.ProjectService;
-import fr.vilth.sprintplanner.commons.security.annotations.HasRoleUser;
 import fr.vilth.sprintplanner.domain.dtos.ReconciliatedIssue;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
+import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
+import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 
 /**
  * {@code RestController} to handle {@code IssueReconciliation}
@@ -79,11 +80,14 @@ public class ReconciliationController {
 	Set<Commit> commits = githubService.compareBranches(project, repository,
 		currentBranch,
 		previousBranch);
-	return commits.parallelStream().map(commit -> {
-	    // Ticket ticket = jiraService.getByKey(commit.getKey());
-	    return ReconciliatedIssue.newInstance()// .withTicket(ticket)
-		    .withCommit(commit);
-	}).collect(Collectors.toList());
+	return commits.parallelStream()
+		.map(commit -> ReconciliatedIssue.ofCommit(commit)
+			.withTicket(getTicket(commit)))
+		.collect(Collectors.toList());
+    }
+
+    private Ticket getTicket(Commit commit) {
+	return jiraService.getByKey(commit.getKey());
     }
 
     /**

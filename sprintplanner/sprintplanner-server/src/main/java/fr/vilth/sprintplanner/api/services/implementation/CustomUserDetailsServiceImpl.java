@@ -13,12 +13,12 @@ import fr.vilth.sprintplanner.api.repositories.RoleJpaRepository;
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
-import fr.vilth.sprintplanner.commons.security.CustomUserDetails;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserAuthDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 import fr.vilth.sprintplanner.domain.entities.CustomUser;
 import fr.vilth.sprintplanner.domain.entities.Role;
+import fr.vilth.sprintplanner.security.CustomUserDetails;
 
 /**
  * Implementation of {@code CustomUserDetailsService}

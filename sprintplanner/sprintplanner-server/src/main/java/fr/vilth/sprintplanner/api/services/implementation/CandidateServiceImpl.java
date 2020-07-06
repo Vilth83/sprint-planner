@@ -11,7 +11,6 @@ import fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
-import fr.vilth.sprintplanner.commons.utils.PriorityComparator;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -21,6 +20,7 @@ import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Shift;
 import fr.vilth.sprintplanner.domain.types.Status;
+import fr.vilth.sprintplanner.domain.utils.RoundRobinHandler;
 
 /**
  * Default concrete implementation of {@code CandidateService}.
@@ -85,24 +85,8 @@ public class CandidateServiceImpl extends AbstractService
     @Override
     public void rotateCandidates(Set<CandidateViewDto> inputs) {
 	Set<Candidate> candidates = convertSet(inputs, Candidate.class);
-	candidates.forEach(Candidate::incrementPriority);
-	rotate(candidates);
+	RoundRobinHandler.rotate(candidates);
 	candidateRepository.saveAll(candidates);
-    }
-
-    private static void rotate(Set<Candidate> candidates) {
-	candidates.forEach(candidate -> {
-	    if (candidate.getStatus().equals(Status.CURRENT)) {
-		candidate.becomesPrevious();
-	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
-		candidate.setStatus(Status.AVAILABLE);
-	    } else {
-		// No action if neither current nor unavailable
-	    }
-	});
-	candidates.stream().filter(Candidate::isAvailable)
-		.max(new PriorityComparator())
-		.ifPresent(Candidate::becomesCurrent);
     }
 
     @Override

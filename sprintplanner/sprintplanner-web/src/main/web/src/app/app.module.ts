@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 
@@ -74,7 +74,14 @@ import { TokenInterceptor } from './shared/services/authentication/token-interce
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    AgGridModule.withComponents([ButtonRendererComponent, BooleanRendererComponent])
+    AgGridModule.withComponents([
+      ButtonRendererComponent,
+      BooleanRendererComponent
+    ]),
+    HttpClientXsrfModule.withOptions({
+    cookieName: 'XSRF-TOKEN',
+    headerName: 'X-XSRF-TOKEN',
+  })
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

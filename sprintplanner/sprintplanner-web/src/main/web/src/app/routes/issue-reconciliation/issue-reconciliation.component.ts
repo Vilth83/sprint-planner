@@ -39,12 +39,11 @@ export class IssueReconciliationComponent implements OnInit {
         { headerName: 'Title', field: 'title', width: 600 },
         { headerName: 'Fix Version', field: 'fixVersion' },
         { headerName: 'Priority', field: 'priority' },
-        { headerName: 'Requestor', field: 'requestor' },
         { headerName: 'Type', field: 'type' },
         { headerName: 'Reporter', field: 'reporter' },
         { headerName: 'Assignee', field: 'assignee' },
-        { headerName: 'Parent', field: 'parent' },
-        { headerName: 'Reporter', field: 'reporter' }
+        { headerName: 'Requestor', field: 'requestor' },
+        { headerName: 'Parent', field: 'parent' }
       ]
     }
   }
