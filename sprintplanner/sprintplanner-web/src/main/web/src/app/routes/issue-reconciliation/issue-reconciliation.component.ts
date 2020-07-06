@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Branch } from 'src/app/models/branch.model';
 import { GridOptions } from 'ag-grid-community';
 import { BooleanRendererComponent } from 'src/app/shared/components/grid-components/boolean-renderer/boolean-renderer.component';
+import { JiraStateRendererComponent } from 'src/app/shared/components/grid-components/jira-state-renderer.component';
 
 @Component({
   selector: 'app-issue-reconciliation',
@@ -34,7 +35,7 @@ export class IssueReconciliationComponent implements OnInit {
       columnDefs: [
         { headerName: 'Ticket', field: 'key', width: 120 },
         { headerName: 'Proof', field: 'testProofed', width: 90, cellRendererFramework: BooleanRendererComponent },
-        { headerName: 'State', field: 'state', width: 100 },
+        { headerName: 'State', field: 'jiraState', width: 100, cellRendererFramework: JiraStateRendererComponent },
         { headerName: 'merged', field: 'creationDate', width: 150 },
         { headerName: 'Title', field: 'title', width: 600 },
         { headerName: 'Fix Version', field: 'fixVersion' },
@@ -74,6 +75,9 @@ export class IssueReconciliationComponent implements OnInit {
     const currentBranchParam = Config.params.currentBranch + this.currentBranch.commit.sha;
     const previousBranchParam = Config.params.previousBranch + this.previousBranch.commit.sha;
     this.reconciliationSubscription = this.http.get(Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam)
-      .subscribe((issues: any[]) => this.rowData = issues, error => console.error(error));
+      .subscribe((issues: any[]) => {
+        this.rowData = issues
+      });
+
   }
 }
