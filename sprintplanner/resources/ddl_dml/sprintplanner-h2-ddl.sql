@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`tasks` (
 
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`candidates`
+-- Table `sprintplanner`.`candidates`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`candidates` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`candidates` (
 
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`projects`
+-- Table `sprintplanner`.`projects`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`projects` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,

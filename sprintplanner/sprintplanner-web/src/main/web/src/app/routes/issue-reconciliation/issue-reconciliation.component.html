@@ -20,8 +20,8 @@
                 <option *ngFor="let branch of branches" [ngValue]="branch">{{branch.name}}</option>
               </select>
               <span class="col-lg-2 col-md-2 col-xs-12 col-sm-12">repository</span>
-              <select class="col-lg-2 col-md-2 col-xs-12 col-sm-12" [(ngModel)]="repository">
-                <option *ngFor="let repository of repositories" [ngValue]="repository">{{repository.name}}</option>
+              <select class="col-lg-2 col-md-2 col-xs-12 col-sm-12" (change)="onChange(repository)" [(ngModel)]="repository">
+                <option *ngFor="let repository of repositories" [ngValue]="repository">{{repository}}</option>
               </select>
           </div>
           <div class="btn btn-primary" (click)="getReconciliatedIssues()">

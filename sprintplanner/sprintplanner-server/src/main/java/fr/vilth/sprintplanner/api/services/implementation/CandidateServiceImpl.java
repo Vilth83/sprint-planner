@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -51,16 +53,9 @@ public class CandidateServiceImpl extends AbstractService
 		.findAllByTaskId(taskId);
 	candidates.forEach(Candidate::incrementPriority);
 	Candidate candidate = convert(inputs, Candidate.class);
-	candidate = candidateRepository.save(candidate);
+	candidates.add(candidate);
 	candidateRepository.saveAll(candidates);
 	return convert(candidate, EntityIdDto.class);
-    }
-
-    @Override
-    public Set<CandidateViewDto> findAllByTask(String taskName) {
-	List<Candidate> candidates = candidateRepository
-		.findAllByTaskName(taskName);
-	return convertToSet(candidates, CandidateViewDto.class);
     }
 
     @Override
@@ -105,7 +100,7 @@ public class CandidateServiceImpl extends AbstractService
     public Set<CandidateViewDto> findAllByTaskAndShift(String taskName,
 	    Shift shift) {
 	List<Candidate> candidates = candidateRepository
-		.findAllByTaskNameAndMemberShift(taskName, shift);
+		.findAllByTaskAndShift(taskName, shift);
 	return convertToSet(candidates, CandidateViewDto.class);
     }
 
@@ -120,6 +115,7 @@ public class CandidateServiceImpl extends AbstractService
     }
 
     @Override
+    @Transactional
     public void setToCurrent(String taskName, CandidateUpdateDto inputs,
 	    Long id, Shift shift) {
 	List<Candidate> candidates = candidateRepository

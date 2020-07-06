@@ -48,4 +48,10 @@ public final class JpqlQuery {
 	    + "ON mem.id = c.member.id left join Task t "
 	    + "on c.task.id = t.id where t.name = :task) and (:shift is null "
 	    + "or m.shift = :shift)";
+
+    /**
+     * 
+     */
+    static final String ALL_BY_TASK_AND_SHIFT = "select c from Candidate c where c.task.name = :taskName "
+	    + "and (:shift is null or c.member.shift = :shift)";
 }

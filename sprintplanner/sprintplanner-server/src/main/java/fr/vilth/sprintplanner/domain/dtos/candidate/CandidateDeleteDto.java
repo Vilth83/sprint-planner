@@ -1,5 +1,7 @@
 package fr.vilth.sprintplanner.domain.dtos.candidate;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * DTO encapsulating a {@code Candidate} identifier.
  * 
@@ -7,6 +9,7 @@ package fr.vilth.sprintplanner.domain.dtos.candidate;
  */
 public class CandidateDeleteDto {
 
+    @NotNull
     private Long id;
 
     @Override

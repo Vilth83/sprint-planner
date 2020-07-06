@@ -51,10 +51,11 @@ public interface CandidateJpaRepository extends JpaRepository<Candidate, Long> {
      * {@code Shift}.
      * 
      * @param taskName given task name
-     * @param shift given {@code Shift}
+     * @param optional : shift given {@code Shift}
      * @return a {@code List} of {@code Candidate}
      */
-    List<Candidate> findAllByTaskNameAndMemberShift(String taskName,
+    @Query(JpqlQuery.ALL_BY_TASK_AND_SHIFT)
+    List<Candidate> findAllByTaskAndShift(String taskName,
 	    Shift shift);
 
     /**

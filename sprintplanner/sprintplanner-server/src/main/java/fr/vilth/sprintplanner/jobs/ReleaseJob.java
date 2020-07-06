@@ -45,7 +45,7 @@ public class ReleaseJob extends AbstractService {
      */
     public void rotateReleasers() {
 	Set<CandidateViewDto> candidates = candidateService
-		.findAllByTask(Constants.RELEASER);
+		.findAllByTaskAndShift(Constants.RELEASER, null);
 	candidateService.rotateCandidates(candidates);
     }
 
@@ -55,7 +55,7 @@ public class ReleaseJob extends AbstractService {
      */
     public void rotateTesters() {
 	Set<CandidateViewDto> candidates = candidateService
-		.findAllByTask(Constants.TESTER);
+		.findAllByTaskAndShift(Constants.TESTER, null);
 	candidateService.rotateCandidates(candidates);
     }
 }

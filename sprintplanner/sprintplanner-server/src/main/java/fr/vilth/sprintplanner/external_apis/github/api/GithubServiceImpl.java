@@ -19,6 +19,7 @@ import fr.vilth.sprintplanner.commons.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;
+import fr.vilth.sprintplanner.external_apis.github.model.Repository;
 
 /**
  * Service calling GithubApi to retrieve {@code Commit} and {@code Branch}.
@@ -29,8 +30,11 @@ import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 public class GithubServiceImpl extends AbstractService
 	implements GithubService {
 
-    @Value("${config.external-apis.urls.github}")
+    @Value("${config.external-apis.urls.github.repos}")
     private String githubUrl;
+
+    @Value("${config.external-apis.urls.github.users}")
+    private String githubRepoUrl;
 
     private final RestTemplate restTemplate;
 
@@ -43,6 +47,20 @@ public class GithubServiceImpl extends AbstractService
      */
     public GithubServiceImpl(RestTemplate restTemplate) {
 	this.restTemplate = restTemplate;
+    }
+
+    public List<String> findAllRepositories(ProjectViewDto project) {
+	String url = githubRepoUrl + project.getGithubUser() + "/repos";
+	ParameterizedTypeReference<List<Object>> listType = new ParameterizedTypeReference<List<Object>>() {
+	    //
+	};
+	ResponseEntity<List<Object>> response = restTemplate.exchange(url,
+		HttpMethod.GET, null, listType);
+	List<Repository> repositories = convertList(response.getBody(),
+		Repository.class);
+	return repositories.stream()
+		.map(repo -> repo.getName())
+		.collect(Collectors.toList());
     }
 
     @Override
