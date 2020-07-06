@@ -45,7 +45,7 @@
       <div class="container">
         <div class="row add text-center">
           <span class="col-md-3 add-part">add a new {{task}} </span>
-          <select [(ngModel)]="selectedCandidate" class="col-md-4 add-part">
+          <select [(ngModel)]="selectedCandidate" (change)='onSelectionChange(selectedCandidate)' class="col-md-4 add-part">
             <option *ngFor="let member of nonCandidates" [(ngValue)]="member.id">
               {{member.firstname}} {{member.lastname}}
             </option>

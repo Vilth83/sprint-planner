@@ -40,6 +40,8 @@ export class ManageCandidateComponent implements OnInit {
   frameworkComponents = {};
   overlayNoRowsTemplate: string;
 
+  private selectedMember: IdDto;
+
   title: string;
   message: string;
 
@@ -91,7 +93,10 @@ export class ManageCandidateComponent implements OnInit {
       onFirstDataRendered: this.sizeColumnsToFit
     }
     this.overlayNoRowsTemplate = ERROR_NO_CANDIDATE;
+  }
 
+  onSelectionChange(memberId: number) {
+    this.selectedMember = new IdDto(memberId);
   }
 
   public sizeColumnsToFit(gridOptions: GridOptions) {
@@ -150,11 +155,10 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   onSaveClick() {
-    const member: IdDto = new IdDto(this.selectedCandidate);
-    console.log(member)
     const task: IdDto = new IdDto(this.taskId);
-    const candidate: CandidateCreateDto = new CandidateCreateDto(member, task);
+    const candidate: CandidateCreateDto = new CandidateCreateDto(this.selectedMember, task);
     this.candidateService.post(candidate).subscribe(() => {
+      this.nonCandidates = [];
       this.ngOnInit();
     });
   }

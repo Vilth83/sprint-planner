@@ -10,6 +10,8 @@ import fr.vilth.sprintplanner.external_apis.github.model.Commit;
 @SuppressWarnings("javadoc")
 public interface GithubService {
 
+    public List<String> findAllRepositories(ProjectViewDto project);
+
     List<Branch> findAllBranches(ProjectViewDto project, String repository);
 
     Set<Commit> compareBranches(ProjectViewDto project, String repository,

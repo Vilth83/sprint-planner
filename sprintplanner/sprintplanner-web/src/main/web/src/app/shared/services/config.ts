@@ -26,6 +26,7 @@ export const Config = {
     tasks: '/tasks',
     reconciliation: {
       branches: '/reconciliations/branches',
+      repositories: '/reconciliations/repositories',
       reconciliate: '/reconciliations/reconciliate'
     }
   },

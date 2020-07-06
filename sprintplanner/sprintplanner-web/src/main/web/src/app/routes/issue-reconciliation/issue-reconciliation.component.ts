@@ -19,12 +19,14 @@ export class IssueReconciliationComponent implements OnInit {
 
   private currentBranch: Branch;
   private previousBranch: Branch;
+  private repository: string;
 
   gridOptions: GridOptions;
   gridApi: any;
   gridColumnApi: any;
 
   branches: Branch[];
+  repositories: string[] = [];
   rowData: any[] = [];
 
   constructor(public http: HttpRequestBuilder) {
@@ -54,16 +56,33 @@ export class IssueReconciliationComponent implements OnInit {
     this.gridColumnApi = grid.columnApi;
   }
 
-  ngOnInit() {
-    this.getBranches();
+  onChange(repository: string) {
+    this.getBranches(repository);
   }
 
-  private getBranches() {
+  ngOnInit() {
+    this.getBranches(this.repository);
+    this.getRepositories();
+  }
+
+  private getBranches(repository?: string) {
+    let url = Config.endpoints.reconciliation.branches;
+    if(repository) {
+      url += "?repository=" + repository;
+    }
     if (this.branchesSubscription) {
       this.branchesSubscription.unsubscribe();
     }
-    this.branchesSubscription = this.http.get(Config.endpoints.reconciliation.branches).subscribe((branches: Branch[]) => {
+    this.branchesSubscription = this.http.get(url)
+    .subscribe((branches: Branch[]) => {
       this.branches = branches;
+    });
+  }
+
+  private getRepositories() {
+    this.http.get(Config.endpoints.reconciliation.repositories)
+    .subscribe((repositories: string[]) => {
+      this.repositories = repositories;
     });
   }
 

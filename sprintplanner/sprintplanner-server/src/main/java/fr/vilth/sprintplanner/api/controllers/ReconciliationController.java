@@ -106,4 +106,10 @@ public class ReconciliationController {
 	ProjectViewDto project = projectService.getProject();
 	return githubService.findAllBranches(project, repository);
     }
+
+    @GetMapping("/repositories")
+    public List<String> findAllRepositories() {
+	ProjectViewDto project = projectService.getProject();
+	return githubService.findAllRepositories(project);
+    }
 }
