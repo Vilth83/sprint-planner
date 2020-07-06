@@ -83,7 +83,7 @@ public class ReconciliatedIssue {
      * @param ticket the ticket to extract informations from
      * @return this for chaining
      */
-    public ReconciliatedIssue withTicket(Ticket ticket) {
+    public ReconciliatedIssue with(Ticket ticket) {
 	if (ticket != null) {
 	    this.assignee = ticket.getFields().getAssignee();
 	    this.reporter = ticket.getFields().getReporter();
@@ -98,7 +98,7 @@ public class ReconciliatedIssue {
 	return this;
     }
 
-    public static ReconciliatedIssue ofCommit(Commit commit) {
+    public static ReconciliatedIssue of(Commit commit) {
 	return new ReconciliatedIssue().withCommit(commit);
     }
 }

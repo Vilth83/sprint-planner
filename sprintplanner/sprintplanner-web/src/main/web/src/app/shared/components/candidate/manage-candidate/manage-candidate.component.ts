@@ -5,9 +5,9 @@ import { Candidate } from 'src/app/models/candidate.model';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Member } from 'src/app/models/member.model';
 import { IdDto } from 'src/app/models/IdDto.model';
-import { CandidateCreator } from 'src/app/models/CandidateCreator.model';
+import { CandidateCreateDto } from 'src/app/models/candidate-create-dto.model';
 import { Task } from 'src/app/models/task.model';
-import { CandidateEditorDto } from 'src/app/models/candidate-edit-dto.model';
+import { CandidateUpdateDto } from 'src/app/models/candidate-update-dto.model';
 import { ConfirmationModalComponent } from 'src/app/shared/modals/index';
 import { Observable, Subscription } from 'rxjs';
 import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
@@ -28,7 +28,7 @@ export class ManageCandidateComponent implements OnInit {
   task: string;
   @Input('shift')
   shift: string;
-  taskObject: Task;
+  taskId: number;
 
   currentCandidateName: string = "";
   currentCandidate: Candidate;
@@ -54,10 +54,10 @@ export class ManageCandidateComponent implements OnInit {
 
 
   constructor(
-      private http: HttpRequestBuilder,
-      private candidateService: CandidateHttpRequest,
-      private authService: AuthenticationService
-    ) {
+    private http: HttpRequestBuilder,
+    private candidateService: CandidateHttpRequest,
+    private authService: AuthenticationService
+  ) {
     this.frameworkComponents = {
       buttonRenderer: ButtonRendererComponent
     }
@@ -99,21 +99,16 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getTask() {
-    this.http.get("/tasks/" + this.task + "/name").subscribe((task:Task) => {
-      this.taskObject = task
+    this.http.get("/tasks/" + this.task + "/name").subscribe((task: Task) => {
+      this.taskId = task.id;
     });
   }
 
   public getCandidates() {
-    let url = "/candidates/" + this.task;
-    if (this.shift) {
-      url += "/shift/" + this.shift;
-    }
-    this.http.get(url).subscribe((candidates: Candidate[]) => {
-      this.rowData = candidates;
-    }, () => {
-      this.gridOptions.api.showNoRowsOverlay();
-    })
+    this.candidateService.getCandidates(this.task, this.shift)
+      .subscribe((candidates: Candidate[]) =>
+        this.rowData = candidates
+      );
   }
 
   public getNonCandidates() {
@@ -127,28 +122,24 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   public getCurrentCandidate() {
-    let url = "/candidates/" + this.task + "/current";
-    if (this.shift) {
-      url += "?shift=" + this.shift;
-    }
-    this.http.get(url).subscribe((candidate: Candidate) => {
-      this.currentCandidate = candidate;
-      this.currentCandidateName = candidate.member.firstname + " " + candidate.member.lastname;
-    })
+    this.candidateService.getCurrentCandidate(this.task, this.shift)
+      .subscribe((candidate: Candidate) => {
+        this.currentCandidate = candidate;
+        this.currentCandidateName =
+          candidate.member.firstname + " " + candidate.member.lastname;
+      })
   }
 
-  public getAvailableCandidate(): void {
-    let url = "/candidates/" + this.task + "/available";
-    if (this.shift) {
-      url += "?shift=" + this.shift;
-    }
-    this.http.get(url).subscribe((candidate: Candidate) => {
-      const updateCandidate ={ id: candidate.id, priority: candidate.priority, status: Status.CURRENT };
-      this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
-      .subscribe(
-        ()=> this.ngOnInit()
-      );
-    })
+  public setNextCurrentCandidate(): void {
+    this.candidateService.getAvailableCandidate(this.task, this.shift)
+      .subscribe((candidate: Candidate) => {
+        const updateCandidate =
+          new CandidateUpdateDto(candidate.id, candidate.priority, Status.CURRENT);
+        this.candidateService.updateToCurrent(updateCandidate, this.task, this.shift)
+          .subscribe(
+            () => this.ngOnInit()
+          );
+      })
   }
 
   ngOnInit() {
@@ -160,8 +151,9 @@ export class ManageCandidateComponent implements OnInit {
 
   onSaveClick() {
     const member: IdDto = new IdDto(this.selectedCandidate);
-    const task: IdDto = new IdDto(this.taskObject.id);
-    const candidate: CandidateCreator = { member: member, task: task };
+    console.log(member)
+    const task: IdDto = new IdDto(this.taskId);
+    const candidate: CandidateCreateDto = new CandidateCreateDto(member, task);
     this.candidateService.post(candidate).subscribe(() => {
       this.ngOnInit();
     });
@@ -169,28 +161,18 @@ export class ManageCandidateComponent implements OnInit {
 
   onDeleteClick(params: any) {
     const candidate: Candidate = params.rowData;
-    this.openConfirmationModal('delete', candidate);
+    this.openConfirmationModal(candidate);
   }
 
-  public confirm(action: string, inputs: Candidate) {
-    switch (action) {
-      case 'modify':
-        const edited: CandidateEditorDto =
-          { id: inputs.id, priority: inputs.priority, status: inputs.status };
-        this.edit(edited);
-        break;
-      case 'delete':
-        this.delete(inputs);
-        break;
-      default:
-        this.decline();
-    }
+  public confirm(inputs: Candidate) {
+    this.delete(inputs);
+
   }
 
-  public openConfirmationModal(action: string, inputs: any) {
+  public openConfirmationModal(inputs: any) {
     this.confirmationModal.openModal(this.confirmationModal.template);
     this.confirmationModal.setConfirmation(
-      () => { this.confirm(action, inputs) },
+      () => { this.confirm(inputs) },
       () => { this.decline() });
   }
 
@@ -200,8 +182,9 @@ export class ManageCandidateComponent implements OnInit {
     this.infoModal.openModal(this.infoModal.template);
   }
 
-  onCellValueChanged(event: any) {
-    const candidate : CandidateEditorDto = {status: event.data.status, id: event.data.id, priority: event.data.priority}
+  onCellValueChanged(value: any) {
+    const candidate: CandidateUpdateDto =
+      new CandidateUpdateDto(value.data.id, value.data.priority, value.data.status);
     this.edit(candidate);
   }
 
@@ -209,7 +192,7 @@ export class ManageCandidateComponent implements OnInit {
     this.ngOnInit();
   }
 
-  private edit(candidate: CandidateEditorDto) {
+  private edit(candidate: CandidateUpdateDto) {
     let request: Observable<any>
     if (candidate.status == Status.CURRENT) {
       request = this.candidateService.updateToCurrent(candidate, this.task, this.shift);
@@ -218,11 +201,8 @@ export class ManageCandidateComponent implements OnInit {
     }
     this.candidateEditionSubscription = request.subscribe(() => {
       this.ngOnInit();
-    }, (error) => {
-      const message = ErrorHandler.catch(error);
-      this.openInfoModal("An error has occurred...", message);
-    });
-    this.ngOnInit();
+    }
+    );
   }
 
   private delete(candidate: Candidate) {

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
@@ -36,6 +36,7 @@ import { IssueReconciliationComponent } from './routes/issue-reconciliation/issu
 import { TesterComponent } from './routes/tester/tester.component';
 import { BooleanRendererComponent } from './shared/components/grid-components/boolean-renderer/boolean-renderer.component';
 import { TokenInterceptor } from './shared/services/authentication/token-interceptor.service';
+import { HttpErrorHandlerService } from './shared/services/http-error-handler.service';
 
 @NgModule({
   declarations: [
@@ -83,11 +84,11 @@ import { TokenInterceptor } from './shared/services/authentication/token-interce
     headerName: 'X-XSRF-TOKEN',
   })
   ],
-  providers: [{
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true
-    }],
+  providers: [
+    HttpErrorHandlerService,
+    { provide: ErrorHandler, useClass: HttpErrorHandlerService },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

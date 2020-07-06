@@ -16,6 +16,9 @@ export const Config = {
     project: '/projects',
     members: '/members',
     job: '/jobs',
+    current: '/current',
+    available: '/available',
+    candidates: '/candidates',
     releases: {
       all: '/releases',
       last: '/releases/last'
@@ -32,18 +35,22 @@ export const Config = {
     formUrlEncoded: { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }) },
     headerToken: 'Authorization'
   },
+
   token: {
     cookieFieldName: 'sprintplanner_cookie',
     type: 'Bearer ',
     header: 'Authorization'
   },
+
   grantType: {
     password: 'grant_type=password',
     refresh: 'grant_type=refresh_token'
   },
+
   cookies: {
     cookieFieldName: 'sprintplanner_user',
   },
+
   clientId: '&client_id=sprintplanner-web',
   refreshToken: "&refresh_token=",
   title: 'sprintplanner: handle your releases',
@@ -53,16 +60,21 @@ export const Config = {
     support: "?task=support",
     tester: "?task=tester",
     taskName: '?taskName=',
-    shift: '&shift=',
+    shift: 'shift=',
     currentBranch: '?currentBranch=',
     previousBranch: '&previousBranch=',
     username: '&username=',
     password: '&password='
-
   },
 
   shifts: {
     paris: 'paris',
     bangalore: 'bangalore'
+  },
+
+  appenders: {
+    slash: '/',
+    and:'&',
+    param: '?'
   }
 };

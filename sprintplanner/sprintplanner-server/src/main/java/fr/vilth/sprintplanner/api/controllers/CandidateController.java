@@ -60,18 +60,6 @@ public class CandidateController {
     }
 
     /**
-     * Returns a {@code Set} of {@code Candidate} by given {@code Task} name.
-     *
-     * @param taskName the name of the given {@code Task}
-     * @return a {@code Set} of {@code Candidate}
-     */
-    @GetMapping("/{taskName}")
-    public Set<CandidateViewDto> findAllByTaskName(
-	    @PathVariable String taskName) {
-	return candidateService.findAllByTask(taskName);
-    }
-
-    /**
      * Perists a {@code CandidateUpdateDto}.
      * <p>
      * the given {@code CandidateUpdateDto} id must match an existing
@@ -113,7 +101,7 @@ public class CandidateController {
      */
     @DeleteMapping("/{id}")
     @HasRoleAdmin
-    public void delete(@RequestBody CandidateDeleteDto candidate) {
+    public void delete(@Valid @RequestBody CandidateDeleteDto candidate) {
 	candidateService.delete(candidate);
     }
 
@@ -155,10 +143,10 @@ public class CandidateController {
      * @return a {@code Set} of {@code CandidateViewDto} representing
      *         {@code Candidate}s
      */
-    @GetMapping("/{taskName}/shift/{shift}")
-    @HasRoleUser
+    @GetMapping("/{taskName}")
     public Set<CandidateViewDto> findAllByTaskNameAndMemberShift(
-	    @PathVariable String taskName, @PathVariable Shift shift) {
+	    @PathVariable String taskName,
+	    @RequestParam(required = false) Shift shift) {
 	return candidateService.findAllByTaskAndShift(taskName, shift);
     }
 }

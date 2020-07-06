@@ -25,7 +25,7 @@ export class IssueReconciliationComponent implements OnInit {
   gridColumnApi: any;
 
   branches: Branch[];
-  rowData: Branch[];
+  rowData: any[] = [];
 
   constructor(public http: HttpRequestBuilder) {
     this.gridOptions = {
@@ -68,6 +68,7 @@ export class IssueReconciliationComponent implements OnInit {
   }
 
   getReconciliatedIssues() {
+    this.rowData = [];
     if (this.reconciliationSubscription) {
       this.reconciliationSubscription.unsubscribe();
     }

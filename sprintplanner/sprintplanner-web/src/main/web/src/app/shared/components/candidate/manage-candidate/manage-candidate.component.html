@@ -2,6 +2,7 @@
   <span class="unselectable col-11">Current {{task}}</span>
   <span class="fa fa-caret-down text-right"></span>
 </div>
+
 <div [collapse]="isCurrentCollapsed">
   <div>
     <div class="info-part row">
@@ -12,7 +13,9 @@
         <span class="info">{{currentCandidateName}}</span>
       </div>
       <div class="col-lg-2 col-md-2">
-        <button (click)="getAvailableCandidate()" class="btn btn-primary"><span class="fa fa-refresh"></span></button>
+        <button (click)="setNextCurrentCandidate()" class="btn btn-primary">
+          <span class="fa fa-refresh"></span>
+        </button>
       </div>
     </div>
   </div>
@@ -22,18 +25,30 @@
   <span class="unselectable col-11">{{task}} candidates</span>
   <span class="fa fa-caret-down text-right"></span>
 </div>
+
 <div [collapse]="isCandidateCollapsed">
   <div class="row text-center info-part">
     <div class="col-sm-12">
-      <ag-grid-angular #agGrid class="ag-theme-material" [rowData]="rowData" [gridOptions]="gridOptions" autoSize=true style="width:100%;" domLayout="autoHeight" [frameworkComponents]="frameworkComponents"
-        [overlayNoRowsTemplate]="overlayNoRowsTemplate" (cellValueChanged)="onCellValueChanged($event)">
+      <ag-grid-angular
+        #agGrid
+        class="ag-theme-material"
+        [rowData]="rowData"
+        [gridOptions]="gridOptions"
+        autoSize=true
+        style="width:100%;"
+        domLayout="autoHeight"
+        [frameworkComponents]="frameworkComponents"
+        [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+        (cellValueChanged)="onCellValueChanged($event)">
       </ag-grid-angular>
 
       <div class="container">
         <div class="row add text-center">
           <span class="col-md-3 add-part">add a new {{task}} </span>
           <select [(ngModel)]="selectedCandidate" class="col-md-4 add-part">
-            <option *ngFor="let member of nonCandidates" value="{{member.id}}">{{member.firstname}} {{member.lastname}}</option>
+            <option *ngFor="let member of nonCandidates" [(ngValue)]="member.id">
+              {{member.firstname}} {{member.lastname}}
+            </option>
           </select>
           <button class="col-md-1 add-part btn btn-primary fa fa-save" (click)="onSaveClick()"></button>
         </div>

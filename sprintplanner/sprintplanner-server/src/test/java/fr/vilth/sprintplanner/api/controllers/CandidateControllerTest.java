@@ -46,7 +46,8 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_candidates() {
-	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
+	Set<CandidateViewDto> actual = controller
+		.findAllByTaskNameAndMemberShift(RELEASER, null);
 	assertEquals(3, actual.size());
     }
 
@@ -54,11 +55,13 @@ public class CandidateControllerTest extends SetupIntTest {
     @CsvFileSource(resources = "/candidateCreation.csv", delimiter = ';')
     @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_delete_candidate(String json) {
-	Set<CandidateViewDto> actual = controller.findAllByTaskName(RELEASER);
+	Set<CandidateViewDto> actual = controller
+		.findAllByTaskNameAndMemberShift(RELEASER, null);
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto tested = controller.save(dto);
 	controller.delete(modelMapper.map(tested, CandidateDeleteDto.class));
-	Set<CandidateViewDto> expected = controller.findAllByTaskName(RELEASER);
+	Set<CandidateViewDto> expected = controller
+		.findAllByTaskNameAndMemberShift(RELEASER, null);
 	assertEquals(expected.size(), actual.size());
     }
 
@@ -70,7 +73,7 @@ public class CandidateControllerTest extends SetupIntTest {
 		CandidateUpdateDto.class);
 	controller.update(update, -2L);
 	Set<CandidateViewDto> candidates = controller
-		.findAllByTaskName(RELEASER);
+		.findAllByTaskNameAndMemberShift(RELEASER, null);
 	assertTrue(candidates.stream().anyMatch(
 		candidate -> candidate.toString().contains("id=-2") && candidate
 			.toString().contains("status=UNAVAILABLE")));

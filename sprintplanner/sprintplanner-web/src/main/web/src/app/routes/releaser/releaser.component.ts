@@ -10,6 +10,7 @@ export class ReleaserComponent implements OnInit {
 
   title : string = RELEASER_TITLE;
   subtitle: string = RELEASER_SUBTITLE;
+
   constructor() { }
 
   ngOnInit() {

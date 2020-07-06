@@ -77,16 +77,18 @@ public class ReconciliationController {
 	    @RequestParam String currentBranch,
 	    @RequestParam String previousBranch) {
 	ProjectViewDto project = projectService.getProject();
-	Set<Commit> commits = githubService.compareBranches(project, repository,
+	Set<Commit> commits = githubService.compareBranches(
+		project,
+		repository,
 		currentBranch,
 		previousBranch);
 	return commits.parallelStream()
-		.map(commit -> ReconciliatedIssue.ofCommit(commit)
-			.withTicket(getTicket(commit)))
+		.map(commit -> ReconciliatedIssue.of(commit)
+			.with(getJiraTicket(commit)))
 		.collect(Collectors.toList());
     }
 
-    private Ticket getTicket(Commit commit) {
+    private Ticket getJiraTicket(Commit commit) {
 	return jiraService.getByKey(commit.getKey());
     }
 
