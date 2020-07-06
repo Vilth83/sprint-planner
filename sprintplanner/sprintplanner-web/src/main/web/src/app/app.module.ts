@@ -37,6 +37,7 @@ import { TesterComponent } from './routes/tester/tester.component';
 import { BooleanRendererComponent } from './shared/components/grid-components/boolean-renderer/boolean-renderer.component';
 import { TokenInterceptor } from './shared/services/authentication/token-interceptor.service';
 import { HttpErrorHandlerService } from './shared/services/http-error-handler.service';
+import { JiraStateRendererComponent } from './shared/components/grid-components/jira-state-renderer.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { HttpErrorHandlerService } from './shared/services/http-error-handler.se
     LoginModalComponent,
     IssueReconciliationComponent,
     TesterComponent,
-    BooleanRendererComponent
+    BooleanRendererComponent,
+    JiraStateRendererComponent
     ],
   imports: [
     UiSwitchModule,
@@ -77,7 +79,8 @@ import { HttpErrorHandlerService } from './shared/services/http-error-handler.se
     CollapseModule.forRoot(),
     AgGridModule.withComponents([
       ButtonRendererComponent,
-      BooleanRendererComponent
+      BooleanRendererComponent,
+      JiraStateRendererComponent
     ]),
     HttpClientXsrfModule.withOptions({
     cookieName: 'XSRF-TOKEN',
