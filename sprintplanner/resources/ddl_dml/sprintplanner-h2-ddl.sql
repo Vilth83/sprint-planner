@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS `sprintplanner` AUTHORIZATION root;
 USE `sprintplanner`;
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`members`
+-- Table `sprintplanner`.`members`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`members` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`members` (
 
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`tasks`
+-- Table `sprintplanner`.`tasks`
+-- Table `sprintplanner`.`tasks`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`tasks` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`projects` (
   UNIQUE `projects_trigram_UNIQUE` (`trigram` ASC));
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`releases`
+-- Table `sprintplanner`.`releases`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`releases` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -78,7 +79,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`releases` (
   UNIQUE `releases_pi_sprint_week_UNIQUE` (`pi` ASC, `sprint` ASC, `week` ASC));
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`roles`
+-- Table `sprintplanner`.`roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`roles` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`roles` (
 
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`users`
+-- Table `sprintplanner`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`users` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
@@ -106,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`users` (
 
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`user_role`
+-- Table `sprintplanner`.`user_role`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`users_roles` (
   `user_id` BIGINT(20) NOT NULL,
@@ -120,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `sprintplanner`.`users_roles` (
     REFERENCES `sprintplanner`.`users` (`id`));
 
 -- -----------------------------------------------------
--- Table `sprintplanner_dev_test`.`jobs`
+-- Table `sprintplanner`.`jobs`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sprintplanner`.`jobs` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
