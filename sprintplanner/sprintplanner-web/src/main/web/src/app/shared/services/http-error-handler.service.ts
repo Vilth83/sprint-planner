@@ -13,7 +13,7 @@ export class HttpErrorHandlerService implements ErrorHandler {
           console.error('Backend returned status code: ', error.status);
           console.error('Response body:', error.message);
           let router = this.injector.get(Router);
-console.log('URL: ' + router.url);
+          console.log('URL: ' + router.url);
       } else {
           //A client-side or network error occurred.
           console.error('An error occurred:', error.message);
