@@ -20,20 +20,6 @@ public class MailJobTest extends SetupIntTest {
     private EmailJob emailJob;
 
     @Test
-    void should_return_releaser_mail() {
-	Mail mail = emailJob.buildMail(Constants.RELEASER);
-	String sender = "sprintplanner@bot";
-	List<String> recipients = Arrays.asList("second@member", "third@member",
-		"task@mail");
-	String subject = "[SPRINTPLANNER] Releaser and tester of the week have been selected for version v";
-	Assertions.assertAll(
-		() -> assertEquals(sender, mail.getSender()),
-		() -> assertEquals(recipients, mail.getRecipients()),
-		() -> Assertions
-			.assertTrue(mail.getSubject().contains(subject)));
-    }
-
-    @Test
     void should_return_support_mail() {
 	Mail mail = emailJob.buildMail(Constants.SUPPORT);
 	String sender = "sprintplanner@bot";

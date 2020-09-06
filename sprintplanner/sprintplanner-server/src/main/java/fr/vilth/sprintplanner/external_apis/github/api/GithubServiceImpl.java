@@ -59,7 +59,7 @@ public class GithubServiceImpl extends AbstractService
 	List<Repository> repositories = convertList(response.getBody(),
 		Repository.class);
 	return repositories.stream()
-		.map(repo -> repo.getName())
+		.map(Repository::getName)
 		.collect(Collectors.toList());
     }
 

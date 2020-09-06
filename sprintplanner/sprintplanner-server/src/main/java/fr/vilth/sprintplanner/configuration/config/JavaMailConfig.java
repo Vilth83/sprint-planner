@@ -30,7 +30,7 @@ public class JavaMailConfig {
 
     private final TemplateEngine templateEngine;
 
-    private final static String FALSE = "false";
+    private static final String FALSE = "false";
 
     /**
      * Protected constructor to autowire needed bean.

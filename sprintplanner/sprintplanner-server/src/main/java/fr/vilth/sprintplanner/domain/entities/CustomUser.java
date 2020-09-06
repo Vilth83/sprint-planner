@@ -43,7 +43,9 @@ public class CustomUser extends AbstractEntity {
     // @formatter:off
     @JoinTable(name = "users_roles", indexes = {
 	    @Index(name = "users_roles_user_id_IDX", columnList = "user_id"),
-	    @Index(name = "users_roles_role_id_IDX", columnList = "role_id") }, joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "users_roles_user_id_FK")), inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "users_roles_role_id_FK")))
+	    @Index(name = "users_roles_role_id_IDX", columnList = "role_id") }, 
+    	joinColumns = @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "users_roles_user_id_FK")), 
+    	inverseJoinColumns = @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "users_roles_role_id_FK")))
     // @formatter:on
     private Set<Role> roles;
 
