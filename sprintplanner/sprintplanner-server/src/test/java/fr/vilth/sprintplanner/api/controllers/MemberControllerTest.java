@@ -46,7 +46,7 @@ public class MemberControllerTest extends SetupIntTest {
     @WithMockUser(username = "user", password = "pwd", roles = "USER")
     void should_return_all_members() {
 	Set<MemberViewDto> tested = controller.findAll();
-	assertEquals(4, tested.size());
+	assertEquals(5, tested.size());
     }
 
     @ParameterizedTest
@@ -79,7 +79,7 @@ public class MemberControllerTest extends SetupIntTest {
 	controller.save(member);
 	Set<MemberViewDto> nonCandidates = controller
 		.findAllNonCandidates("release", null);
-	assertEquals(5, nonCandidates.size());
+	assertEquals(6, nonCandidates.size());
     }
 
     @ParameterizedTest
