@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.MemberJpaRepository;
 import fr.vilth.sprintplanner.api.services.MemberService;
-import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.member.MemberDeleteDto;

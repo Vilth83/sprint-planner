@@ -16,6 +16,7 @@ import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
 import { Status } from 'src/app/models/status.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
+import { Shift } from 'src/app/models/shift.model';
 
 @Component({
   selector: 'app-manage-candidate',
@@ -26,6 +27,7 @@ export class ManageCandidateComponent implements OnInit {
 
   @Input('task')
   task: string;
+  taskTitle: string = "";
   @Input('shift')
   shift: string;
   taskId: number;
@@ -52,8 +54,6 @@ export class ManageCandidateComponent implements OnInit {
 
   candidateEditionSubscription: Subscription;
   deleteMemberSubscription: Subscription;
-
-
 
   constructor(
     private http: HttpRequestBuilder,
@@ -109,10 +109,22 @@ export class ManageCandidateComponent implements OnInit {
     });
   }
 
+  private getTaskTitle(): string {
+    if (this.shift) {
+      return this.task + ' support';
+    } else {
+      return this.task;
+    }
+  }
+
   public getCandidates() {
     this.candidateService.getCandidates(this.task, this.shift)
-      .subscribe((candidates: Candidate[]) =>
-        this.rowData = candidates
+      .subscribe((candidates: Candidate[]) => {
+        this.rowData = candidates;
+        this.currentCandidate = candidates.find(candidate => candidate.status === Status.CURRENT);
+        this.currentCandidateName =
+          this.currentCandidate.member.firstname + " " + this.currentCandidate.member.lastname;
+      }
       );
   }
 
@@ -124,15 +136,6 @@ export class ManageCandidateComponent implements OnInit {
     this.http.get(url).subscribe((members: Member[]) => {
       this.nonCandidates = members;
     })
-  }
-
-  public getCurrentCandidate() {
-    this.candidateService.getCurrentCandidate(this.task, this.shift)
-      .subscribe((candidate: Candidate) => {
-        this.currentCandidate = candidate;
-        this.currentCandidateName =
-          candidate.member.firstname + " " + candidate.member.lastname;
-      })
   }
 
   public setNextCurrentCandidate(): void {
@@ -148,9 +151,9 @@ export class ManageCandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.taskTitle = this.getTaskTitle();
     this.getCandidates();
     this.getNonCandidates();
-    this.getCurrentCandidate();
     this.getTask();
   }
 

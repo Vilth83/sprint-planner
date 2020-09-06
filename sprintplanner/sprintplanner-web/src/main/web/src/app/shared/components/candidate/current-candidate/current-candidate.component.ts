@@ -5,6 +5,7 @@ import { Task } from 'src/app/models/task.model';
 import { Subscription } from 'rxjs';
 import { Shift } from 'src/app/models/shift.model';
 import { Config } from 'src/app/shared/services/config';
+import { CandidateHttpRequest } from 'src/app/shared/services/http-helper/candidate-http-request.service';
 
 @Component({
   selector: 'app-current-candidate',
@@ -29,7 +30,7 @@ export class CurrentCandidateComponent implements OnInit {
   candidateEditionSubscription: Subscription;
   deleteMemberSubscription: Subscription;
 
-  constructor(private http: HttpRequestBuilder) {
+  constructor(private http: HttpRequestBuilder, private candidateService: CandidateHttpRequest) {
   }
 
 
@@ -40,12 +41,7 @@ export class CurrentCandidateComponent implements OnInit {
   }
 
   public getCurrentCandidate() {
-    let url = "/candidates/" + this.task + "/current";
-    this.taskTitle = this.getTaskTitle();
-    if (this.shift) {
-      url += "?shift=" + this.shift;
-    }
-    this.http.get(url).subscribe((candidate: Candidate) => {
+    this.candidateService.getCurrentCandidate(this.task, this.shift).subscribe((candidate: Candidate) => {
       this.currentCandidate = candidate;
       this.currentCandidateName = candidate.member.firstname + " " + candidate.member.lastname;
     })
@@ -62,6 +58,7 @@ export class CurrentCandidateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.taskTitle = this.getTaskTitle();
     this.getCurrentCandidate();
   }
 }

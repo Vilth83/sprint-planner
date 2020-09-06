@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
+import fr.vilth.sprintplanner.configuration.entities.AbstractEntity;
 import fr.vilth.sprintplanner.domain.types.Shift;
 
 /**

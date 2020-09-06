@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.api;
+package fr.vilth.sprintplanner.configuration.api;
 
 import java.util.List;
 import java.util.Set;
@@ -87,8 +87,8 @@ public abstract class AbstractService {
      */
     public <S, D> List<D> convertSetToList(Set<S> source,
 	    Class<D> destination) {
-	return source.stream()// -
-		.map(elt -> convert(elt, destination))// -
+	return source.stream()
+		.map(elt -> convert(elt, destination))
 		.collect(Collectors.toList());
     }
 
@@ -108,7 +108,7 @@ public abstract class AbstractService {
     }
 
     /**
-     * Merge update {@code Dto} to given {@code Object}. *
+     * Merge update {@code Dto} to given {@code Object}.
      * 
      * @param <S> source type
      * @param <D> destination {@code Object}

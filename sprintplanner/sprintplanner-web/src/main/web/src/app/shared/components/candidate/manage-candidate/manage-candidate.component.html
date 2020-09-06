@@ -1,5 +1,5 @@
 <div class="button submenu row text-left" (click)="isCurrentCollapsed = ! isCurrentCollapsed">
-  <span class="unselectable col-11">Current {{task}}</span>
+  <span class="unselectable col-11">Current {{taskTitle}}</span>
   <span class="fa fa-caret-down text-right"></span>
 </div>
 
@@ -22,7 +22,7 @@
 </div>
 
 <div class="button submenu row text-left" (click)="isCandidateCollapsed = ! isCandidateCollapsed">
-  <span class="unselectable col-11">{{task}} candidates</span>
+  <span class="unselectable col-11">{{taskTitle}} candidates</span>
   <span class="fa fa-caret-down text-right"></span>
 </div>
 
@@ -44,7 +44,7 @@
 
       <div class="container">
         <div class="row add text-center">
-          <span class="col-md-3 add-part">add a new {{task}} </span>
+          <span class="col-md-3 add-part">add a new {{taskTitle}} </span>
           <select [(ngModel)]="selectedCandidate" (change)='onSelectionChange(selectedCandidate)' class="col-md-4 add-part">
             <option *ngFor="let member of nonCandidates" [(ngValue)]="member.id">
               {{member.firstname}} {{member.lastname}}

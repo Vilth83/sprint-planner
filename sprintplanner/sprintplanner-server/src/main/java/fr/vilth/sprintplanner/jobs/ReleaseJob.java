@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.services.CandidateService;
 import fr.vilth.sprintplanner.api.services.ReleaseService;
-import fr.vilth.sprintplanner.commons.api.AbstractService;
-import fr.vilth.sprintplanner.commons.utils.Constants;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.utils.Constants;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateViewDto;
 
 /**

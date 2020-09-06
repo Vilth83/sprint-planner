@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
+import fr.vilth.sprintplanner.configuration.entities.AbstractEntity;
 
 /**
  * Representation of a {@code Release}.

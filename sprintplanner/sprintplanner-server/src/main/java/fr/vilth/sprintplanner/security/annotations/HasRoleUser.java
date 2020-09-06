@@ -9,7 +9,8 @@ import java.lang.annotation.Target;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 /**
- * Custom annotation to manage <code>@PreAuthorize</code> {@code Role.USER}.
+ * Custom annotation to manage <code>@PreAuthorize</code>
+ * {@code Role.ROLE_USER}.
  * <p>
  * Routes accessible to {@code ROLE.ROLE_USER} are de facto accessible to
  * {@code ROLE.ROLE_ADMIN}.

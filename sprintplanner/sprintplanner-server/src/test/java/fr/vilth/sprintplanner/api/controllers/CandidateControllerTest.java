@@ -2,6 +2,7 @@ package fr.vilth.sprintplanner.api.controllers;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.Set;
@@ -11,10 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.test.context.support.WithMockUser;
 
 import fr.vilth.sprintplanner.SetupIntTest;
-import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
+import fr.vilth.sprintplanner.configuration.exceptions.ResourceNotFoundException;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;
@@ -41,7 +44,31 @@ public class CandidateControllerTest extends SetupIntTest {
 	CandidateCreateDto dto = jsonConvert(json, CandidateCreateDto.class);
 	EntityIdDto actual = controller.save(dto);
 	assertNotNull(actual);
-	controller.delete(modelMapper.map(actual, CandidateDeleteDto.class));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/invalidCandidateCreation.csv", delimiter = ';')
+    void should_fail_validation_when_creating(String json) {
+	CandidateCreateDto tested = jsonConvert(json, CandidateCreateDto.class);
+	assertFalse(isValid(tested));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/candidateDelete.csv", delimiter = ';')
+    @WithMockUser(username = "usr", password = "pwd", roles = "USER")
+    void should_throw_access_denied(String json) {
+	CandidateDeleteDto dto = jsonConvert(json, CandidateDeleteDto.class);
+	Assertions.assertThrows(AccessDeniedException.class,
+		() -> controller.delete(dto));
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/candidateDelete.csv", delimiter = ';')
+    void should_throw_unauthenticated_exception(String json) {
+	CandidateDeleteDto dto = jsonConvert(json, CandidateDeleteDto.class);
+	Assertions.assertThrows(
+		AuthenticationCredentialsNotFoundException.class,
+		() -> controller.delete(dto));
     }
 
     @Test

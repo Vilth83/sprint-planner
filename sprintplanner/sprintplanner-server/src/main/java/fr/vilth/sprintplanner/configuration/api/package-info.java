@@ -3,4 +3,4 @@
  * <p>
  * Provides convenient injection and methods such as {@code ModelMapper}.
  */
-package fr.vilth.sprintplanner.commons.api;
+package fr.vilth.sprintplanner.configuration.api;

@@ -5,8 +5,8 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
-import fr.vilth.sprintplanner.commons.utils.BooleanConverter;
+import fr.vilth.sprintplanner.configuration.entities.AbstractEntity;
+import fr.vilth.sprintplanner.configuration.utils.BooleanConverter;
 
 /**
  * Entity representing a {@code Job}.

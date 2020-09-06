@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.ProjectJpaRepository;
 import fr.vilth.sprintplanner.api.services.ProjectService;
-import fr.vilth.sprintplanner.commons.api.AbstractService;
-import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.exceptions.ResourceNotFoundException;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;

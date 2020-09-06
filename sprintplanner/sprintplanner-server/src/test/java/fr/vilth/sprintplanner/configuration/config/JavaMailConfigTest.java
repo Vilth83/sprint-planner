@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.config;
+package fr.vilth.sprintplanner.configuration.config;
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import fr.vilth.sprintplanner.SetupIntTest;
+import fr.vilth.sprintplanner.configuration.config.JavaMailConfig;
 
 /**
  * test on JavaMailConfig

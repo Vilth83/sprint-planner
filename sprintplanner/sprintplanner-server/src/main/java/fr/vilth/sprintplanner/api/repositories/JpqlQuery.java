@@ -22,10 +22,9 @@ public final class JpqlQuery {
      * {@link CandidateJpaRepository#findCandidateNameByTaskNameAndStatus
      * findCandidateNameByTaskNameAndStatus}
      */
-    static final String CANDIDATE_NAME_QUERY = // -
-	    "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
-		    + "from Member m join Candidate c on m.id = c.member join Task t on t.id = c.task "
-		    + "where t.name = :taskName and c.status = :status";
+    static final String CANDIDATE_NAME_QUERY = "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
+	    + "from Member m join Candidate c on m.id = c.member join Task t on t.id = c.task "
+	    + "where t.name = :taskName and c.status = :status";
 
     /**
      * Retrieve a {@code Candidate} by its task, shift and status.
@@ -40,18 +39,12 @@ public final class JpqlQuery {
 	    + "join Task t on t.id = c.task where t.name = :task and c.status = :status and (:shift is null "
 	    + "or m.shift = :shift) order by c.priority desc";
 
-    /**
-     * 
-     */
     static final String ALL_NON_CANDIDATE_BY_TASK_AND_SHIFT = "select m from Member m where m.id not in "
 	    + "(select mem.id from Member mem left join Candidate c "
 	    + "ON mem.id = c.member.id left join Task t "
 	    + "on c.task.id = t.id where t.name = :task) and (:shift is null "
 	    + "or m.shift = :shift)";
 
-    /**
-     * 
-     */
     static final String ALL_BY_TASK_AND_SHIFT = "select c from Candidate c where c.task.name = :taskName "
 	    + "and (:shift is null or c.member.shift = :shift)";
 }

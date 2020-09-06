@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.utils;
+package fr.vilth.sprintplanner.configuration.utils;
 
 import java.io.Serializable;
 import java.util.Comparator;

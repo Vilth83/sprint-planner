@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.domain;
+package fr.vilth.sprintplanner.domain.utils;
 
 import java.util.Set;
 

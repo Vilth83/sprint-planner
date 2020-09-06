@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.JobJpaRepository;
 import fr.vilth.sprintplanner.api.services.JobService;
-import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.job.JobUpdateDto;
 import fr.vilth.sprintplanner.domain.entities.Job;
 

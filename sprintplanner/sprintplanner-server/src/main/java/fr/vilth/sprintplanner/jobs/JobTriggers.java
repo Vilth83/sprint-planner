@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.services.JobService;
-import fr.vilth.sprintplanner.commons.utils.Constants;
+import fr.vilth.sprintplanner.configuration.utils.Constants;
 import fr.vilth.sprintplanner.domain.entities.Job;
 import fr.vilth.sprintplanner.domain.entities.Mail;
 

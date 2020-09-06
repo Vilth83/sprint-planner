@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.exceptions;
+package fr.vilth.sprintplanner.configuration.exceptions;
 
 /**
  * Exception thrown if resource is not found.

@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.common.base.Strings;
 
-import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
 import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
 import fr.vilth.sprintplanner.external_apis.github.model.Commit;

@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.api;
+package fr.vilth.sprintplanner.configuration.api;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
+import fr.vilth.sprintplanner.configuration.exceptions.ResourceNotFoundException;
 
 /**
  * Custom controller advice to handle all {@code RestController} exceptions.
