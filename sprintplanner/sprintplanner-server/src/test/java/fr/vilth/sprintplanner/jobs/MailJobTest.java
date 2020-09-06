@@ -25,11 +25,12 @@ public class MailJobTest extends SetupIntTest {
 	String sender = "sprintplanner@bot";
 	List<String> recipients = Arrays.asList("second@member", "third@member",
 		"task@mail");
-	String subject = "[SPRINTPLANNER] Releaser and tester of the week have been selected for version v1.4.2";
+	String subject = "[SPRINTPLANNER] Releaser and tester of the week have been selected for version v";
 	Assertions.assertAll(
 		() -> assertEquals(sender, mail.getSender()),
 		() -> assertEquals(recipients, mail.getRecipients()),
-		() -> assertEquals(subject, mail.getSubject()));
+		() -> Assertions
+			.assertTrue(mail.getSubject().contains(subject)));
     }
 
     @Test
@@ -39,11 +40,12 @@ public class MailJobTest extends SetupIntTest {
 	List<String> recipients = Arrays.asList("third@member", "fourth@member",
 		"first@member", "second@member",
 		"support@mail");
-	String subject = "[SPRINTPLANNER] Support of the day have been selected for version v1.4.2";
+	String subject = "[SPRINTPLANNER] Support of the day have been selected for version v";
 	Assertions.assertAll(
 		() -> assertEquals(sender, mail.getSender()),
 		() -> assertEquals(recipients, mail.getRecipients()),
-		() -> assertEquals(subject, mail.getSubject()));
+		() -> Assertions
+			.assertTrue(mail.getSubject().contains(subject)));
     }
 
     @Test
