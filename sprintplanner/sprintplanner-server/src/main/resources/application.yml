@@ -13,13 +13,13 @@ spring:
   application:
     name: sprintplanner
   banner:
-    location: classpath:banner-dev.txt
+    location: classpath:banner.txt
   profiles:
-    active: dev
+    active: prod
   datasource:
     url: jdbc:mysql://localhost:3306/sprintplanner_dev_test?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CET
-    username: root
-    password: root
+    username: 
+    password: 
   jpa:
     open-in-view: false
     show-sql: true
@@ -45,8 +45,8 @@ spring:
     add-mappings: true
   mail:
     default-encoding: UTF-8
-    host: 
-    port: 2525
+    host: sghost
+    port: 25
     protocol: smtp
 
 logging:
@@ -60,6 +60,8 @@ cron:
     send-support-mail: "10 */1  * * * *"
     
 config:
+  sprintplanner:
+    allowedOrigin: http://localhost:4200
   external-apis:
     urls: 
       github: "https://api.github.com/repos/"
@@ -67,10 +69,10 @@ config:
     
     
 jwt-auth-server:
-  keyStore: jwt.jks
-  keyPass: 123456
-  keyAlias: jwt
-  accessTokenValiditySeconds: 86400
-  refreshTokenValiditySeconds: 86400
+  keyStore: 
+  keyPass: 
+  keyAlias: 
+  accessTokenValiditySeconds: 
+  refreshTokenValiditySeconds: 
     
     

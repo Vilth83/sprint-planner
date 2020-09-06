@@ -22,9 +22,5 @@ public enum Status {
     /**
      * Is current selected {@code Candidate} for given {@code Task}.
      */
-    CURRENT,
-    /**
-     * Is next selected {@code Candidate} for given {@code Task}.
-     */
-    NEXT
+    CURRENT
 }

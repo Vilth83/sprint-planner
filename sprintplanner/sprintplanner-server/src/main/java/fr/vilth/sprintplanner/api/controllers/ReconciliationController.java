@@ -1,22 +1,15 @@
 package fr.vilth.sprintplanner.api.controllers;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.vilth.sprintplanner.api.services.ProjectService;
+import fr.vilth.sprintplanner.api.services.ReconciliationService;
 import fr.vilth.sprintplanner.domain.dtos.ReconciliatedIssue;
-import fr.vilth.sprintplanner.domain.dtos.project.ProjectViewDto;
-import fr.vilth.sprintplanner.external_apis.github.api.GithubService;
 import fr.vilth.sprintplanner.external_apis.github.model.Branch;
-import fr.vilth.sprintplanner.external_apis.github.model.Commit;
-import fr.vilth.sprintplanner.external_apis.jira.api.JiraService;
-import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 
 /**
@@ -28,27 +21,18 @@ import fr.vilth.sprintplanner.security.annotations.HasRoleUser;
 @RequestMapping("/reconciliations")
 public class ReconciliationController {
 
-    private final GithubService githubService;
-
-    private final JiraService jiraService;
-
-    private final ProjectService projectService;
+    private final ReconciliationService reconciliationService;
 
     /**
      * Protected constructor to autowire needed beans.
      * <p>
-     * Injects {@code GithubService}, {@code JiraService} and
-     * {@code ProjectService}.
+     * Injects {@code ReconciliationService}.
      * 
-     * @param githubService the injected {@code GithubService}
-     * @param jiraService the injected {@code JiraService}
-     * @param projectService the injected {@code ProjectService}
+     * @param reconciliationService the injected {@code reconciliationService}
      */
-    protected ReconciliationController(GithubService githubService,
-	    JiraService jiraService, ProjectService projectService) {
-	this.githubService = githubService;
-	this.jiraService = jiraService;
-	this.projectService = projectService;
+    protected ReconciliationController(
+	    ReconciliationService reconciliationService) {
+	this.reconciliationService = reconciliationService;
     }
 
     /**
@@ -72,24 +56,12 @@ public class ReconciliationController {
      */
     @GetMapping("/reconciliate")
     @HasRoleUser
-    public List<ReconciliatedIssue> getIssue(
+    protected List<ReconciliatedIssue> getIssue(
 	    @RequestParam(required = false) String repository,
 	    @RequestParam String currentBranch,
 	    @RequestParam String previousBranch) {
-	ProjectViewDto project = projectService.getProject();
-	Set<Commit> commits = githubService.compareBranches(
-		project,
-		repository,
-		currentBranch,
+	return reconciliationService.getIssue(repository, currentBranch,
 		previousBranch);
-	return commits.parallelStream()
-		.map(commit -> ReconciliatedIssue.of(commit)
-			.with(getJiraTicket(commit)))
-		.collect(Collectors.toList());
-    }
-
-    private Ticket getJiraTicket(Commit commit) {
-	return jiraService.getByKey(commit.getKey());
     }
 
     /**
@@ -101,15 +73,14 @@ public class ReconciliationController {
      */
     @GetMapping("/branches")
     @HasRoleUser
-    public List<Branch> findAllBranches(
+    protected List<Branch> findAllBranches(
 	    @RequestParam(required = false) String repository) {
-	ProjectViewDto project = projectService.getProject();
-	return githubService.findAllBranches(project, repository);
+	return reconciliationService.findAllBranches(repository);
     }
 
     @GetMapping("/repositories")
-    public List<String> findAllRepositories() {
-	ProjectViewDto project = projectService.getProject();
-	return githubService.findAllRepositories(project);
+    @HasRoleUser
+    protected List<String> findAllRepositories() {
+	return reconciliationService.findAllRepositories();
     }
 }

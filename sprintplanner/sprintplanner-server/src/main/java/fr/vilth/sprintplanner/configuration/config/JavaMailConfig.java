@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.config;
+package fr.vilth.sprintplanner.configuration.config;
 
 import java.util.Map;
 import java.util.Properties;

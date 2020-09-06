@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.entities;
+package fr.vilth.sprintplanner.configuration.entities;
 
 import java.io.Serializable;
 

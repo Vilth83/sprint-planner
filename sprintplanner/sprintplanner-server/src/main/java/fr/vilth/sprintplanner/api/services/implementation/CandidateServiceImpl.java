@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 
 import fr.vilth.sprintplanner.api.repositories.CandidateJpaRepository;
 import fr.vilth.sprintplanner.api.services.CandidateService;
-import fr.vilth.sprintplanner.commons.api.AbstractService;
-import fr.vilth.sprintplanner.commons.exceptions.ResourceNotFoundException;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.exceptions.ResourceNotFoundException;
 import fr.vilth.sprintplanner.domain.dtos.EntityIdDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.candidate.CandidateDeleteDto;

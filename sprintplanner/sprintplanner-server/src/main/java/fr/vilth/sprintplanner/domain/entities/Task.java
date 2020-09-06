@@ -8,7 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import fr.vilth.sprintplanner.commons.entities.AbstractEntity;
+import fr.vilth.sprintplanner.configuration.entities.AbstractEntity;
 
 /**
  * Representation of a {@code Task}.

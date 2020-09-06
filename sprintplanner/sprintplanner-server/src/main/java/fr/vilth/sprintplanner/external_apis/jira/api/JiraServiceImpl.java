@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import fr.vilth.sprintplanner.commons.api.AbstractService;
+import fr.vilth.sprintplanner.configuration.api.AbstractService;
 import fr.vilth.sprintplanner.external_apis.jira.model.Ticket;
 
 /**

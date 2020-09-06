@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.api;
+package fr.vilth.sprintplanner.configuration.api;
 
 /**
  * Object encapsulating error informations.

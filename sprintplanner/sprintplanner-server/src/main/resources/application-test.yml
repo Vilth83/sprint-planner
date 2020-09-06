@@ -58,6 +58,8 @@ cron:
     send-support-mail: "10 0 */6 * * *"
     
 config:
+  sprintplanner:
+    allowedOrigin: http://localhost:4200
   external-apis:
     urls: 
       github: 

@@ -16,6 +16,13 @@ import fr.vilth.sprintplanner.domain.types.Shift;
  */
 public class MemberUpdateDto {
 
+    /**
+     * Empty no-arg protected constructor
+     */
+    protected MemberUpdateDto() {
+	//
+    }
+
     @NotNull
     private Long id;
 

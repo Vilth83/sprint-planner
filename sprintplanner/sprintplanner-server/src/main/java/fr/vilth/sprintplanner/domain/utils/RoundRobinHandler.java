@@ -2,7 +2,7 @@ package fr.vilth.sprintplanner.domain.utils;
 
 import java.util.Set;
 
-import fr.vilth.sprintplanner.commons.utils.PriorityComparator;
+import fr.vilth.sprintplanner.configuration.utils.PriorityComparator;
 import fr.vilth.sprintplanner.domain.entities.Candidate;
 import fr.vilth.sprintplanner.domain.types.Status;
 
@@ -33,9 +33,7 @@ public final class RoundRobinHandler {
 		 */
 		candidate.becomesPrevious();
 	    } else if (candidate.getStatus().equals(Status.UNAVAILABLE)) {
-		/**
-		 * Unavailable candidates are reset to available each week
-		 */
+		// Unavailable candidates are reset to available each week
 		candidate.setStatus(Status.AVAILABLE);
 	    }
 	});

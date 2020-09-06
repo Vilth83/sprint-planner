@@ -1,4 +1,4 @@
-package fr.vilth.sprintplanner.commons.config;
+package fr.vilth.sprintplanner.configuration.config;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.config.Configuration.AccessLevel;
@@ -7,6 +7,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -84,7 +85,7 @@ public class BeanConfig {
      */
     @Bean
     protected ObjectMapper objectMapper() {
-	ObjectMapper mapper = new ObjectMapper();
+	ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().build();
 	mapper.setVisibility(
 		mapper.getSerializationConfig().getDefaultVisibilityChecker()
 			.withFieldVisibility(JsonAutoDetect.Visibility.ANY)
