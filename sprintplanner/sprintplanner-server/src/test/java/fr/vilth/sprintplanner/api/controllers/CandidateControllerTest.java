@@ -120,7 +120,7 @@ public class CandidateControllerTest extends SetupIntTest {
 
     @Test
     void should_return_current_candidate_by_shift() {
-	CandidateViewDto actual = controller.getCurrentByTask("support",
+	CandidateViewDto actual = controller.getCurrentByTask("functional",
 		Shift.BGL);
 	Assertions.assertAll(() -> assertNotNull(actual),
 		() -> assertTrue(actual.toString().contains("shift=BGL")));
@@ -130,7 +130,7 @@ public class CandidateControllerTest extends SetupIntTest {
     @WithMockUser(username = "user", password = "pwd", roles = "USER")
     void should_find_all_members_by_task_and_shift() {
 	Set<CandidateViewDto> actuals = controller
-		.findAllByTaskNameAndMemberShift("support", Shift.PAR);
-	assertEquals(2, actuals.size());
+		.findAllByTaskNameAndMemberShift("functional", Shift.PAR);
+	assertEquals(1, actuals.size());
     }
 }
