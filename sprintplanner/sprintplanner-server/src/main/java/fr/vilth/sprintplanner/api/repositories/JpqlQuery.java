@@ -22,7 +22,8 @@ public final class JpqlQuery {
      * {@link CandidateJpaRepository#findCandidateNameByTaskNameAndStatus
      * findCandidateNameByTaskNameAndStatus}
      */
-    static final String CANDIDATE_NAME_QUERY = "select new fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
+    static final String CANDIDATE_NAME_QUERY = "select new "
+	    + "fr.vilth.sprintplanner.domain.dtos.candidate.CandidateNameDto(m.firstname, m.lastname) "
 	    + "from Member m join Candidate c on m.id = c.member join Task t on t.id = c.task "
 	    + "where t.name = :taskName and c.status = :status";
 

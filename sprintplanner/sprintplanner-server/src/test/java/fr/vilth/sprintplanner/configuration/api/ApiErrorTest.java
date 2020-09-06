@@ -6,7 +6,6 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 import fr.vilth.sprintplanner.SetupUnitTest;
-import fr.vilth.sprintplanner.configuration.api.ApiError;
 
 /**
  * Test against ApiError

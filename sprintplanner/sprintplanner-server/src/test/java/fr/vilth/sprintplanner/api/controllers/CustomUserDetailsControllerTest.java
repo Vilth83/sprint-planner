@@ -18,6 +18,14 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 
 public class CustomUserDetailsControllerTest extends SetupIntTest {
 
+    private static final String UNIQUE = "unique";
+
+    private static final String NOT_EXISTING = "not_existing";
+
+    private static final String TEST_USER = "testUser";
+
+    private static final String ADMIN = "admin";
+
     @Autowired
     CustomUserDetailsController controller;
 
@@ -29,32 +37,32 @@ public class CustomUserDetailsControllerTest extends SetupIntTest {
     void should_create_a_new_user(String json) {
 	CustomUserCreateDto user = jsonConvert(json, CustomUserCreateDto.class);
 	controller.create(user);
-	UserDetails actual = service.loadUserByUsername("testUser");
-	Assertions.assertEquals(actual.getUsername(), "testUser");
+	UserDetails actual = service.loadUserByUsername(TEST_USER);
+	Assertions.assertEquals(actual.getUsername(), TEST_USER);
     }
 
     @Test
     void should_return_existing_user() {
-	UserDetails actual = service.loadUserByUsername("admin");
-	Assertions.assertEquals(actual.getUsername(), "admin");
+	UserDetails actual = service.loadUserByUsername(ADMIN);
+	Assertions.assertEquals(actual.getUsername(), ADMIN);
     }
 
     @Test
     void should_fail_returning_existing_user() {
 	Assertions.assertThrows(
 		UsernameNotFoundException.class,
-		() -> service.loadUserByUsername("not_existing"));
+		() -> service.loadUserByUsername(NOT_EXISTING));
     }
 
     @Test
     void should_return_true_with_unique_username() {
-	boolean actual = service.usernameIsUnique("unique");
+	boolean actual = service.usernameIsUnique(UNIQUE);
 	Assertions.assertTrue(actual);
     }
 
     @Test
     void should_return_false_with_existing_username() {
-	boolean actual = service.usernameIsUnique("admin");
+	boolean actual = service.usernameIsUnique(ADMIN);
 	Assertions.assertFalse(actual);
     }
 
