@@ -75,7 +75,7 @@ public class CandidateControllerTest extends SetupIntTest {
     void should_return_candidates() {
 	Set<CandidateViewDto> actual = controller
 		.findAllByTaskNameAndMemberShift(RELEASER, null);
-	assertEquals(3, actual.size());
+	assertEquals(4, actual.size());
     }
 
     @ParameterizedTest
@@ -124,6 +124,13 @@ public class CandidateControllerTest extends SetupIntTest {
 		Shift.BGL);
 	Assertions.assertAll(() -> assertNotNull(actual),
 		() -> assertTrue(actual.toString().contains("shift=BGL")));
+    }
+
+    @Test
+    void should_throw_not_found_candidate() {
+	Assertions.assertThrows(ResourceNotFoundException.class,
+		() -> controller.getCurrentByTask("notfound",
+			Shift.BGL));
     }
 
     @Test
