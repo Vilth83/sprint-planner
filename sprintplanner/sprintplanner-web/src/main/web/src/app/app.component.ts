@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { LoginModalComponent } from './shared/modals/index';
 import { AuthenticationService } from './shared/services/authentication/authentication.service';
+import { SignupModalComponent } from './shared/modals/signup-modal/signup-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,14 @@ export class AppComponent {
   }
 
   @ViewChild('login') private loginModal: LoginModalComponent;
+  @ViewChild('signup') private signupModal : SignupModalComponent;
 
   public signin() {
     this.loginModal.openModal(this.loginModal.template);
+  }
+
+  public submitAccount() {
+    this.signupModal.openModal(this.signupModal.template);
   }
 
   public logout() {

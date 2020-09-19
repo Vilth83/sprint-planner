@@ -16,7 +16,7 @@ export class HttpErrorHandlerService implements ErrorHandler {
           console.log('URL: ' + router.url);
       } else {
           //A client-side or network error occurred.
-          console.error('An error occurred:', error.message);
+          console.log('An error occurred:', error);
       }
     }
 }

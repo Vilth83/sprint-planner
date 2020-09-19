@@ -2,9 +2,11 @@ package fr.vilth.sprintplanner.api.controllers;
 
 import javax.validation.Valid;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
@@ -33,5 +35,10 @@ public class CustomUserDetailsController {
     @PostMapping
     protected void create(@RequestBody @Valid CustomUserCreateDto inputs) {
 	service.create(inputs);
+    }
+
+    @GetMapping
+    protected boolean existsByUsername(@RequestParam String username) {
+	return service.usernameIsUnique(username);
     }
 }

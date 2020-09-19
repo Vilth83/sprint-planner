@@ -9,11 +9,13 @@ import { UserCredentials } from 'src/app/models/user-credentials.model';
 import { Token } from 'src/app/models/token.model';
 import * as jwtDecode from 'jwt-decode';
 import { Role } from 'src/app/models/role.model';
+import { UserCreateDto } from 'src/app/models/user-create-dto.model';
 
 
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -67,5 +69,13 @@ export class AuthenticationService {
 
   isUser() {
     return this.currentUserValue() && this.currentUserValue().authorities.includes(Role.ROLE_USER);
+  }
+
+  usernameIsUnique(username: string){
+     return this.http.get(Config.uris.api + "/users?username=" + username);
+  }
+
+  createUser(user: UserCreateDto): any {
+    this.http.post(Config.uris.api + "/users", user).subscribe();
   }
 }
