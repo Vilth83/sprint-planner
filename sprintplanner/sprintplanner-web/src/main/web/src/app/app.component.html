@@ -58,7 +58,7 @@
 
   <div class="col-3 text-center" *ngIf="!isAuthenticated(); else guest">
     <button class="btn btn-primary fa fa-sign-in text-center" (click)="signin()" tooltip="log in"></button>
-    <button class="btn btn-primary fa fa-user-plus" (click)="signup()" tooltip="create a new account"></button>
+    <button class="btn btn-primary fa fa-user-plus" (click)="submitAccount()" tooltip="create a new account"></button>
   </div>
 
   <ng-template #guest>
@@ -69,3 +69,4 @@
 </nav>
 <router-outlet></router-outlet>
 <app-login-modal #login></app-login-modal>
+<app-signup-modal #signup></app-signup-modal>

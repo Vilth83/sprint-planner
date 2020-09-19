@@ -12,6 +12,7 @@ export const Config = {
   },
 
   endpoints: {
+    users : '/users',
     userInfo: '/userInfo',
     project: '/projects',
     members: '/members',
