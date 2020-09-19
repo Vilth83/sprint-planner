@@ -1,9 +1,13 @@
 package fr.vilth.sprintplanner.api.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.vilth.sprintplanner.api.services.CustomUserDetailsService;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
+import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserManagementDto;
+import fr.vilth.sprintplanner.security.annotations.HasRoleAdmin;
 
 /**
  * A {@code RestController} to handle {@code CustomUserDetails}.
@@ -40,5 +46,25 @@ public class CustomUserDetailsController {
     @GetMapping
     protected boolean existsByUsername(@RequestParam String username) {
 	return service.usernameIsUnique(username);
+    }
+
+    @HasRoleAdmin
+    @GetMapping("/all")
+    protected List<CustomUserManagementDto> findAll() {
+	return service.findAll();
+    }
+
+    @HasRoleAdmin
+    @PutMapping("/{id}")
+    protected void toggleAccountActivation(@PathVariable Long id,
+	    @RequestBody CustomUserManagementDto inputs) {
+	service.toggleAccountActivation(id, inputs);
+    }
+
+    @HasRoleAdmin
+    @PutMapping("/role/{id}")
+    protected void toggleAdminRole(@PathVariable Long id,
+	    @RequestBody CustomUserManagementDto inputs) {
+	service.toggleAdminRole(id, inputs);
     }
 }

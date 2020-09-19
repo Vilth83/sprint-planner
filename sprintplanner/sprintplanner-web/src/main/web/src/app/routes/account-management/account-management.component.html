@@ -1,0 +1,19 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+
+<div class="container section">
+  <div class="row submenu unselectable">
+    <span>Activate accounts</span>
+  </div>
+  <div class="box-part">
+    <div>
+      <ag-grid-angular
+        class="ag-theme-material"
+        [rowData]="rowData"
+        [gridOptions]="gridOptions"
+        style="width:100%;height:400;"
+        domLayout="autoHeight"
+        [frameworkComponents]="frameworkComponents">
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

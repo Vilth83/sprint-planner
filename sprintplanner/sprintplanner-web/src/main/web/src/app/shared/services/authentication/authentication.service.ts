@@ -71,11 +71,21 @@ export class AuthenticationService {
     return this.currentUserValue() && this.currentUserValue().authorities.includes(Role.ROLE_USER);
   }
 
-  usernameIsUnique(username: string){
-     return this.http.get(Config.uris.api + "/users?username=" + username);
+  usernameIsUnique(username: string) {
+    return this.http.get(Config.uris.api + "/users?username=" + username);
   }
 
   createUser(user: UserCreateDto): any {
     this.http.post(Config.uris.api + "/users", user).subscribe();
+  }
+
+  activateAccount(account) {
+    return this.http.put(Config.uris.api + '/users/' + account.id, account);
+  }
+
+  toggleAdminRole(user) {
+    if (this.decodeUser().userId !== user.id) {
+      return this.http.put(Config.uris.api + '/users/role/' + user.id, user)
+    };
   }
 }

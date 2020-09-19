@@ -106,6 +106,7 @@
           <a routerLink="/members" class="btn btn-primary">Members</a>
           <!-- only admin -->
           <a routerLink="/configuration" class="btn btn-primary" *ngIf="isAdmin()">Project</a>
+          <a routerLink="/accounts" class="btn btn-primary" *ngIf="isAdmin()">Accounts</a>
         </div>
       </div>
     </div>

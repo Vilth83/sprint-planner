@@ -1,9 +1,12 @@
 package fr.vilth.sprintplanner.api.services;
 
+import java.util.List;
+
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
+import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserManagementDto;
 
 /**
  * Service to handle {@code CustomUserDetails}.
@@ -39,4 +42,10 @@ public interface CustomUserDetailsService extends UserDetailsService {
      *        {@code CustomUser} to persist
      */
     void create(CustomUserCreateDto inputs);
+
+    List<CustomUserManagementDto> findAll();
+
+    void toggleAccountActivation(Long id, CustomUserManagementDto inputs);
+
+    void toggleAdminRole(Long id, CustomUserManagementDto inputs);
 }

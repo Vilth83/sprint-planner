@@ -49,6 +49,7 @@
           <div *dropdownMenu class="dropdown-menu">
             <a class="dropdown-item nav-link" routerLink="/members">Members</a>
             <a class="dropdown-item nav-link" routerLink="/configuration" *ngIf="isAdmin()">Project</a>
+            <a class="dropdown-item nav-link" routerLink="/accounts" *ngIf="isAdmin()">Accounts</a>
           </div>
         </a>
       </li>

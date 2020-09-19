@@ -1,7 +1,11 @@
 package fr.vilth.sprintplanner.api.services.implementation;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,6 +20,7 @@ import fr.vilth.sprintplanner.configuration.exceptions.ResourceNotFoundException
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserAuthDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
+import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserManagementDto;
 import fr.vilth.sprintplanner.domain.entities.CustomUser;
 import fr.vilth.sprintplanner.domain.entities.Role;
 import fr.vilth.sprintplanner.security.CustomUserDetails;
@@ -79,5 +84,61 @@ public class CustomUserDetailsServiceImpl extends AbstractService
     @Override
     public boolean usernameIsUnique(String username) {
 	return !userRepository.existsByUsernameIgnoreCase(username);
+    }
+
+    @Override
+    public List<CustomUserManagementDto> findAll() {
+	List<CustomUser> users = userRepository.findAll();
+	return users.stream().map(this::enrichUser)
+		.collect(Collectors.toList());
+    }
+
+    private CustomUserManagementDto enrichUser(CustomUser user) {
+	CustomUserManagementDto dto = convert(user,
+		CustomUserManagementDto.class);
+	dto.setActivated(user.isAccountNonExpired() && user.isAccountNonLocked()
+		&& user.isCredentialsNonExpired() && user.isEnabled());
+	dto.setRole(user.getRoles().stream().findFirst()
+		.orElse(roleRepository.findByDefaultRoleTrue()));
+	return dto;
+    }
+
+    @Override
+    public void toggleAccountActivation(Long id,
+	    CustomUserManagementDto inputs) {
+	Optional<CustomUser> customUser = userRepository.findById(id);
+	customUser.ifPresent(enrichAndSave(inputs));
+    }
+
+    private Consumer<CustomUser> enrichAndSave(
+	    CustomUserManagementDto inputs) {
+	return user -> {
+	    user.setAccountNonExpired(!inputs.isActivated());
+	    user.setAccountNonLocked(!inputs.isActivated());
+	    user.setEnabled(!inputs.isActivated());
+	    user.setCredentialsNonExpired(!inputs.isActivated());
+	    userRepository.save(user);
+	};
+    }
+
+    @Override
+    public void toggleAdminRole(Long id, CustomUserManagementDto inputs) {
+	Optional<CustomUser> customUser = userRepository.findById(id);
+	customUser.ifPresent(user -> {
+	    if (user.getRoles().stream()
+		    .anyMatch(role -> role.getCode().equals("ROLE_ADMIN"))) {
+		changeRole(user, "ROLE_USER");
+	    } else {
+		changeRole(user, "ROLE_ADMIN");
+	    }
+	    userRepository.save(user);
+	});
+    }
+
+    private void changeRole(CustomUser user, String code) {
+	Role role = roleRepository.findByCode(code);
+	Set<Role> roles = new HashSet<>();
+	roles.add(role);
+	user.setRoles(roles);
     }
 }
