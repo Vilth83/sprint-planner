@@ -24,6 +24,14 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
       this.label = this.getLabelFunction(params.data);
     }
 
+    if(params.value && params.value === true || params.value === "ROLE_ADMIN") {
+      this.btnClass = 'btn btn-primary fa fa-check-square fa-lg'
+    }
+
+    if(params.value === false || params.value === "ROLE_USER") {
+      this.btnClass = 'btn btn-primary fa fa-square fa-lg'
+    }
+
   }
 
   refresh(_params?: any): boolean {

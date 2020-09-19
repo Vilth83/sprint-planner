@@ -17,4 +17,6 @@ public interface RoleJpaRepository extends JpaRepository<Role, Long> {
      * @return default USER {@code Role}
      */
     Role findByDefaultRoleTrue();
+
+    Role findByCode(String code);
 }

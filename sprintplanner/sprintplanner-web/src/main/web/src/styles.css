@@ -3,6 +3,15 @@
 @import '~ag-grid-community/dist/styles/ag-theme-material.css';
 @import "app/shared/styles/ag-grid.css";
 
+.green_row {
+  background-color: rgba(0, 255, 0, 0.1) !important;
+}
+
+.red_row {
+  background-color: rgba(255, 0, 0, 0.2) !important;
+}
+
+
 html {
   margin: 0;
   padding: 0;

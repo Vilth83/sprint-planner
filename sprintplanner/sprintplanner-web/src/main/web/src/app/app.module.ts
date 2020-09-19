@@ -39,6 +39,7 @@ import { TokenInterceptor } from './shared/services/authentication/token-interce
 import { HttpErrorHandlerService } from './shared/services/http-error-handler.service';
 import { JiraStateRendererComponent } from './shared/components/grid-components/jira-state-renderer.component';
 import { SignupModalComponent } from './shared/modals/signup-modal/signup-modal.component';
+import { AccountManagementComponent } from './routes/account-management/account-management.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { SignupModalComponent } from './shared/modals/signup-modal/signup-modal.
     TesterComponent,
     BooleanRendererComponent,
     JiraStateRendererComponent,
-    SignupModalComponent
+    SignupModalComponent,
+    AccountManagementComponent
     ],
   imports: [
     UiSwitchModule,
