@@ -8,10 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,6 @@ import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserCreateDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserInfoDto;
 import fr.vilth.sprintplanner.domain.dtos.custom_user.CustomUserManagementDto;
 
-@TestMethodOrder(OrderAnnotation.class)
 public class CustomUserDetailsControllerTest extends SetupIntTest {
 
     private static final String UNIQUE = "unique";
@@ -45,7 +41,6 @@ public class CustomUserDetailsControllerTest extends SetupIntTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/userCreation.csv", delimiter = ';')
-    @Order(1)
     void should_create_a_new_user(String json) {
 	CustomUserCreateDto user = jsonConvert(json, CustomUserCreateDto.class);
 	controller.create(user);
@@ -54,14 +49,12 @@ public class CustomUserDetailsControllerTest extends SetupIntTest {
     }
 
     @Test
-    @Order(2)
     void should_return_existing_user() {
 	UserDetails actual = service.loadUserByUsername(ADMIN);
 	assertEquals(actual.getUsername(), ADMIN);
     }
 
     @Test
-    @Order(3)
     void should_fail_returning_existing_user() {
 	assertThrows(
 		UsernameNotFoundException.class,
@@ -69,55 +62,47 @@ public class CustomUserDetailsControllerTest extends SetupIntTest {
     }
 
     @Test
-    @Order(4)
     void should_return_true_with_unique_username() {
 	boolean actual = controller.existsByUsername(UNIQUE);
 	assertTrue(actual);
     }
 
     @Test
-    @Order(5)
     void should_return_false_with_existing_username() {
 	boolean actual = controller.existsByUsername(ADMIN);
 	assertFalse(actual);
     }
 
     @Test
-    @Order(6)
     void should_return_user_info() {
 	CustomUserInfoDto info = service.getCurrentUserInfo(1L);
 	assertNotNull(info);
     }
 
     @Test
-    @Order(7)
     @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
     void should_return_all_users() {
 	List<CustomUserManagementDto> users = controller.findAll();
-	assertEquals(users.size(), 3);
+	assertEquals(users.size(), 2);
     }
 
     @Test
-    @Order(8)
     @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
-    void should_activate_account() {
+    void should_deactivate_activate_account() {
 	List<CustomUserManagementDto> users = controller.findAll();
 	CustomUserManagementDto tested = users.stream()
-		.filter(usr -> !usr.isActivated()).findFirst().get();
-	controller.toggleAccountActivation(3L, tested);
-	List<CustomUserManagementDto> actual = controller.findAll();
-	assertTrue(
-		actual.stream().allMatch(CustomUserManagementDto::isActivated));
-    }
-
-    @Test
-    @Order(9)
-    @WithMockUser(username = "admin", password = "pwd", roles = "ADMIN")
-    void should_deactivate_account() {
-	List<CustomUserManagementDto> users = controller.findAll();
-	controller.toggleAccountActivation(3L, users.get(2));
+		.findFirst().get();
+	Long id = tested.getId();
+	controller.toggleAccountActivation(id, tested);
 	List<CustomUserManagementDto> actual = controller.findAll();
 	assertFalse(
+		actual.stream().allMatch(CustomUserManagementDto::isActivated));
+	users = controller.findAll();
+	tested = users.stream().filter(usr -> !usr.isActivated())
+		.findFirst().get();
+	controller.toggleAccountActivation(tested.getId(), tested);
+	actual = controller.findAll();
+	assertTrue(
 		actual.stream().allMatch(CustomUserManagementDto::isActivated));
     }
 
