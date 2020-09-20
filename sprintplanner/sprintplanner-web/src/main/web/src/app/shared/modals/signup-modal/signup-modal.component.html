@@ -9,25 +9,24 @@
       <p class="col-12 info">Create a new account</p>
     </div>
     <form>
-      <label class="col-12"> Username
+      <label class="col-12 text-left"> Username
         <input class="col-12" type="text" name="username" [(ngModel)]="user.username" (change)="checkUsername(user.username)">
         <span style="color:red">{{usernameError}}</span>
       </label>
-      <label class="col-6"> firstname
-        <input class="col-6" type="text" name="firstname" [(ngModel)]="user.firstname">
+      <label class="col-12 text-left"> firstname
+        <input class="col-12" type="text" name="firstname" [(ngModel)]="user.firstname">
       </label>
-      <label class="col-6"> lastname
-        <input class="col-6" type="text" name="lastname" [(ngModel)]="user.lastname">
+      <label class="col-12 text-left"> lastname
+        <input class="col-12" type="text" name="lastname" [(ngModel)]="user.lastname">
       </label>
-      <label class="col-12"> Password
+      <label class="col-12 text-left"> Password
         <input class="col-12" type="password" name="password" (change)="checkPasswords(user)" [(ngModel)]="user.password">
         <span style="color:red">{{shortPassword}}</span>
       </label>
-      <label class="col-12"> Repeat your Password
+      <label class="col-12 text-left"> Repeat your Password
         <input class="col-12" type="password" name="passwordCheck" [(ngModel)]="user.passwordCheck" (change)="checkPasswords(user)">
           <span style="color:red">{{differentPassword}}</span>
       </label>
-      <p style="color:red">{{errorMessage}}</p>
       <button class="btn btn-primary fa fa-submit" (click)="submit(user)">Sign up</button>
     </form>
   </div>

@@ -24,7 +24,7 @@ spring:
     initialization-mode: always 
   jpa:
     open-in-view: false
-    show-sql: true
+    show-sql: false
     generate-ddl: true
     hibernate:
        ddl-auto: create
@@ -47,7 +47,7 @@ spring:
     add-mappings: true
 
 logging:
-  config: classpath:logback-spring-dev.xml
+  config: classpath:logback-spring.xml
   
   
 cron:

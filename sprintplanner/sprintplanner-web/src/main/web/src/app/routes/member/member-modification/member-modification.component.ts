@@ -9,6 +9,7 @@ import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { HttpRequestBuilder } from 'src/app/shared/services/http-helper/http-request-builder.service';
 import { Config } from 'src/app/shared/services/config';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
+import { Shift } from 'src/app/models/shift.model';
 
 @Component({
   selector: 'app-member-modification',
@@ -42,7 +43,7 @@ export class MemberModificationComponent implements OnInit {
       defaultColDef: { editable: this.isAdmin(), sortable: true, resizable: true },
       columnDefs: [
         { headerName: 'id', field: 'id', hide: true },
-        { headerName: `firstname`, field: 'firstname' },
+        { headerName: 'firstname', field: 'firstname' },
         { headerName: 'lastname', field: 'lastname' },
         { headerName: 'email', field: 'email' },
         {
@@ -51,7 +52,7 @@ export class MemberModificationComponent implements OnInit {
           width: 120,
           cellEditor: "agSelectCellEditor",
           cellEditorParams: {
-            values: ["PAR", "BGL"]
+            values: [Shift.PAR, Shift.BGL]
           }
         },
         {
