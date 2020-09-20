@@ -92,15 +92,14 @@ public class CustomUserDetailsControllerTest extends SetupIntTest {
 	List<CustomUserManagementDto> users = controller.findAll();
 	CustomUserManagementDto tested = users.stream()
 		.findFirst().get();
-	Long id = tested.getId();
-	controller.toggleAccountActivation(id, tested);
+	controller.toggleAccountActivation(1L, tested);
 	List<CustomUserManagementDto> actual = controller.findAll();
 	assertFalse(
 		actual.stream().allMatch(CustomUserManagementDto::isActivated));
 	users = controller.findAll();
 	tested = users.stream().filter(usr -> !usr.isActivated())
 		.findFirst().get();
-	controller.toggleAccountActivation(tested.getId(), tested);
+	controller.toggleAccountActivation(1L, tested);
 	actual = controller.findAll();
 	assertTrue(
 		actual.stream().allMatch(CustomUserManagementDto::isActivated));

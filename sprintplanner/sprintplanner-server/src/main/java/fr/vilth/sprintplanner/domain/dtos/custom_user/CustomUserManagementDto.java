@@ -27,8 +27,4 @@ public class CustomUserManagementDto {
     public boolean isActivated() {
 	return activated;
     }
-
-    public Long getId() {
-	return id;
-    }
 }
