@@ -47,7 +47,7 @@ spring:
     add-mappings: true
 
 logging:
-  config: classpath:logback-spring-dev.xml
+  config: classpath:logback-spring.xml
   
   
 cron:
