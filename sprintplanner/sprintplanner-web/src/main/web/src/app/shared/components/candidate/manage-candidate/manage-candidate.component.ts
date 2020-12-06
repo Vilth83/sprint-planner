@@ -16,7 +16,6 @@ import { ErrorHandler } from 'src/app/shared/services/error-handler.service';
 import { ERROR_NO_CANDIDATE } from 'src/app/shared/constants';
 import { Status } from 'src/app/models/status.model';
 import { AuthenticationService } from 'src/app/shared/services/authentication/authentication.service';
-import { Shift } from 'src/app/models/shift.model';
 
 @Component({
   selector: 'app-manage-candidate',
