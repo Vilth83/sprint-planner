@@ -40,6 +40,14 @@ public final class JpqlQuery {
 	    + "join Task t on t.id = c.task where t.name = :task and c.status = :status and (:shift is null "
 	    + "or m.shift = :shift) order by c.priority desc";
 
+    /**
+     * Retrieve all non {@code Candidate} {@code Member} for a given task and
+     * shift.
+     * <p>
+     * shift is optional. If not provided, the list of {@code Member} will be
+     * retrieved by given task only.
+     * <p>
+     */
     static final String ALL_NON_CANDIDATE_BY_TASK_AND_SHIFT = "select m from Member m where m.id not in "
 	    + "(select mem.id from Member mem left join Candidate c "
 	    + "ON mem.id = c.member.id left join Task t "

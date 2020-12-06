@@ -94,7 +94,12 @@ export class IssueReconciliationComponent implements OnInit {
     }
     const currentBranchParam = Config.params.currentBranch + this.currentBranch.commit.sha;
     const previousBranchParam = Config.params.previousBranch + this.previousBranch.commit.sha;
-    this.reconciliationSubscription = this.http.get(Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam)
+
+    let url = Config.endpoints.reconciliation.reconciliate + currentBranchParam + previousBranchParam;
+    if(this.repository) {
+      url += "&repository=" + this.repository;
+    }
+    this.reconciliationSubscription = this.http.get(url)
       .subscribe((issues: any[]) => {
         this.rowData = issues
       });

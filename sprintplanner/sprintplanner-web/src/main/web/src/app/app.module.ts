@@ -40,6 +40,7 @@ import { HttpErrorHandlerService } from './shared/services/http-error-handler.se
 import { JiraStateRendererComponent } from './shared/components/grid-components/jira-state-renderer.component';
 import { SignupModalComponent } from './shared/modals/signup-modal/signup-modal.component';
 import { AccountManagementComponent } from './routes/account-management/account-management.component';
+import { CoupDeMainComponent } from './routes/coup-de-main/coup-de-main.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { AccountManagementComponent } from './routes/account-management/account-
     BooleanRendererComponent,
     JiraStateRendererComponent,
     SignupModalComponent,
-    AccountManagementComponent
+    AccountManagementComponent,
+    CoupDeMainComponent
     ],
   imports: [
     UiSwitchModule,
